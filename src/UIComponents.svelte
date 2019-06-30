@@ -28,8 +28,50 @@
     color: purple;
   }
 
-  .customRounded {
-    background: red !important;
+  :global(body) {
+    .textfield.customRounded .textfield-element {
+      .border {
+        .borderSegment.start {
+          width: 30px;
+          border-radius: 50px 0 0 50px;
+        }
+        .borderSegment.end {
+          border-radius: 0 50px 50px 0;
+        }
+      }
+      .input {
+        padding: 0 30px;
+      }
+    }
+
+    .textfield.customSharpEdges .textfield-element {
+      .border,
+      .border .borderSegment {
+        border-radius: 0;
+      }
+    }
+
+    .textfield.customFontsize .textfield-element {
+      .input {
+        font-size: 20px;
+      }
+    }
+    .textfield.customFont {
+      .helperText {
+        font-family: monospace;
+      }
+      .textfield-element {
+        * {
+          font-family: monospace;
+        }
+      }
+    }
+
+    .textfield.customBackground {
+      .textfield-element {
+        background: white;
+      }
+    }
   }
 </style>
 
@@ -171,6 +213,14 @@
     helperText="Multiline"
     multiline={true} />
 
+  <Textfield
+    label={'Outlined'}
+    name="Error"
+    color="#bb88dd"
+    compact={false}
+    error={true}
+    helperText="Error" />
+
 </Block>
 
 <h3>Filled</h3>
@@ -255,22 +305,58 @@
 
 </Block>
 
-<h3>Themed [todo]</h3>
+<h3>Customized</h3>
 <Block>
 
-  <div class="testElement">
-    <Textfield
-      class="customRounded"
-      style={customStyle1}
-      label={'Outlined'}
-      name="Custom"
-      color="#99bbdd"
-      compact={false}
-      helperText="Custom Shaped" />
-  </div>
+  <Textfield
+    class="customRounded"
+    style={customStyle1}
+    label={'Outlined'}
+    name="Custom"
+    color="#d88bb"
+    compact={false}
+    helperText="Custom Shaped" />
 
-  <div class="custom">Test</div>
+  <Textfield
+    class="customRounded"
+    label={'Outlined'}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    name="Custom"
+    color="#99aaff"
+    compact={true}
+    helperText="Custom Shaped" />
 
+  <Textfield
+    class="customSharpEdges"
+    label={'Outlined'}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    name="Custom"
+    color="#ff99bb"
+    helperText="Sharp Edges" />
+
+  <Textfield
+    class="customFontsize"
+    label={'Outlined'}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    name="Custom"
+    color="#ff99bb"
+    helperText="Fontsize" />
+
+  <Textfield
+    class="customFont"
+    label={'Outlined'}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    name="Custom"
+    color="#bbddaa"
+    helperText="Font" />
+
+  <Textfield
+    class="customBackground"
+    label={'Outlined'}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    name="Custom"
+    color="#bbddaa"
+    helperText="Background" />
 </Block>
 
 <h3>Prepend / Append</h3>
@@ -278,15 +364,13 @@
 
   <div class="testElement">
     <Textfield
-      class="customRounded"
       style={customStyle1}
       label={'Outlined'}
       name="Custom"
       color="#99bbdd"
       compact={false}
-      prepend="$$"
-      append="$$"
-      helperText="Custom Shaped" />
+      prepend="$"
+      helperText="Prepend" />
   </div>
 
   <Textfield
@@ -294,9 +378,8 @@
     name="Custom"
     color="#99bbdd"
     compact={false}
-    prepend="$$"
     append="$$"
-    helperText="Custom Shaped" />
+    helperText="Append" />
 
   <Textfield
     label={'Filled'}
@@ -304,38 +387,91 @@
     color="#99bbdd"
     compact={false}
     prepend="¢"
-    append="$-8"
+    append="-Append-"
     variant="filled"
-    helperText="Custom Shaped" />
+    helperText="Append/Prepend" />
 
   <Textfield
     label={'Outlined'}
     name="Custom"
-    color="#99bbdd"
+    color="#bb99dd"
     compact={true}
-    prepend="$$"
-    append="$$"
-    helperText="Custom Shaped" />
+    prepend="$$$"
+    append="¢¢¢"
+    helperText="Compact" />
 
   <Textfield
     label={'Filled'}
     name="Custom"
-    color="#99bbdd"
+    color="#aa2277"
     compact={true}
+    error={true}
     prepend="$$$"
     append="$-8"
     variant="filled"
-    helperText="Custom Shaped" />
+    helperText="Error" />
 
   <Textfield
     label={'Simple'}
     name="Custom"
-    color="#99bbdd"
+    color="#99bbaa"
     compact={false}
-    prepend="¢"
+    prepend="¢¢¢"
     append="$"
     variant="simple"
-    helperText="Custom Shaped" />
+    helperText="Simple" />
+
+  <Textfield
+    label={'Simple'}
+    name="Custom"
+    color="#33ddaa"
+    compact={true}
+    prepend="¢¢¢¢"
+    append="$$$$"
+    variant="simple"
+    helperText="Compact" />
+
+  <Textfield
+    label={'Simple'}
+    name="Custom"
+    color="#33ddaa"
+    compact={false}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    append="$"
+    variant="filled"
+    helperText="Icon" />
+
+  <Textfield
+    label={'Simple'}
+    name="Custom"
+    color="#33ddaa"
+    compact={false}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    append="$"
+    variant="outlined"
+    helperText="Icon" />
+
+  <Textfield
+    label={'Simple'}
+    name="Custom"
+    color="#33ddaa"
+    compact={false}
+    prepend={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/></svg>`}
+    append={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`}
+    variant="outlined"
+    helperText="2 Icons" />
+
+  <Textfield
+    label={'Simple'}
+    name="Custom"
+    color="#33ddaa"
+    compact={false}
+    prepend={`
+    <div style="width:30px; height:30px; background:orange; border-radius:50px;"></div>
+    `}
+    append={`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`}
+    variant="outlined"
+    helperText="Html" />
 
 </Block>
 

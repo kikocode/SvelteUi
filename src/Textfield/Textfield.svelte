@@ -2,9 +2,9 @@
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
 
-  const VERSION = 1.0;
   const dispatch = createEventDispatcher();
-  const LABEL_SCALE = 0.75;
+
+  const VERSION = 1.2;
 
   export let name = "";
   export let label = "";
@@ -34,6 +34,10 @@
   let appendRef;
   let appendWidth;
   let height;
+
+  let LABEL_SCALE = 0.75;
+  let labelGap = 3;
+  let paddingLeft = 10;
 
   $: focusedClass = focused && !disabled ? "focused" : "";
   $: activeClass = name != "" || focused ? "active" : "";
@@ -67,27 +71,34 @@
     ${style};
     --primary-color:  ${hexToRGB(color)};
     --primary-color-light:  ${hexToRGB(color, 0.85)};
-    --label-scale: ${LABEL_SCALE};
-    --label-width: ${labelWidth}px;
+
+    --height: ${height}px;
+    --padding-left: ${paddingLeft}px;
+
     --prepend-width: ${prependWidth}px;
     --append-width: ${appendWidth}px;
-    --height: ${height}px;
-
+    
+    --label-scale: ${LABEL_SCALE};
+    --label-width: ${labelWidth}px;
     --label-x: ${labelX}px;
     --label-y: ${labelY}px;
     --transform-label: translate(${labelX}px, ${labelY}px) scale(1);
-    `;
+    --transform-label-filled: translateX(${labelX}px) translateY(${labelY -
+    7}px) scale(${LABEL_SCALE});
+  `;
 
   onMount(() => {
-    const labelGap = 3;
-
     appendWidth = appendRef ? appendRef.offsetWidth : 0;
     prependWidth = prependRef ? prependRef.offsetWidth : 0;
 
     labelWidth = labelRef.offsetWidth * LABEL_SCALE + labelGap;
     labelHeight = labelRef.offsetHeight;
     labelY = Math.round(height / 2 - labelHeight / 2);
-    labelX = 13 + prependWidth;
+    labelX = prependWidth;
+    if (variant == "simple") {
+      labelX = 0;
+      paddingLeft = 0;
+    }
 
     console.log("label width", labelWidth);
   });
@@ -200,7 +211,7 @@
       transition: all var(--transition-fast);
 
       .start {
-        width: 10px;
+        width: var(--padding-left);
         height: 100%;
         border-radius: 4px 0 0px 4px;
         border-right: none;
@@ -227,6 +238,7 @@
     .append {
       display: flex;
       align-items: center;
+      white-space: pre;
       padding: var(--spacing-input-outlined);
       color: rgba(0, 0, 0, 0.5);
       pointer-events: none;
@@ -257,7 +269,7 @@
     /* Active */
     &.active {
       .label {
-        transform: translate(10px, -7px) scale(var(--label-scale));
+        transform: translateY(-7px) scale(var(--label-scale));
         color: rgba(0, 0, 0, 0.5);
       }
       .border .gap {
@@ -320,9 +332,6 @@
     }
     .label {
     }
-    &.active .label {
-      transform: translate(10px, -6px) scale(var(--label-scale));
-    }
   }
 
   /**
@@ -342,7 +351,6 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     }
     .label {
-      transform: var(--transform-label);
       background: none;
     }
     /* Hover */
@@ -351,9 +359,7 @@
     }
     /* Active */
     &.active .label {
-      padding: 0;
-      transform: translate(var(--label-x), calc(var(--label-y) - 7px))
-        scale(var(--label-scale));
+      transform: var(--transform-label-filled);
     }
     /* Focused */
     &.focused .border {
@@ -398,6 +404,22 @@
     .label {
       padding: 0;
     }
+    .prepend {
+      padding-left: 0;
+    }
+    .append {
+      padding-right: 0;
+    }
+    &.hasPrepend {
+      .input {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .label {
+        transform: translateX(calc(var(--prepend-width) + 10px))
+          translateY(var(--label-y));
+      }
+    }
     .helperText {
       margin-left: 0;
       margin-right: 0;
@@ -425,7 +447,7 @@
     /* active */
     &.active {
       .label {
-        transform: translate(0, -12px) scale(var(--label-scale));
+        transform: translateX(0) translateY(-10px) scale(var(--label-scale));
       }
     }
     /* multiline */
@@ -468,10 +490,12 @@
         {@html prepend}
       </div>
     {/if}
-    <div bind:this={labelRef} class="label">{label} </div>
+
     <div class="border">
       <div class="start borderSegment" />
-      <div class="gap borderSegment" />
+      <div class="gap borderSegment">
+        <div bind:this={labelRef} class="label">{label} </div>
+      </div>
       <div class="end borderSegment" />
     </div>
     {#if multiline}

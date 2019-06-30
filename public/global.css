@@ -17,8 +17,3 @@ h3 {
 	margin-bottom: 24px;
 	font-size: 22px;
 }
-
-
-.customRounded .borderSegment.end {
-	border-radius: 0 130px 130px 0 !important;
-}
