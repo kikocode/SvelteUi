@@ -20,15 +20,28 @@
       helper12 = "!!more than 8 chars";
     }
   };
+  let customStyle1 = ``;
 </script>
 
-<style>
+<style type="text/scss">
   h1 {
     color: purple;
   }
+
+  .customRounded {
+    background: red !important;
+  }
 </style>
 
+<h2>Checkboxes</h2>
+
+<Block>
+  <Checkbox color="#bbddaa" />
+  <Checkbox color="#bbddaa" label="Checkbox 02" />
+</Block>
+
 <h2>Textfields</h2>
+
 <h3>Simple</h3>
 
 <Block>
@@ -93,14 +106,6 @@
     color="#00aa88"
     compact={false} />
   <Textfield label={'Compact'} name="Name" color="#00aa88" compact={true} />
-
-  <Textfield
-    label={'With Helper'}
-    name="Name"
-    color="#99bbee"
-    compact={false}
-    error={error12}
-    helperText={'Helper Text'} />
 
   <Textfield
     label={'Number'}
@@ -250,6 +255,90 @@
 
 </Block>
 
+<h3>Themed [todo]</h3>
+<Block>
+
+  <div class="testElement">
+    <Textfield
+      class="customRounded"
+      style={customStyle1}
+      label={'Outlined'}
+      name="Custom"
+      color="#99bbdd"
+      compact={false}
+      helperText="Custom Shaped" />
+  </div>
+
+  <div class="custom">Test</div>
+
+</Block>
+
+<h3>Prepend / Append</h3>
+<Block>
+
+  <div class="testElement">
+    <Textfield
+      class="customRounded"
+      style={customStyle1}
+      label={'Outlined'}
+      name="Custom"
+      color="#99bbdd"
+      compact={false}
+      prepend="$$"
+      append="$$"
+      helperText="Custom Shaped" />
+  </div>
+
+  <Textfield
+    label={'Outlined'}
+    name="Custom"
+    color="#99bbdd"
+    compact={false}
+    prepend="$$"
+    append="$$"
+    helperText="Custom Shaped" />
+
+  <Textfield
+    label={'Filled'}
+    name="Custom"
+    color="#99bbdd"
+    compact={false}
+    prepend="¢"
+    append="$-8"
+    variant="filled"
+    helperText="Custom Shaped" />
+
+  <Textfield
+    label={'Outlined'}
+    name="Custom"
+    color="#99bbdd"
+    compact={true}
+    prepend="$$"
+    append="$$"
+    helperText="Custom Shaped" />
+
+  <Textfield
+    label={'Filled'}
+    name="Custom"
+    color="#99bbdd"
+    compact={true}
+    prepend="$$$"
+    append="$-8"
+    variant="filled"
+    helperText="Custom Shaped" />
+
+  <Textfield
+    label={'Simple'}
+    name="Custom"
+    color="#99bbdd"
+    compact={false}
+    prepend="¢"
+    append="$"
+    variant="simple"
+    helperText="Custom Shaped" />
+
+</Block>
+
 <h2>Toggle Buttons</h2>
 
 <Block>
@@ -257,11 +346,4 @@
   <Toggle toggle={true} color="#bb99dd" />
   <Toggle toggle={true} color="#99aa33" />
   <Toggle toggle={true} color="#88bbaa" />
-</Block>
-
-<h2>Checkboxes</h2>
-
-<Block>
-  <Checkbox color="#bbddaa" />
-  <Checkbox color="#bbddaa" label="Checkbox 02" />
 </Block>

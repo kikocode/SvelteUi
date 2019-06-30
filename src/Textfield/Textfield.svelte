@@ -14,13 +14,26 @@
   export let disabled = false;
   export let multiline = false;
   export let color = "#ffbb77";
-  export let style = "";
   export let helperText = "";
   export let type = "text";
+  export let append = "";
+  export let prepend = "";
+
+  export let style = "";
+  export let className = "";
+  export { className as class };
 
   let focused = false;
   let labelRef;
   let labelWidth;
+  let labelHeight;
+  let labelX;
+  let labelY;
+  let prependRef;
+  let prependWidth;
+  let appendRef;
+  let appendWidth;
+  let height;
 
   $: focusedClass = focused && !disabled ? "focused" : "";
   $: activeClass = name != "" || focused ? "active" : "";
@@ -29,19 +42,53 @@
   $: disabledClass = disabled ? "disabled" : "";
   $: multilineClass = multiline ? "multiline" : "";
   $: variantClass = variant ? "multiline" : "";
-  $: textfieldClasses = ` ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variant}`;
+  $: prependClass = append ? "hasPrepend" : "";
+  $: appendClass = append ? "hasAppend" : "";
+  $: textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variant} ${prependClass} ${appendClass}`;
+
+  $: computeVariant(variant);
+
+  const computeVariant = variant => {
+    if (variant == "outlined") {
+      height = 55;
+      if (compact) height = 39;
+    } else if (variant == "filled") {
+      height = 55;
+      if (compact) height = 45;
+    } else if ((variant = "simple")) {
+      height = 36;
+      if (compact) height = 30;
+    } else {
+      height = 55;
+    }
+  };
 
   $: textfieldStyle = `
     ${style};
     --primary-color:  ${hexToRGB(color)};
     --primary-color-light:  ${hexToRGB(color, 0.85)};
+    --label-scale: ${LABEL_SCALE};
     --label-width: ${labelWidth}px;
-    --label-scale: ${LABEL_SCALE}
+    --prepend-width: ${prependWidth}px;
+    --append-width: ${appendWidth}px;
+    --height: ${height}px;
+
+    --label-x: ${labelX}px;
+    --label-y: ${labelY}px;
+    --transform-label: translate(${labelX}px, ${labelY}px) scale(1);
     `;
 
   onMount(() => {
     const labelGap = 3;
+
+    appendWidth = appendRef ? appendRef.offsetWidth : 0;
+    prependWidth = prependRef ? prependRef.offsetWidth : 0;
+
     labelWidth = labelRef.offsetWidth * LABEL_SCALE + labelGap;
+    labelHeight = labelRef.offsetHeight;
+    labelY = Math.round(height / 2 - labelHeight / 2);
+    labelX = 13 + prependWidth;
+
     console.log("label width", labelWidth);
   });
 
@@ -74,15 +121,9 @@
     --error-color: #e0274f;
     --disabled-color: rgba(0, 0, 0, 0.25);
 
-    --spacing-input-outlined: 18px 13px;
+    --spacing-input-outlined: 0 13px;
     --spacing-input-filled: 28px 13px 9px;
     --spacing-input-simple: 8px 0 8px;
-
-    --height-outlined: 55px;
-    --height-outlined-compact: 39px;
-    --height-filled-compact: 45px;
-    --height-simple: 36px;
-    --height-simple-compact: 30px;
 
     display: inline-flex;
     flex-flow: column;
@@ -98,12 +139,13 @@
 
     .textfield-element {
       position: relative;
+      display: flex;
     }
 
     .input {
       width: 100%;
       min-width: 80px;
-      height: var(--height-outlined);
+      height: var(--height);
       padding: var(--spacing-input-outlined);
       border-radius: 5px;
       font-size: 16px;
@@ -111,6 +153,10 @@
       margin: 0;
       border: none;
       background: none;
+
+      &::-ms-clear {
+        display: none;
+      }
     }
 
     .label {
@@ -118,10 +164,10 @@
       user-select: none;
       pointer-events: none;
       z-index: 1;
-      transform: translate(13px, 18px) scale(1);
-      padding-left: 2px;
       transform-origin: top left;
+      transform: var(--transform-label);
       transition: transform var(--transition-fast), color var(--transition-fast);
+      padding-left: 2px;
       white-space: pre;
       max-width: calc(100% - 35px);
       overflow: hidden;
@@ -175,6 +221,22 @@
         border-radius: 0 5px 5px 0;
         border-left: none;
       }
+    }
+
+    .prepend,
+    .append {
+      display: flex;
+      align-items: center;
+      padding: var(--spacing-input-outlined);
+      color: rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+    }
+
+    .prepend {
+      padding-right: 0;
+    }
+    .append {
+      padding-left: 0;
     }
 
     .helperText {
@@ -254,11 +316,9 @@
    */
   .textfield.compact {
     .input {
-      padding: 10px 13px;
-      height: var(--height-outlined-compact);
+      height: var(--height);
     }
     .label {
-      transform: translate(10px, 10px) scale(1);
     }
     &.active .label {
       transform: translate(10px, -6px) scale(var(--label-scale));
@@ -282,7 +342,7 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     }
     .label {
-      transform: translate(13px, 18px) scale(1);
+      transform: var(--transform-label);
       background: none;
     }
     /* Hover */
@@ -291,7 +351,9 @@
     }
     /* Active */
     &.active .label {
-      transform: translate(10px, 10px) scale(var(--label-scale));
+      padding: 0;
+      transform: translate(var(--label-x), calc(var(--label-y) - 7px))
+        scale(var(--label-scale));
     }
     /* Focused */
     &.focused .border {
@@ -301,13 +363,11 @@
     /* Compact */
     &.compact .input {
       padding: 20px 13px 6px;
-      height: var(--height-filled-compact);
+      height: var(--height);
     }
     &.compact .label {
-      transform: translate(12px, 13px) scale(1);
     }
     &.compact.active .label {
-      transform: translate(12px, 5px) scale(var(--label-scale));
     }
     /* Error */
     &.error .border {
@@ -326,7 +386,7 @@
     .input {
       margin: 0;
       padding: var(--spacing-input-simple);
-      height: var(--height-simple);
+      height: var(--height);
     }
     .borderSegment {
       border: none;
@@ -336,7 +396,6 @@
       border-radius: 0;
     }
     .label {
-      transform: translate(0, 10px) scale(1);
       padding: 0;
     }
     .helperText {
@@ -351,10 +410,9 @@
     /* compact */
     &.compact {
       .label {
-        transform: translate(0, 6px) scale(1);
       }
       .input {
-        height: var(--height-simple-compact);
+        height: var(--height);
       }
     }
     /* focused */
@@ -405,6 +463,11 @@
 
 <div class={'textfield ' + textfieldClasses} style={textfieldStyle}>
   <div class="textfield-element">
+    {#if prepend}
+      <div class={'prepend'} bind:this={prependRef}>
+        {@html prepend}
+      </div>
+    {/if}
     <div bind:this={labelRef} class="label">{label} </div>
     <div class="border">
       <div class="start borderSegment" />
@@ -431,6 +494,11 @@
         on:keyup={handleChange}
         on:focus={handleFocus}
         on:blur={handleBlur} />
+    {/if}
+    {#if append}
+      <div class={'append'} bind:this={appendRef}>
+        {@html append}
+      </div>
     {/if}
   </div>
   {#if helperText}
