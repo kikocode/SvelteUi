@@ -50,9 +50,9 @@
   $: appendClass = append ? "hasAppend" : "";
   $: textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variant} ${prependClass} ${appendClass}`;
 
-  $: computeVariant(variant);
+  $: computeVariantProps(variant);
 
-  const computeVariant = variant => {
+  const computeVariantProps = variant => {
     if (variant == "outlined") {
       height = 55;
       if (compact) height = 39;
