@@ -30,38 +30,37 @@
   }
 
   :global(body) {
-    .textfield.customRounded .textfield-element {
-      .border {
-        .borderSegment.start {
-          width: 30px;
-          border-radius: 50px 0 0 50px;
-        }
-        .borderSegment.end {
-          border-radius: 0 50px 50px 0;
-        }
+    .textfield.customRounded {
+      .textfield__border__start {
+        width: 30px;
+        border-radius: 50px 0 0 50px;
       }
-      .input {
+      .textfield__border__end {
+        border-radius: 0 50px 50px 0;
+      }
+
+      .textfield__input {
         padding: 0 30px;
       }
     }
 
-    .textfield.customSharpEdges .textfield-element {
-      .border,
-      .border .borderSegment {
+    .textfield.customSharpEdges {
+      .textfield__border,
+      .textfield__borderSegment {
         border-radius: 0;
       }
     }
 
-    .textfield.customFontsize .textfield-element {
-      .input {
+    .textfield.customFontsize {
+      .textfield__input {
         font-size: 20px;
       }
     }
     .textfield.customFont {
-      .helperText {
+      .textfield__helperText {
         font-family: monospace;
       }
-      .textfield-element {
+      .textfield__element {
         * {
           font-family: monospace;
         }
@@ -69,7 +68,7 @@
     }
 
     .textfield.customBackground {
-      .textfield-element {
+      .textfield__element {
         background: white;
       }
     }
