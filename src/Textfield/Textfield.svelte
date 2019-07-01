@@ -39,16 +39,16 @@
   let labelGap = 3;
   let paddingLeft = 10;
 
-  $: focusedClass = focused && !disabled ? "focused" : "";
-  $: activeClass = name != "" || focused ? "active" : "";
-  $: compactClass = compact ? "compact" : "";
-  $: errorClass = error ? "error" : "";
-  $: disabledClass = disabled ? "disabled" : "";
-  $: multilineClass = multiline ? "multiline" : "";
-  $: variantClass = variant ? "multiline" : "";
-  $: prependClass = append ? "hasPrepend" : "";
-  $: appendClass = append ? "hasAppend" : "";
-  $: textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variant} ${prependClass} ${appendClass}`;
+  $: focusedClass = focused && !disabled ? "textfield--focused" : "";
+  $: activeClass = name != "" || focused ? "textfield--active" : "";
+  $: compactClass = compact ? "textfield--compact" : "";
+  $: errorClass = error ? "textfield--error" : "";
+  $: disabledClass = disabled ? "textfield--disabled" : "";
+  $: multilineClass = multiline ? "textfield--multiline" : "";
+  $: prependClass = append ? "textfield--has--prepend" : "";
+  $: appendClass = append ? "textfield--has--append" : "";
+  $: variantClass = variant ? "textfield--" + variant : "";
+  $: textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variantClass} ${prependClass} ${appendClass}`;
 
   $: computeVariantProps(variant);
 
@@ -77,7 +77,7 @@
 
     --prepend-width: ${prependWidth}px;
     --append-width: ${appendWidth}px;
-    
+
     --label-scale: ${LABEL_SCALE};
     --label-width: ${labelWidth}px;
     --label-x: ${labelX}px;
@@ -147,240 +147,237 @@
     * {
       box-sizing: border-box;
     }
+  }
 
-    .textfield-element {
-      position: relative;
-      display: flex;
+  .textfield__element {
+    position: relative;
+    display: flex;
+  }
+
+  .textfield__input {
+    width: 100%;
+    min-width: 80px;
+    height: var(--height);
+    padding: var(--spacing-input-outlined);
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    margin: 0;
+    border: none;
+    background: none;
+
+    &::-ms-clear {
+      display: none;
     }
+  }
 
-    .input {
-      width: 100%;
-      min-width: 80px;
-      height: var(--height);
-      padding: var(--spacing-input-outlined);
-      border-radius: 5px;
-      font-size: 16px;
-      outline: none;
-      margin: 0;
-      border: none;
-      background: none;
+  .textfield__label {
+    position: absolute;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+    transform-origin: top left;
+    transform: var(--transform-label);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+    padding-left: 2px;
+    white-space: pre;
+    max-width: calc(100% - 35px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(0, 0, 0, 0.6);
+  }
 
-      &::-ms-clear {
-        display: none;
-      }
+  .textfield__border__segment {
+    transition: all var(--transition-fast);
+    border-color: rgba(0, 0, 0, 0.25);
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  .textfield__border {
+    display: flex;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background: none;
+    pointer-events: none;
+    transition: all var(--transition-fast);
+  }
+
+  .textfield__border__start {
+    width: var(--padding-left);
+    height: 100%;
+    border-radius: 4px 0 0px 4px;
+    border-right: none;
+  }
+
+  .textfield__border__gap {
+    width: var(--label-width);
+    height: 100%;
+    border-left: none;
+    border-right: none;
+  }
+
+  .textfield__border__end {
+    flex: 1;
+    flex-shrink: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+  }
+
+  .textfield__prepend,
+  .textfield__append {
+    display: flex;
+    align-items: center;
+    white-space: pre;
+    padding: var(--spacing-input-outlined);
+    color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+  }
+
+  .textfield__prepend {
+    padding-right: 0;
+  }
+  .textfield__append {
+    padding-left: 0;
+  }
+
+  .textfield__helper__text {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 13px;
+    margin-right: 13px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  /* Hover */
+  .textfield:hover {
+    .textfield__border__segment {
+      border-color: rgba(0, 0, 0, 0.85);
     }
+  }
 
-    .label {
-      position: absolute;
-      user-select: none;
-      pointer-events: none;
-      z-index: 1;
-      transform-origin: top left;
-      transform: var(--transform-label);
-      transition: transform var(--transition-fast), color var(--transition-fast);
-      padding-left: 2px;
-      white-space: pre;
-      max-width: calc(100% - 35px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: rgba(0, 0, 0, 0.6);
+  /* Focused */
+  .textfield--focused {
+    .textfield__label {
+      color: rgba(0, 0, 0, 0.85);
+      color: var(--primary-color-light);
     }
-
-    .borderSegment {
-      transition: all var(--transition-fast);
-      border-color: rgba(0, 0, 0, 0.25);
-      border-width: 1px;
-      border-style: solid;
+    .textfield__border .textfield__border__segment {
+      border-color: var(--primary-color);
+      border-width: 2px;
     }
-
-    .border {
-      display: flex;
-      justify-content: flex-start;
-      box-sizing: border-box;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 4px;
-      background: none;
-      pointer-events: none;
-      transition: all var(--transition-fast);
-
-      .start {
-        width: var(--padding-left);
-        height: 100%;
-        border-radius: 4px 0 0px 4px;
-        border-right: none;
-      }
-
-      .gap {
-        width: var(--label-width);
-        height: 100%;
-        border-left: none;
-        border-right: none;
-      }
-
-      .end {
-        flex: 1;
-        flex-shrink: 1;
-        width: 100%;
-        height: 100%;
-        border-radius: 0 5px 5px 0;
-        border-left: none;
-      }
+    .textfield__border {
+      border-width: 2px;
     }
+  }
 
-    .prepend,
-    .append {
-      display: flex;
-      align-items: center;
-      white-space: pre;
-      padding: var(--spacing-input-outlined);
+  /* Active */
+  .textfield--active {
+    .textfield__label {
+      transform: translateY(-7px) scale(var(--label-scale));
       color: rgba(0, 0, 0, 0.5);
-      pointer-events: none;
     }
+    .textfield__border .textfield__border__gap {
+      border-top: 0px solid transparent;
+    }
+  }
 
-    .prepend {
-      padding-right: 0;
+  /* Error */
+  .textfield--error {
+    .textfield__border__segment {
+      border-color: var(--error-color);
     }
-    .append {
-      padding-left: 0;
+    .textfield__label {
+      color: var(--error-color);
     }
+    .textfield__helper__text {
+      color: var(--error-color);
+    }
+  }
 
-    .helperText {
-      font-size: 12px;
-      margin-top: 5px;
-      margin-left: 13px;
-      margin-right: 13px;
-      color: rgba(0, 0, 0, 0.5);
+  /* Disabled */
+  .textfield--disabled {
+    user-select: none;
+    pointer-events: none;
+    .textfield__label {
+      color: var(--disabled-color);
     }
-
-    /* Hover */
-    &:hover {
-      .borderSegment {
-        border-color: rgba(0, 0, 0, 0.85);
-      }
+    .textfield__border__segment {
+      border-color: var(--disabled-color);
     }
-
-    /* Active */
-    &.active {
-      .label {
-        transform: translateY(-7px) scale(var(--label-scale));
-        color: rgba(0, 0, 0, 0.5);
-      }
-      .border .gap {
-        border-top: 0px solid transparent;
-      }
+    .textfield__input {
+      color: var(--disabled-color);
     }
-
-    /* Focused */
-    &.focused {
-      .label {
-        color: rgba(0, 0, 0, 0.85);
-        color: var(--primary-color-light);
-      }
-      .borderSegment {
-        border-color: var(--primary-color);
-        border-width: 2px;
-      }
-      .border {
-        border-width: 2px;
-      }
-    }
-
-    /* Error */
-    &.error {
-      .borderSegment {
-        border-color: var(--error-color);
-      }
-      .label {
-        color: var(--error-color);
-      }
-      .helperText {
-        color: var(--error-color);
-      }
-    }
-    /* Disabled */
-    &.disabled {
-      user-select: none;
-      pointer-events: none;
-      .label {
-        color: var(--disabled-color);
-      }
-      .borderSegment {
-        border-color: var(--disabled-color);
-      }
-      .input {
-        color: var(--disabled-color);
-      }
-      .helperText {
-        color: var(--disabled-color);
-      }
+    .textfield__helper__text {
+      color: var(--disabled-color);
     }
   }
 
   /**
    * Compact
    */
-  .textfield.compact {
-    .input {
+  .textfield--compact {
+    .textfield__input {
       height: var(--height);
     }
-    .label {
+    .textfield__label {
     }
   }
 
   /**
   * Filled
   */
-  .textfield.filled {
-    .input {
+  .textfield--filled {
+    .textfield__input {
       padding: var(--spacing-input-filled);
     }
-    .borderSegment {
+    .textfield__border__segment {
       border: none;
     }
-    .border {
+    .textfield__border {
       border: none;
       background: rgba(0, 0, 0, 0.07);
       border-radius: 5px 5px 0 0;
       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
     }
-    .label {
+    .textfield__label {
       background: none;
     }
     /* Hover */
-    &:hover .border {
+    &:hover .textfield__border {
       background: rgba(0, 0, 0, 0.11);
     }
     /* Active */
-    &.active .label {
+    &.textfield--active .textfield__label {
       transform: var(--transform-label-filled);
     }
     /* Focused */
-    &.focused .border {
+    &.textfield--focused .textfield__border {
       border-width: 2px;
       border-color: var(--primary-color);
     }
     /* Compact */
-    &.compact .input {
+    &.textfield--compact .textfield__input {
       padding: 20px 13px 6px;
       height: var(--height);
     }
-    &.compact .label {
-    }
-    &.compact.active .label {
-    }
     /* Error */
-    &.error .border {
+    &.textfield--error .textfield__border {
       border-bottom: 2px solid var(--error-color);
     }
     /* Disabled */
-    &.disabled .border {
+    &.textfield--disabled .textfield__border {
       border-bottom-style: dotted;
     }
   }
@@ -388,119 +385,127 @@
   /**
   * Simple
   */
-  .textfield.simple {
-    .input {
+  .textfield--simple {
+    .textfield__input {
       margin: 0;
       padding: var(--spacing-input-simple);
       height: var(--height);
     }
-    .borderSegment {
+    .textfield__border__segment {
       border: none;
     }
-    .border {
+    .textfield__border {
       border-bottom: 1px solid grey;
       border-radius: 0;
     }
-    .label {
+    .textfield__label {
       padding: 0;
     }
-    .prepend {
+    .textfield__prepend {
       padding-left: 0;
     }
-    .append {
+    .textfield__append {
       padding-right: 0;
     }
-    &.hasPrepend {
-      .input {
+    &.textfield--has--prepend {
+      .textfield__input {
         padding-left: 10px;
         padding-right: 10px;
       }
-      .label {
+      .textfield__label {
         transform: translateX(calc(var(--prepend-width) + 10px))
           translateY(var(--label-y));
       }
     }
-    .helperText {
+    .textfield__helper__text {
       margin-left: 0;
       margin-right: 0;
     }
     /* hover */
-    &:hover .border {
-      border-color: black;
-      border-width: 2px;
+    &:hover {
+      .textfield__border {
+        border-color: black;
+        border-width: 2px;
+      }
     }
     /* compact */
-    &.compact {
-      .label {
-      }
-      .input {
+    &.textfield--compact {
+      .textfield__input {
         height: var(--height);
       }
     }
     /* focused */
-    &.focused {
-      .border {
+    &.textfield--focused {
+      .textfield__border {
         border-color: var(--primary-color);
         border-width: 2px;
       }
     }
     /* active */
-    &.active {
-      .label {
+    &.textfield--active {
+      .textfield__label {
         transform: translateX(0) translateY(-10px) scale(var(--label-scale));
       }
     }
     /* multiline */
-    &.multiline .input {
-      margin: 12px 0;
+    &.textfield--multiline {
+      .textfield__input {
+        margin: 12px 0;
+      }
     }
     /* error */
-    &.error .border {
-      border-width: 2px;
-      border-color: var(--error-color);
+    &.textfield--error {
+      .textfield__border {
+        border-width: 2px;
+        border-color: var(--error-color);
+      }
     }
     /* disabled */
-    &.disabled .border {
-      border-color: var(--disabled-color);
+    &.textfield--disabled {
+      .textfield__border {
+        border-color: var(--disabled-color);
+      }
     }
   }
 
   /**
   * Multiline
   */
-  .textfield.multiline {
-    .input {
+  .textfield--multiline {
+    .textfield__input {
       width: auto;
       padding: 0;
       margin: 15px 13px;
       margin-bottom: 10px;
     }
     /* Filled */
-    &.filled .input {
-      padding: 0;
-      margin: var(--spacing-input-filled);
+    &.textfield--filled {
+      .textfield__input {
+        padding: 0;
+        margin: var(--spacing-input-filled);
+      }
     }
   }
 </style>
 
 <div class={'textfield ' + textfieldClasses} style={textfieldStyle}>
-  <div class="textfield-element">
+  <div class="textfield__element">
     {#if prepend}
-      <div class={'prepend'} bind:this={prependRef}>
+      <div class={'textfield__prepend'} bind:this={prependRef}>
         {@html prepend}
       </div>
     {/if}
 
-    <div class="border">
-      <div class="start borderSegment" />
-      <div class="gap borderSegment">
-        <div bind:this={labelRef} class="label">{label} </div>
+    <div class="textfield__border">
+      <div class="textfield__border__start textfield__border__segment" />
+      <div class="textfield__border__gap textfield__border__segment">
+        <div bind:this={labelRef} class="textfield__label">{label} </div>
       </div>
-      <div class="end borderSegment" />
+      <div class="textfield__border__end textfield__border__segment" />
     </div>
     {#if multiline}
       <textarea
-        class="input"
+        class="textfield__input"
         {type}
         value={name}
         on:change={handleChange}
@@ -510,7 +515,7 @@
         on:blur={handleBlur} />
     {:else}
       <input
-        class="input"
+        class="textfield__input"
         {type}
         value={name}
         on:change={handleChange}
@@ -520,12 +525,12 @@
         on:blur={handleBlur} />
     {/if}
     {#if append}
-      <div class={'append'} bind:this={appendRef}>
+      <div class={'textfield__append'} bind:this={appendRef}>
         {@html append}
       </div>
     {/if}
   </div>
   {#if helperText}
-    <div class="helperText">{helperText}</div>
+    <div class="textfield__helper__text">{helperText}</div>
   {/if}
 </div>
