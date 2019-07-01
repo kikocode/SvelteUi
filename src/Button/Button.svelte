@@ -5,29 +5,34 @@
 
   $: buttonClasses = ``;
 
-  const handleClick = e => {
-    let pos = { x: e.offsetX, y: e.offsetY };
+  const handleMouseDown = e => {
+    let x = e.offsetX;
+    let y = e.offsetY;
     let w = e.currentTarget.offsetWidth;
-    let ripple = document.createElement("div");
-    let rippleStartSize = w / 3;
+    let h = e.currentTarget.offsetHeight;
+    let diameter = Math.sqrt(Math.pow(w / 2, 2) + Math.pow(h / 2, 2)) * 2;
 
+    let ripple = document.createElement("div");
+
+    ripple.style = `
+			left: ${x - diameter / 2}px;
+			top: ${y - diameter / 2}px;
+			width: ${diameter}px;
+			height: ${diameter}px;
+		`;
     ripple.className = "ripple";
-    ripple.style = `
-			left: ${pos.x - rippleStartSize / 2}px;
-			top: ${pos.y - rippleStartSize / 2}px;
-			width: ${rippleStartSize}px;
-			height: ${rippleStartSize}px;
-		`;
-    e.currentTarget.appendChild(ripple);
-    ripple.style = `
-			width: ${w}px;
-			height: ${w}px;
-		`;
+    e.target.appendChild(ripple);
+
+    setTimeout(function() {
+      ripple.classList.add("ripple--held");
+      ripple.classList.add("ripple--done");
+    }, 0);
 
     setTimeout(() => {
       ripple.parentNode.removeChild(ripple);
     }, 500);
   };
+
 </script>
 
 <style type="text/scss">
@@ -36,6 +41,7 @@
     --padding: 0px 16px;
     --font-size: 16px;
     --primary-color: #1976d2;
+    --darken-color: darken( --primary-color, 10% )
     --transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -64,29 +70,28 @@
     position: absolute;
     width: 2px;
     height: 2px;
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     pointer-events: none;
-    transform: scale(1);
+    user-select: none;
+    transform: scale(0);
     transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
+    /*transition: transform 0.4s ease-out, opacity 0.4s ease-out;*/
     transition-duration: 450ms;
   }
-
-  @keyframes rippleEffect {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      opacity: 0;
-      transform: scale(var(--scale));
-    }
+  :global(.ripple--held) {
+    transform: scale(1);
+    opacity:0.8;
+  }
+  :global(.ripple--done) {
+    opacity: 0;
   }
 </style>
 
 <div
   bind:this={buttonRef}
   class={'button ' + buttonClasses}
-  on:click={handleClick}>
+  on:mousedown={handleMouseDown}>
    {text}
   <div class="ripple" style="display:none;" />
 </div>
