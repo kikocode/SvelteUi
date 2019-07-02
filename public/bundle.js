@@ -1304,10 +1304,11 @@ var app = (function () {
     			t = text(ctx.text);
     			attr(div, "class", div_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-195elbk");
     			attr(div, "style", ctx.buttonStyles);
-    			add_location(div, file$3, 123, 0, 3241);
+    			add_location(div, file$3, 129, 0, 3334);
 
     			dispose = [
     				listen(div, "mousedown", ctx.handleMouseDown),
+    				listen(div, "mouseleave", ctx.handleMouseLeave),
     				listen(div, "mouseup", ctx.handleMouseUp)
     			];
     		},
@@ -1394,16 +1395,22 @@ var app = (function () {
         }, 400);
       };
 
-      const handleMouseUp = e => {
-        console.log("mouse up ", e.target.getElementsByClassName("ripple"));
-
-        var ripples = e.target.querySelectorAll(".ripple");
+      const killRipple = target => {
+        var ripples = target.querySelectorAll(".ripple");
         var previousRipple = ripples[ripples.length - 1];
 
+        if (!previousRipple) return;
         previousRipple.classList.add("ripple--done");
         setTimeout(() => {
           previousRipple.parentNode.removeChild(previousRipple);
         }, 800);
+      };
+
+      const handleMouseUp = e => {
+        killRipple(e.target);
+      };
+      const handleMouseLeave = e => {
+        killRipple(e.target);
       };
 
     	const writable_props = ['text', 'color', 'style', 'disabled', 'compact'];
@@ -1445,6 +1452,7 @@ var app = (function () {
     		buttonRef,
     		handleMouseDown,
     		handleMouseUp,
+    		handleMouseLeave,
     		buttonClasses,
     		buttonStyles,
     		div_binding

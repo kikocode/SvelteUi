@@ -51,16 +51,22 @@
     }, 400);
   };
 
-  const handleMouseUp = e => {
-    console.log("mouse up ", e.target.getElementsByClassName("ripple"));
-
-    var ripples = e.target.querySelectorAll(".ripple");
+  const killRipple = target => {
+    var ripples = target.querySelectorAll(".ripple");
     var previousRipple = ripples[ripples.length - 1];
 
+    if (!previousRipple) return;
     previousRipple.classList.add("ripple--done");
     setTimeout(() => {
       previousRipple.parentNode.removeChild(previousRipple);
     }, 800);
+  };
+
+  const handleMouseUp = e => {
+    killRipple(e.target);
+  };
+  const handleMouseLeave = e => {
+    killRipple(e.target);
   };
 </script>
 
@@ -134,6 +140,7 @@
   class={'button ' + buttonClasses}
   style={buttonStyles}
   on:mousedown={handleMouseDown}
+  on:mouseleave={handleMouseLeave}
   on:mouseup={handleMouseUp}>
    {text}
 </div>
