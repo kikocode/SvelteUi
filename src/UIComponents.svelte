@@ -78,7 +78,8 @@
 <h2>Buttons</h2>
 
 <Block>
-  <Button text="Button 01" />
+  <Button text="Button 01" color="#3781b7" />
+  <Button text="Button 02" color="#c12da0" />
 </Block>
 
 <h2>Checkboxes</h2>

@@ -1,9 +1,16 @@
 <script>
   export let text = "";
+  export let color = "#1976d2";
+  export let style = "";
 
   let buttonRef;
 
   $: buttonClasses = ``;
+
+  $: buttonStyles = `
+    ${style};
+    --primary-color:  ${color};
+  `;
 
   const handleMouseDown = e => {
     let x = e.offsetX;
@@ -79,11 +86,11 @@
     --height: 40px;
     --padding: 0px 16px;
     --font-size: 16px;
-    --primary-color: #1976d2;
     --transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
+    margin: 8px;
     position: relative;
     overflow: hidden;
     display: inline-flex;
@@ -98,10 +105,10 @@
     background: var(--primary-color);
     color: white;
     font-weight: 500;
-    border-radius: 2px;
+    border-radius: 4px;
 
     &:hover {
-      background-color: #115293;
+      /*background-color: #115293;*/
     }
   }
 </style>
@@ -109,6 +116,7 @@
 <div
   bind:this={buttonRef}
   class={'button ' + buttonClasses}
+  style={buttonStyles}
   on:mousedown={handleMouseDown}
   on:mouseup={handleMouseUp}>
    {text}
