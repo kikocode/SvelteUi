@@ -31,9 +31,8 @@
       ripple.classList.add("ripple--held");
     }, 0);
 
-    let containsHeld = ripple.classList.contains("ripple--held");
-    if (containsHeld) return;
     setTimeout(function() {
+      if (ripple.classList.contains("ripple--held")) return;
       ripple.classList.add("ripple--done");
       setTimeout(() => {
         ripple.parentNode.removeChild(ripple);
@@ -46,12 +45,11 @@
 
     var ripples = e.target.querySelectorAll(".ripple");
     var previousRipple = ripples[ripples.length - 1];
-    //previousRipple.classList.add("ripple--dying");
 
     previousRipple.classList.add("ripple--done");
     setTimeout(() => {
       previousRipple.parentNode.removeChild(previousRipple);
-    }, 400);
+    }, 800);
   };
 </script>
 
