@@ -1302,8 +1302,9 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(ctx.text);
-    			attr(div, "class", div_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-23e27f");
-    			add_location(div, file$3, 103, 0, 2788);
+    			attr(div, "class", div_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-195elbk");
+    			attr(div, "style", ctx.buttonStyles);
+    			add_location(div, file$3, 123, 0, 3241);
 
     			dispose = [
     				listen(div, "mousedown", ctx.handleMouseDown),
@@ -1331,8 +1332,12 @@ var app = (function () {
     				ctx.div_binding(div, null);
     			}
 
-    			if ((changed.buttonClasses) && div_class_value !== (div_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-23e27f")) {
+    			if ((changed.buttonClasses) && div_class_value !== (div_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-195elbk")) {
     				attr(div, "class", div_class_value);
+    			}
+
+    			if (changed.buttonStyles) {
+    				attr(div, "style", ctx.buttonStyles);
     			}
     		},
 
@@ -1351,7 +1356,7 @@ var app = (function () {
     }
 
     function instance$3($$self, $$props, $$invalidate) {
-    	let { text = "" } = $$props;
+    	let { text = "", color = "#1976d2", style = "", disabled = false, compact = false } = $$props;
 
       let buttonRef;
 
@@ -1394,15 +1399,14 @@ var app = (function () {
 
         var ripples = e.target.querySelectorAll(".ripple");
         var previousRipple = ripples[ripples.length - 1];
-        previousRipple.classList.remove("ripple--held");
 
         previousRipple.classList.add("ripple--done");
         setTimeout(() => {
           previousRipple.parentNode.removeChild(previousRipple);
-        }, 400);
+        }, 800);
       };
 
-    	const writable_props = ['text'];
+    	const writable_props = ['text', 'color', 'style', 'disabled', 'compact'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Button> was created with unknown prop '${key}'`);
     	});
@@ -1414,18 +1418,35 @@ var app = (function () {
 
     	$$self.$set = $$props => {
     		if ('text' in $$props) $$invalidate('text', text = $$props.text);
+    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    		if ('style' in $$props) $$invalidate('style', style = $$props.style);
+    		if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
+    		if ('compact' in $$props) $$invalidate('compact', compact = $$props.compact);
     	};
 
-    	let buttonClasses;
+    	let disabledClass, compactClass, buttonClasses, buttonStyles;
 
-    	$$invalidate('buttonClasses', buttonClasses = ``);
+    	$$self.$$.update = ($$dirty = { disabled: 1, compact: 1, disabledClass: 1, compactClass: 1, style: 1, color: 1 }) => {
+    		if ($$dirty.disabled) { $$invalidate('disabledClass', disabledClass = disabled ? "button--disabled" : ""); }
+    		if ($$dirty.compact) { $$invalidate('compactClass', compactClass = compact ? "button--compact" : ""); }
+    		if ($$dirty.disabledClass || $$dirty.compactClass) { $$invalidate('buttonClasses', buttonClasses = `${disabledClass} ${compactClass}`); }
+    		if ($$dirty.style || $$dirty.color) { $$invalidate('buttonStyles', buttonStyles = `
+    ${style};
+    --primary-color:  ${color};
+  `); }
+    	};
 
     	return {
     		text,
+    		color,
+    		style,
+    		disabled,
+    		compact,
     		buttonRef,
     		handleMouseDown,
     		handleMouseUp,
     		buttonClasses,
+    		buttonStyles,
     		div_binding
     	};
     }
@@ -1433,7 +1454,7 @@ var app = (function () {
     class Button extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["text"]);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["text", "color", "style", "disabled", "compact"]);
     	}
 
     	get text() {
@@ -1441,6 +1462,38 @@ var app = (function () {
     	}
 
     	set text(value) {
+    		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get color() {
+    		throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get style() {
+    		throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set style(value) {
+    		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get disabled() {
+    		throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set disabled(value) {
+    		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get compact() {
+    		throw new Error("<Button>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set compact(value) {
     		throw new Error("<Button>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -1530,20 +1583,69 @@ var app = (function () {
 
     // (59:0) <Block>
     function create_default_slot_7(ctx) {
-    	var current;
+    	var t0, t1, t2, t3, current;
 
-    	var button = new Button({
-    		props: { text: "Button 01" },
+    	var button0 = new Button({
+    		props: { text: "Primary", color: "#3781b7" },
+    		$$inline: true
+    	});
+
+    	var button1 = new Button({
+    		props: { text: "Primary", color: "#c12da0" },
+    		$$inline: true
+    	});
+
+    	var button2 = new Button({
+    		props: {
+    		text: "Disabled",
+    		color: "#c12da0",
+    		disabled: true
+    	},
+    		$$inline: true
+    	});
+
+    	var button3 = new Button({
+    		props: {
+    		text: "Compact",
+    		color: "#c12da0",
+    		disabled: true,
+    		compact: true
+    	},
+    		$$inline: true
+    	});
+
+    	var button4 = new Button({
+    		props: {
+    		text: "Compact",
+    		color: "#88aa33",
+    		compact: true
+    	},
     		$$inline: true
     	});
 
     	return {
     		c: function create() {
-    			button.$$.fragment.c();
+    			button0.$$.fragment.c();
+    			t0 = space();
+    			button1.$$.fragment.c();
+    			t1 = space();
+    			button2.$$.fragment.c();
+    			t2 = space();
+    			button3.$$.fragment.c();
+    			t3 = space();
+    			button4.$$.fragment.c();
     		},
 
     		m: function mount(target, anchor) {
-    			mount_component(button, target, anchor);
+    			mount_component(button0, target, anchor);
+    			insert(target, t0, anchor);
+    			mount_component(button1, target, anchor);
+    			insert(target, t1, anchor);
+    			mount_component(button2, target, anchor);
+    			insert(target, t2, anchor);
+    			mount_component(button3, target, anchor);
+    			insert(target, t3, anchor);
+    			mount_component(button4, target, anchor);
     			current = true;
     		},
 
@@ -1551,23 +1653,59 @@ var app = (function () {
 
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(button.$$.fragment, local);
+    			transition_in(button0.$$.fragment, local);
+
+    			transition_in(button1.$$.fragment, local);
+
+    			transition_in(button2.$$.fragment, local);
+
+    			transition_in(button3.$$.fragment, local);
+
+    			transition_in(button4.$$.fragment, local);
 
     			current = true;
     		},
 
     		o: function outro(local) {
-    			transition_out(button.$$.fragment, local);
+    			transition_out(button0.$$.fragment, local);
+    			transition_out(button1.$$.fragment, local);
+    			transition_out(button2.$$.fragment, local);
+    			transition_out(button3.$$.fragment, local);
+    			transition_out(button4.$$.fragment, local);
     			current = false;
     		},
 
     		d: function destroy(detaching) {
-    			destroy_component(button, detaching);
+    			destroy_component(button0, detaching);
+
+    			if (detaching) {
+    				detach(t0);
+    			}
+
+    			destroy_component(button1, detaching);
+
+    			if (detaching) {
+    				detach(t1);
+    			}
+
+    			destroy_component(button2, detaching);
+
+    			if (detaching) {
+    				detach(t2);
+    			}
+
+    			destroy_component(button3, detaching);
+
+    			if (detaching) {
+    				detach(t3);
+    			}
+
+    			destroy_component(button4, detaching);
     		}
     	};
     }
 
-    // (65:0) <Block>
+    // (69:0) <Block>
     function create_default_slot_6(ctx) {
     	var t, current;
 
@@ -1624,7 +1762,7 @@ var app = (function () {
     	};
     }
 
-    // (74:0) <Block>
+    // (78:0) <Block>
     function create_default_slot_5(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -1797,7 +1935,7 @@ var app = (function () {
     	};
     }
 
-    // (122:0) <Block>
+    // (126:0) <Block>
     function create_default_slot_4(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, current;
 
@@ -2203,7 +2341,7 @@ var app = (function () {
     	};
     }
 
-    // (212:0) <Block>
+    // (216:0) <Block>
     function create_default_slot_3(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, current;
 
@@ -2477,7 +2615,7 @@ var app = (function () {
     	};
     }
 
-    // (294:0) <Block>
+    // (298:0) <Block>
     function create_default_slot_2(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -2654,7 +2792,7 @@ var app = (function () {
     	};
     }
 
-    // (348:0) <Block>
+    // (352:0) <Block>
     function create_default_slot_1(ctx) {
     	var div, t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, current;
 
@@ -2834,7 +2972,7 @@ var app = (function () {
     			t9 = space();
     			textfield10.$$.fragment.c();
     			attr(div, "class", "testElement");
-    			add_location(div, file$5, 349, 2, 8869);
+    			add_location(div, file$5, 353, 2, 9126);
     		},
 
     		m: function mount(target, anchor) {
@@ -2981,7 +3119,7 @@ var app = (function () {
     	};
     }
 
-    // (463:0) <Block>
+    // (467:0) <Block>
     function create_default_slot(ctx) {
     	var t0, t1, t2, current;
 
@@ -3192,14 +3330,14 @@ var app = (function () {
     			t24 = space();
     			block7.$$.fragment.c();
     			add_location(h20, file$5, 56, 0, 1552);
-    			add_location(h21, file$5, 62, 0, 1624);
-    			add_location(h22, file$5, 69, 0, 1752);
-    			add_location(h30, file$5, 71, 0, 1775);
-    			add_location(h31, file$5, 120, 0, 2698);
-    			add_location(h32, file$5, 210, 0, 4563);
-    			add_location(h33, file$5, 292, 0, 6134);
-    			add_location(h34, file$5, 346, 0, 8829);
-    			add_location(h23, file$5, 460, 0, 12630);
+    			add_location(h21, file$5, 66, 0, 1881);
+    			add_location(h22, file$5, 73, 0, 2009);
+    			add_location(h30, file$5, 75, 0, 2032);
+    			add_location(h31, file$5, 124, 0, 2955);
+    			add_location(h32, file$5, 214, 0, 4820);
+    			add_location(h33, file$5, 296, 0, 6391);
+    			add_location(h34, file$5, 350, 0, 9086);
+    			add_location(h23, file$5, 464, 0, 12887);
     		},
 
     		l: function claim(nodes) {
