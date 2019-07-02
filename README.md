@@ -1,12 +1,19 @@
+# About
 
-# Demo Link 
+Hello friend 💕cool you found us! this is a collection of usefull components built in svelte by Pascal(Päxie) and Raphael(Raphi).
+Keep in mind that this is an experimental project to play around with svelte, but if you have any inputs please drop us an issue, pull request or message us.
+
+P.s: in case no one told you this today: we 💙you and you are wonderful! 
+Have a nice day!
+
+## Demo Link 
 
 [link](https://kikocode.github.io/SvelteUi/)
 
 ---
 
 
-# svelte app
+## svelte app
 
 This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
 
