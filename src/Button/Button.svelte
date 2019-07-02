@@ -2,10 +2,14 @@
   export let text = "";
   export let color = "#1976d2";
   export let style = "";
+  export let disabled = false;
+  export let compact = false;
 
   let buttonRef;
 
-  $: buttonClasses = ``;
+  $: disabledClass = disabled ? "button--disabled" : "";
+  $: compactClass = compact ? "button--compact" : "";
+  $: buttonClasses = `${disabledClass} ${compactClass}`;
 
   $: buttonStyles = `
     ${style};
@@ -110,6 +114,18 @@
     &:hover {
       /*background-color: #115293;*/
     }
+  }
+
+  .button--disabled {
+    background: #d0d0d0;
+    color: #929292;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .button--compact {
+    --padding: 0px 14px;
+    --height: 34px;
   }
 </style>
 
