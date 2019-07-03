@@ -3,6 +3,7 @@
   import Toggle from "./Toggle/Toggle.svelte";
   import Checkbox from "./Checkbox/Checkbox.svelte";
   import Button from "./Button/Button.svelte";
+  import Accordeon from "./Accordeon/Accordeon.svelte";
   import Block from "./Layout/Block.svelte";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
@@ -74,6 +75,20 @@
     }
   }
 </style>
+
+<h2>Accordeon</h2>
+
+<Block>
+  <Accordeon>
+    <h1 slot="header">
+     header stuff
+    </h1>
+    <p slot="body">
+      Body text
+    </p>
+  </Accordeon>
+
+</Block>
 
 <h2>Buttons</h2>
 

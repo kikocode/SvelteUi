@@ -14,7 +14,9 @@
     "svelte-preprocess-sass": "^0.2.0"
   },
   "dependencies": {
-    "sirv-cli": "^0.4.4"
+    "sirv-cli": "^0.4.4",
+    "svelte-transitions": "^1.2.0",
+    "svelte-transitions-slide": "^1.0.0"
   },
   "scripts": {
     "build": "rollup -c",
