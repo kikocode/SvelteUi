@@ -3,8 +3,11 @@
   import Toggle from "./Toggle/Toggle.svelte";
   import Checkbox from "./Checkbox/Checkbox.svelte";
   import Button from "./Button/Button.svelte";
+  import Ripple from "./Ripple/Ripple.svelte";
   import Accordeon from "./Accordeon/Accordeon.svelte";
   import Block from "./Layout/Block.svelte";
+
+  import { ripple } from "./Ripple/ripple";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
 
@@ -67,12 +70,36 @@
         }
       }
     }
-
     .textfield.customBackground {
       .textfield__element {
         background: white;
       }
     }
+  }
+
+  .sheet {
+    margin: 10px;
+    position: relative;
+    width: 200px;
+    height: 60px;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .circle {
+    margin: 10px;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background: white;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 36px;
   }
 </style>
 
@@ -80,24 +107,39 @@
 
 <Block>
   <Accordeon>
-    <h1 slot="header">
-     header stuff
-    </h1>
-    <p slot="body">
-      Body text
-    </p>
+    <h1 slot="header">header stuff</h1>
+    <p slot="body">Body text</p>
   </Accordeon>
 
+</Block>
+
+<h2>Ripple</h2>
+
+<Block>
+  <Button color="#c12da0">
+    <Ripple />
+    Ripple
+  </Button>
+  <div class="sheet">
+    <Ripple color="#000000" />
+  </div>
+  <div class="circle">
+    +
+    <Ripple color="#ff00bb" />
+  </div>
+  <div class="circle">
+    -
+    <Ripple color="#99abd2" />
+  </div>
 </Block>
 
 <h2>Buttons</h2>
 
 <Block>
-  <Button text="Primary" color="#3781b7" />
-  <Button text="Primary" color="#c12da0" />
-  <Button text="Disabled" color="#c12da0" disabled={true} />
-  <Button text="Compact" color="#c12da0" disabled={true} compact={true} />
-  <Button text="Compact" color="#88aa33" compact={true} />
+  <Button color="#3781b7">Primary</Button>
+  <Button color="#c12da0" disabled={true}>Disabled</Button>
+  <Button color="#c12da0" disabled={true} compact={true}>Compact</Button>
+  <Button color="#88aa33" compact={true}>Compact</Button>
 </Block>
 
 <h2>Checkboxes</h2>
