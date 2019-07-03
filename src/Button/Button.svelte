@@ -1,17 +1,32 @@
 <script>
   export let text = "";
+  export let color = "#1976d2";
+  export let style = "";
+  export let disabled = false;
+  export let compact = false;
 
   let buttonRef;
 
-  $: buttonClasses = ``;
+  $: disabledClass = disabled ? "button--disabled" : "";
+  $: compactClass = compact ? "button--compact" : "";
+  $: buttonClasses = `${disabledClass} ${compactClass}`;
+
+  $: buttonStyles = `
+    ${style};
+    --primary-color:  ${color};
+  `;
 
   const handleMouseDown = e => {
     let x = e.offsetX;
     let y = e.offsetY;
     let w = e.currentTarget.offsetWidth;
     let h = e.currentTarget.offsetHeight;
-    let diameter = Math.sqrt(Math.pow(w / 2, 2) + Math.pow(h / 2, 2)) * 2;
-
+    let centerOffsetX = Math.abs(x - w / 2);
+    let centerOffsetY = Math.abs(y - h / 2);
+    let sideX = w / 2 + centerOffsetX;
+    let sideY = h / 2 + centerOffsetY;
+    let safeSpace = 10;
+    let diameter = Math.sqrt(Math.pow(sideX, 2) + Math.pow(sideY, 2)) * 2;
     let ripple = document.createElement("div");
 
     ripple.style = `
@@ -25,27 +40,67 @@
 
     setTimeout(function() {
       ripple.classList.add("ripple--held");
-      ripple.classList.add("ripple--done");
     }, 0);
 
-    setTimeout(() => {
-      ripple.parentNode.removeChild(ripple);
-    }, 500);
+    setTimeout(function() {
+      if (ripple.classList.contains("ripple--held")) return;
+      ripple.classList.add("ripple--done");
+      setTimeout(() => {
+        ripple.parentNode.removeChild(ripple);
+      }, 400);
+    }, 400);
   };
 
+  const killRipple = target => {
+    var ripples = target.querySelectorAll(".ripple");
+    var previousRipple = ripples[ripples.length - 1];
+
+    if (!previousRipple) return;
+    previousRipple.classList.add("ripple--done");
+    setTimeout(() => {
+      previousRipple.parentNode.removeChild(previousRipple);
+    }, 800);
+  };
+
+  const handleMouseUp = e => {
+    killRipple(e.target);
+  };
+  const handleMouseLeave = e => {
+    killRipple(e.target);
+  };
 </script>
 
 <style type="text/scss">
+  :global(.ripple) {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    pointer-events: none;
+    user-select: none;
+    transform: scale(0);
+    transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
+    transition-duration: 400ms;
+    /*transition: transform 0.4s ease-out, opacity 0.4s ease-out;*/
+  }
+  :global(.ripple--held) {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  :global(.ripple--done) {
+    opacity: 0;
+  }
+
   .button {
     --height: 40px;
     --padding: 0px 16px;
     --font-size: 16px;
-    --primary-color: #1976d2;
-    --darken-color: darken( --primary-color, 10% )
     --transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
+    margin: 8px;
     position: relative;
     overflow: hidden;
     display: inline-flex;
@@ -60,38 +115,32 @@
     background: var(--primary-color);
     color: white;
     font-weight: 500;
-    border-radius: 2px;
+    border-radius: 4px;
 
     &:hover {
-      background-color: #115293;
+      /*background-color: #115293;*/
     }
   }
-  :global(.ripple) {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
+
+  .button--disabled {
+    background: #d0d0d0;
+    color: #929292;
+    cursor: default;
     pointer-events: none;
-    user-select: none;
-    transform: scale(0);
-    transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
-    /*transition: transform 0.4s ease-out, opacity 0.4s ease-out;*/
-    transition-duration: 450ms;
   }
-  :global(.ripple--held) {
-    transform: scale(1);
-    opacity:0.8;
-  }
-  :global(.ripple--done) {
-    opacity: 0;
+
+  .button--compact {
+    --padding: 0px 14px;
+    --height: 34px;
   }
 </style>
 
 <div
   bind:this={buttonRef}
   class={'button ' + buttonClasses}
-  on:mousedown={handleMouseDown}>
+  style={buttonStyles}
+  on:mousedown={handleMouseDown}
+  on:mouseleave={handleMouseLeave}
+  on:mouseup={handleMouseUp}>
    {text}
-  <div class="ripple" style="display:none;" />
 </div>

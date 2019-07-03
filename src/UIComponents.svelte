@@ -93,7 +93,11 @@
 <h2>Buttons</h2>
 
 <Block>
-  <Button text="Button 01" />
+  <Button text="Primary" color="#3781b7" />
+  <Button text="Primary" color="#c12da0" />
+  <Button text="Disabled" color="#c12da0" disabled={true} />
+  <Button text="Compact" color="#c12da0" disabled={true} compact={true} />
+  <Button text="Compact" color="#88aa33" compact={true} />
 </Block>
 
 <h2>Checkboxes</h2>
