@@ -1,17 +1,27 @@
 <script>
+  import { hexToRGB, getContrastColor } from "../Utils/color.js";
+
   export let use = () => {};
   export let color = "#1976d2";
   export let style = "";
   export let disabled = false;
   export let compact = false;
+  export let raised = false;
+  export let outlined = false;
+  export let simple = false;
 
   $: disabledClass = disabled ? "button--disabled" : "";
   $: compactClass = compact ? "button--compact" : "";
-  $: buttonClasses = `${disabledClass} ${compactClass}`;
+  $: raisedClass = raised ? "button--raised" : "";
+  $: outlinedClass = outlined ? "button--outlined" : "";
+  $: simpleClass = simple ? "button--simple" : "";
+  $: buttonClasses = `${disabledClass} ${compactClass} ${raisedClass} ${outlinedClass} ${simpleClass}`;
+  $: textColor = hexToRGB(getContrastColor(color), 1);
 
   $: buttonStyles = `
     ${style};
     --primary-color:  ${color};
+    --text-color:  ${textColor};
   `;
 </script>
 
@@ -37,7 +47,7 @@
     padding: var(--padding);
     font-size: var(--font-size);
     background: var(--primary-color);
-    color: white;
+    color: var(--text-color);
     font-weight: 500;
     border-radius: 4px;
   }
@@ -49,12 +59,28 @@
     pointer-events: none;
   }
 
+  .button--raised {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .button--outlined {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    color: var(--primary-color);
+  }
+
+  .button--simple {
+    background: none;
+    color: var(--primary-color);
+  }
+
   .button--compact {
     --padding: 0px 14px;
     --height: 34px;
   }
 </style>
 
-<div class={'button ' + buttonClasses} style={buttonStyles} use:use>
+<div on:click class={'button ' + buttonClasses} style={buttonStyles} use:use>
   <slot />
 </div>

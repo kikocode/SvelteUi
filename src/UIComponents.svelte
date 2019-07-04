@@ -9,6 +9,7 @@
 
   import { ripple } from "./Ripple/ripple";
   import { rippleStyle } from "./Ripple/ripple";
+  import { randomHex } from "./Utils/color";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
 
@@ -27,6 +28,13 @@
     }
   };
   let customStyle1 = ``;
+
+  let randomColor = "#ff00bb";
+
+  const setRandomColor = () => {
+    var c = randomHex();
+    randomColor = c;
+  };
 </script>
 
 <style type="text/scss">
@@ -143,10 +151,28 @@
 <h2>Buttons</h2>
 
 <Block>
-  <Button color="#3781b7">Primary</Button>
-  <Button color="#c12da0" disabled={true}>Disabled</Button>
+  <Button color="#3781b7" use={ripple}>Primary</Button>
+  <Button color="#c12da0" use={ripple} disabled={true}>Disabled</Button>
   <Button color="#c12da0" disabled={true} compact={true}>Compact</Button>
   <Button color="#88aa33" compact={true}>Compact</Button>
+  <Button
+    color={randomColor}
+    on:click={setRandomColor}
+    use={ripple}
+    raised={true}>
+    Random Color
+  </Button>
+
+  <Button color={randomColor} on:click={setRandomColor} outlined={true}>
+    <Ripple color="#000000" />
+    Outlined
+  </Button>
+
+  <Button color={randomColor} on:click={setRandomColor} simple={true}>
+    <Ripple color="#000000" />
+    Simple
+  </Button>
+
 </Block>
 
 <h2>Checkboxes</h2>
