@@ -74,7 +74,6 @@
     transform: scale(0);
     transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
     transition-duration: 400ms;
-    /*transition: transform 0.4s ease-out, opacity 0.4s ease-out;*/
   }
   :global(.ripple--held) {
     transform: scale(1);

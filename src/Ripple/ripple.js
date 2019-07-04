@@ -1,4 +1,20 @@
-export function ripple(node) {
+import {
+	hexToRGB
+} from "../Utils/color.js";
+
+export function ripple(node, params) {
+
+	let colorStyle = "";
+	let color = "#ffffff";
+	if (params && params.color) {
+		color = params.color;
+	}
+	let primary = hexToRGB(color);
+	let primaryLight = hexToRGB(color, 0.35);
+	colorStyle = `
+		--primary-color:  ${primary};
+		--primary-color-light:  ${primaryLight};
+	`;
 
 	let handleMouseDown = e => {
 		let x = e.offsetX;
@@ -13,14 +29,17 @@ export function ripple(node) {
 		let diameter = Math.sqrt(Math.pow(sideX, 2) + Math.pow(sideY, 2)) * 2;
 		let ripple = document.createElement("div");
 
-		ripple.style = `
+		let rippleStyle = "";
+		rippleStyle += `
 			left: ${x - diameter / 2}px;
 			top: ${y - diameter / 2}px;
 			width: ${diameter}px;
 			height: ${diameter}px;
 		`;
+		if (colorStyle) rippleStyle += colorStyle;
+		ripple.style = rippleStyle;
 		ripple.className = "ripple";
-		e.target.appendChild(ripple);
+		node.appendChild(ripple);
 
 		setTimeout(function () {
 			ripple.classList.add("ripple--held");
@@ -30,7 +49,7 @@ export function ripple(node) {
 			if (ripple.classList.contains("ripple--held")) return;
 			ripple.classList.add("ripple--done");
 			setTimeout(() => {
-				ripple.parentNode.removeChild(ripple);
+				node.removeChild(ripple);
 			}, 400);
 		}, 400);
 	};
@@ -47,11 +66,21 @@ export function ripple(node) {
 	};
 
 	const handleMouseUp = e => {
-		killRipple(e.target);
+		killRipple(node);
 	};
 	const handleMouseLeave = e => {
-		killRipple(e.target);
+		killRipple(node);
 	};
 
 	node.addEventListener("mousedown", handleMouseDown);
+	node.addEventListener("mouseup", handleMouseUp);
+	node.addEventListener("mouseleave", handleMouseLeave);
+
+	return {
+		destroy() {
+			node.removeEventListener("mousedown", handleMouseDown);
+			node.removeEventListener("mouseup", handleMouseUp);
+			node.removeEventListener("mouseleave", handleMouseLeave);
+		}
+	}
 }

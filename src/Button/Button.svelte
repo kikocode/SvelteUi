@@ -1,4 +1,5 @@
 <script>
+  export let use = () => {};
   export let color = "#1976d2";
   export let style = "";
   export let disabled = false;
@@ -54,6 +55,6 @@
   }
 </style>
 
-<div class={'button ' + buttonClasses} style={buttonStyles}>
+<div class={'button ' + buttonClasses} style={buttonStyles} use:use>
   <slot />
 </div>

@@ -1,0 +1,21 @@
+:global(.ripple) {
+	position: absolute;
+	width: 2px;
+	height: 2px;
+	background: var(--primary-color-light);
+	border-radius: 50%;
+	pointer-events: none;
+	user-select: none;
+	transform: scale(0);
+	transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
+	transition-duration: 400ms;
+}
+
+:global(.ripple--held) {
+	transform: scale(1);
+	opacity: 0.8;
+}
+
+:global(.ripple--done) {
+	opacity: 0;
+}

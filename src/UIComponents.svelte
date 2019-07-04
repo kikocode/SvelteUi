@@ -8,6 +8,7 @@
   import Block from "./Layout/Block.svelte";
 
   import { ripple } from "./Ripple/ripple";
+  import { rippleStyle } from "./Ripple/ripple";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
 
@@ -80,6 +81,7 @@
   .sheet {
     margin: 10px;
     position: relative;
+    overflow: hidden;
     width: 200px;
     height: 60px;
     border-radius: 5px;
@@ -116,10 +118,15 @@
 <h2>Ripple</h2>
 
 <Block>
+
+  <Button color="#bb99dd" use={ripple}>use ripple</Button>
+
   <Button color="#c12da0">
     <Ripple />
     Ripple
   </Button>
+  <div class="sheet" use:ripple={{ color: '#99dd00' }} />
+  <div class="sheet" use:ripple={{ color: '#bb00aa' }} />
   <div class="sheet">
     <Ripple color="#000000" />
   </div>
