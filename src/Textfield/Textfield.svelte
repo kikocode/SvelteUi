@@ -267,6 +267,17 @@
     }
   }
 
+   /* Active */
+  .textfield--active {
+    .textfield__label {
+      transform: translateY(-7px) scale(var(--label-scale));
+      color: rgba(0, 0, 0, 0.5);
+    }
+    .textfield__border .textfield__border__segment.textfield__border__gap {
+      border-top:0px solid transparent;
+    }
+  }
+
   /* Focused */
   .textfield--focused {
     .textfield__label {
@@ -282,20 +293,9 @@
     }
   }
 
-  /* Active */
-  .textfield--active {
-    .textfield__label {
-      transform: translateY(-7px) scale(var(--label-scale));
-      color: rgba(0, 0, 0, 0.5);
-    }
-    .textfield__border .textfield__border__gap {
-      border-top: 0px solid transparent;
-    }
-  }
-
   /* Error */
   .textfield--error {
-    .textfield__border__segment {
+    .textfield__border .textfield__border__segment {
       border-color: var(--error-color);
     }
     .textfield__label {
