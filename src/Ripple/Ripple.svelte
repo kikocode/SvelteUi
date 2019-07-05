@@ -5,7 +5,7 @@
 
   $: rippleStyle = `
     --primary-color:  ${hexToRGB(color)};
-    --primary-color-light:  ${hexToRGB(color, 0.35)};
+    --primary-color-light:  ${hexToRGB(color, 0.25)};
   `;
 
   const handleMouseDown = e => {

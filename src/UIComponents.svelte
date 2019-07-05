@@ -8,7 +8,6 @@
   import Block from "./Layout/Block.svelte";
 
   import { ripple } from "./Ripple/ripple";
-  import { rippleStyle } from "./Ripple/ripple";
   import { randomHex } from "./Utils/color";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
@@ -29,7 +28,7 @@
   };
   let customStyle1 = ``;
 
-  let randomColor = "#ff00bb";
+  let randomColor = "#3781b7";
 
   const setRandomColor = () => {
     var c = randomHex();
@@ -117,7 +116,7 @@
 
 <Block>
   <Accordeon>
-    <h1 slot="header">header stuff</h1>
+    <p slot="header">header</p>
     <p slot="body">Body text</p>
   </Accordeon>
 
@@ -149,12 +148,29 @@
 </Block>
 
 <h2>Buttons</h2>
-
+<h3>Default, Outlined, Raised, Simple, Disabled</h3>
 <Block>
+  <Button color="#3781b7" raised={true}><Ripple color={"#ffffff"}/>Primary</Button>
   <Button color="#3781b7" use={ripple}>Primary</Button>
-  <Button color="#c12da0" use={ripple} disabled={true}>Disabled</Button>
+  <Button color="#3f51b5" use={ripple}>Color</Button>
+  <Button color="#3781b7" outlined={true}><Ripple color={"#3781b7"}/>Primary</Button>
+  <Button color="#3781b7" simple={true}><Ripple color={"#3781b7"}/>Primary</Button>
+
+    <Button color="#c12da0" use={ripple} disabled={true}>Disabled</Button>
   <Button color="#c12da0" disabled={true} compact={true}>Compact</Button>
-  <Button color="#88aa33" compact={true}>Compact</Button>
+  <Button color="#3f51b5" compact={true}>Compact</Button>
+    <Button color={randomColor} outlined={true} disabled={true}>
+    <Ripple color={randomColor} />
+    Disabled
+  </Button>
+  <Button color={randomColor} simple={true} disabled={true}>
+    <Ripple color={randomColor} />
+    Disabled
+  </Button>
+</Block>
+
+<h3>Random Color</h3>
+<Block>
   <Button
     color={randomColor}
     on:click={setRandomColor}
@@ -164,16 +180,16 @@
   </Button>
 
   <Button color={randomColor} on:click={setRandomColor} outlined={true}>
-    <Ripple color="#000000" />
+    <Ripple color={randomColor} />
     Outlined
   </Button>
 
   <Button color={randomColor} on:click={setRandomColor} simple={true}>
-    <Ripple color="#000000" />
+    <Ripple color={randomColor} />
     Simple
   </Button>
-
 </Block>
+
 
 <h2>Checkboxes</h2>
 
@@ -235,25 +251,25 @@
 
 <h3>Outlined</h3>
 <Block>
-  <Textfield label={'Textfield'} name="Name" color="#bb88dd" compact={false} />
+  <Textfield label={'Textfield'} name="Name" color={randomColor} compact={false} />
   <Textfield
     label={'fixed width'}
     name="Name"
-    color="#bb88dd"
+    color={randomColor}
     compact={false}
     style="width:100px" />
   <Textfield
     label={'very long test description of a label'}
     name="Name"
-    color="#00aa88"
+    color={randomColor}
     compact={false} />
-  <Textfield label={'Compact'} name="Name" color="#00aa88" compact={true} />
+  <Textfield label={'Compact'} name="Name" color={randomColor} compact={true} />
 
   <Textfield
     label={'Number'}
     type="number"
     name="Name"
-    color="#99bbee"
+    color={randomColor}
     compact={false}
     error={error12} />
 
@@ -261,7 +277,7 @@
     label={'Date'}
     type="date"
     name="Name"
-    color="#99bbee"
+    color={randomColor}
     compact={false}
     error={error12} />
 
@@ -269,7 +285,7 @@
     label={'Search'}
     type="search"
     name="Name"
-    color="#99bbee"
+    color={randomColor}
     compact={false}
     error={error12} />
 
@@ -277,37 +293,38 @@
     label={'Password'}
     type="search"
     name="Name"
-    color="#99bbee"
+    color={randomColor}
     compact={false}
     error={error12} />
 
   <Textfield
     label={'Disabled'}
     name="Name"
-    color="#ff55aa"
+    color={randomColor}
     compact={false}
     error={error12}
     disabled={true} />
 
-  <Textfield label="Name" compact={true} color="#ff99bb" helperText="Compact" />
+  <Textfield label="Name" compact={true} color={randomColor} helperText="Compact" />
   <Textfield
     label="Password"
     type="password"
     compact={true}
+    color={randomColor}
     helperText="Compact" />
-  <Textfield label="E-Mail" compact={true} helperText="Compact" />
+  <Textfield label="E-Mail" compact={true} color={randomColor} helperText="Compact" />
 
   <Textfield
     label={'100% width'}
     name="Name"
-    color="#bb88dd"
+    color={randomColor}
     compact={false}
     style="width:100%" />
 
   <Textfield
     label={'Multiline'}
     name="Name"
-    color="#ff55aa"
+    color={randomColor}
     compact={false}
     error={error12}
     helperText="Multiline"
@@ -316,7 +333,7 @@
   <Textfield
     label={'Outlined'}
     name="Error"
-    color="#bb88dd"
+    color={randomColor}
     compact={false}
     error={true}
     helperText="Error" />

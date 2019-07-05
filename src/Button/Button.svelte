@@ -1,5 +1,5 @@
 <script>
-  import { hexToRGB, getContrastColor } from "../Utils/color.js";
+  import { hexToRGB, getContrastColor, lighten, darken } from "../Utils/color.js";
 
   export let use = () => {};
   export let color = "#1976d2";
@@ -16,20 +16,32 @@
   $: outlinedClass = outlined ? "button--outlined" : "";
   $: simpleClass = simple ? "button--simple" : "";
   $: buttonClasses = `${disabledClass} ${compactClass} ${raisedClass} ${outlinedClass} ${simpleClass}`;
-  $: textColor = hexToRGB(getContrastColor(color), 1);
+  $: textColor = getContrastColor(color)
+  $: if(textColor == "#000000"){
+      textColor = hexToRGB(textColor, 0.85);
+  }
+  else {
+      textColor = hexToRGB(textColor, 1);
+  }
 
   $: buttonStyles = `
     ${style};
     --primary-color:  ${color};
+    --primary-color-dark:  ${darken(color, 15)};
+    --primary-color-medium:  ${hexToRGB(color, 0.6)};
+    --primary-color-light:  ${hexToRGB(color, 0.4)};
+    --primary-color-soft:  ${hexToRGB(color, 0.08)};
     --text-color:  ${textColor};
   `;
 </script>
 
 <style type="text/scss">
   .button {
-    --height: 40px;
+    --disabled-text-color: rgba(0,0,0,.26);
+    --disabled-bg-color: rgba(0,0,0,.12);
+    --height: 36px;
     --padding: 0px 16px;
-    --font-size: 16px;
+    --font-size: 14px;
     --transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -50,11 +62,15 @@
     color: var(--text-color);
     font-weight: 500;
     border-radius: 4px;
+
+    &:hover {
+        background: var(--primary-color-dark);
+    }
   }
 
   .button--disabled {
-    background: #d0d0d0;
-    color: #929292;
+    background:var(--disabled-bg-color);
+    color: var(--disabled-text-color);
     cursor: default;
     pointer-events: none;
   }
@@ -66,13 +82,29 @@
 
   .button--outlined {
     background: none;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--primary-color-light);
     color: var(--primary-color);
+
+    &:hover {
+        border-color: var(--primary-color-medium);
+        background: var(--primary-color-soft);
+    }
+    &.button--disabled {
+        border-color: var(--disabled-text-color);
+        color: var(--disabled-text-color);
+    }
   }
 
   .button--simple {
     background: none;
     color: var(--primary-color);
+
+    &:hover {
+        background: var(--primary-color-soft);
+    }
+    &.button--disabled {
+        color: var(--disabled-text-color);
+    }
   }
 
   .button--compact {
