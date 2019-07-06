@@ -6,9 +6,14 @@
   import Ripple from "./Ripple/Ripple.svelte";
   import Accordeon from "./Accordeon/Accordeon.svelte";
   import Block from "./Layout/Block.svelte";
+  import Line from "./Layout/Line.svelte";
 
   import { ripple } from "./Ripple/ripple";
   import { randomHex } from "./Utils/color";
+
+  import Check2 from "./assets/icons/Check.svelte";
+
+  import CircleNavigation from "./CircleNavigation/CircleNavigation.svelte";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
 
@@ -112,6 +117,25 @@
   }
 </style>
 
+<h2>Circle Navigation</h2>
+<Block>
+
+  <CircleNavigation>
+    <div slot="circle">
+      <Check2 />
+    </div>
+    <div slot="elements">
+      {#each new Array(3).fill('') as elem, i}
+        <div>
+           {i}
+          <Check2 />
+        </div>
+      {/each}
+    </div>
+  </CircleNavigation>
+
+</Block>
+
 <h2>Accordeon</h2>
 
 <Block>
@@ -150,16 +174,28 @@
 <h2>Buttons</h2>
 <h3>Default, Outlined, Raised, Simple, Disabled</h3>
 <Block>
-  <Button color="#3781b7" raised={true}><Ripple color={"#ffffff"}/>Primary</Button>
-  <Button color="#3781b7" use={ripple}>Primary</Button>
-  <Button color="#3f51b5" use={ripple}>Color</Button>
-  <Button color="#3781b7" outlined={true}><Ripple color={"#3781b7"}/>Primary</Button>
-  <Button color="#3781b7" simple={true}><Ripple color={"#3781b7"}/>Primary</Button>
 
-    <Button color="#c12da0" use={ripple} disabled={true}>Disabled</Button>
+  <Line>
+    <Button color="#3781b7" raised={true}>
+      <Ripple color={'#ffffff'} />
+      Primary
+    </Button>
+    <Button color="#3781b7" use={ripple}>Primary</Button>
+    <Button color="#3f51b5" use={ripple}>Color</Button>
+    <Button color="#3781b7" outlined={true}>
+      <Ripple color={'#3781b7'} />
+      Primary
+    </Button>
+    <Button color="#3781b7" simple={true}>
+      <Ripple color={'#3781b7'} />
+      Primary
+    </Button>
+  </Line>
+
+  <Button color="#c12da0" use={ripple} disabled={true}>Disabled</Button>
   <Button color="#c12da0" disabled={true} compact={true}>Compact</Button>
   <Button color="#3f51b5" compact={true}>Compact</Button>
-    <Button color={randomColor} outlined={true} disabled={true}>
+  <Button color={randomColor} outlined={true} disabled={true}>
     <Ripple color={randomColor} />
     Disabled
   </Button>
@@ -171,12 +207,9 @@
 
 <h3>Random Color</h3>
 <Block>
-  <Button
-    color={randomColor}
-    on:click={setRandomColor}
-    use={ripple}
-    raised={true}>
+  <Button color={randomColor} on:click={setRandomColor} raised={true}>
     Random Color
+    <Ripple color={'#000000'} />
   </Button>
 
   <Button color={randomColor} on:click={setRandomColor} outlined={true}>
@@ -190,6 +223,21 @@
   </Button>
 </Block>
 
+<h3>Sizes</h3>
+<Block>
+  <Button color={randomColor} size={'small'} raised={true}>
+    Small
+    <Ripple />
+  </Button>
+  <Button color={randomColor} size={'medium'} raised={true}>
+    Medium
+    <Ripple />
+  </Button>
+  <Button color={randomColor} size={'large'} raised={true}>
+    Large
+    <Ripple />
+  </Button>
+</Block>
 
 <h2>Checkboxes</h2>
 
@@ -251,7 +299,11 @@
 
 <h3>Outlined</h3>
 <Block>
-  <Textfield label={'Textfield'} name="Name" color={randomColor} compact={false} />
+  <Textfield
+    label={'Textfield'}
+    name="Name"
+    color={randomColor}
+    compact={false} />
   <Textfield
     label={'fixed width'}
     name="Name"
@@ -305,14 +357,22 @@
     error={error12}
     disabled={true} />
 
-  <Textfield label="Name" compact={true} color={randomColor} helperText="Compact" />
+  <Textfield
+    label="Name"
+    compact={true}
+    color={randomColor}
+    helperText="Compact" />
   <Textfield
     label="Password"
     type="password"
     compact={true}
     color={randomColor}
     helperText="Compact" />
-  <Textfield label="E-Mail" compact={true} color={randomColor} helperText="Compact" />
+  <Textfield
+    label="E-Mail"
+    compact={true}
+    color={randomColor}
+    helperText="Compact" />
 
   <Textfield
     label={'100% width'}
