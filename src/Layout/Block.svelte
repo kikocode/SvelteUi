@@ -1,3 +1,15 @@
+<script>
+  export let mode = "default";
+
+  $: modeClass = modes[mode] ? modes[mode] : mode;
+  $: classes = `${modeClass}`;
+
+  let modes = {
+    "default": "",
+    "rows": "block--rows",
+  };
+</script>
+
 <style>
   .block {
     display: flex;
@@ -7,8 +19,12 @@
     padding: 20px;
     margin-bottom: 40px;
   }
+
+  .block--rows {
+    flex-flow:columns;
+  }
 </style>
 
-<div class="block">
+<div class={"block " + classes}>
   <slot />
 </div>

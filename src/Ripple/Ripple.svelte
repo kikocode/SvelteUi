@@ -63,7 +63,7 @@
 </script>
 
 <style type="text/scss">
-  :global(.ripple) {
+  .ripple-container :global(.ripple) {
     position: absolute;
     width: 2px;
     height: 2px;
@@ -75,11 +75,11 @@
     transition: opacity, transform 0s cubic-bezier(0, 0, 0.2, 1);
     transition-duration: 400ms;
   }
-  :global(.ripple--held) {
+  .ripple-container :global(.ripple--held) {
     transform: scale(1);
     opacity: 0.8;
   }
-  :global(.ripple--done) {
+  .ripple-container :global(.ripple--done) {
     opacity: 0;
   }
   .ripple-container {

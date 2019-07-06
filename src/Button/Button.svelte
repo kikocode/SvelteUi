@@ -9,13 +9,15 @@
   export let raised = false;
   export let outlined = false;
   export let simple = false;
+  export let size = "medium";
 
   $: disabledClass = disabled ? "button--disabled" : "";
   $: compactClass = compact ? "button--compact" : "";
   $: raisedClass = raised ? "button--raised" : "";
   $: outlinedClass = outlined ? "button--outlined" : "";
   $: simpleClass = simple ? "button--simple" : "";
-  $: buttonClasses = `${disabledClass} ${compactClass} ${raisedClass} ${outlinedClass} ${simpleClass}`;
+  $: sizeClass = sizes[size] ? sizes[size].class : size;
+  $: buttonClasses = `${disabledClass} ${compactClass} ${raisedClass} ${outlinedClass} ${simpleClass} ${sizeClass}`;
   $: textColor = getContrastColor(color)
   $: if(textColor == "#000000"){
       textColor = hexToRGB(textColor, 0.85);
@@ -27,12 +29,24 @@
   $: buttonStyles = `
     ${style};
     --primary-color:  ${color};
-    --primary-color-dark:  ${darken(color, 15)};
+    --primary-color-dark:  ${darken(color, 10)};
     --primary-color-medium:  ${hexToRGB(color, 0.6)};
     --primary-color-light:  ${hexToRGB(color, 0.4)};
     --primary-color-soft:  ${hexToRGB(color, 0.08)};
     --text-color:  ${textColor};
   `;
+
+  let sizes = {
+    "small" : {
+      class: "button--small"
+    },
+    "medium" : {
+      class: "button--medium"
+    },
+    "large" : {
+      class: "button--large"
+    },
+  };
 </script>
 
 <style type="text/scss">
@@ -110,6 +124,17 @@
   .button--compact {
     --padding: 0px 14px;
     --height: 34px;
+  }
+
+  .button--small {
+    font-size:12px;
+    padding:0 14px;
+    --height: 30px;
+  }
+  .button--large {
+    font-size:16px;
+    padding:0 24px;
+    --height: 42px;
   }
 </style>
 
