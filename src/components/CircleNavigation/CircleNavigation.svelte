@@ -12,7 +12,7 @@
 
   let circleSize = 60;
   let elementSize = 40;
-  let animationStagger = 30;
+  let animationStagger = 25;
   let timeouts = [];
   let elemsVisible = 0;
 
@@ -21,21 +21,23 @@
   let elems;
 
   let directions = {
-    "top": {
+    top: {
       class: "circle-navigation--direction-top"
     },
-    "bottom": {
+    bottom: {
       class: "circle-navigation--direction-bottom"
     },
-    "left": {
+    left: {
       class: "circle-navigation--direction-left"
     },
-    "right": {
+    right: {
       class: "circle-navigation--direction-right"
     }
   };
 
-  $: directionClass = directions[direction] ? directions[direction].class : direction;
+  $: directionClass = directions[direction]
+    ? directions[direction].class
+    : direction;
   $: circleNavigationClasses = `
     ${directionClass}
   `;
@@ -87,9 +89,9 @@
   const clearTimeouts = () => {
     timeouts.forEach(timeout => {
       clearInterval(timeout);
-    })
+    });
     elemsVisible = 0;
-  }
+  };
 
   const handleMouseover = e => {
     animateIn();
@@ -114,25 +116,25 @@
   }
 
   .circle-navigation--direction-bottom {
-    flex-flow:column;
+    flex-flow: column;
     & .circle-navigation_elements {
-      flex-flow:column
+      flex-flow: column;
     }
     & .circle-navigation_elements > :global(*) {
-     flex-flow:column
+      flex-flow: column;
     }
   }
 
   .circle-navigation--direction-top {
-    flex-flow:column;
+    flex-flow: column;
     flex-direction: column-reverse;
     & .circle-navigation_elements {
-      flex-flow:column;
+      flex-flow: column;
       flex-direction: column-reverse;
     }
     & .circle-navigation_elements > :global(*) {
-     flex-flow:column;
-     flex-direction: column-reverse;
+      flex-flow: column;
+      flex-direction: column-reverse;
     }
   }
 
@@ -197,14 +199,11 @@
 </style>
 
 <div
-class={"circle-navigation " + circleNavigationClasses}
-style={circleNavigationStyle}
-on:mouseleave={handleMouseout}>
+  class={'circle-navigation ' + circleNavigationClasses}
+  style={circleNavigationStyle}
+  on:mouseleave={handleMouseout}>
 
-  <div class="circle-navigation_button"
-on:mouseenter={handleMouseover}
-
-  >
+  <div class="circle-navigation_button" on:mouseenter={handleMouseover}>
     {#if ripple}
       <Ripple />
     {/if}
