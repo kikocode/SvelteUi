@@ -10,6 +10,7 @@
 
   let circleSize = 60;
   let elementSize = 40;
+  let animationStagger = 90;
 
   let bgRef;
   let elementsRef;
@@ -34,13 +35,21 @@
 
   const animateIn = e => {
     elems.forEach((el, i) => {
-      if(el.classList) el.classList.add("circle-navigation_element--active")
+      setTimeout(() => {
+        if(el.classList) {
+          el.classList.add("circle-navigation_element--active")
+        }
+      }, i * animationStagger);
     });
   };
 
   const animateOut = e => {
     elems.forEach((el, i) => {
-      if(el.classList) el.classList.remove("circle-navigation_element--active")
+      setTimeout(() => {
+        if(el.classList) {
+          el.classList.remove("circle-navigation_element--active")
+        }
+      }, i * animationStagger);
     });
   };
 
@@ -68,22 +77,23 @@
 
   .circle-navigation :global(.circle-navigation_element) {
     display: flex;
+    width: var(--element-size);
+    height: var(--element-size);
+    margin: 0 4px;
     align-items: center;
     justify-content: center;
     position: relative;
-    z-index: 10;
     border-radius: 50%;
-    margin: 0 4px;
-    width: 0;
-    height: 0;
+    transform: scale(0);
+    transform-origin: center;
+    z-index: 10;
   }
 
   .circle-navigation :global(.circle-navigation_element--active) {
-    width: var(--element-size);
-    height: var(--element-size);
     background: var(--color);
     transition: var(--transition);
     box-shadow: var(--box-shadow);
+    transform: scale(1);
   }
 
   .circle-navigation_button {

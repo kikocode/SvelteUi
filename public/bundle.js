@@ -3273,7 +3273,7 @@ var app = (function () {
     const get_circle_slot_changes$1 = ({}) => ({});
     const get_circle_slot_context$1 = ({}) => ({});
 
-    // (128:4) {#if ripple}
+    // (138:4) {#if ripple}
     function create_if_block$4(ctx) {
     	var current;
 
@@ -3333,16 +3333,16 @@ var app = (function () {
     			t2 = space();
     			div2 = element("div");
 
-    			attr(div0, "class", "circle-navigation_button svelte-1u73shx");
-    			add_location(div0, file$d, 126, 2, 2998);
+    			attr(div0, "class", "circle-navigation_button svelte-hrh2bs");
+    			add_location(div0, file$d, 136, 2, 3238);
 
-    			attr(div1, "class", "circle-navigation_elements svelte-1u73shx");
-    			add_location(div1, file$d, 133, 2, 3120);
-    			attr(div2, "class", "circle-navigation_background svelte-1u73shx");
-    			add_location(div2, file$d, 137, 2, 3226);
-    			attr(div3, "class", "circle-navigation svelte-1u73shx");
+    			attr(div1, "class", "circle-navigation_elements svelte-hrh2bs");
+    			add_location(div1, file$d, 143, 2, 3360);
+    			attr(div2, "class", "circle-navigation_background svelte-hrh2bs");
+    			add_location(div2, file$d, 147, 2, 3466);
+    			attr(div3, "class", "circle-navigation svelte-hrh2bs");
     			attr(div3, "style", ctx.circleNavigationStyle);
-    			add_location(div3, file$d, 120, 0, 2865);
+    			add_location(div3, file$d, 130, 0, 3105);
 
     			dispose = [
     				listen(div3, "mouseover", ctx.handleMouseover),
@@ -3457,6 +3457,8 @@ var app = (function () {
 
     let elementSize$1 = 40;
 
+    let animationStagger = 90;
+
     function instance$8($$self, $$props, $$invalidate) {
     	
 
@@ -3479,13 +3481,21 @@ var app = (function () {
 
       const animateIn = e => {
         elems.forEach((el, i) => {
-          if(el.classList) el.classList.add("circle-navigation_element--active");
+          setTimeout(() => {
+            if(el.classList) {
+              el.classList.add("circle-navigation_element--active");
+            }
+          }, i * animationStagger);
         });
       };
 
       const animateOut = e => {
         elems.forEach((el, i) => {
-          if(el.classList) el.classList.remove("circle-navigation_element--active");
+          setTimeout(() => {
+            if(el.classList) {
+              el.classList.remove("circle-navigation_element--active");
+            }
+          }, i * animationStagger);
         });
       };
 
