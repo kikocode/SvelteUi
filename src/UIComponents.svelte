@@ -10,10 +10,16 @@
 
   import { ripple } from "./Ripple/ripple";
   import { randomHex } from "./Utils/color";
+  import { colors } from "./Utils/color";
 
   import Check2 from "./assets/icons/Check.svelte";
+  import Favorite from "./assets/icons/Favorite.svelte";
+  import Phone from "./assets/icons/Phone.svelte";
+  import Star from "./assets/icons/Star.svelte";
+  import Close from "./assets/icons/Close.svelte";
 
   import CircleNavigation from "./CircleNavigation/CircleNavigation.svelte";
+  import CircleNavigation2 from "./CircleNavigation/CircleNavigation2.svelte";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
 
@@ -33,10 +39,11 @@
   };
   let customStyle1 = ``;
 
-  let randomColor = "#3781b7";
+  let randomColor = "#2a74e6";
 
   const setRandomColor = () => {
-    var c = randomHex();
+    //var c = randomHex();
+    var c = colors[Math.round(Math.random() * colors.length)];
     randomColor = c;
   };
 </script>
@@ -119,41 +126,13 @@
 
 <Button color={randomColor} on:click={setRandomColor} outlined={true}>
   <Ripple color={randomColor} />
-  Disabled
+  Random Color
 </Button>
 
 <h2>Circle Navigation</h2>
 <Block>
 
   <div style="flex-flow:column">
-
-    <CircleNavigation color="#bb00dd">
-      <div slot="circle">
-        <Check2 />
-      </div>
-      <div slot="elements">
-        {#each new Array(3).fill('') as elem, i}
-          <div style="fill:white; cursor:pointer;">
-            <Check2 />
-            <Ripple color="#ffffff" />
-          </div>
-        {/each}
-      </div>
-    </CircleNavigation>
-
-    <CircleNavigation color="#bbaa22">
-      <div slot="circle">
-        <Check2 />
-      </div>
-      <div slot="elements">
-        {#each new Array(3).fill('') as elem, i}
-          <div style="fill:white; cursor:pointer;">
-            <Check2 />
-            <Ripple color="#ffffff" />
-          </div>
-        {/each}
-      </div>
-    </CircleNavigation>
 
     <CircleNavigation color={randomColor}>
       <div slot="circle">
@@ -169,6 +148,30 @@
       </div>
     </CircleNavigation>
 
+    <CircleNavigation2 color={randomColor}>
+      <div slot="circle">
+        <Close />
+      </div>
+      <div slot="elements">
+
+        <div style="fill:white; cursor:pointer;">
+          <Favorite />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Star />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Phone />
+          <Ripple color="#ffffff" />
+        </div>
+
+      </div>
+    </CircleNavigation2>
+
   </div>
 </Block>
 
@@ -182,63 +185,77 @@
 
 </Block>
 
-<h2>Ripple</h2>
-
-<Block>
-
-  <Button color="#bb99dd" use={ripple}>use ripple</Button>
-
-  <Button color="#c12da0">
-    <Ripple />
-    Ripple
-  </Button>
-  <div class="sheet" use:ripple={{ color: '#99dd00' }} />
-  <div class="sheet" use:ripple={{ color: '#bb00aa' }} />
-  <div class="sheet">
-    <Ripple color="#000000" />
-  </div>
-  <div class="circle">
-    +
-    <Ripple color="#ff00bb" />
-  </div>
-  <div class="circle">
-    -
-    <Ripple color="#99abd2" />
-  </div>
-</Block>
-
 <h2>Buttons</h2>
-<h3>Default, Outlined, Raised, Simple, Disabled</h3>
+<h3>Default, Outlined, Raised, Simple, Disabled, Sizes</h3>
 <Block>
 
-  <Line>
-    <Button color="#3781b7" raised={true}>
-      <Ripple color={'#ffffff'} />
-      Primary
-    </Button>
-    <Button color="#3781b7" use={ripple}>Primary</Button>
-    <Button color="#3f51b5" use={ripple}>Color</Button>
-    <Button color="#3781b7" outlined={true}>
-      <Ripple color={'#3781b7'} />
-      Primary
-    </Button>
-    <Button color="#3781b7" simple={true}>
-      <Ripple color={'#3781b7'} />
-      Primary
-    </Button>
-  </Line>
+  <div style="flex-flow:column">
+    <div>
+      <Button color="#2a74e6" raised={true}>
+        <Ripple color={'#ffffff'} />
+        Raised
+      </Button>
+      <Button color="#2a74e6">
+        <Ripple color={'#ffffff'} />
+        Flat
+      </Button>
+      <Button color="#2a74e6" outlined={true}>
+        <Ripple color={'#3781b7'} />
+        Outlined
+      </Button>
+      <Button color="#2a74e6" simple={true}>
+        <Ripple color={'#3781b7'} />
+        Simple
+      </Button>
+    </div>
 
-  <Button color="#c12da0" use={ripple} disabled={true}>Disabled</Button>
-  <Button color="#c12da0" disabled={true} compact={true}>Compact</Button>
-  <Button color="#3f51b5" compact={true}>Compact</Button>
-  <Button color={randomColor} outlined={true} disabled={true}>
-    <Ripple color={randomColor} />
-    Disabled
-  </Button>
-  <Button color={randomColor} simple={true} disabled={true}>
-    <Ripple color={randomColor} />
-    Disabled
-  </Button>
+    <div>
+      <Button color="#c12da0" disabled={true}>
+        <Ripple color={'#ffffff'} />
+        Flat
+      </Button>
+      <Button color={randomColor} outlined={true} disabled={true}>
+        <Ripple color={randomColor} />
+        Outlined
+      </Button>
+      <Button color={randomColor} simple={true} disabled={true}>
+        <Ripple color={randomColor} />
+        Simple
+      </Button>
+    </div>
+    <div>
+      <Button color="#333333" raised={true}>
+        <Ripple color={'#ffffff'} />
+        Raised
+      </Button>
+      <Button color="#333333">
+        <Ripple color={'#ffffff'} />
+        Flat
+      </Button>
+      <Button color="#333333" outlined={true}>
+        <Ripple color={'#3781b7'} />
+        Outlined
+      </Button>
+      <Button color="#333333" simple={true}>
+        <Ripple color={'#3781b7'} />
+        Simple
+      </Button>
+    </div>
+    <div>
+      <Button color={randomColor} size={'small'} raised={true}>
+        Small
+        <Ripple />
+      </Button>
+      <Button color={randomColor} size={'medium'} raised={true}>
+        Medium
+        <Ripple />
+      </Button>
+      <Button color={randomColor} size={'large'} raised={true}>
+        Large
+        <Ripple />
+      </Button>
+    </div>
+  </div>
 </Block>
 
 <h3>Random Color</h3>
@@ -259,20 +276,30 @@
   </Button>
 </Block>
 
-<h3>Sizes</h3>
+<h2>Ripple</h2>
+
 <Block>
-  <Button color={randomColor} size={'small'} raised={true}>
-    Small
+  <Button color={randomColor}>
     <Ripple />
+    Button
   </Button>
-  <Button color={randomColor} size={'medium'} raised={true}>
-    Medium
-    <Ripple />
-  </Button>
-  <Button color={randomColor} size={'large'} raised={true}>
-    Large
-    <Ripple />
-  </Button>
+  <div class="sheet">
+    <Ripple color={'#bbdd33'} />
+  </div>
+  <div class="sheet">
+    <Ripple color={'#bb00aa'} />
+  </div>
+  <div class="sheet">
+    <Ripple color="#000000" />
+  </div>
+  <div class="circle">
+    +
+    <Ripple color="#ff00bb" />
+  </div>
+  <div class="circle">
+    -
+    <Ripple color="#99abd2" />
+  </div>
 </Block>
 
 <h2>Checkboxes</h2>

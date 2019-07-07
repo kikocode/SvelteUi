@@ -27,16 +27,12 @@
     // @see - https://github.com/sveltejs/svelte/issues/2080
     if (useNestedElements) elems = elems[0].childNodes;
     elems.forEach((el, i) => {
-      let top = circleSize / 2 - elementSize / 2;
-      let left = circleSize / 2 - elementSize / 2;
-      el.style.opacity = `0`;
-      el.style.top = `${top}px`;
-      el.style.left = `${left}px`;
+      console.log("el", el);
       if (el.classList) el.classList.add("circle-navigation_element");
     });
   });
 
-  const handleMouseover = e => {
+  const animateIn = e => {
     let gapX = 10;
     let startX = circleSize + gapX;
     let maxW = startX;
@@ -55,19 +51,28 @@
 		`;
   };
 
-  const handleMouseout = e => {
+  const animateOut = e => {
     elems.forEach((el, i) => {
-      let left = circleSize / 2 - elementSize / 2;
-      el.style.left = `${left}px`;
+      el.style.left = "0px";
     });
     bgRef.style = `
 			width:100%;
 		`;
   };
+
+  const handleMouseover = e => {
+    //animateIn();
+  };
+
+  const handleMouseout = e => {
+    //animateOut();
+  };
 </script>
 
 <style>
   .circle-navigation {
+    display: flex;
+    align-items: center;
     position: relative;
     margin: 15px;
     --transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -78,20 +83,18 @@
   }
 
   .circle-navigation :global(.circle-navigation_element) {
-    position: absolute;
-    z-index: 20;
-    opacity: 0;
-    top: 0;
-    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    z-index: 10;
     border-radius: 50%;
     width: var(--element-size);
     height: var(--element-size);
     background: var(--color);
     transition: var(--transition);
     box-shadow: var(--box-shadow);
+    margin: 0 4px;
   }
 
   .circle-navigation_button {
@@ -126,6 +129,11 @@
   }
 
   .circle-navigation_elements {
+    display: flex;
+    margin-left: 8px;
+  }
+  .circle-navigation_elements > :global(*) {
+    display: flex;
   }
 </style>
 

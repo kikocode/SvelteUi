@@ -1,58 +1,60 @@
 <script>
-  import { hexToRGB, getContrastColor, lighten, darken } from "../Utils/color.js";
+  import {
+    hexToRGB,
+    getContrastColor,
+    lighten,
+    darken
+  } from "../Utils/color.js";
 
   export let use = () => {};
   export let color = "#1976d2";
   export let style = "";
   export let disabled = false;
-  export let compact = false;
   export let raised = false;
   export let outlined = false;
   export let simple = false;
   export let size = "medium";
 
   $: disabledClass = disabled ? "button--disabled" : "";
-  $: compactClass = compact ? "button--compact" : "";
   $: raisedClass = raised ? "button--raised" : "";
   $: outlinedClass = outlined ? "button--outlined" : "";
   $: simpleClass = simple ? "button--simple" : "";
   $: sizeClass = sizes[size] ? sizes[size].class : size;
-  $: buttonClasses = `${disabledClass} ${compactClass} ${raisedClass} ${outlinedClass} ${simpleClass} ${sizeClass}`;
-  $: textColor = getContrastColor(color)
-  $: if(textColor == "#000000"){
-      textColor = hexToRGB(textColor, 0.85);
-  }
-  else {
-      textColor = hexToRGB(textColor, 1);
+  $: buttonClasses = `${disabledClass} ${raisedClass} ${outlinedClass} ${simpleClass} ${sizeClass}`;
+  $: textColor = getContrastColor(color);
+  $: if (textColor == "#000000") {
+    textColor = hexToRGB(textColor, 0.85);
+  } else {
+    textColor = hexToRGB(textColor, 1);
   }
 
   $: buttonStyles = `
     ${style};
     --primary-color:  ${color};
     --primary-color-dark:  ${darken(color, 10)};
-    --primary-color-medium:  ${hexToRGB(color, 0.6)};
+    --primary-color-medium:  ${hexToRGB(color, 0.8)};
     --primary-color-light:  ${hexToRGB(color, 0.4)};
     --primary-color-soft:  ${hexToRGB(color, 0.08)};
     --text-color:  ${textColor};
   `;
 
   let sizes = {
-    "small" : {
+    small: {
       class: "button--small"
     },
-    "medium" : {
+    medium: {
       class: "button--medium"
     },
-    "large" : {
+    large: {
       class: "button--large"
-    },
+    }
   };
 </script>
 
 <style type="text/scss">
   .button {
-    --disabled-text-color: rgba(0,0,0,.26);
-    --disabled-bg-color: rgba(0,0,0,.12);
+    --disabled-text-color: rgba(0, 0, 0, 0.26);
+    --disabled-bg-color: rgba(0, 0, 0, 0.12);
     --height: 36px;
     --padding: 0px 16px;
     --font-size: 14px;
@@ -76,14 +78,15 @@
     color: var(--text-color);
     font-weight: 500;
     border-radius: 4px;
+    text-transform: uppercase;
 
     &:hover {
-        background: var(--primary-color-dark);
+      background: var(--primary-color-dark);
     }
   }
 
   .button--disabled {
-    background:var(--disabled-bg-color);
+    background: var(--disabled-bg-color);
     color: var(--disabled-text-color);
     cursor: default;
     pointer-events: none;
@@ -100,12 +103,12 @@
     color: var(--primary-color);
 
     &:hover {
-        border-color: var(--primary-color-medium);
-        background: var(--primary-color-soft);
+      border-color: var(--primary-color-medium);
+      background: var(--primary-color-soft);
     }
     &.button--disabled {
-        border-color: var(--disabled-text-color);
-        color: var(--disabled-text-color);
+      border-color: var(--disabled-text-color);
+      color: var(--disabled-text-color);
     }
   }
 
@@ -114,26 +117,20 @@
     color: var(--primary-color);
 
     &:hover {
-        background: var(--primary-color-soft);
+      background: var(--primary-color-soft);
     }
     &.button--disabled {
-        color: var(--disabled-text-color);
+      color: var(--disabled-text-color);
     }
   }
-
-  .button--compact {
-    --padding: 0px 14px;
-    --height: 34px;
-  }
-
   .button--small {
-    font-size:12px;
-    padding:0 14px;
+    font-size: 12px;
+    padding: 0 14px;
     --height: 30px;
   }
   .button--large {
-    font-size:16px;
-    padding:0 24px;
+    font-size: 16px;
+    padding: 0 24px;
     --height: 42px;
   }
 </style>
