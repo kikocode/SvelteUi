@@ -117,23 +117,59 @@
   }
 </style>
 
+<Button color={randomColor} on:click={setRandomColor} outlined={true}>
+  <Ripple color={randomColor} />
+  Disabled
+</Button>
+
 <h2>Circle Navigation</h2>
 <Block>
 
-  <CircleNavigation>
-    <div slot="circle">
-      <Check2 />
-    </div>
-    <div slot="elements">
-      {#each new Array(3).fill('') as elem, i}
-        <div>
-           {i}
-          <Check2 />
-        </div>
-      {/each}
-    </div>
-  </CircleNavigation>
+  <div style="flex-flow:column">
 
+    <CircleNavigation color="#bb00dd">
+      <div slot="circle">
+        <Check2 />
+      </div>
+      <div slot="elements">
+        {#each new Array(3).fill('') as elem, i}
+          <div style="fill:white; cursor:pointer;">
+            <Check2 />
+            <Ripple color="#ffffff" />
+          </div>
+        {/each}
+      </div>
+    </CircleNavigation>
+
+    <CircleNavigation color="#bbaa22">
+      <div slot="circle">
+        <Check2 />
+      </div>
+      <div slot="elements">
+        {#each new Array(3).fill('') as elem, i}
+          <div style="fill:white; cursor:pointer;">
+            <Check2 />
+            <Ripple color="#ffffff" />
+          </div>
+        {/each}
+      </div>
+    </CircleNavigation>
+
+    <CircleNavigation color={randomColor}>
+      <div slot="circle">
+        <Check2 />
+      </div>
+      <div slot="elements">
+        {#each new Array(3).fill('') as elem, i}
+          <div style="fill:white; cursor:pointer;">
+            <Check2 />
+            <Ripple color="#ffffff" />
+          </div>
+        {/each}
+      </div>
+    </CircleNavigation>
+
+  </div>
 </Block>
 
 <h2>Accordeon</h2>
