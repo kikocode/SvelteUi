@@ -15,6 +15,7 @@
   export let simple = false;
   export let size = "medium";
 
+
   $: disabledClass = disabled ? "button--disabled" : "";
   $: raisedClass = raised ? "button--raised" : "";
   $: outlinedClass = outlined ? "button--outlined" : "";

@@ -7,14 +7,38 @@
   export let ripple = true;
   export let color = "#ff00aa";
   export let circleContent;
+  // options: left, right, top, bottom. default is bottom
+  export let direction = "left";
 
   let circleSize = 60;
   let elementSize = 40;
-  let animationStagger = 90;
+  let animationStagger = 30;
+  let timeouts = [];
+  let elemsVisible = 0;
 
   let bgRef;
   let elementsRef;
   let elems;
+
+  let directions = {
+    "top": {
+      class: "circle-navigation--direction-top"
+    },
+    "bottom": {
+      class: "circle-navigation--direction-bottom"
+    },
+    "left": {
+      class: "circle-navigation--direction-left"
+    },
+    "right": {
+      class: "circle-navigation--direction-right"
+    }
+  };
+
+  $: directionClass = directions[direction] ? directions[direction].class : direction;
+  $: circleNavigationClasses = `
+    ${directionClass}
+  `;
 
   $: circleNavigationStyle = `
 		--color: ${color};
@@ -34,24 +58,38 @@
   });
 
   const animateIn = e => {
+    clearTimeouts();
     elems.forEach((el, i) => {
-      setTimeout(() => {
-        if(el.classList) {
-          el.classList.add("circle-navigation_element--active")
+      let timeout = setTimeout(() => {
+        if (el.classList) {
+          el.classList.add("circle-navigation_element--active");
         }
+        elems.visible += 1;
       }, i * animationStagger);
+      timeouts.push(timeout);
     });
   };
 
   const animateOut = e => {
+    clearTimeouts();
+    // max duration of animation
+    let maxAnimation = animationStagger * elems.length;
     elems.forEach((el, i) => {
       setTimeout(() => {
-        if(el.classList) {
-          el.classList.remove("circle-navigation_element--active")
+        if (el.classList) {
+          el.classList.remove("circle-navigation_element--active");
         }
-      }, i * animationStagger);
+        // apply max duration so the first element fades last
+      }, maxAnimation - i * animationStagger);
     });
   };
+
+  const clearTimeouts = () => {
+    timeouts.forEach(timeout => {
+      clearInterval(timeout);
+    })
+    elemsVisible = 0;
+  }
 
   const handleMouseover = e => {
     animateIn();
@@ -75,24 +113,47 @@
       0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
   }
 
+  .circle-navigation--direction-bottom {
+    flex-flow:column;
+    & .circle-navigation_elements {
+      flex-flow:column
+    }
+    & .circle-navigation_elements > :global(*) {
+     flex-flow:column
+    }
+  }
+
+  .circle-navigation--direction-top {
+    flex-flow:column;
+    flex-direction: column-reverse;
+    & .circle-navigation_elements {
+      flex-flow:column;
+      flex-direction: column-reverse;
+    }
+    & .circle-navigation_elements > :global(*) {
+     flex-flow:column;
+     flex-direction: column-reverse;
+    }
+  }
+
   .circle-navigation :global(.circle-navigation_element) {
     display: flex;
     width: var(--element-size);
     height: var(--element-size);
-    margin: 0 4px;
+    margin: 3px;
     align-items: center;
     justify-content: center;
     position: relative;
     border-radius: 50%;
     transform: scale(0);
     transform-origin: center;
+    background: var(--color);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
     z-index: 10;
   }
 
   .circle-navigation :global(.circle-navigation_element--active) {
-    background: var(--color);
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
     transform: scale(1);
   }
 
@@ -101,6 +162,7 @@
     z-index: 100;
     overflow: hidden;
 
+    margin: 10px;
     align-items: center;
     justify-content: center;
     display: flex;
@@ -124,12 +186,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent;
   }
 
   .circle-navigation_elements {
     display: flex;
-    margin-left: 8px;
   }
   .circle-navigation_elements > :global(*) {
     display: flex;
@@ -137,12 +197,14 @@
 </style>
 
 <div
-  class="circle-navigation"
-  on:mouseover={handleMouseover}
-  on:mouseout={handleMouseout}
-  style={circleNavigationStyle}>
+class={"circle-navigation " + circleNavigationClasses}
+style={circleNavigationStyle}
+on:mouseleave={handleMouseout}>
 
-  <div class="circle-navigation_button">
+  <div class="circle-navigation_button"
+on:mouseenter={handleMouseover}
+
+  >
     {#if ripple}
       <Ripple />
     {/if}

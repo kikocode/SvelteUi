@@ -131,8 +131,7 @@
 
 <h2>Circle Navigation</h2>
 <Block>
-
-  <div style="flex-flow:column">
+  <div style="flex-flow:column;position:relative;">
 
     <CircleNavigation color={randomColor}>
       <div slot="circle">
@@ -168,11 +167,102 @@
           <Phone />
           <Ripple color="#ffffff" />
         </div>
+        <div style="fill:white; cursor:pointer;">
+          <Favorite />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Star />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Phone />
+          <Ripple color="#ffffff" />
+        </div>
 
       </div>
     </CircleNavigation2>
 
+    <CircleNavigation2 color={randomColor} direction="bottom">
+      <div slot="circle">
+        <Close />
+      </div>
+      <div slot="elements">
+
+        <div style="fill:white; cursor:pointer;">
+          <Favorite />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Star />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Phone />
+          <Ripple color="#ffffff" />
+        </div>
+        <div style="fill:white; cursor:pointer;">
+          <Favorite />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Star />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Phone />
+          <Ripple color="#ffffff" />
+        </div>
+
+      </div>
+    </CircleNavigation2>
+    <div style="position:absolute; bottom:0; right:0;">
+      <CircleNavigation2 color={randomColor} direction="top">
+        <div slot="circle">
+          <Close />
+        </div>
+        <div slot="elements">
+
+          <div style="fill:white; cursor:pointer;">
+            <Favorite />
+            <Ripple color="#ffffff" />
+          </div>
+
+          <div style="fill:white; cursor:pointer;">
+            <Star />
+            <Ripple color="#ffffff" />
+          </div>
+
+          <div style="fill:white; cursor:pointer;">
+            <Phone />
+            <Ripple color="#ffffff" />
+          </div>
+          <div style="fill:white; cursor:pointer;">
+            <Favorite />
+            <Ripple color="#ffffff" />
+          </div>
+
+          <div style="fill:white; cursor:pointer;">
+            <Star />
+            <Ripple color="#ffffff" />
+          </div>
+
+          <div style="fill:white; cursor:pointer;">
+            <Phone />
+            <Ripple color="#ffffff" />
+          </div>
+
+        </div>
+      </CircleNavigation2>
+    </div>
   </div>
+
 </Block>
 
 <h2>Accordeon</h2>
