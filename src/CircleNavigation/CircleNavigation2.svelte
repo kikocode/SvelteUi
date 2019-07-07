@@ -10,6 +10,7 @@
 
   let circleSize = 60;
   let elementSize = 40;
+  let animationStagger = 90;
 
   let bgRef;
   let elementsRef;
@@ -23,51 +24,48 @@
 
   onMount(() => {
     elems = elementsRef.childNodes;
-    // using svelte's {#each} inside a named slot renders an extra div, which will be taken care of here until fixed
+    // using svelte's {#each} inside a named slot renders an extra div,
+    // which will be taken care of here until fixed
     // @see - https://github.com/sveltejs/svelte/issues/2080
     if (useNestedElements) elems = elems[0].childNodes;
     elems.forEach((el, i) => {
-      let top = circleSize / 2 - elementSize / 2;
-      let left = circleSize / 2 - elementSize / 2;
-      el.style.opacity = `0`;
-      el.style.top = `${top}px`;
-      el.style.left = `${left}px`;
       if (el.classList) el.classList.add("circle-navigation_element");
     });
   });
 
-  const handleMouseover = e => {
-    let gapX = 10;
-    let startX = circleSize + gapX;
-    let maxW = startX;
-
+  const animateIn = e => {
     elems.forEach((el, i) => {
-      let w = el.offsetWidth;
-      let left = i * (w + gapX) + startX;
-      maxW += i * (w + gapX);
-
-      el.style.opacity = `1`;
-      el.style.left = `${left}px`;
+      setTimeout(() => {
+        if(el.classList) {
+          el.classList.add("circle-navigation_element--active")
+        }
+      }, i * animationStagger);
     });
+  };
 
-    bgRef.style = `
-			width:${maxW}px;
-		`;
+  const animateOut = e => {
+    elems.forEach((el, i) => {
+      setTimeout(() => {
+        if(el.classList) {
+          el.classList.remove("circle-navigation_element--active")
+        }
+      }, i * animationStagger);
+    });
+  };
+
+  const handleMouseover = e => {
+    animateIn();
   };
 
   const handleMouseout = e => {
-    elems.forEach((el, i) => {
-      let left = circleSize / 2 - elementSize / 2;
-      el.style.left = `${left}px`;
-    });
-    bgRef.style = `
-			width:100%;
-		`;
+    animateOut();
   };
 </script>
 
 <style>
   .circle-navigation {
+    display: flex;
+    align-items: center;
     position: relative;
     margin: 15px;
     --transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -78,20 +76,24 @@
   }
 
   .circle-navigation :global(.circle-navigation_element) {
-    position: absolute;
-    z-index: 20;
-    opacity: 0;
-    top: 0;
-    left: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
     width: var(--element-size);
     height: var(--element-size);
+    margin: 0 4px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 50%;
+    transform: scale(0);
+    transform-origin: center;
+    z-index: 10;
+  }
+
+  .circle-navigation :global(.circle-navigation_element--active) {
     background: var(--color);
     transition: var(--transition);
     box-shadow: var(--box-shadow);
+    transform: scale(1);
   }
 
   .circle-navigation_button {
@@ -126,6 +128,11 @@
   }
 
   .circle-navigation_elements {
+    display: flex;
+    margin-left: 8px;
+  }
+  .circle-navigation_elements > :global(*) {
+    display: flex;
   }
 </style>
 
