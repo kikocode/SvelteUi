@@ -3271,7 +3271,7 @@ var app = (function () {
     const get_circle_slot_changes$1 = ({}) => ({});
     const get_circle_slot_context$1 = ({}) => ({});
 
-    // (184:4) {#if ripple}
+    // (194:4) {#if ripple}
     function create_if_block$4(ctx) {
     	var current;
 
@@ -3331,16 +3331,16 @@ var app = (function () {
     			t2 = space();
     			div2 = element("div");
 
-    			attr(div0, "class", "circle-navigation_button svelte-df0upx");
-    			add_location(div0, file$d, 179, 2, 4473);
+    			attr(div0, "class", "circle-navigation_button svelte-1gaeifk");
+    			add_location(div0, file$d, 189, 2, 4830);
 
-    			attr(div1, "class", "circle-navigation_elements svelte-df0upx");
-    			add_location(div1, file$d, 189, 2, 4631);
-    			attr(div2, "class", "circle-navigation_background svelte-df0upx");
-    			add_location(div2, file$d, 193, 2, 4737);
-    			attr(div3, "class", div3_class_value = "" + ("circle-navigation " + ctx.circleNavigationClasses) + " svelte-df0upx");
+    			attr(div1, "class", "circle-navigation_elements svelte-1gaeifk");
+    			add_location(div1, file$d, 199, 2, 4988);
+    			attr(div2, "class", "circle-navigation_background svelte-1gaeifk");
+    			add_location(div2, file$d, 203, 2, 5094);
+    			attr(div3, "class", div3_class_value = "" + ("circle-navigation " + ctx.circleNavigationClasses) + " svelte-1gaeifk");
     			attr(div3, "style", ctx.circleNavigationStyle);
-    			add_location(div3, file$d, 174, 0, 4348);
+    			add_location(div3, file$d, 184, 0, 4705);
 
     			dispose = [
     				listen(div0, "mouseenter", ctx.handleMouseover),
@@ -3414,7 +3414,7 @@ var app = (function () {
     				ctx.div2_binding(div2, null);
     			}
 
-    			if ((!current || changed.circleNavigationClasses) && div3_class_value !== (div3_class_value = "" + ("circle-navigation " + ctx.circleNavigationClasses) + " svelte-df0upx")) {
+    			if ((!current || changed.circleNavigationClasses) && div3_class_value !== (div3_class_value = "" + ("circle-navigation " + ctx.circleNavigationClasses) + " svelte-1gaeifk")) {
     				attr(div3, "class", div3_class_value);
     			}
 
@@ -3661,7 +3661,7 @@ var app = (function () {
     }
 
     // (105:0) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
-    function create_default_slot_34(ctx) {
+    function create_default_slot_35(ctx) {
     	var t, current;
 
     	var ripple_1 = new Ripple({
@@ -3709,8 +3709,8 @@ var app = (function () {
     	};
     }
 
-    // (116:6) <div slot="circle">
-    function create_circle_slot_2(ctx) {
+    // (115:6) <div slot="circle">
+    function create_circle_slot_3(ctx) {
     	var div, current;
 
     	var check2 = new Check({ $$inline: true });
@@ -3720,7 +3720,7 @@ var app = (function () {
     			div = element("div");
     			check2.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$e, 115, 6, 3110);
+    			add_location(div, file$e, 114, 6, 3128);
     		},
 
     		m: function mount(target, anchor) {
@@ -3751,7 +3751,7 @@ var app = (function () {
     	};
     }
 
-    // (120:8) {#each new Array(3).fill('') as elem, i}
+    // (119:8) {#each new Array(3).fill('') as elem, i}
     function create_each_block(ctx) {
     	var div, t0, t1, current;
 
@@ -3771,7 +3771,7 @@ var app = (function () {
     			t1 = space();
     			set_style(div, "fill", "white");
     			set_style(div, "cursor", "pointer");
-    			add_location(div, file$e, 120, 10, 3249);
+    			add_location(div, file$e, 119, 10, 3267);
     		},
 
     		m: function mount(target, anchor) {
@@ -3812,8 +3812,8 @@ var app = (function () {
     	};
     }
 
-    // (119:6) <div slot="elements">
-    function create_elements_slot_2(ctx) {
+    // (118:6) <div slot="elements">
+    function create_elements_slot_3(ctx) {
     	var div, current;
 
     	var each_value = new Array(3).fill('');
@@ -3832,7 +3832,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
     			attr(div, "slot", "elements");
-    			add_location(div, file$e, 118, 6, 3168);
+    			add_location(div, file$e, 117, 6, 3186);
     		},
 
     		m: function mount(target, anchor) {
@@ -3871,8 +3871,8 @@ var app = (function () {
     	};
     }
 
-    // (115:4) <CircleNavigation color={randomColor}>
-    function create_default_slot_33(ctx) {
+    // (114:4) <CircleNavigation color={randomColor}>
+    function create_default_slot_34(ctx) {
     	var t;
 
     	return {
@@ -3896,8 +3896,8 @@ var app = (function () {
     	};
     }
 
-    // (130:6) <div slot="circle">
-    function create_circle_slot_1(ctx) {
+    // (129:6) <div slot="circle">
+    function create_circle_slot_2(ctx) {
     	var div, current;
 
     	var close = new Close({ $$inline: true });
@@ -3907,7 +3907,7 @@ var app = (function () {
     			div = element("div");
     			close.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$e, 129, 6, 3474);
+    			add_location(div, file$e, 128, 6, 3492);
     		},
 
     		m: function mount(target, anchor) {
@@ -3938,7 +3938,287 @@ var app = (function () {
     	};
     }
 
-    // (133:6) <div slot="elements">
+    // (132:6) <div slot="elements">
+    function create_elements_slot_2(ctx) {
+    	var div0, div1, t0, t1, div2, t2, t3, div3, t4, t5, div4, t6, t7, div5, t8, t9, div6, t10, current;
+
+    	var favorite0 = new Favorite({ $$inline: true });
+
+    	var ripple0 = new Ripple({
+    		props: { color: "#ffffff" },
+    		$$inline: true
+    	});
+
+    	var star0 = new Star({ $$inline: true });
+
+    	var ripple1 = new Ripple({
+    		props: { color: "#ffffff" },
+    		$$inline: true
+    	});
+
+    	var phone0 = new Phone({ $$inline: true });
+
+    	var ripple2 = new Ripple({
+    		props: { color: "#ffffff" },
+    		$$inline: true
+    	});
+
+    	var favorite1 = new Favorite({ $$inline: true });
+
+    	var ripple3 = new Ripple({
+    		props: { color: "#ffffff" },
+    		$$inline: true
+    	});
+
+    	var star1 = new Star({ $$inline: true });
+
+    	var ripple4 = new Ripple({
+    		props: { color: "#ffffff" },
+    		$$inline: true
+    	});
+
+    	var phone1 = new Phone({ $$inline: true });
+
+    	var ripple5 = new Ripple({
+    		props: { color: "#ffffff" },
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			div0 = element("div");
+    			div1 = element("div");
+    			favorite0.$$.fragment.c();
+    			t0 = space();
+    			ripple0.$$.fragment.c();
+    			t1 = space();
+    			div2 = element("div");
+    			star0.$$.fragment.c();
+    			t2 = space();
+    			ripple1.$$.fragment.c();
+    			t3 = space();
+    			div3 = element("div");
+    			phone0.$$.fragment.c();
+    			t4 = space();
+    			ripple2.$$.fragment.c();
+    			t5 = space();
+    			div4 = element("div");
+    			favorite1.$$.fragment.c();
+    			t6 = space();
+    			ripple3.$$.fragment.c();
+    			t7 = space();
+    			div5 = element("div");
+    			star1.$$.fragment.c();
+    			t8 = space();
+    			ripple4.$$.fragment.c();
+    			t9 = space();
+    			div6 = element("div");
+    			phone1.$$.fragment.c();
+    			t10 = space();
+    			ripple5.$$.fragment.c();
+    			set_style(div1, "fill", "white");
+    			set_style(div1, "cursor", "pointer");
+    			add_location(div1, file$e, 133, 8, 3580);
+    			set_style(div2, "fill", "white");
+    			set_style(div2, "cursor", "pointer");
+    			add_location(div2, file$e, 138, 8, 3706);
+    			set_style(div3, "fill", "white");
+    			set_style(div3, "cursor", "pointer");
+    			add_location(div3, file$e, 143, 8, 3828);
+    			set_style(div4, "fill", "white");
+    			set_style(div4, "cursor", "pointer");
+    			add_location(div4, file$e, 147, 8, 3950);
+    			set_style(div5, "fill", "white");
+    			set_style(div5, "cursor", "pointer");
+    			add_location(div5, file$e, 152, 8, 4076);
+    			set_style(div6, "fill", "white");
+    			set_style(div6, "cursor", "pointer");
+    			add_location(div6, file$e, 157, 8, 4198);
+    			attr(div0, "slot", "elements");
+    			add_location(div0, file$e, 131, 6, 3549);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div0, anchor);
+    			append(div0, div1);
+    			mount_component(favorite0, div1, null);
+    			append(div1, t0);
+    			mount_component(ripple0, div1, null);
+    			append(div0, t1);
+    			append(div0, div2);
+    			mount_component(star0, div2, null);
+    			append(div2, t2);
+    			mount_component(ripple1, div2, null);
+    			append(div0, t3);
+    			append(div0, div3);
+    			mount_component(phone0, div3, null);
+    			append(div3, t4);
+    			mount_component(ripple2, div3, null);
+    			append(div0, t5);
+    			append(div0, div4);
+    			mount_component(favorite1, div4, null);
+    			append(div4, t6);
+    			mount_component(ripple3, div4, null);
+    			append(div0, t7);
+    			append(div0, div5);
+    			mount_component(star1, div5, null);
+    			append(div5, t8);
+    			mount_component(ripple4, div5, null);
+    			append(div0, t9);
+    			append(div0, div6);
+    			mount_component(phone1, div6, null);
+    			append(div6, t10);
+    			mount_component(ripple5, div6, null);
+    			current = true;
+    		},
+
+    		p: noop,
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(favorite0.$$.fragment, local);
+
+    			transition_in(ripple0.$$.fragment, local);
+
+    			transition_in(star0.$$.fragment, local);
+
+    			transition_in(ripple1.$$.fragment, local);
+
+    			transition_in(phone0.$$.fragment, local);
+
+    			transition_in(ripple2.$$.fragment, local);
+
+    			transition_in(favorite1.$$.fragment, local);
+
+    			transition_in(ripple3.$$.fragment, local);
+
+    			transition_in(star1.$$.fragment, local);
+
+    			transition_in(ripple4.$$.fragment, local);
+
+    			transition_in(phone1.$$.fragment, local);
+
+    			transition_in(ripple5.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(favorite0.$$.fragment, local);
+    			transition_out(ripple0.$$.fragment, local);
+    			transition_out(star0.$$.fragment, local);
+    			transition_out(ripple1.$$.fragment, local);
+    			transition_out(phone0.$$.fragment, local);
+    			transition_out(ripple2.$$.fragment, local);
+    			transition_out(favorite1.$$.fragment, local);
+    			transition_out(ripple3.$$.fragment, local);
+    			transition_out(star1.$$.fragment, local);
+    			transition_out(ripple4.$$.fragment, local);
+    			transition_out(phone1.$$.fragment, local);
+    			transition_out(ripple5.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div0);
+    			}
+
+    			destroy_component(favorite0, );
+
+    			destroy_component(ripple0, );
+
+    			destroy_component(star0, );
+
+    			destroy_component(ripple1, );
+
+    			destroy_component(phone0, );
+
+    			destroy_component(ripple2, );
+
+    			destroy_component(favorite1, );
+
+    			destroy_component(ripple3, );
+
+    			destroy_component(star1, );
+
+    			destroy_component(ripple4, );
+
+    			destroy_component(phone1, );
+
+    			destroy_component(ripple5, );
+    		}
+    	};
+    }
+
+    // (128:4) <CircleNavigation2 color={randomColor}>
+    function create_default_slot_33(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (167:6) <div slot="circle">
+    function create_circle_slot_1(ctx) {
+    	var div, current;
+
+    	var close = new Close({ $$inline: true });
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			close.$$.fragment.c();
+    			attr(div, "slot", "circle");
+    			add_location(div, file$e, 166, 6, 4421);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			destroy_component(close, );
+    		}
+    	};
+    }
+
+    // (170:6) <div slot="elements">
     function create_elements_slot_1(ctx) {
     	var div0, div1, t0, t1, div2, t2, t3, div3, t4, t5, div4, t6, t7, div5, t8, t9, div6, t10, current;
 
@@ -4018,24 +4298,24 @@ var app = (function () {
     			ripple5.$$.fragment.c();
     			set_style(div1, "fill", "white");
     			set_style(div1, "cursor", "pointer");
-    			add_location(div1, file$e, 134, 8, 3562);
+    			add_location(div1, file$e, 171, 8, 4509);
     			set_style(div2, "fill", "white");
     			set_style(div2, "cursor", "pointer");
-    			add_location(div2, file$e, 139, 8, 3688);
+    			add_location(div2, file$e, 176, 8, 4635);
     			set_style(div3, "fill", "white");
     			set_style(div3, "cursor", "pointer");
-    			add_location(div3, file$e, 144, 8, 3810);
+    			add_location(div3, file$e, 181, 8, 4757);
     			set_style(div4, "fill", "white");
     			set_style(div4, "cursor", "pointer");
-    			add_location(div4, file$e, 148, 8, 3932);
+    			add_location(div4, file$e, 185, 8, 4879);
     			set_style(div5, "fill", "white");
     			set_style(div5, "cursor", "pointer");
-    			add_location(div5, file$e, 153, 8, 4058);
+    			add_location(div5, file$e, 190, 8, 5005);
     			set_style(div6, "fill", "white");
     			set_style(div6, "cursor", "pointer");
-    			add_location(div6, file$e, 158, 8, 4180);
+    			add_location(div6, file$e, 195, 8, 5127);
     			attr(div0, "slot", "elements");
-    			add_location(div0, file$e, 132, 6, 3531);
+    			add_location(div0, file$e, 169, 6, 4478);
     		},
 
     		m: function mount(target, anchor) {
@@ -4151,7 +4431,7 @@ var app = (function () {
     	};
     }
 
-    // (129:4) <CircleNavigation2 color={randomColor}>
+    // (166:4) <CircleNavigation2 color={randomColor} direction="bottom">
     function create_default_slot_32(ctx) {
     	var t;
 
@@ -4176,7 +4456,7 @@ var app = (function () {
     	};
     }
 
-    // (170:6) <div slot="circle">
+    // (205:8) <div slot="circle">
     function create_circle_slot(ctx) {
     	var div, current;
 
@@ -4187,7 +4467,7 @@ var app = (function () {
     			div = element("div");
     			close.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$e, 169, 6, 4405);
+    			add_location(div, file$e, 204, 8, 5406);
     		},
 
     		m: function mount(target, anchor) {
@@ -4218,7 +4498,7 @@ var app = (function () {
     	};
     }
 
-    // (173:6) <div slot="elements">
+    // (208:8) <div slot="elements">
     function create_elements_slot(ctx) {
     	var div0, div1, t0, t1, div2, t2, t3, div3, t4, t5, div4, t6, t7, div5, t8, t9, div6, t10, current;
 
@@ -4298,24 +4578,24 @@ var app = (function () {
     			ripple5.$$.fragment.c();
     			set_style(div1, "fill", "white");
     			set_style(div1, "cursor", "pointer");
-    			add_location(div1, file$e, 174, 8, 4493);
+    			add_location(div1, file$e, 209, 10, 5502);
     			set_style(div2, "fill", "white");
     			set_style(div2, "cursor", "pointer");
-    			add_location(div2, file$e, 179, 8, 4619);
+    			add_location(div2, file$e, 214, 10, 5636);
     			set_style(div3, "fill", "white");
     			set_style(div3, "cursor", "pointer");
-    			add_location(div3, file$e, 184, 8, 4741);
+    			add_location(div3, file$e, 219, 10, 5766);
     			set_style(div4, "fill", "white");
     			set_style(div4, "cursor", "pointer");
-    			add_location(div4, file$e, 188, 8, 4863);
+    			add_location(div4, file$e, 223, 10, 5896);
     			set_style(div5, "fill", "white");
     			set_style(div5, "cursor", "pointer");
-    			add_location(div5, file$e, 193, 8, 4989);
+    			add_location(div5, file$e, 228, 10, 6030);
     			set_style(div6, "fill", "white");
     			set_style(div6, "cursor", "pointer");
-    			add_location(div6, file$e, 198, 8, 5111);
+    			add_location(div6, file$e, 233, 10, 6160);
     			attr(div0, "slot", "elements");
-    			add_location(div0, file$e, 172, 6, 4462);
+    			add_location(div0, file$e, 207, 8, 5469);
     		},
 
     		m: function mount(target, anchor) {
@@ -4431,7 +4711,7 @@ var app = (function () {
     	};
     }
 
-    // (169:4) <CircleNavigation2 color={randomColor} direction="bottom">
+    // (204:6) <CircleNavigation2 color={randomColor} direction="top">
     function create_default_slot_31(ctx) {
     	var t;
 
@@ -4458,9 +4738,22 @@ var app = (function () {
 
     // (111:0) <Block>
     function create_default_slot_30(ctx) {
-    	var div, t0, t1, current;
+    	var div1, t0, t1, t2, div0, current;
 
     	var circlenavigation = new CircleNavigation({
+    		props: {
+    		color: ctx.randomColor,
+    		$$slots: {
+    		default: [create_default_slot_34],
+    		elements: [create_elements_slot_3],
+    		circle: [create_circle_slot_3]
+    	},
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var circlenavigation20 = new CircleNavigation2({
     		props: {
     		color: ctx.randomColor,
     		$$slots: {
@@ -4473,9 +4766,10 @@ var app = (function () {
     		$$inline: true
     	});
 
-    	var circlenavigation20 = new CircleNavigation2({
+    	var circlenavigation21 = new CircleNavigation2({
     		props: {
     		color: ctx.randomColor,
+    		direction: "bottom",
     		$$slots: {
     		default: [create_default_slot_32],
     		elements: [create_elements_slot_1],
@@ -4486,10 +4780,10 @@ var app = (function () {
     		$$inline: true
     	});
 
-    	var circlenavigation21 = new CircleNavigation2({
+    	var circlenavigation22 = new CircleNavigation2({
     		props: {
     		color: ctx.randomColor,
-    		direction: "bottom",
+    		direction: "top",
     		$$slots: {
     		default: [create_default_slot_31],
     		elements: [create_elements_slot],
@@ -4502,23 +4796,34 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
     			circlenavigation.$$.fragment.c();
     			t0 = space();
     			circlenavigation20.$$.fragment.c();
     			t1 = space();
     			circlenavigation21.$$.fragment.c();
-    			set_style(div, "flex-flow", "column");
-    			add_location(div, file$e, 112, 2, 3029);
+    			t2 = space();
+    			div0 = element("div");
+    			circlenavigation22.$$.fragment.c();
+    			set_style(div0, "position", "absolute");
+    			set_style(div0, "bottom", "0");
+    			set_style(div0, "right", "0");
+    			add_location(div0, file$e, 202, 4, 5284);
+    			set_style(div1, "flex-flow", "column");
+    			set_style(div1, "position", "relative");
+    			add_location(div1, file$e, 111, 2, 3028);
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			mount_component(circlenavigation, div, null);
-    			append(div, t0);
-    			mount_component(circlenavigation20, div, null);
-    			append(div, t1);
-    			mount_component(circlenavigation21, div, null);
+    			insert(target, div1, anchor);
+    			mount_component(circlenavigation, div1, null);
+    			append(div1, t0);
+    			mount_component(circlenavigation20, div1, null);
+    			append(div1, t1);
+    			mount_component(circlenavigation21, div1, null);
+    			append(div1, t2);
+    			append(div1, div0);
+    			mount_component(circlenavigation22, div0, null);
     			current = true;
     		},
 
@@ -4537,6 +4842,11 @@ var app = (function () {
     			if (changed.randomColor) circlenavigation21_changes.color = ctx.randomColor;
     			if (changed.$$scope) circlenavigation21_changes.$$scope = { changed, ctx };
     			circlenavigation21.$set(circlenavigation21_changes);
+
+    			var circlenavigation22_changes = {};
+    			if (changed.randomColor) circlenavigation22_changes.color = ctx.randomColor;
+    			if (changed.$$scope) circlenavigation22_changes.$$scope = { changed, ctx };
+    			circlenavigation22.$set(circlenavigation22_changes);
     		},
 
     		i: function intro(local) {
@@ -4547,6 +4857,8 @@ var app = (function () {
 
     			transition_in(circlenavigation21.$$.fragment, local);
 
+    			transition_in(circlenavigation22.$$.fragment, local);
+
     			current = true;
     		},
 
@@ -4554,12 +4866,13 @@ var app = (function () {
     			transition_out(circlenavigation.$$.fragment, local);
     			transition_out(circlenavigation20.$$.fragment, local);
     			transition_out(circlenavigation21.$$.fragment, local);
+    			transition_out(circlenavigation22.$$.fragment, local);
     			current = false;
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div);
+    				detach(div1);
     			}
 
     			destroy_component(circlenavigation, );
@@ -4567,11 +4880,13 @@ var app = (function () {
     			destroy_component(circlenavigation20, );
 
     			destroy_component(circlenavigation21, );
+
+    			destroy_component(circlenavigation22, );
     		}
     	};
     }
 
-    // (215:4) <p slot="header">
+    // (250:4) <p slot="header">
     function create_header_slot(ctx) {
     	var p;
 
@@ -4580,7 +4895,7 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "header";
     			attr(p, "slot", "header");
-    			add_location(p, file$e, 214, 4, 5331);
+    			add_location(p, file$e, 249, 4, 6400);
     		},
 
     		m: function mount(target, anchor) {
@@ -4595,7 +4910,7 @@ var app = (function () {
     	};
     }
 
-    // (216:4) <p slot="body">
+    // (251:4) <p slot="body">
     function create_body_slot(ctx) {
     	var p;
 
@@ -4604,7 +4919,7 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "Body text";
     			attr(p, "slot", "body");
-    			add_location(p, file$e, 215, 4, 5363);
+    			add_location(p, file$e, 250, 4, 6432);
     		},
 
     		m: function mount(target, anchor) {
@@ -4619,7 +4934,7 @@ var app = (function () {
     	};
     }
 
-    // (214:2) <Accordeon>
+    // (249:2) <Accordeon>
     function create_default_slot_29(ctx) {
     	var t;
 
@@ -4642,7 +4957,7 @@ var app = (function () {
     	};
     }
 
-    // (213:0) <Block>
+    // (248:0) <Block>
     function create_default_slot_28(ctx) {
     	var current;
 
@@ -4692,7 +5007,7 @@ var app = (function () {
     	};
     }
 
-    // (227:6) <Button color="#2a74e6" raised={true}>
+    // (262:6) <Button color="#2a74e6" raised={true}>
     function create_default_slot_27(ctx) {
     	var t, current;
 
@@ -4737,7 +5052,7 @@ var app = (function () {
     	};
     }
 
-    // (231:6) <Button color="#2a74e6">
+    // (266:6) <Button color="#2a74e6">
     function create_default_slot_26(ctx) {
     	var t, current;
 
@@ -4782,7 +5097,7 @@ var app = (function () {
     	};
     }
 
-    // (235:6) <Button color="#2a74e6" outlined={true}>
+    // (270:6) <Button color="#2a74e6" outlined={true}>
     function create_default_slot_25(ctx) {
     	var t, current;
 
@@ -4827,7 +5142,7 @@ var app = (function () {
     	};
     }
 
-    // (239:6) <Button color="#2a74e6" simple={true}>
+    // (274:6) <Button color="#2a74e6" simple={true}>
     function create_default_slot_24(ctx) {
     	var t, current;
 
@@ -4872,7 +5187,7 @@ var app = (function () {
     	};
     }
 
-    // (246:6) <Button color="#c12da0" disabled={true}>
+    // (281:6) <Button color="#c12da0" disabled={true}>
     function create_default_slot_23(ctx) {
     	var t, current;
 
@@ -4917,7 +5232,7 @@ var app = (function () {
     	};
     }
 
-    // (250:6) <Button color={randomColor} outlined={true} disabled={true}>
+    // (285:6) <Button color={randomColor} outlined={true} disabled={true}>
     function create_default_slot_22(ctx) {
     	var t, current;
 
@@ -4966,7 +5281,7 @@ var app = (function () {
     	};
     }
 
-    // (254:6) <Button color={randomColor} simple={true} disabled={true}>
+    // (289:6) <Button color={randomColor} simple={true} disabled={true}>
     function create_default_slot_21(ctx) {
     	var t, current;
 
@@ -5015,7 +5330,7 @@ var app = (function () {
     	};
     }
 
-    // (260:6) <Button color="#333333" raised={true}>
+    // (295:6) <Button color="#333333" raised={true}>
     function create_default_slot_20(ctx) {
     	var t, current;
 
@@ -5060,7 +5375,7 @@ var app = (function () {
     	};
     }
 
-    // (264:6) <Button color="#333333">
+    // (299:6) <Button color="#333333">
     function create_default_slot_19(ctx) {
     	var t, current;
 
@@ -5105,7 +5420,7 @@ var app = (function () {
     	};
     }
 
-    // (268:6) <Button color="#333333" outlined={true}>
+    // (303:6) <Button color="#333333" outlined={true}>
     function create_default_slot_18(ctx) {
     	var t, current;
 
@@ -5150,7 +5465,7 @@ var app = (function () {
     	};
     }
 
-    // (272:6) <Button color="#333333" simple={true}>
+    // (307:6) <Button color="#333333" simple={true}>
     function create_default_slot_17(ctx) {
     	var t, current;
 
@@ -5195,7 +5510,7 @@ var app = (function () {
     	};
     }
 
-    // (278:6) <Button color={randomColor} size={'small'} raised={true}>
+    // (313:6) <Button color={randomColor} size={'small'} raised={true}>
     function create_default_slot_16(ctx) {
     	var t, current;
 
@@ -5235,7 +5550,7 @@ var app = (function () {
     	};
     }
 
-    // (282:6) <Button color={randomColor} size={'medium'} raised={true}>
+    // (317:6) <Button color={randomColor} size={'medium'} raised={true}>
     function create_default_slot_15(ctx) {
     	var t, current;
 
@@ -5275,7 +5590,7 @@ var app = (function () {
     	};
     }
 
-    // (286:6) <Button color={randomColor} size={'large'} raised={true}>
+    // (321:6) <Button color={randomColor} size={'large'} raised={true}>
     function create_default_slot_14(ctx) {
     	var t, current;
 
@@ -5315,7 +5630,7 @@ var app = (function () {
     	};
     }
 
-    // (223:0) <Block>
+    // (258:0) <Block>
     function create_default_slot_13(ctx) {
     	var div4, div0, t0, t1, t2, t3, div1, t4, t5, t6, div2, t7, t8, t9, t10, div3, t11, t12, current;
 
@@ -5496,12 +5811,12 @@ var app = (function () {
     			button12.$$.fragment.c();
     			t12 = space();
     			button13.$$.fragment.c();
-    			add_location(div0, file$e, 225, 4, 5541);
-    			add_location(div1, file$e, 244, 4, 6003);
-    			add_location(div2, file$e, 258, 4, 6411);
-    			add_location(div3, file$e, 276, 4, 6872);
+    			add_location(div0, file$e, 260, 4, 6610);
+    			add_location(div1, file$e, 279, 4, 7072);
+    			add_location(div2, file$e, 293, 4, 7480);
+    			add_location(div3, file$e, 311, 4, 7941);
     			set_style(div4, "flex-flow", "column");
-    			add_location(div4, file$e, 224, 2, 5506);
+    			add_location(div4, file$e, 259, 2, 6575);
     		},
 
     		m: function mount(target, anchor) {
@@ -5690,7 +6005,7 @@ var app = (function () {
     	};
     }
 
-    // (296:2) <Button color={randomColor} on:click={setRandomColor} raised={true}>
+    // (331:2) <Button color={randomColor} on:click={setRandomColor} raised={true}>
     function create_default_slot_12(ctx) {
     	var t, current;
 
@@ -5735,7 +6050,7 @@ var app = (function () {
     	};
     }
 
-    // (301:2) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
+    // (336:2) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
     function create_default_slot_11(ctx) {
     	var t, current;
 
@@ -5784,7 +6099,7 @@ var app = (function () {
     	};
     }
 
-    // (306:2) <Button color={randomColor} on:click={setRandomColor} simple={true}>
+    // (341:2) <Button color={randomColor} on:click={setRandomColor} simple={true}>
     function create_default_slot_10(ctx) {
     	var t, current;
 
@@ -5833,7 +6148,7 @@ var app = (function () {
     	};
     }
 
-    // (295:0) <Block>
+    // (330:0) <Block>
     function create_default_slot_9(ctx) {
     	var t0, t1, current;
 
@@ -5941,7 +6256,7 @@ var app = (function () {
     	};
     }
 
-    // (315:2) <Button color={randomColor}>
+    // (350:2) <Button color={randomColor}>
     function create_default_slot_8(ctx) {
     	var t, current;
 
@@ -5981,7 +6296,7 @@ var app = (function () {
     	};
     }
 
-    // (314:0) <Block>
+    // (349:0) <Block>
     function create_default_slot_7(ctx) {
     	var t0, div0, t1, div1, t2, div2, t3, div3, t4, t5, div4, t6, current;
 
@@ -6040,15 +6355,15 @@ var app = (function () {
     			t6 = text("-\n    ");
     			ripple4.$$.fragment.c();
     			attr(div0, "class", "sheet svelte-56dphp");
-    			add_location(div0, file$e, 318, 2, 7782);
+    			add_location(div0, file$e, 353, 2, 8851);
     			attr(div1, "class", "sheet svelte-56dphp");
-    			add_location(div1, file$e, 321, 2, 7846);
+    			add_location(div1, file$e, 356, 2, 8915);
     			attr(div2, "class", "sheet svelte-56dphp");
-    			add_location(div2, file$e, 324, 2, 7910);
+    			add_location(div2, file$e, 359, 2, 8979);
     			attr(div3, "class", "circle svelte-56dphp");
-    			add_location(div3, file$e, 327, 2, 7972);
+    			add_location(div3, file$e, 362, 2, 9041);
     			attr(div4, "class", "circle svelte-56dphp");
-    			add_location(div4, file$e, 331, 2, 8041);
+    			add_location(div4, file$e, 366, 2, 9110);
     		},
 
     		m: function mount(target, anchor) {
@@ -6148,7 +6463,7 @@ var app = (function () {
     	};
     }
 
-    // (340:0) <Block>
+    // (375:0) <Block>
     function create_default_slot_6(ctx) {
     	var t, current;
 
@@ -6205,7 +6520,7 @@ var app = (function () {
     	};
     }
 
-    // (349:0) <Block>
+    // (384:0) <Block>
     function create_default_slot_5(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -6378,7 +6693,7 @@ var app = (function () {
     	};
     }
 
-    // (397:0) <Block>
+    // (432:0) <Block>
     function create_default_slot_4(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, current;
 
@@ -6828,7 +7143,7 @@ var app = (function () {
     	};
     }
 
-    // (500:0) <Block>
+    // (535:0) <Block>
     function create_default_slot_3(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, current;
 
@@ -7102,7 +7417,7 @@ var app = (function () {
     	};
     }
 
-    // (582:0) <Block>
+    // (617:0) <Block>
     function create_default_slot_2(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -7279,7 +7594,7 @@ var app = (function () {
     	};
     }
 
-    // (636:0) <Block>
+    // (671:0) <Block>
     function create_default_slot_1(ctx) {
     	var div, t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, current;
 
@@ -7459,7 +7774,7 @@ var app = (function () {
     			t9 = space();
     			textfield10.$$.fragment.c();
     			attr(div, "class", "testElement");
-    			add_location(div, file$e, 637, 2, 15220);
+    			add_location(div, file$e, 672, 2, 16289);
     		},
 
     		m: function mount(target, anchor) {
@@ -7606,7 +7921,7 @@ var app = (function () {
     	};
     }
 
-    // (751:0) <Block>
+    // (786:0) <Block>
     function create_default_slot(ctx) {
     	var t0, t1, t2, current;
 
@@ -7712,7 +8027,7 @@ var app = (function () {
     		props: {
     		color: ctx.randomColor,
     		outlined: true,
-    		$$slots: { default: [create_default_slot_34] },
+    		$$slots: { default: [create_default_slot_35] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -7885,19 +8200,19 @@ var app = (function () {
     			t39 = space();
     			block11.$$.fragment.c();
     			add_location(h20, file$e, 109, 0, 2991);
-    			add_location(h21, file$e, 210, 0, 5285);
-    			add_location(h22, file$e, 220, 0, 5418);
-    			add_location(h30, file$e, 221, 0, 5435);
-    			add_location(h31, file$e, 293, 0, 7249);
-    			add_location(h23, file$e, 311, 0, 7686);
-    			add_location(h24, file$e, 337, 0, 8118);
-    			add_location(h25, file$e, 344, 0, 8239);
-    			add_location(h32, file$e, 346, 0, 8260);
-    			add_location(h33, file$e, 395, 0, 9134);
-    			add_location(h34, file$e, 498, 0, 11053);
-    			add_location(h35, file$e, 580, 0, 12542);
-    			add_location(h36, file$e, 634, 0, 15183);
-    			add_location(h26, file$e, 748, 0, 18870);
+    			add_location(h21, file$e, 245, 0, 6354);
+    			add_location(h22, file$e, 255, 0, 6487);
+    			add_location(h30, file$e, 256, 0, 6504);
+    			add_location(h31, file$e, 328, 0, 8318);
+    			add_location(h23, file$e, 346, 0, 8755);
+    			add_location(h24, file$e, 372, 0, 9187);
+    			add_location(h25, file$e, 379, 0, 9308);
+    			add_location(h32, file$e, 381, 0, 9329);
+    			add_location(h33, file$e, 430, 0, 10203);
+    			add_location(h34, file$e, 533, 0, 12122);
+    			add_location(h35, file$e, 615, 0, 13611);
+    			add_location(h36, file$e, 669, 0, 16252);
+    			add_location(h26, file$e, 783, 0, 19939);
     		},
 
     		l: function claim(nodes) {
