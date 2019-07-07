@@ -99,8 +99,6 @@
       labelX = 0;
       paddingLeft = 0;
     }
-
-    console.log("label width", labelWidth);
   });
 
   const handleChange = e => {
