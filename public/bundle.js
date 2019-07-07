@@ -567,7 +567,7 @@ var app = (function () {
 
     const file = "src/Textfield/Textfield.svelte";
 
-    // (402:4) {#if prepend}
+    // (400:4) {#if prepend}
     function create_if_block_3(ctx) {
     	var div;
 
@@ -575,7 +575,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr(div, "class", "" + 'textfield__prepend' + " svelte-17wtohn");
-    			add_location(div, file, 402, 6, 11013);
+    			add_location(div, file, 400, 6, 10968);
     		},
 
     		m: function mount(target, anchor) {
@@ -605,7 +605,7 @@ var app = (function () {
     	};
     }
 
-    // (425:4) {:else}
+    // (423:4) {:else}
     function create_else_block(ctx) {
     	var input, dispose;
 
@@ -615,7 +615,7 @@ var app = (function () {
     			attr(input, "class", "textfield__input svelte-17wtohn");
     			attr(input, "type", ctx.type);
     			input.value = ctx.name;
-    			add_location(input, file, 425, 6, 11754);
+    			add_location(input, file, 423, 6, 11709);
 
     			dispose = [
     				listen(input, "change", ctx.handleChange),
@@ -650,7 +650,7 @@ var app = (function () {
     	};
     }
 
-    // (415:4) {#if multiline}
+    // (413:4) {#if multiline}
     function create_if_block_2(ctx) {
     	var textarea, dispose;
 
@@ -660,7 +660,7 @@ var app = (function () {
     			attr(textarea, "class", "textfield__input svelte-17wtohn");
     			attr(textarea, "type", ctx.type);
     			textarea.value = ctx.name;
-    			add_location(textarea, file, 415, 6, 11495);
+    			add_location(textarea, file, 413, 6, 11450);
 
     			dispose = [
     				listen(textarea, "change", ctx.handleChange),
@@ -695,7 +695,7 @@ var app = (function () {
     	};
     }
 
-    // (436:4) {#if append}
+    // (434:4) {#if append}
     function create_if_block_1(ctx) {
     	var div;
 
@@ -703,7 +703,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr(div, "class", "" + 'textfield__append' + " svelte-17wtohn");
-    			add_location(div, file, 436, 6, 12025);
+    			add_location(div, file, 434, 6, 11980);
     		},
 
     		m: function mount(target, anchor) {
@@ -733,7 +733,7 @@ var app = (function () {
     	};
     }
 
-    // (442:2) {#if helperText}
+    // (440:2) {#if helperText}
     function create_if_block(ctx) {
     	var div, t;
 
@@ -742,7 +742,7 @@ var app = (function () {
     			div = element("div");
     			t = text(ctx.helperText);
     			attr(div, "class", "textfield__helper__text svelte-17wtohn");
-    			add_location(div, file, 442, 4, 12159);
+    			add_location(div, file, 440, 4, 12114);
     		},
 
     		m: function mount(target, anchor) {
@@ -802,20 +802,20 @@ var app = (function () {
     			t6 = space();
     			if (if_block3) if_block3.c();
     			attr(div0, "class", "textfield__border__start textfield__border__segment svelte-17wtohn");
-    			add_location(div0, file, 408, 6, 11161);
+    			add_location(div0, file, 406, 6, 11116);
     			attr(div1, "class", "textfield__label svelte-17wtohn");
-    			add_location(div1, file, 410, 8, 11307);
+    			add_location(div1, file, 408, 8, 11262);
     			attr(div2, "class", "textfield__border__gap textfield__border__segment svelte-17wtohn");
-    			add_location(div2, file, 409, 6, 11235);
+    			add_location(div2, file, 407, 6, 11190);
     			attr(div3, "class", "textfield__border__end textfield__border__segment svelte-17wtohn");
-    			add_location(div3, file, 412, 6, 11392);
+    			add_location(div3, file, 410, 6, 11347);
     			attr(div4, "class", "textfield__border svelte-17wtohn");
-    			add_location(div4, file, 407, 4, 11123);
+    			add_location(div4, file, 405, 4, 11078);
     			attr(div5, "class", "textfield__element svelte-17wtohn");
-    			add_location(div5, file, 400, 2, 10956);
+    			add_location(div5, file, 398, 2, 10911);
     			attr(div6, "class", div6_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-17wtohn");
     			attr(div6, "style", ctx.textfieldStyle);
-    			add_location(div6, file, 399, 0, 10885);
+    			add_location(div6, file, 397, 0, 10840);
     		},
 
     		l: function claim(nodes) {
@@ -981,8 +981,6 @@ var app = (function () {
           $$invalidate('labelX', labelX = 0);
           $$invalidate('paddingLeft', paddingLeft = 0);
         }
-
-        console.log("label width", labelWidth);
       });
 
       const handleChange = e => {
@@ -3273,7 +3271,7 @@ var app = (function () {
     const get_circle_slot_changes$1 = ({}) => ({});
     const get_circle_slot_context$1 = ({}) => ({});
 
-    // (138:4) {#if ripple}
+    // (141:4) {#if ripple}
     function create_if_block$4(ctx) {
     	var current;
 
@@ -3333,16 +3331,16 @@ var app = (function () {
     			t2 = space();
     			div2 = element("div");
 
-    			attr(div0, "class", "circle-navigation_button svelte-hrh2bs");
-    			add_location(div0, file$d, 136, 2, 3238);
+    			attr(div0, "class", "circle-navigation_button svelte-9f6t9g");
+    			add_location(div0, file$d, 139, 2, 3409);
 
-    			attr(div1, "class", "circle-navigation_elements svelte-hrh2bs");
-    			add_location(div1, file$d, 143, 2, 3360);
-    			attr(div2, "class", "circle-navigation_background svelte-hrh2bs");
-    			add_location(div2, file$d, 147, 2, 3466);
-    			attr(div3, "class", "circle-navigation svelte-hrh2bs");
+    			attr(div1, "class", "circle-navigation_elements svelte-9f6t9g");
+    			add_location(div1, file$d, 146, 2, 3531);
+    			attr(div2, "class", "circle-navigation_background svelte-9f6t9g");
+    			add_location(div2, file$d, 150, 2, 3637);
+    			attr(div3, "class", "circle-navigation svelte-9f6t9g");
     			attr(div3, "style", ctx.circleNavigationStyle);
-    			add_location(div3, file$d, 130, 0, 3105);
+    			add_location(div3, file$d, 133, 0, 3276);
 
     			dispose = [
     				listen(div3, "mouseover", ctx.handleMouseover),
@@ -3457,7 +3455,7 @@ var app = (function () {
 
     let elementSize$1 = 40;
 
-    let animationStagger = 90;
+    let animationStagger = 200;
 
     function instance$8($$self, $$props, $$invalidate) {
     	
@@ -3482,7 +3480,7 @@ var app = (function () {
       const animateIn = e => {
         elems.forEach((el, i) => {
           setTimeout(() => {
-            if(el.classList) {
+            if (el.classList) {
               el.classList.add("circle-navigation_element--active");
             }
           }, i * animationStagger);
@@ -3490,12 +3488,15 @@ var app = (function () {
       };
 
       const animateOut = e => {
+        // max duration of animation
+        let maxAnimation = animationStagger * elems.length;
         elems.forEach((el, i) => {
           setTimeout(() => {
-            if(el.classList) {
+            if (el.classList) {
               el.classList.remove("circle-navigation_element--active");
             }
-          }, i * animationStagger);
+            // apply max duration so the first element fades last
+          }, maxAnimation - i * animationStagger);
         });
       };
 

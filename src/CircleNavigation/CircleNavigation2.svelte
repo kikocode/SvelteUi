@@ -10,7 +10,7 @@
 
   let circleSize = 60;
   let elementSize = 40;
-  let animationStagger = 90;
+  let animationStagger = 200;
 
   let bgRef;
   let elementsRef;
@@ -36,20 +36,23 @@
   const animateIn = e => {
     elems.forEach((el, i) => {
       setTimeout(() => {
-        if(el.classList) {
-          el.classList.add("circle-navigation_element--active")
+        if (el.classList) {
+          el.classList.add("circle-navigation_element--active");
         }
       }, i * animationStagger);
     });
   };
 
   const animateOut = e => {
+    // max duration of animation
+    let maxAnimation = animationStagger * elems.length;
     elems.forEach((el, i) => {
       setTimeout(() => {
-        if(el.classList) {
-          el.classList.remove("circle-navigation_element--active")
+        if (el.classList) {
+          el.classList.remove("circle-navigation_element--active");
         }
-      }, i * animationStagger);
+        // apply max duration so the first element fades last
+      }, maxAnimation - i * animationStagger);
     });
   };
 
@@ -86,13 +89,13 @@
     border-radius: 50%;
     transform: scale(0);
     transform-origin: center;
+    background: var(--color);
+    transition: var(--transition);
+    box-shadow: var(--box-shadow);
     z-index: 10;
   }
 
   .circle-navigation :global(.circle-navigation_element--active) {
-    background: var(--color);
-    transition: var(--transition);
-    box-shadow: var(--box-shadow);
     transform: scale(1);
   }
 
