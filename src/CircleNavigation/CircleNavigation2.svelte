@@ -7,6 +7,8 @@
   export let ripple = true;
   export let color = "#ff00aa";
   export let circleContent;
+  // options: left, right, top, bottom. default is bottom
+  export let direction = "left";
 
   let circleSize = 60;
   let elementSize = 40;
@@ -17,6 +19,26 @@
   let bgRef;
   let elementsRef;
   let elems;
+
+  let directions = {
+    "top": {
+      class: "circle-navigation--direction-top"
+    },
+    "bottom": {
+      class: "circle-navigation--direction-bottom"
+    },
+    "left": {
+      class: "circle-navigation--direction-left"
+    },
+    "right": {
+      class: "circle-navigation--direction-right"
+    }
+  };
+
+  $: directionClass = directions[direction] ? directions[direction].class : direction;
+  $: circleNavigationClasses = `
+    ${directionClass}
+  `;
 
   $: circleNavigationStyle = `
 		--color: ${color};
@@ -81,7 +103,7 @@
 <style>
   .circle-navigation {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
     margin: 15px;
     --transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -91,11 +113,21 @@
       0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
   }
 
+  .circle-navigation--direction-bottom {
+    flex-flow:column;
+    & .circle-navigation_elements {
+      flex-flow:column
+    }
+    & .circle-navigation_elements > :global(*) {
+     flex-flow:column
+    }
+  }
+
   .circle-navigation :global(.circle-navigation_element) {
     display: flex;
     width: var(--element-size);
     height: var(--element-size);
-    margin: 0 4px;
+    margin: 3px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -144,14 +176,17 @@
 
   .circle-navigation_elements {
     display: flex;
-    margin-left: 8px;
+    margin: 10px;
   }
   .circle-navigation_elements > :global(*) {
     display: flex;
   }
 </style>
 
-<div class="circle-navigation" style={circleNavigationStyle}   on:mouseleave={handleMouseout}>
+<div
+class={"circle-navigation " + circleNavigationClasses}
+style={circleNavigationStyle}
+on:mouseleave={handleMouseout}>
 
   <div class="circle-navigation_button"
 on:mouseenter={handleMouseover}
