@@ -10,7 +10,9 @@
 
   let circleSize = 60;
   let elementSize = 40;
-  let animationStagger = 200;
+  let animationStagger = 30;
+  let timeouts = [];
+  let elemsVisible = 0;
 
   let bgRef;
   let elementsRef;
@@ -34,16 +36,20 @@
   });
 
   const animateIn = e => {
+    clearTimeouts();
     elems.forEach((el, i) => {
-      setTimeout(() => {
+      let timeout = setTimeout(() => {
         if (el.classList) {
           el.classList.add("circle-navigation_element--active");
         }
+        elems.visible += 1;
       }, i * animationStagger);
+      timeouts.push(timeout);
     });
   };
 
   const animateOut = e => {
+    clearTimeouts();
     // max duration of animation
     let maxAnimation = animationStagger * elems.length;
     elems.forEach((el, i) => {
@@ -55,6 +61,13 @@
       }, maxAnimation - i * animationStagger);
     });
   };
+
+  const clearTimeouts = () => {
+    timeouts.forEach(timeout => {
+      clearInterval(timeout);
+    })
+    elemsVisible = 0;
+  }
 
   const handleMouseover = e => {
     animateIn();
@@ -127,7 +140,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent;
   }
 
   .circle-navigation_elements {
@@ -139,13 +151,12 @@
   }
 </style>
 
-<div
-  class="circle-navigation"
-  on:mouseover={handleMouseover}
-  on:mouseout={handleMouseout}
-  style={circleNavigationStyle}>
+<div class="circle-navigation" style={circleNavigationStyle}   on:mouseleave={handleMouseout}>
 
-  <div class="circle-navigation_button">
+  <div class="circle-navigation_button"
+on:mouseenter={handleMouseover}
+
+  >
     {#if ripple}
       <Ripple />
     {/if}

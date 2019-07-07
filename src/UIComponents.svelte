@@ -168,6 +168,21 @@
           <Phone />
           <Ripple color="#ffffff" />
         </div>
+        <div style="fill:white; cursor:pointer;">
+          <Favorite />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Star />
+          <Ripple color="#ffffff" />
+        </div>
+
+        <div style="fill:white; cursor:pointer;">
+          <Phone />
+          <Ripple color="#ffffff" />
+        </div>
+
 
       </div>
     </CircleNavigation2>
