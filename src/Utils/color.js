@@ -88,7 +88,7 @@ export const darken = (color, amount) => {
 
 
 /**
- *
+ * @private
  * @param {string} color - RGB
  * @param {number} amount - percentage
  */
@@ -99,7 +99,7 @@ const subtractLight = function (color, amount) {
 	return c;
 }
 /**
- *
+ * @private
  * @param {string} color - RGB
  * @param {number} amount - percentage
  */

@@ -1,25 +1,25 @@
 <script>
-  import Textfield from "./Textfield/Textfield.svelte";
-  import Toggle from "./Toggle/Toggle.svelte";
-  import Checkbox from "./Checkbox/Checkbox.svelte";
-  import Button from "./Button/Button.svelte";
-  import Ripple from "./Ripple/Ripple.svelte";
-  import Accordeon from "./Accordeon/Accordeon.svelte";
-  import Block from "./Layout/Block.svelte";
-  import Line from "./Layout/Line.svelte";
+  import { Textfield } from "../components/Textfield";
+  import { Toggle } from "../components/Toggle";
+  import { Checkbox } from "../components/Checkbox";
+  import { Button } from "../components/Button";
+  import { Ripple } from "../components/Ripple";
+  import { Accordeon } from "../components/Accordeon";
+  import { useRipple } from "../components/Ripple";
+  import { CircleNavigation } from "../components/CircleNavigation";
+  import { CircleNavigation2 } from "../components/CircleNavigation";
 
-  import { ripple } from "./Ripple/ripple";
-  import { randomHex } from "./Utils/color";
-  import { colors } from "./Utils/color";
+  import { Block } from "../components/Layout";
+  import { Line } from "../components/Layout";
 
-  import Check2 from "./assets/icons/Check.svelte";
-  import Favorite from "./assets/icons/Favorite.svelte";
-  import Phone from "./assets/icons/Phone.svelte";
-  import Star from "./assets/icons/Star.svelte";
-  import Close from "./assets/icons/Close.svelte";
+  import { randomHex } from "../utils/color.js";
+  import { colors } from "../utils/color.js";
 
-  import CircleNavigation from "./CircleNavigation/CircleNavigation.svelte";
-  import CircleNavigation2 from "./CircleNavigation/CircleNavigation2.svelte";
+  import { Favorite } from "../assets/icons";
+  import { Phone } from "../assets/icons";
+  import { Star } from "../assets/icons";
+  import { Check } from "../assets/icons";
+  import { Close } from "../assets/icons";
 
   let list = ["Test", "Textfield 02", "E-Mail", "Enter a name"];
 
@@ -136,12 +136,12 @@
 
     <CircleNavigation color={randomColor}>
       <div slot="circle">
-        <Check2 />
+        <Check />
       </div>
       <div slot="elements">
         {#each new Array(3).fill('') as elem, i}
           <div style="fill:white; cursor:pointer;">
-            <Check2 />
+            <Check />
             <Ripple color="#ffffff" />
           </div>
         {/each}

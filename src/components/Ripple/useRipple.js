@@ -1,8 +1,8 @@
 import {
 	hexToRGB
-} from "../Utils/color.js";
+} from "../../utils/color.js";
 
-export function ripple(node, params) {
+export default function useRipple(node, params) {
 
 	let colorStyle = "";
 	let color = "#ffffff";

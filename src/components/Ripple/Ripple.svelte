@@ -1,5 +1,5 @@
 <script>
-  import { hexToRGB } from "../Utils/color.js";
+  import { hexToRGB } from "../../utils/color.js";
 
   export let color = "#ffffff";
 

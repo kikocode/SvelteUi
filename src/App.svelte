@@ -1,7 +1,7 @@
 <script>
-  import UIComponents from "./UIComponents.svelte";
-  import Textfield from "./Textfield/Textfield.svelte";
-  import Screen from "./Layout/Screen.svelte";
+  import Buttons from "./demo/Buttons.svelte";
+  import UiComponents from "./demo/UiComponents.svelte";
+  import { Screen } from "./components/Layout";
 
   export let name;
 </script>
@@ -13,5 +13,5 @@
 </style>
 
 <Screen>
-  <UIComponents />
+  <UiComponents />
 </Screen>
