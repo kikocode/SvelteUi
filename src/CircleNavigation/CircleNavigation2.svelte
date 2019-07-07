@@ -23,49 +23,33 @@
 
   onMount(() => {
     elems = elementsRef.childNodes;
-    // using svelte's {#each} inside a named slot renders an extra div, which will be taken care of here until fixed
+    // using svelte's {#each} inside a named slot renders an extra div,
+    // which will be taken care of here until fixed
     // @see - https://github.com/sveltejs/svelte/issues/2080
     if (useNestedElements) elems = elems[0].childNodes;
     elems.forEach((el, i) => {
-      console.log("el", el);
       if (el.classList) el.classList.add("circle-navigation_element");
     });
   });
 
   const animateIn = e => {
-    let gapX = 10;
-    let startX = circleSize + gapX;
-    let maxW = startX;
-
     elems.forEach((el, i) => {
-      let w = el.offsetWidth;
-      let left = i * (w + gapX) + startX;
-      maxW += i * (w + gapX);
-
-      el.style.opacity = `1`;
-      el.style.left = `${left}px`;
+      if(el.classList) el.classList.add("circle-navigation_element--active")
     });
-
-    bgRef.style = `
-			width:${maxW}px;
-		`;
   };
 
   const animateOut = e => {
     elems.forEach((el, i) => {
-      el.style.left = "0px";
+      if(el.classList) el.classList.remove("circle-navigation_element--active")
     });
-    bgRef.style = `
-			width:100%;
-		`;
   };
 
   const handleMouseover = e => {
-    //animateIn();
+    animateIn();
   };
 
   const handleMouseout = e => {
-    //animateOut();
+    animateOut();
   };
 </script>
 
@@ -89,12 +73,17 @@
     position: relative;
     z-index: 10;
     border-radius: 50%;
+    margin: 0 4px;
+    width: 0;
+    height: 0;
+  }
+
+  .circle-navigation :global(.circle-navigation_element--active) {
     width: var(--element-size);
     height: var(--element-size);
     background: var(--color);
     transition: var(--transition);
     box-shadow: var(--box-shadow);
-    margin: 0 4px;
   }
 
   .circle-navigation_button {
