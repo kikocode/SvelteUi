@@ -136,6 +136,6 @@
   }
 </style>
 
-<div on:click class={'button ' + buttonClasses} style={buttonStyles} use:use>
+<button on:click class={'button ' + buttonClasses} style={buttonStyles} use:use>
   <slot />
-</div>
+</button>
