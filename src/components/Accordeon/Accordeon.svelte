@@ -1,30 +1,20 @@
-<script>
-  import slide from 'svelte-transitions-slide';
-  export let expanded = false;
-  export let expandDuration = 1000;
-  let accordeonRef;
-
-  const handleMouseDown = e => {
-    expanded = !expanded;
-  }
-
+<script context="module">
+	export const ACCORDEON = {};
 </script>
 
-<style type="text/scss">
+<script>
 
-</style>
+	import { setContext } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
 
-<div
-  bind:this={accordeonRef}
-  class={'accordeon'}
-  on:mousedown={handleMouseDown}>
-  <slot name="header" />
-  {#if expanded}
-    <!-- use `in`, `out`, or `transition` (bidirectional) -->
-    <div class="accordeon__body" transition:slide>
-    <slot name="body">
-      <p>😮 No body!</p>
-    </slot>
-    </div>
-  {/if}
-</div>
+	const dispatch = createEventDispatcher();
+
+
+	setContext(ACCORDEON, {
+		dispatch(data) {
+			console.log("clicky", data);
+		}
+	})
+</script>
+
+<slot><!-- optional fallback --></slot>

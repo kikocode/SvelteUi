@@ -5,6 +5,7 @@
   import { Button } from "../components/Button";
   import { Ripple } from "../components/Ripple";
   import { Accordeon } from "../components/Accordeon";
+  import { AccordeonElement } from "../components/Accordeon";
   import { useRipple } from "../components/Ripple";
   import { CircleNavigation } from "../components/CircleNavigation";
   import { CircleNavigation2 } from "../components/CircleNavigation";
@@ -65,6 +66,13 @@
   h1 {
     color: purple;
   }
+
+  :global(body) .textfield.customRounded {
+      .textfield__border__start {
+        width: 30px;
+        border-radius: 50px 0 0 50px;
+      }
+    }
 
   :global(body) {
     .textfield.customRounded {
@@ -267,11 +275,16 @@
 <h2>Accordeon</h2>
 
 <Block>
-  <Accordeon>
-    <p slot="header">header</p>
-    <p slot="body">Body text</p>
+  <Accordeon multiple="true">
+    <AccordeonElement active={true}>
+      <p slot="header">header1</p>
+      <p slot="body">Body text1</p>
+    </AccordeonElement>
+    <AccordeonElement active={false}>
+      <p slot="header">header2</p>
+      <p slot="body">Body text2</p>
+    </AccordeonElement>
   </Accordeon>
-
 </Block>
 
 <h2>Buttons</h2>
