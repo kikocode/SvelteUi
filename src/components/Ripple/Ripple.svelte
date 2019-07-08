@@ -99,4 +99,6 @@
   style={rippleStyle}
   on:mousedown={handleMouseDown}
   on:mouseleave={handleMouseLeave}
-  on:mouseup={handleMouseUp} />
+  on:mouseup={handleMouseUp}
+  on:touchstart={handleMouseDown}
+  on:touchend={handleMouseUp} />

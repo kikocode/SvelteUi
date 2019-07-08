@@ -9,12 +9,11 @@
   export let circleContent;
   // options: left, right, top, bottom. default is bottom
   export let direction = "left";
+  export let circleSize = 60;
+  export let elementSize = 40;
 
-  let circleSize = 60;
-  let elementSize = 40;
-  let animationStagger = 25;
   let timeouts = [];
-  let elemsVisible = 0;
+  let animationStagger = 15;
 
   let bgRef;
   let elementsRef;
@@ -22,16 +21,16 @@
 
   let directions = {
     top: {
-      class: "circle-navigation--direction-top"
+      class: "circnav--direction-top"
     },
     bottom: {
-      class: "circle-navigation--direction-bottom"
+      class: "circnav--direction-bottom"
     },
     left: {
-      class: "circle-navigation--direction-left"
+      class: "circnav--direction-left"
     },
     right: {
-      class: "circle-navigation--direction-right"
+      class: "circnav--direction-right"
     }
   };
 
@@ -49,22 +48,23 @@
 	`;
 
   onMount(() => {
-    elems = elementsRef.childNodes;
+    elems = elementsRef.children;
     // using svelte's {#each} inside a named slot renders an extra div,
     // which will be taken care of here until fixed
     // @see - https://github.com/sveltejs/svelte/issues/2080
-    if (useNestedElements) elems = elems[0].childNodes;
-    elems.forEach((el, i) => {
-      if (el.classList) el.classList.add("circle-navigation_element");
+    if (useNestedElements) elems = elems[0];
+    let entries = Array.from(elems.children);
+    entries.forEach((el, i) => {
+      if (el.classList) el.classList.add("circnav_subcircle");
     });
   });
 
   const animateIn = e => {
     clearTimeouts();
-    elems.forEach((el, i) => {
+    Array.from(elems.children).forEach((el, i) => {
       let timeout = setTimeout(() => {
         if (el.classList) {
-          el.classList.add("circle-navigation_element--active");
+          el.classList.add("circnav_subcircle--active");
         }
         elems.visible += 1;
       }, i * animationStagger);
@@ -74,12 +74,14 @@
 
   const animateOut = e => {
     clearTimeouts();
-    // max duration of animation
-    let maxAnimation = animationStagger * elems.length;
-    elems.forEach((el, i) => {
+    let entries = Array.from(
+      elems.querySelectorAll(".circnav_subcircle--active")
+    );
+    let maxAnimation = animationStagger * entries.length;
+    entries.forEach((el, i) => {
       setTimeout(() => {
         if (el.classList) {
-          el.classList.remove("circle-navigation_element--active");
+          el.classList.remove("circnav_subcircle--active");
         }
         // apply max duration so the first element fades last
       }, maxAnimation - i * animationStagger);
@@ -90,7 +92,6 @@
     timeouts.forEach(timeout => {
       clearInterval(timeout);
     });
-    elemsVisible = 0;
   };
 
   const handleMouseover = e => {
@@ -103,46 +104,86 @@
 </script>
 
 <style>
-  .circle-navigation {
+  .circnav {
     display: flex;
-    align-items: center;
-    position: relative;
-    margin: 15px;
+    align-items: flex-start;
     --transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     --box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
       0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
   }
+  .circnav-element {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
 
-  .circle-navigation--direction-bottom {
-    flex-flow: column;
-    & .circle-navigation_elements {
+  .circnav--direction-bottom {
+    & .circnav-element {
       flex-flow: column;
     }
-    & .circle-navigation_elements > :global(*) {
+    & .circnav_subcircles {
+      flex-flow: column;
+    }
+    & .circnav_subcircles > :global(*) {
       flex-flow: column;
     }
   }
 
-  .circle-navigation--direction-top {
-    flex-flow: column;
-    flex-direction: column-reverse;
-    & .circle-navigation_elements {
+  .circnav--direction-top {
+    & .circnav-element {
       flex-flow: column;
       flex-direction: column-reverse;
     }
-    & .circle-navigation_elements > :global(*) {
+    & .circnav_subcircles {
+      flex-flow: column;
+      flex-direction: column-reverse;
+    }
+    & .circnav_subcircles > :global(*) {
       flex-flow: column;
       flex-direction: column-reverse;
     }
   }
 
-  .circle-navigation :global(.circle-navigation_element) {
+  .circnav--direction-right {
+    & .circnav-element {
+      flex-flow: row;
+    }
+    & .circnav_subcircles {
+      flex-flow: row;
+    }
+    & .circnav_subcircles > :global(*) {
+      flex-flow: row;
+    }
+  }
+
+  .circnav--direction-left {
+    & .circnav-element {
+      flex-flow: row-reverse;
+    }
+    & .circnav_subcircles {
+      flex-flow: row-reverse;
+    }
+    & .circnav_subcircles > :global(*) {
+      flex-flow: row-reverse;
+    }
+  }
+
+  /* Subcircle */
+  .circnav_subcircles {
+    display: flex;
+    align-items: center;
+  }
+  .circnav_subcircles > :global(*) {
+    display: flex;
+    align-items: center;
+  }
+  .circnav :global(.circnav_subcircle) {
     display: flex;
     width: var(--element-size);
     height: var(--element-size);
-    margin: 3px;
+    margin: 6px;
     align-items: center;
     justify-content: center;
     position: relative;
@@ -153,13 +194,15 @@
     transition: var(--transition);
     box-shadow: var(--box-shadow);
     z-index: 10;
+    opacity: 0;
   }
-
-  .circle-navigation :global(.circle-navigation_element--active) {
+  .circnav :global(.circnav_subcircle--active) {
     transform: scale(1);
+    opacity: 1;
   }
 
-  .circle-navigation_button {
+  /* Button */
+  .circnav_button {
     position: relative;
     z-index: 100;
     overflow: hidden;
@@ -178,41 +221,36 @@
     background: var(--color);
     border-radius: 50%;
   }
-  .circle-navigation_button > :global(*) {
+  .circnav_button > :global(*) {
     display: flex;
   }
 
-  .circle-navigation_background {
+  /* Background */
+  .circnav_bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
   }
-
-  .circle-navigation_elements {
-    display: flex;
-  }
-  .circle-navigation_elements > :global(*) {
-    display: flex;
-  }
 </style>
 
 <div
-  class={'circle-navigation ' + circleNavigationClasses}
+  class={'circnav ' + circleNavigationClasses}
   style={circleNavigationStyle}
   on:mouseleave={handleMouseout}>
+  <div class="circnav-element">
+    <div class="circnav_button" on:mouseenter={handleMouseover}>
+      {#if ripple}
+        <Ripple />
+      {/if}
 
-  <button class="circle-navigation_button" on:mouseenter={handleMouseover}>
-    {#if ripple}
-      <Ripple />
-    {/if}
+      <slot name="circle" />
+    </div>
+    <div class="circnav_subcircles" bind:this={elementsRef}>
+      <slot name="elements" />
+    </div>
 
-    <slot name="circle" />
-  </button>
-  <div class="circle-navigation_elements" bind:this={elementsRef}>
-    <slot name="elements" />
+    <div class="circnav_bg" bind:this={bgRef} />
   </div>
-
-  <div class="circle-navigation_background" bind:this={bgRef} />
 </div>

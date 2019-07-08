@@ -46,6 +46,19 @@
     var c = colors[Math.round(Math.random() * colors.length)];
     randomColor = c;
   };
+
+  const randomIcon = () => {
+    const icons = [Check, Favorite, Phone, Star, Close];
+    return randomPick(icons);
+  };
+
+  const randomPick = arr => {
+    return arr[Math.floor(Math.random() * arr.length)];
+  };
+
+  let circles1 = Array.from({ length: 5 }, () => ({ icon: randomIcon() }));
+  let circles2 = Array.from({ length: 8 }, () => ({ icon: randomIcon() }));
+  let circles3 = Array.from({ length: 2 }, () => ({ icon: randomIcon() }));
 </script>
 
 <style type="text/scss">
@@ -122,6 +135,31 @@
     color: #333;
     font-size: 36px;
   }
+
+  .tagLabel {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.07);
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 6px 9px;
+    border-radius: 50px;
+  }
+
+  .buttonLabel {
+    font-size: 12px;
+    color: white;
+    width: auto !important;
+    height: auto !important;
+    padding: 10px 12px;
+    border-radius: 20px !important;
+  }
+
+  .whiteIconCircle {
+    fill: #666666;
+    cursor: pointer;
+    background: white !important;
+  }
 </style>
 
 <Button color={randomColor} on:click={setRandomColor} outlined={true}>
@@ -131,136 +169,97 @@
 
 <h2>Circle Navigation</h2>
 <Block>
-  <div style="flex-flow:column;position:relative;">
+  <div style="display:flex; position:relative;">
 
-    <CircleNavigation2 color={randomColor}>
+    <div style="display:none;">
+      <CircleNavigation2 color={randomColor}>
+        <div slot="circle">
+          <Check />
+        </div>
+        <div slot="elements">
+          {#each new Array(3).fill('') as elem, i}
+            <div style="fill:white; cursor:pointer;">
+              <Check />
+              <Ripple color="#ffffff" />
+            </div>
+          {/each}
+        </div>
+      </CircleNavigation2>
+    </div>
+
+    <CircleNavigation color={randomColor} direction="right">
+
       <div slot="circle">
-        <Check />
+        <Close />
       </div>
       <div slot="elements">
-        {#each new Array(3).fill('') as elem, i}
-          <div style="fill:white; cursor:pointer;">
-            <Check />
-            <Ripple color="#ffffff" />
+        <div class={'buttonLabel'}>
+          Right
+          <Ripple color="#ffff00" />
+        </div>
+        {#each Array.from({ length: 6 }, () => ({
+          icon: randomIcon()
+        })) as elem, i}
+          <div class={'whiteIconCircle'}>
+            <svelte:component this={elem.icon} />
+            <Ripple color="#000000" />
           </div>
         {/each}
       </div>
-    </CircleNavigation2>
-
-    <CircleNavigation color={randomColor}>
-      <div slot="circle">
-        <Close />
-      </div>
-      <div slot="elements">
-
-        <div style="fill:white; cursor:pointer;">
-          <Favorite />
-          <Ripple color="#ffffff" />
-        </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Star />
-          <Ripple color="#ffffff" />
-        </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Phone />
-          <Ripple color="#ffffff" />
-        </div>
-        <div style="fill:white; cursor:pointer;">
-          <Favorite />
-          <Ripple color="#ffffff" />
-        </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Star />
-          <Ripple color="#ffffff" />
-        </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Phone />
-          <Ripple color="#ffffff" />
-        </div>
-
-      </div>
     </CircleNavigation>
 
-    <CircleNavigation color={randomColor} direction="bottom">
-      <div slot="circle">
-        <Close />
-      </div>
-      <div slot="elements">
-
-        <div style="fill:white; cursor:pointer;">
-          <Favorite />
-          <Ripple color="#ffffff" />
+    <div>
+      <CircleNavigation color={randomColor} direction="bottom">
+        <div slot="circle">
+          <Close />
         </div>
+        <div slot="elements">
+          <div class={'buttonLabel'}>Bot</div>
+          {#each Array.from({ length: 2 }, () => ({
+            icon: randomIcon()
+          })) as elem, i}
+            <div class={'whiteIconCircle'}>
+              <svelte:component this={elem.icon} />
+              <Ripple color="#000000" />
+            </div>
+          {/each}
 
-        <div style="fill:white; cursor:pointer;">
-          <Star />
-          <Ripple color="#ffffff" />
         </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Phone />
-          <Ripple color="#ffffff" />
-        </div>
-        <div style="fill:white; cursor:pointer;">
-          <Favorite />
-          <Ripple color="#ffffff" />
-        </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Star />
-          <Ripple color="#ffffff" />
-        </div>
-
-        <div style="fill:white; cursor:pointer;">
-          <Phone />
-          <Ripple color="#ffffff" />
-        </div>
-
-      </div>
-    </CircleNavigation>
-    <div style="position:absolute; bottom:0; right:0;">
+      </CircleNavigation>
       <CircleNavigation color={randomColor} direction="top">
         <div slot="circle">
           <Close />
         </div>
         <div slot="elements">
-
-          <div style="fill:white; cursor:pointer;">
-            <Favorite />
-            <Ripple color="#ffffff" />
-          </div>
-
-          <div style="fill:white; cursor:pointer;">
-            <Star />
-            <Ripple color="#ffffff" />
-          </div>
-
-          <div style="fill:white; cursor:pointer;">
-            <Phone />
-            <Ripple color="#ffffff" />
-          </div>
-          <div style="fill:white; cursor:pointer;">
-            <Favorite />
-            <Ripple color="#ffffff" />
-          </div>
-
-          <div style="fill:white; cursor:pointer;">
-            <Star />
-            <Ripple color="#ffffff" />
-          </div>
-
-          <div style="fill:white; cursor:pointer;">
-            <Phone />
-            <Ripple color="#ffffff" />
-          </div>
-
+          <div class={'buttonLabel'}>Top</div>
+          {#each Array.from({ length: 2 }, () => ({
+            icon: randomIcon()
+          })) as elem, i}
+            <div class={'whiteIconCircle'}>
+              <svelte:component this={elem.icon} />
+              <Ripple color="#000000" />
+            </div>
+          {/each}
         </div>
       </CircleNavigation>
     </div>
+    <CircleNavigation color={randomColor} direction="left">
+      <div slot="circle">
+        <Close />
+      </div>
+      <div slot="elements">
+        <div class={'buttonLabel'}>Left</div>
+        {#each Array.from({ length: 8 }, () => ({
+          icon: randomIcon()
+        })) as elem, i}
+          <div class={'whiteIconCircle'}>
+            <svelte:component this={elem.icon} />
+            <Ripple color="#000000" />
+          </div>
+        {/each}
+      </div>
+    </CircleNavigation>
+
   </div>
 
 </Block>
