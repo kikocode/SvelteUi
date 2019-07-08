@@ -15,7 +15,6 @@
   export let simple = false;
   export let size = "medium";
 
-
   $: disabledClass = disabled ? "button--disabled" : "";
   $: raisedClass = raised ? "button--raised" : "";
   $: outlinedClass = outlined ? "button--outlined" : "";
@@ -63,6 +62,8 @@
       box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
+    outline: none;
+    border: none;
     margin: 8px;
     position: relative;
     overflow: hidden;

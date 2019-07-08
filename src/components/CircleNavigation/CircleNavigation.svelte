@@ -206,6 +206,8 @@
     position: relative;
     z-index: 100;
     overflow: hidden;
+    outline: none;
+    border: none;
 
     margin: 10px;
     align-items: center;
@@ -240,13 +242,13 @@
   style={circleNavigationStyle}
   on:mouseleave={handleMouseout}>
   <div class="circnav-element">
-    <div class="circnav_button" on:mouseenter={handleMouseover}>
+    <button class="circnav_button" on:mouseenter={handleMouseover}>
       {#if ripple}
         <Ripple />
       {/if}
 
       <slot name="circle" />
-    </div>
+    </button>
     <div class="circnav_subcircles" bind:this={elementsRef}>
       <slot name="elements" />
     </div>
