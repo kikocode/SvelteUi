@@ -103,7 +103,7 @@
   };
 </script>
 
-<style>
+<style lang="scss">
   .circnav {
     display: flex;
     align-items: flex-start;

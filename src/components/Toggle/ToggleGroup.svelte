@@ -21,7 +21,7 @@
   const handleClick = e => {};
 </script>
 
-<style>
+<style lang="scss">
   .togglegroup {
   }
 </style>

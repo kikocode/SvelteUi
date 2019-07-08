@@ -9,7 +9,7 @@
   };
 </script>
 
-<style>
+<style lang="scss">
   .togglebutton {
     --transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
       box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,

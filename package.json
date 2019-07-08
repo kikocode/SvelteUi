@@ -11,6 +11,7 @@
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^4.0.4",
     "svelte": "^3.0.0",
+    "svelte-preprocess": "^2.14.4",
     "svelte-preprocess-sass": "^0.2.0"
   },
   "dependencies": {

@@ -10,7 +10,7 @@
   };
 </script>
 
-<style>
+<style lang="scss">
   .block {
     display: flex;
     flex-flow: wrap;

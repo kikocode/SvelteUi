@@ -219,6 +219,12 @@ var app = (function () {
             }
         };
     }
+    function setContext(key, context) {
+        get_current_component().$$.context.set(key, context);
+    }
+    function getContext(key) {
+        return get_current_component().$$.context.get(key);
+    }
     // TODO figure out if we still want to support
     // shorthand events, or if we want to implement
     // a real bubbling mechanism
@@ -923,9 +929,9 @@ var app = (function () {
 
     			if (default_slot) default_slot.c();
 
-    			attr(button, "class", button_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-zei3bu");
+    			attr(button, "class", button_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-wpyolc");
     			attr(button, "style", ctx.buttonStyles);
-    			add_location(button, file, 122, 0, 3284);
+    			add_location(button, file, 124, 0, 3362);
     			dispose = listen(button, "click", ctx.click_handler);
     		},
 
@@ -950,7 +956,7 @@ var app = (function () {
     				default_slot.p(get_slot_changes(default_slot_1, ctx, changed, null), get_slot_context(default_slot_1, ctx, null));
     			}
 
-    			if ((!current || changed.buttonClasses) && button_class_value !== (button_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-zei3bu")) {
+    			if ((!current || changed.buttonClasses) && button_class_value !== (button_class_value = "" + ('button ' + ctx.buttonClasses) + " svelte-wpyolc")) {
     				attr(button, "class", button_class_value);
     			}
 
@@ -1139,15 +1145,15 @@ var app = (function () {
 
     const file$1 = "src/components/Textfield/Textfield.svelte";
 
-    // (400:4) {#if prepend}
+    // (401:4) {#if prepend}
     function create_if_block_3(ctx) {
     	var div;
 
     	return {
     		c: function create() {
     			div = element("div");
-    			attr(div, "class", "" + 'textfield__prepend' + " svelte-17wtohn");
-    			add_location(div, file$1, 400, 6, 10968);
+    			attr(div, "class", "" + 'textfield__prepend' + " svelte-ykyjhq");
+    			add_location(div, file$1, 401, 6, 11017);
     		},
 
     		m: function mount(target, anchor) {
@@ -1177,17 +1183,17 @@ var app = (function () {
     	};
     }
 
-    // (423:4) {:else}
+    // (424:4) {:else}
     function create_else_block(ctx) {
     	var input, dispose;
 
     	return {
     		c: function create() {
     			input = element("input");
-    			attr(input, "class", "textfield__input svelte-17wtohn");
+    			attr(input, "class", "textfield__input svelte-ykyjhq");
     			attr(input, "type", ctx.type);
     			input.value = ctx.name;
-    			add_location(input, file$1, 423, 6, 11709);
+    			add_location(input, file$1, 424, 6, 11758);
 
     			dispose = [
     				listen(input, "change", ctx.handleChange),
@@ -1222,17 +1228,17 @@ var app = (function () {
     	};
     }
 
-    // (413:4) {#if multiline}
+    // (414:4) {#if multiline}
     function create_if_block_2(ctx) {
     	var textarea, dispose;
 
     	return {
     		c: function create() {
     			textarea = element("textarea");
-    			attr(textarea, "class", "textfield__input svelte-17wtohn");
+    			attr(textarea, "class", "textfield__input svelte-ykyjhq");
     			attr(textarea, "type", ctx.type);
     			textarea.value = ctx.name;
-    			add_location(textarea, file$1, 413, 6, 11450);
+    			add_location(textarea, file$1, 414, 6, 11499);
 
     			dispose = [
     				listen(textarea, "change", ctx.handleChange),
@@ -1267,15 +1273,15 @@ var app = (function () {
     	};
     }
 
-    // (434:4) {#if append}
+    // (435:4) {#if append}
     function create_if_block_1(ctx) {
     	var div;
 
     	return {
     		c: function create() {
     			div = element("div");
-    			attr(div, "class", "" + 'textfield__append' + " svelte-17wtohn");
-    			add_location(div, file$1, 434, 6, 11980);
+    			attr(div, "class", "" + 'textfield__append' + " svelte-ykyjhq");
+    			add_location(div, file$1, 435, 6, 12029);
     		},
 
     		m: function mount(target, anchor) {
@@ -1305,7 +1311,7 @@ var app = (function () {
     	};
     }
 
-    // (440:2) {#if helperText}
+    // (441:2) {#if helperText}
     function create_if_block(ctx) {
     	var div, t;
 
@@ -1313,8 +1319,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(ctx.helperText);
-    			attr(div, "class", "textfield__helper__text svelte-17wtohn");
-    			add_location(div, file$1, 440, 4, 12114);
+    			attr(div, "class", "textfield__helper__text svelte-ykyjhq");
+    			add_location(div, file$1, 441, 4, 12163);
     		},
 
     		m: function mount(target, anchor) {
@@ -1373,21 +1379,21 @@ var app = (function () {
     			if (if_block2) if_block2.c();
     			t6 = space();
     			if (if_block3) if_block3.c();
-    			attr(div0, "class", "textfield__border__start textfield__border__segment svelte-17wtohn");
-    			add_location(div0, file$1, 406, 6, 11116);
-    			attr(div1, "class", "textfield__label svelte-17wtohn");
-    			add_location(div1, file$1, 408, 8, 11262);
-    			attr(div2, "class", "textfield__border__gap textfield__border__segment svelte-17wtohn");
-    			add_location(div2, file$1, 407, 6, 11190);
-    			attr(div3, "class", "textfield__border__end textfield__border__segment svelte-17wtohn");
-    			add_location(div3, file$1, 410, 6, 11347);
-    			attr(div4, "class", "textfield__border svelte-17wtohn");
-    			add_location(div4, file$1, 405, 4, 11078);
-    			attr(div5, "class", "textfield__element svelte-17wtohn");
-    			add_location(div5, file$1, 398, 2, 10911);
-    			attr(div6, "class", div6_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-17wtohn");
+    			attr(div0, "class", "textfield__border__start textfield__border__segment svelte-ykyjhq");
+    			add_location(div0, file$1, 407, 6, 11165);
+    			attr(div1, "class", "textfield__label svelte-ykyjhq");
+    			add_location(div1, file$1, 409, 8, 11311);
+    			attr(div2, "class", "textfield__border__gap textfield__border__segment svelte-ykyjhq");
+    			add_location(div2, file$1, 408, 6, 11239);
+    			attr(div3, "class", "textfield__border__end textfield__border__segment svelte-ykyjhq");
+    			add_location(div3, file$1, 411, 6, 11396);
+    			attr(div4, "class", "textfield__border svelte-ykyjhq");
+    			add_location(div4, file$1, 406, 4, 11127);
+    			attr(div5, "class", "textfield__element svelte-ykyjhq");
+    			add_location(div5, file$1, 399, 2, 10960);
+    			attr(div6, "class", div6_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-ykyjhq");
     			attr(div6, "style", ctx.textfieldStyle);
-    			add_location(div6, file$1, 397, 0, 10840);
+    			add_location(div6, file$1, 398, 0, 10889);
     		},
 
     		l: function claim(nodes) {
@@ -1476,7 +1482,7 @@ var app = (function () {
     				if_block3 = null;
     			}
 
-    			if ((changed.textfieldClasses) && div6_class_value !== (div6_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-17wtohn")) {
+    			if ((changed.textfieldClasses) && div6_class_value !== (div6_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-ykyjhq")) {
     				attr(div6, "class", div6_class_value);
     			}
 
@@ -1809,13 +1815,13 @@ var app = (function () {
     			div2 = element("div");
     			div1 = element("div");
     			div0 = element("div");
-    			attr(div0, "class", "grabber svelte-1dtqzl");
-    			add_location(div0, file$2, 59, 4, 1250);
-    			attr(div1, "class", "bg svelte-1dtqzl");
-    			add_location(div1, file$2, 58, 2, 1229);
-    			attr(div2, "class", div2_class_value = "" + ('toggle ' + ctx.toggleClasses) + " svelte-1dtqzl");
+    			attr(div0, "class", "grabber svelte-6ej3fz");
+    			add_location(div0, file$2, 60, 4, 1308);
+    			attr(div1, "class", "bg svelte-6ej3fz");
+    			add_location(div1, file$2, 59, 2, 1287);
+    			attr(div2, "class", div2_class_value = "" + ('toggle ' + ctx.toggleClasses) + " svelte-6ej3fz");
     			attr(div2, "style", ctx.toggleStyle);
-    			add_location(div2, file$2, 53, 0, 1137);
+    			add_location(div2, file$2, 54, 0, 1195);
     			dispose = listen(div2, "click", ctx.handleClick);
     		},
 
@@ -1830,7 +1836,7 @@ var app = (function () {
     		},
 
     		p: function update(changed, ctx) {
-    			if ((changed.toggleClasses) && div2_class_value !== (div2_class_value = "" + ('toggle ' + ctx.toggleClasses) + " svelte-1dtqzl")) {
+    			if ((changed.toggleClasses) && div2_class_value !== (div2_class_value = "" + ('toggle ' + ctx.toggleClasses) + " svelte-6ej3fz")) {
     				attr(div2, "class", div2_class_value);
     			}
 
@@ -1911,11 +1917,247 @@ var app = (function () {
     	}
     }
 
+    /* src/components/Toggle/ToggleButton.svelte generated by Svelte v3.5.4 */
+
+    const file$3 = "src/components/Toggle/ToggleButton.svelte";
+
+    function create_fragment$3(ctx) {
+    	var div, current, dispose;
+
+    	const default_slot_1 = ctx.$$slots.default;
+    	const default_slot = create_slot(default_slot_1, ctx, null);
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+
+    			if (default_slot) default_slot.c();
+
+    			attr(div, "class", "togglebutton svelte-q5041w");
+    			add_location(div, file$3, 28, 0, 774);
+    			dispose = listen(div, "click", ctx.handleClick);
+    		},
+
+    		l: function claim(nodes) {
+    			if (default_slot) default_slot.l(div_nodes);
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+
+    			if (default_slot) {
+    				default_slot.m(div, null);
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (default_slot && default_slot.p && changed.$$scope) {
+    				default_slot.p(get_slot_changes(default_slot_1, ctx, changed, null), get_slot_context(default_slot_1, ctx, null));
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if (default_slot) default_slot.d(detaching);
+    			dispose();
+    		}
+    	};
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	const dispatch = createEventDispatcher();
+
+      let { color = "#000000" } = $$props;
+
+      const handleClick = e => {
+        dispatch("test", e);
+      };
+
+    	const writable_props = ['color'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<ToggleButton> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+
+    	$$self.$set = $$props => {
+    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+    	};
+
+    	return { color, handleClick, $$slots, $$scope };
+    }
+
+    class ToggleButton extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["color"]);
+    	}
+
+    	get color() {
+    		throw new Error("<ToggleButton>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<ToggleButton>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/components/Toggle/ToggleGroup.svelte generated by Svelte v3.5.4 */
+
+    const file$4 = "src/components/Toggle/ToggleGroup.svelte";
+
+    function create_fragment$4(ctx) {
+    	var div1, div0, current;
+
+    	const default_slot_1 = ctx.$$slots.default;
+    	const default_slot = create_slot(default_slot_1, ctx, null);
+
+    	return {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+
+    			if (default_slot) default_slot.c();
+
+    			add_location(div0, file$4, 28, 2, 713);
+    			attr(div1, "class", "togglegroup");
+    			add_location(div1, file$4, 26, 0, 684);
+    		},
+
+    		l: function claim(nodes) {
+    			if (default_slot) default_slot.l(div0_nodes);
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div1, anchor);
+    			append(div1, div0);
+
+    			if (default_slot) {
+    				default_slot.m(div0, null);
+    			}
+
+    			add_binding_callback(() => ctx.div0_binding(div0, null));
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (default_slot && default_slot.p && changed.$$scope) {
+    				default_slot.p(get_slot_changes(default_slot_1, ctx, changed, null), get_slot_context(default_slot_1, ctx, null));
+    			}
+
+    			if (changed.items) {
+    				ctx.div0_binding(null, div0);
+    				ctx.div0_binding(div0, null);
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div1);
+    			}
+
+    			if (default_slot) default_slot.d(detaching);
+    			ctx.div0_binding(null, div0);
+    		}
+    	};
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	let { useNestedElements = true } = $$props;
+
+      let toggleButtonElemsRef;
+      let elems;
+
+      onMount(() => {
+        elems = toggleButtonElemsRef.children;
+        // using svelte's {#each} inside a named slot renders an extra div,
+        // which will be taken care of here until fixed
+        // @see - https://github.com/sveltejs/svelte/issues/2080
+        if (useNestedElements) elems = elems[0].children;
+        let entries = Array.from(elems);
+        entries.forEach((el, i) => {
+          el.addEventListener("click", handleClick);
+        });
+      });
+
+      const handleClick = e => {};
+
+    	const writable_props = ['useNestedElements'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<ToggleGroup> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+
+    	function div0_binding($$node, check) {
+    		toggleButtonElemsRef = $$node;
+    		$$invalidate('toggleButtonElemsRef', toggleButtonElemsRef);
+    	}
+
+    	$$self.$set = $$props => {
+    		if ('useNestedElements' in $$props) $$invalidate('useNestedElements', useNestedElements = $$props.useNestedElements);
+    		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+    	};
+
+    	return {
+    		useNestedElements,
+    		toggleButtonElemsRef,
+    		div0_binding,
+    		$$slots,
+    		$$scope
+    	};
+    }
+
+    class ToggleGroup extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["useNestedElements"]);
+    	}
+
+    	get useNestedElements() {
+    		throw new Error("<ToggleGroup>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set useNestedElements(value) {
+    		throw new Error("<ToggleGroup>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
     /* src/components/Checkbox/Checkbox.svelte generated by Svelte v3.5.4 */
 
-    const file$3 = "src/components/Checkbox/Checkbox.svelte";
+    const file$5 = "src/components/Checkbox/Checkbox.svelte";
 
-    // (53:4) {#if label}
+    // (54:4) {#if label}
     function create_if_block$1(ctx) {
     	var div, t;
 
@@ -1923,8 +2165,8 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			t = text(ctx.label);
-    			attr(div, "class", "label svelte-1e1244v");
-    			add_location(div, file$3, 53, 6, 1194);
+    			attr(div, "class", "label svelte-66lf2u");
+    			add_location(div, file$5, 54, 6, 1242);
     		},
 
     		m: function mount(target, anchor) {
@@ -1946,7 +2188,7 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$3(ctx) {
+    function create_fragment$5(ctx) {
     	var div2, label_1, input, t0, div1, div0, t1, div2_class_value, dispose;
 
     	var if_block = (ctx.label) && create_if_block$1(ctx);
@@ -1962,18 +2204,18 @@ var app = (function () {
     			t1 = space();
     			if (if_block) if_block.c();
     			attr(input, "id", ctx.id);
-    			attr(input, "class", "input svelte-1e1244v");
+    			attr(input, "class", "input svelte-66lf2u");
     			attr(input, "type", "checkbox");
-    			add_location(input, file$3, 48, 4, 1051);
-    			attr(div0, "class", "checker svelte-1e1244v");
-    			add_location(div0, file$3, 50, 6, 1137);
-    			attr(div1, "class", "box svelte-1e1244v");
-    			add_location(div1, file$3, 49, 4, 1113);
-    			attr(label_1, "class", "field svelte-1e1244v");
+    			add_location(input, file$5, 49, 4, 1099);
+    			attr(div0, "class", "checker svelte-66lf2u");
+    			add_location(div0, file$5, 51, 6, 1185);
+    			attr(div1, "class", "box svelte-66lf2u");
+    			add_location(div1, file$5, 50, 4, 1161);
+    			attr(label_1, "class", "field svelte-66lf2u");
     			attr(label_1, "for", ctx.id);
-    			add_location(label_1, file$3, 47, 2, 1016);
-    			attr(div2, "class", div2_class_value = "" + ('checkbox ' + ctx.checkboxClasses) + " svelte-1e1244v");
-    			add_location(div2, file$3, 46, 0, 970);
+    			add_location(label_1, file$5, 48, 2, 1064);
+    			attr(div2, "class", div2_class_value = "" + ('checkbox ' + ctx.checkboxClasses) + " svelte-66lf2u");
+    			add_location(div2, file$5, 47, 0, 1018);
     			dispose = listen(input, "change", ctx.input_change_handler);
     		},
 
@@ -2019,7 +2261,7 @@ var app = (function () {
     				attr(label_1, "for", ctx.id);
     			}
 
-    			if ((changed.checkboxClasses) && div2_class_value !== (div2_class_value = "" + ('checkbox ' + ctx.checkboxClasses) + " svelte-1e1244v")) {
+    			if ((changed.checkboxClasses) && div2_class_value !== (div2_class_value = "" + ('checkbox ' + ctx.checkboxClasses) + " svelte-66lf2u")) {
     				attr(div2, "class", div2_class_value);
     			}
     		},
@@ -2038,7 +2280,7 @@ var app = (function () {
     	};
     }
 
-    function instance$3($$self, $$props, $$invalidate) {
+    function instance$5($$self, $$props, $$invalidate) {
     	let { checked = false, label = "", id = "checkbox" + Math.round(Math.random() * 95002000) } = $$props;
 
     	const writable_props = ['checked', 'label', 'id'];
@@ -2076,7 +2318,7 @@ var app = (function () {
     class Checkbox extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["checked", "label", "id"]);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, ["checked", "label", "id"]);
     	}
 
     	get checked() {
@@ -2106,22 +2348,24 @@ var app = (function () {
 
     /* src/components/Ripple/Ripple.svelte generated by Svelte v3.5.4 */
 
-    const file$4 = "src/components/Ripple/Ripple.svelte";
+    const file$6 = "src/components/Ripple/Ripple.svelte";
 
-    function create_fragment$4(ctx) {
+    function create_fragment$6(ctx) {
     	var div, dispose;
 
     	return {
     		c: function create() {
     			div = element("div");
-    			attr(div, "class", "ripple-container svelte-p5w5mf");
+    			attr(div, "class", "ripple-container svelte-qslmaj");
     			attr(div, "style", ctx.rippleStyle);
-    			add_location(div, file$4, 94, 0, 2346);
+    			add_location(div, file$6, 95, 0, 2392);
 
     			dispose = [
     				listen(div, "mousedown", ctx.handleMouseDown),
     				listen(div, "mouseleave", ctx.handleMouseLeave),
-    				listen(div, "mouseup", ctx.handleMouseUp)
+    				listen(div, "mouseup", ctx.handleMouseUp),
+    				listen(div, "touchstart", ctx.handleMouseDown),
+    				listen(div, "touchend", ctx.handleMouseUp)
     			];
     		},
 
@@ -2152,7 +2396,7 @@ var app = (function () {
     	};
     }
 
-    function instance$4($$self, $$props, $$invalidate) {
+    function instance$6($$self, $$props, $$invalidate) {
     	let { color = "#ffffff" } = $$props;
 
       const handleMouseDown = e => {
@@ -2237,7 +2481,7 @@ var app = (function () {
     class Ripple extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["color"]);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, ["color"]);
     	}
 
     	get color() {
@@ -2246,6 +2490,82 @@ var app = (function () {
 
     	set color(value) {
     		throw new Error("<Ripple>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/components/Accordeon/Accordeon.svelte generated by Svelte v3.5.4 */
+
+    function create_fragment$7(ctx) {
+    	var current;
+
+    	const default_slot_1 = ctx.$$slots.default;
+    	const default_slot = create_slot(default_slot_1, ctx, null);
+
+    	return {
+    		c: function create() {
+    			if (default_slot) default_slot.c();
+    		},
+
+    		l: function claim(nodes) {
+    			if (default_slot) default_slot.l(nodes);
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			if (default_slot) {
+    				default_slot.m(target, anchor);
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (default_slot && default_slot.p && changed.$$scope) {
+    				default_slot.p(get_slot_changes(default_slot_1, ctx, changed, null), get_slot_context(default_slot_1, ctx, null));
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (default_slot) default_slot.d(detaching);
+    		}
+    	};
+    }
+
+    const ACCORDEON = {};
+
+    function instance$7($$self, $$props, $$invalidate) {
+
+
+    	setContext(ACCORDEON, {
+    		dispatch(data) {
+    			console.log("clicky", data);
+    		}
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+
+    	$$self.$set = $$props => {
+    		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+    	};
+
+    	return { $$slots, $$scope };
+    }
+
+    class Accordeon extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, []);
     	}
     }
 
@@ -2288,9 +2608,9 @@ var app = (function () {
     	};
     }
 
-    /* src/components/Accordeon/Accordeon.svelte generated by Svelte v3.5.4 */
+    /* src/components/Accordeon/AccordeonElement.svelte generated by Svelte v3.5.4 */
 
-    const file$5 = "src/components/Accordeon/Accordeon.svelte";
+    const file$7 = "src/components/Accordeon/AccordeonElement.svelte";
 
     const get_body_slot_changes = ({}) => ({});
     const get_body_slot_context = ({}) => ({});
@@ -2298,7 +2618,7 @@ var app = (function () {
     const get_header_slot_changes = ({}) => ({});
     const get_header_slot_context = ({}) => ({});
 
-    // (20:2) {#if expanded}
+    // (29:2) {#if expanded}
     function create_if_block$2(ctx) {
     	var div, p, div_transition, current;
 
@@ -2316,11 +2636,11 @@ var app = (function () {
 
     			if (body_slot) body_slot.c();
     			if (!body_slot) {
-    				add_location(p, file$5, 23, 6, 526);
+    				add_location(p, file$7, 32, 6, 762);
     			}
 
     			attr(div, "class", "accordeon__body");
-    			add_location(div, file$5, 21, 4, 450);
+    			add_location(div, file$7, 30, 4, 686);
     		},
 
     		l: function claim(nodes) {
@@ -2382,7 +2702,7 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$5(ctx) {
+    function create_fragment$8(ctx) {
     	var div, t, current, dispose;
 
     	const header_slot_1 = ctx.$$slots.header;
@@ -2399,8 +2719,8 @@ var app = (function () {
     			if (if_block) if_block.c();
 
     			attr(div, "class", 'accordeon');
-    			add_location(div, file$5, 14, 0, 254);
-    			dispose = listen(div, "mousedown", ctx.handleMouseDown);
+    			add_location(div, file$7, 22, 0, 497);
+    			dispose = listen(div, "click", ctx.handleClick);
     		},
 
     		l: function claim(nodes) {
@@ -2476,17 +2796,22 @@ var app = (function () {
     	};
     }
 
-    function instance$5($$self, $$props, $$invalidate) {
-    	let { expanded = false, expandDuration = 1000 } = $$props;
+    function instance$8($$self, $$props, $$invalidate) {
+    	
+
+    	const { dispatch } = getContext(ACCORDEON);
+
+      let { expanded = false, multiple = false, expandDuration = 1000 } = $$props;
       let accordeonRef;
 
-      const handleMouseDown = e => {
+      const handleClick = e => {
         $$invalidate('expanded', expanded = !expanded);
+        dispatch("click", e);
       };
 
-    	const writable_props = ['expanded', 'expandDuration'];
+    	const writable_props = ['expanded', 'multiple', 'expandDuration'];
     	Object.keys($$props).forEach(key => {
-    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Accordeon> was created with unknown prop '${key}'`);
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<AccordeonElement> was created with unknown prop '${key}'`);
     	});
 
     	let { $$slots = {}, $$scope } = $$props;
@@ -2498,47 +2823,57 @@ var app = (function () {
 
     	$$self.$set = $$props => {
     		if ('expanded' in $$props) $$invalidate('expanded', expanded = $$props.expanded);
+    		if ('multiple' in $$props) $$invalidate('multiple', multiple = $$props.multiple);
     		if ('expandDuration' in $$props) $$invalidate('expandDuration', expandDuration = $$props.expandDuration);
     		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
     	};
 
     	return {
     		expanded,
+    		multiple,
     		expandDuration,
     		accordeonRef,
-    		handleMouseDown,
+    		handleClick,
     		div_binding,
     		$$slots,
     		$$scope
     	};
     }
 
-    class Accordeon extends SvelteComponentDev {
+    class AccordeonElement extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, ["expanded", "expandDuration"]);
+    		init(this, options, instance$8, create_fragment$8, safe_not_equal, ["expanded", "multiple", "expandDuration"]);
     	}
 
     	get expanded() {
-    		throw new Error("<Accordeon>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<AccordeonElement>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set expanded(value) {
-    		throw new Error("<Accordeon>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<AccordeonElement>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get multiple() {
+    		throw new Error("<AccordeonElement>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set multiple(value) {
+    		throw new Error("<AccordeonElement>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	get expandDuration() {
-    		throw new Error("<Accordeon>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<AccordeonElement>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
     	set expandDuration(value) {
-    		throw new Error("<Accordeon>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		throw new Error("<AccordeonElement>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
     /* src/components/CircleNavigation/CircleNavigation.svelte generated by Svelte v3.5.4 */
 
-    const file$6 = "src/components/CircleNavigation/CircleNavigation.svelte";
+    const file$8 = "src/components/CircleNavigation/CircleNavigation.svelte";
 
     const get_elements_slot_changes = ({}) => ({});
     const get_elements_slot_context = ({}) => ({});
@@ -2546,7 +2881,7 @@ var app = (function () {
     const get_circle_slot_changes = ({}) => ({});
     const get_circle_slot_context = ({}) => ({});
 
-    // (193:4) {#if ripple}
+    // (229:6) {#if ripple}
     function create_if_block$3(ctx) {
     	var current;
 
@@ -2580,8 +2915,8 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$6(ctx) {
-    	var div2, button, t0, t1, div0, t2, div1, div2_class_value, current, dispose;
+    function create_fragment$9(ctx) {
+    	var div3, div2, button, t0, t1, div0, t2, div1, div3_class_value, current, dispose;
 
     	var if_block = (ctx.ripple) && create_if_block$3();
 
@@ -2593,6 +2928,7 @@ var app = (function () {
 
     	return {
     		c: function create() {
+    			div3 = element("div");
     			div2 = element("div");
     			button = element("button");
     			if (if_block) if_block.c();
@@ -2606,20 +2942,22 @@ var app = (function () {
     			t2 = space();
     			div1 = element("div");
 
-    			attr(button, "class", "circle-navigation_button svelte-1gaeifk");
-    			add_location(button, file$6, 191, 2, 4838);
+    			attr(button, "class", "circnav_button svelte-1i1js5w");
+    			add_location(button, file$8, 227, 4, 5440);
 
-    			attr(div0, "class", "circle-navigation_elements svelte-1gaeifk");
-    			add_location(div0, file$6, 198, 2, 4998);
-    			attr(div1, "class", "circle-navigation_background svelte-1gaeifk");
-    			add_location(div1, file$6, 202, 2, 5104);
-    			attr(div2, "class", div2_class_value = "" + ('circle-navigation ' + ctx.circleNavigationClasses) + " svelte-1gaeifk");
-    			attr(div2, "style", ctx.circleNavigationStyle);
-    			add_location(div2, file$6, 186, 0, 4707);
+    			attr(div0, "class", "circnav_subcircles svelte-1i1js5w");
+    			add_location(div0, file$8, 234, 4, 5602);
+    			attr(div1, "class", "circnav_bg svelte-1i1js5w");
+    			add_location(div1, file$8, 238, 4, 5706);
+    			attr(div2, "class", "circnav-element svelte-1i1js5w");
+    			add_location(div2, file$8, 226, 2, 5406);
+    			attr(div3, "class", div3_class_value = "" + ('circnav ' + ctx.circleNavigationClasses) + " svelte-1i1js5w");
+    			attr(div3, "style", ctx.circleNavigationStyle);
+    			add_location(div3, file$8, 222, 0, 5286);
 
     			dispose = [
     				listen(button, "mouseenter", ctx.handleMouseover),
-    				listen(div2, "mouseleave", ctx.handleMouseout)
+    				listen(div3, "mouseleave", ctx.handleMouseout)
     			];
     		},
 
@@ -2631,7 +2969,8 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div2, anchor);
+    			insert(target, div3, anchor);
+    			append(div3, div2);
     			append(div2, button);
     			if (if_block) if_block.m(button, null);
     			append(button, t0);
@@ -2689,12 +3028,12 @@ var app = (function () {
     				ctx.div1_binding(div1, null);
     			}
 
-    			if ((!current || changed.circleNavigationClasses) && div2_class_value !== (div2_class_value = "" + ('circle-navigation ' + ctx.circleNavigationClasses) + " svelte-1gaeifk")) {
-    				attr(div2, "class", div2_class_value);
+    			if ((!current || changed.circleNavigationClasses) && div3_class_value !== (div3_class_value = "" + ('circnav ' + ctx.circleNavigationClasses) + " svelte-1i1js5w")) {
+    				attr(div3, "class", div3_class_value);
     			}
 
     			if (!current || changed.circleNavigationStyle) {
-    				attr(div2, "style", ctx.circleNavigationStyle);
+    				attr(div3, "style", ctx.circleNavigationStyle);
     			}
     		},
 
@@ -2715,7 +3054,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div2);
+    				detach(div3);
     			}
 
     			if (if_block) if_block.d();
@@ -2730,16 +3069,13 @@ var app = (function () {
     	};
     }
 
-    let circleSize = 60;
+    let animationStagger = 15;
 
-    let elementSize = 40;
-
-    let animationStagger = 25;
-
-    function instance$6($$self, $$props, $$invalidate) {
+    function instance$9($$self, $$props, $$invalidate) {
     	
 
-      let { useNestedElements = true, ripple = true, color = "#ff00aa", circleContent, direction = "left" } = $$props;
+      let { useNestedElements = true, ripple = true, color = "#ff00aa", circleContent, direction = "left", circleSize = 60, elementSize = 40 } = $$props;
+
       let timeouts = [];
 
       let bgRef;
@@ -2748,36 +3084,37 @@ var app = (function () {
 
       let directions = {
         top: {
-          class: "circle-navigation--direction-top"
+          class: "circnav--direction-top"
         },
         bottom: {
-          class: "circle-navigation--direction-bottom"
+          class: "circnav--direction-bottom"
         },
         left: {
-          class: "circle-navigation--direction-left"
+          class: "circnav--direction-left"
         },
         right: {
-          class: "circle-navigation--direction-right"
+          class: "circnav--direction-right"
         }
       };
 
       onMount(() => {
-        elems = elementsRef.childNodes;
+        elems = elementsRef.children;
         // using svelte's {#each} inside a named slot renders an extra div,
         // which will be taken care of here until fixed
         // @see - https://github.com/sveltejs/svelte/issues/2080
-        if (useNestedElements) elems = elems[0].childNodes;
-        elems.forEach((el, i) => {
-          if (el.classList) el.classList.add("circle-navigation_element");
+        if (useNestedElements) elems = elems[0];
+        let entries = Array.from(elems.children);
+        entries.forEach((el, i) => {
+          if (el.classList) el.classList.add("circnav_subcircle");
         });
       });
 
       const animateIn = e => {
         clearTimeouts();
-        elems.forEach((el, i) => {
+        Array.from(elems.children).forEach((el, i) => {
           let timeout = setTimeout(() => {
             if (el.classList) {
-              el.classList.add("circle-navigation_element--active");
+              el.classList.add("circnav_subcircle--active");
             }
             elems.visible += 1;      }, i * animationStagger);
           timeouts.push(timeout);
@@ -2786,12 +3123,14 @@ var app = (function () {
 
       const animateOut = e => {
         clearTimeouts();
-        // max duration of animation
-        let maxAnimation = animationStagger * elems.length;
-        elems.forEach((el, i) => {
+        let entries = Array.from(
+          elems.querySelectorAll(".circnav_subcircle--active")
+        );
+        let maxAnimation = animationStagger * entries.length;
+        entries.forEach((el, i) => {
           setTimeout(() => {
             if (el.classList) {
-              el.classList.remove("circle-navigation_element--active");
+              el.classList.remove("circnav_subcircle--active");
             }
             // apply max duration so the first element fades last
           }, maxAnimation - i * animationStagger);
@@ -2812,7 +3151,7 @@ var app = (function () {
         animateOut();
       };
 
-    	const writable_props = ['useNestedElements', 'ripple', 'color', 'circleContent', 'direction'];
+    	const writable_props = ['useNestedElements', 'ripple', 'color', 'circleContent', 'direction', 'circleSize', 'elementSize'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<CircleNavigation> was created with unknown prop '${key}'`);
     	});
@@ -2835,6 +3174,8 @@ var app = (function () {
     		if ('color' in $$props) $$invalidate('color', color = $$props.color);
     		if ('circleContent' in $$props) $$invalidate('circleContent', circleContent = $$props.circleContent);
     		if ('direction' in $$props) $$invalidate('direction', direction = $$props.direction);
+    		if ('circleSize' in $$props) $$invalidate('circleSize', circleSize = $$props.circleSize);
+    		if ('elementSize' in $$props) $$invalidate('elementSize', elementSize = $$props.elementSize);
     		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
     	};
 
@@ -2860,6 +3201,8 @@ var app = (function () {
     		color,
     		circleContent,
     		direction,
+    		circleSize,
+    		elementSize,
     		bgRef,
     		elementsRef,
     		handleMouseover,
@@ -2876,7 +3219,7 @@ var app = (function () {
     class CircleNavigation extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, ["useNestedElements", "ripple", "color", "circleContent", "direction"]);
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, ["useNestedElements", "ripple", "color", "circleContent", "direction", "circleSize", "elementSize"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};
@@ -2924,11 +3267,27 @@ var app = (function () {
     	set direction(value) {
     		throw new Error("<CircleNavigation>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
+
+    	get circleSize() {
+    		throw new Error("<CircleNavigation>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set circleSize(value) {
+    		throw new Error("<CircleNavigation>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get elementSize() {
+    		throw new Error("<CircleNavigation>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set elementSize(value) {
+    		throw new Error("<CircleNavigation>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
     }
 
     /* src/components/CircleNavigation/CircleNavigation2.svelte generated by Svelte v3.5.4 */
 
-    const file$7 = "src/components/CircleNavigation/CircleNavigation2.svelte";
+    const file$9 = "src/components/CircleNavigation/CircleNavigation2.svelte";
 
     const get_elements_slot_changes$1 = ({}) => ({});
     const get_elements_slot_context$1 = ({}) => ({});
@@ -2936,7 +3295,7 @@ var app = (function () {
     const get_circle_slot_changes$1 = ({}) => ({});
     const get_circle_slot_context$1 = ({}) => ({});
 
-    // (130:4) {#if ripple}
+    // (131:4) {#if ripple}
     function create_if_block$4(ctx) {
     	var current;
 
@@ -2970,7 +3329,7 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$7(ctx) {
+    function create_fragment$a(ctx) {
     	var div2, button, t0, t1, div0, t2, div1, current, dispose;
 
     	var if_block = (ctx.ripple) && create_if_block$4();
@@ -2996,16 +3355,16 @@ var app = (function () {
     			t2 = space();
     			div1 = element("div");
 
-    			attr(button, "class", "circle-navigation_button svelte-1ib18bt");
-    			add_location(button, file$7, 128, 2, 3102);
+    			attr(button, "class", "circle-navigation_button svelte-14smii3");
+    			add_location(button, file$9, 129, 2, 3171);
 
     			attr(div0, "class", "circle-navigation_elements");
-    			add_location(div0, file$7, 135, 2, 3230);
-    			attr(div1, "class", "circle-navigation_background svelte-1ib18bt");
-    			add_location(div1, file$7, 139, 2, 3336);
-    			attr(div2, "class", "circle-navigation svelte-1ib18bt");
+    			add_location(div0, file$9, 136, 2, 3299);
+    			attr(div1, "class", "circle-navigation_background svelte-14smii3");
+    			add_location(div1, file$9, 140, 2, 3405);
+    			attr(div2, "class", "circle-navigation svelte-14smii3");
     			attr(div2, "style", ctx.circleNavigationStyle);
-    			add_location(div2, file$7, 122, 0, 2969);
+    			add_location(div2, file$9, 123, 0, 3038);
 
     			dispose = [
     				listen(div2, "mouseover", ctx.handleMouseover),
@@ -3116,11 +3475,11 @@ var app = (function () {
     	};
     }
 
-    let circleSize$1 = 60;
+    let circleSize = 60;
 
-    let elementSize$1 = 40;
+    let elementSize = 40;
 
-    function instance$7($$self, $$props, $$invalidate) {
+    function instance$a($$self, $$props, $$invalidate) {
     	
 
       let { useNestedElements = true, ripple = true, color = "#ff00aa", circleContent } = $$props;
@@ -3135,8 +3494,8 @@ var app = (function () {
         // @see - https://github.com/sveltejs/svelte/issues/2080
         if (useNestedElements) elems = elems[0].childNodes;
         elems.forEach((el, i) => {
-          let top = circleSize$1 / 2 - elementSize$1 / 2;
-          let left = circleSize$1 / 2 - elementSize$1 / 2;
+          let top = circleSize / 2 - elementSize / 2;
+          let left = circleSize / 2 - elementSize / 2;
           el.style.opacity = `0`;
           el.style.top = `${top}px`;
           el.style.left = `${left}px`;
@@ -3146,7 +3505,7 @@ var app = (function () {
 
       const handleMouseover = e => {
         let gapX = 10;
-        let startX = circleSize$1 + gapX;
+        let startX = circleSize + gapX;
         let maxW = startX;
 
         elems.forEach((el, i) => {
@@ -3165,7 +3524,7 @@ var app = (function () {
 
       const handleMouseout = e => {
         elems.forEach((el, i) => {
-          let left = circleSize$1 / 2 - elementSize$1 / 2;
+          let left = circleSize / 2 - elementSize / 2;
           el.style.left = `${left}px`;
         });
         bgRef.style = `
@@ -3203,8 +3562,8 @@ var app = (function () {
     	$$self.$$.update = ($$dirty = { color: 1, circleSize: 1, elementSize: 1 }) => {
     		if ($$dirty.color || $$dirty.circleSize || $$dirty.elementSize) { $$invalidate('circleNavigationStyle', circleNavigationStyle = `
     		--color: ${color};
-		--circle-size: ${circleSize$1}px;
-		--element-size: ${elementSize$1}px;
+		--circle-size: ${circleSize}px;
+		--element-size: ${elementSize}px;
 	`); }
     	};
 
@@ -3228,7 +3587,7 @@ var app = (function () {
     class CircleNavigation2 extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$7, create_fragment$7, safe_not_equal, ["useNestedElements", "ripple", "color", "circleContent"]);
+    		init(this, options, instance$a, create_fragment$a, safe_not_equal, ["useNestedElements", "ripple", "color", "circleContent"]);
 
     		const { ctx } = this.$$;
     		const props = options.props || {};
@@ -3272,9 +3631,9 @@ var app = (function () {
 
     /* src/components/Layout/Block.svelte generated by Svelte v3.5.4 */
 
-    const file$8 = "src/components/Layout/Block.svelte";
+    const file$a = "src/components/Layout/Block.svelte";
 
-    function create_fragment$8(ctx) {
+    function create_fragment$b(ctx) {
     	var div, div_class_value, current;
 
     	const default_slot_1 = ctx.$$slots.default;
@@ -3286,8 +3645,8 @@ var app = (function () {
 
     			if (default_slot) default_slot.c();
 
-    			attr(div, "class", div_class_value = "" + ("block " + ctx.classes) + " svelte-gshpik");
-    			add_location(div, file$8, 24, 0, 397);
+    			attr(div, "class", div_class_value = "" + ("block " + ctx.classes) + " svelte-1tvtllh");
+    			add_location(div, file$a, 25, 0, 454);
     		},
 
     		l: function claim(nodes) {
@@ -3310,7 +3669,7 @@ var app = (function () {
     				default_slot.p(get_slot_changes(default_slot_1, ctx, changed, null), get_slot_context(default_slot_1, ctx, null));
     			}
 
-    			if ((!current || changed.classes) && div_class_value !== (div_class_value = "" + ("block " + ctx.classes) + " svelte-gshpik")) {
+    			if ((!current || changed.classes) && div_class_value !== (div_class_value = "" + ("block " + ctx.classes) + " svelte-1tvtllh")) {
     				attr(div, "class", div_class_value);
     			}
     		},
@@ -3336,7 +3695,7 @@ var app = (function () {
     	};
     }
 
-    function instance$8($$self, $$props, $$invalidate) {
+    function instance$b($$self, $$props, $$invalidate) {
     	let { mode = "default" } = $$props;
 
       let modes = {
@@ -3369,7 +3728,7 @@ var app = (function () {
     class Block extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$8, create_fragment$8, safe_not_equal, ["mode"]);
+    		init(this, options, instance$b, create_fragment$b, safe_not_equal, ["mode"]);
     	}
 
     	get mode() {
@@ -3383,9 +3742,9 @@ var app = (function () {
 
     /* src/components/Layout/Screen.svelte generated by Svelte v3.5.4 */
 
-    const file$9 = "src/components/Layout/Screen.svelte";
+    const file$b = "src/components/Layout/Screen.svelte";
 
-    function create_fragment$9(ctx) {
+    function create_fragment$c(ctx) {
     	var div, current;
 
     	const default_slot_1 = ctx.$$slots.default;
@@ -3397,8 +3756,8 @@ var app = (function () {
 
     			if (default_slot) default_slot.c();
 
-    			attr(div, "class", "screen svelte-l301wc");
-    			add_location(div, file$9, 9, 0, 89);
+    			attr(div, "class", "screen svelte-10jojy2");
+    			add_location(div, file$b, 10, 0, 147);
     		},
 
     		l: function claim(nodes) {
@@ -3443,7 +3802,7 @@ var app = (function () {
     	};
     }
 
-    function instance$9($$self, $$props, $$invalidate) {
+    function instance$c($$self, $$props, $$invalidate) {
     	let { $$slots = {}, $$scope } = $$props;
 
     	$$self.$set = $$props => {
@@ -3456,15 +3815,15 @@ var app = (function () {
     class Screen extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$9, create_fragment$9, safe_not_equal, []);
+    		init(this, options, instance$c, create_fragment$c, safe_not_equal, []);
     	}
     }
 
     /* src/assets/icons/Check.svelte generated by Svelte v3.5.4 */
 
-    const file$a = "src/assets/icons/Check.svelte";
+    const file$c = "src/assets/icons/Check.svelte";
 
-    function create_fragment$a(ctx) {
+    function create_fragment$d(ctx) {
     	var svg, path0, path1;
 
     	return {
@@ -3474,115 +3833,9 @@ var app = (function () {
     			path1 = svg_element("path");
     			attr(path0, "d", "M0 0h24v24H0z");
     			attr(path0, "fill", "none");
-    			add_location(path0, file$a, 0, 83, 83);
+    			add_location(path0, file$c, 0, 83, 83);
     			attr(path1, "d", "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z");
-    			add_location(path1, file$a, 0, 120, 120);
-    			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			attr(svg, "width", "24");
-    			attr(svg, "height", "24");
-    			attr(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$a, 0, 0, 0);
-    		},
-
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, svg, anchor);
-    			append(svg, path0);
-    			append(svg, path1);
-    		},
-
-    		p: noop,
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(svg);
-    			}
-    		}
-    	};
-    }
-
-    class Check extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, null, create_fragment$a, safe_not_equal, []);
-    	}
-    }
-
-    /* src/assets/icons/Close.svelte generated by Svelte v3.5.4 */
-
-    const file$b = "src/assets/icons/Close.svelte";
-
-    function create_fragment$b(ctx) {
-    	var svg, path0, path1;
-
-    	return {
-    		c: function create() {
-    			svg = svg_element("svg");
-    			path0 = svg_element("path");
-    			path1 = svg_element("path");
-    			attr(path0, "d", "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41\n    17.59 19 19 17.59 13.41 12z");
-    			add_location(path0, file$b, 5, 2, 94);
-    			attr(path1, "d", "M0 0h24v24H0z");
-    			attr(path1, "fill", "none");
-    			add_location(path1, file$b, 8, 2, 219);
-    			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
-    			attr(svg, "width", "24");
-    			attr(svg, "height", "24");
-    			attr(svg, "viewBox", "0 0 24 24");
-    			add_location(svg, file$b, 0, 0, 0);
-    		},
-
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, svg, anchor);
-    			append(svg, path0);
-    			append(svg, path1);
-    		},
-
-    		p: noop,
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(svg);
-    			}
-    		}
-    	};
-    }
-
-    class Close extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, null, create_fragment$b, safe_not_equal, []);
-    	}
-    }
-
-    /* src/assets/icons/Favorite.svelte generated by Svelte v3.5.4 */
-
-    const file$c = "src/assets/icons/Favorite.svelte";
-
-    function create_fragment$c(ctx) {
-    	var svg, path0, path1;
-
-    	return {
-    		c: function create() {
-    			svg = svg_element("svg");
-    			path0 = svg_element("path");
-    			path1 = svg_element("path");
-    			attr(path0, "d", "M0 0h24v24H0z");
-    			attr(path0, "fill", "none");
-    			add_location(path0, file$c, 5, 2, 94);
-    			attr(path1, "d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0\n    3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4\n    6.86-8.55 11.54L12 21.35z");
-    			add_location(path1, file$c, 6, 2, 135);
+    			add_location(path1, file$c, 0, 120, 120);
     			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr(svg, "width", "24");
     			attr(svg, "height", "24");
@@ -3612,34 +3865,30 @@ var app = (function () {
     	};
     }
 
-    class Favorite extends SvelteComponentDev {
+    class Check extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, null, create_fragment$c, safe_not_equal, []);
+    		init(this, options, null, create_fragment$d, safe_not_equal, []);
     	}
     }
 
-    /* src/assets/icons/Star.svelte generated by Svelte v3.5.4 */
+    /* src/assets/icons/Close.svelte generated by Svelte v3.5.4 */
 
-    const file$d = "src/assets/icons/Star.svelte";
+    const file$d = "src/assets/icons/Close.svelte";
 
-    function create_fragment$d(ctx) {
-    	var svg, path0, path1, path2;
+    function create_fragment$e(ctx) {
+    	var svg, path0, path1;
 
     	return {
     		c: function create() {
     			svg = svg_element("svg");
     			path0 = svg_element("path");
     			path1 = svg_element("path");
-    			path2 = svg_element("path");
-    			attr(path0, "d", "M0 0h24v24H0z");
-    			attr(path0, "fill", "none");
+    			attr(path0, "d", "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41\n    17.59 19 19 17.59 13.41 12z");
     			add_location(path0, file$d, 5, 2, 94);
-    			attr(path1, "d", "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2\n    9.24l5.46 4.73L5.82 21z");
-    			add_location(path1, file$d, 6, 2, 135);
-    			attr(path2, "d", "M0 0h24v24H0z");
-    			attr(path2, "fill", "none");
-    			add_location(path2, file$d, 9, 2, 247);
+    			attr(path1, "d", "M0 0h24v24H0z");
+    			attr(path1, "fill", "none");
+    			add_location(path1, file$d, 8, 2, 219);
     			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr(svg, "width", "24");
     			attr(svg, "height", "24");
@@ -3655,7 +3904,6 @@ var app = (function () {
     			insert(target, svg, anchor);
     			append(svg, path0);
     			append(svg, path1);
-    			append(svg, path2);
     		},
 
     		p: noop,
@@ -3670,18 +3918,18 @@ var app = (function () {
     	};
     }
 
-    class Star extends SvelteComponentDev {
+    class Close extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, null, create_fragment$d, safe_not_equal, []);
+    		init(this, options, null, create_fragment$e, safe_not_equal, []);
     	}
     }
 
-    /* src/assets/icons/Phone.svelte generated by Svelte v3.5.4 */
+    /* src/assets/icons/Favorite.svelte generated by Svelte v3.5.4 */
 
-    const file$e = "src/assets/icons/Phone.svelte";
+    const file$e = "src/assets/icons/Favorite.svelte";
 
-    function create_fragment$e(ctx) {
+    function create_fragment$f(ctx) {
     	var svg, path0, path1;
 
     	return {
@@ -3692,7 +3940,7 @@ var app = (function () {
     			attr(path0, "d", "M0 0h24v24H0z");
     			attr(path0, "fill", "none");
     			add_location(path0, file$e, 5, 2, 94);
-    			attr(path1, "d", "M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24\n    1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39\n    0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57\n    3.57.11.35.03.74-.25 1.02l-2.2 2.2z");
+    			attr(path1, "d", "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0\n    3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4\n    6.86-8.55 11.54L12 21.35z");
     			add_location(path1, file$e, 6, 2, 135);
     			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr(svg, "width", "24");
@@ -3723,16 +3971,127 @@ var app = (function () {
     	};
     }
 
+    class Favorite extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, null, create_fragment$f, safe_not_equal, []);
+    	}
+    }
+
+    /* src/assets/icons/Star.svelte generated by Svelte v3.5.4 */
+
+    const file$f = "src/assets/icons/Star.svelte";
+
+    function create_fragment$g(ctx) {
+    	var svg, path0, path1, path2;
+
+    	return {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			path0 = svg_element("path");
+    			path1 = svg_element("path");
+    			path2 = svg_element("path");
+    			attr(path0, "d", "M0 0h24v24H0z");
+    			attr(path0, "fill", "none");
+    			add_location(path0, file$f, 5, 2, 94);
+    			attr(path1, "d", "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2\n    9.24l5.46 4.73L5.82 21z");
+    			add_location(path1, file$f, 6, 2, 135);
+    			attr(path2, "d", "M0 0h24v24H0z");
+    			attr(path2, "fill", "none");
+    			add_location(path2, file$f, 9, 2, 247);
+    			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr(svg, "width", "24");
+    			attr(svg, "height", "24");
+    			attr(svg, "viewBox", "0 0 24 24");
+    			add_location(svg, file$f, 0, 0, 0);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, svg, anchor);
+    			append(svg, path0);
+    			append(svg, path1);
+    			append(svg, path2);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(svg);
+    			}
+    		}
+    	};
+    }
+
+    class Star extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, null, create_fragment$g, safe_not_equal, []);
+    	}
+    }
+
+    /* src/assets/icons/Phone.svelte generated by Svelte v3.5.4 */
+
+    const file$g = "src/assets/icons/Phone.svelte";
+
+    function create_fragment$h(ctx) {
+    	var svg, path0, path1;
+
+    	return {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			path0 = svg_element("path");
+    			path1 = svg_element("path");
+    			attr(path0, "d", "M0 0h24v24H0z");
+    			attr(path0, "fill", "none");
+    			add_location(path0, file$g, 5, 2, 94);
+    			attr(path1, "d", "M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24\n    1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39\n    0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57\n    3.57.11.35.03.74-.25 1.02l-2.2 2.2z");
+    			add_location(path1, file$g, 6, 2, 135);
+    			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr(svg, "width", "24");
+    			attr(svg, "height", "24");
+    			attr(svg, "viewBox", "0 0 24 24");
+    			add_location(svg, file$g, 0, 0, 0);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, svg, anchor);
+    			append(svg, path0);
+    			append(svg, path1);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(svg);
+    			}
+    		}
+    	};
+    }
+
     class Phone extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, null, create_fragment$e, safe_not_equal, []);
+    		init(this, options, null, create_fragment$h, safe_not_equal, []);
     	}
     }
 
     /* src/demo/UiComponents.svelte generated by Svelte v3.5.4 */
 
-    const file$f = "src/demo/UiComponents.svelte";
+    const file$h = "src/demo/UiComponents.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = Object.create(ctx);
@@ -3741,8 +4100,36 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (105:0) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
-    function create_default_slot_35(ctx) {
+    function get_each_context_1(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.elem = list[i];
+    	child_ctx.i = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_2(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.elem = list[i];
+    	child_ctx.i = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_3(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.elem = list[i];
+    	child_ctx.i = i;
+    	return child_ctx;
+    }
+
+    function get_each_context_4(ctx, list, i) {
+    	const child_ctx = Object.create(ctx);
+    	child_ctx.elem = list[i];
+    	child_ctx.i = i;
+    	return child_ctx;
+    }
+
+    // (146:0) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
+    function create_default_slot_39(ctx) {
     	var t, current;
 
     	var ripple = new Ripple({
@@ -3790,8 +4177,8 @@ var app = (function () {
     	};
     }
 
-    // (115:6) <div slot="circle">
-    function create_circle_slot_3(ctx) {
+    // (157:8) <div slot="circle">
+    function create_circle_slot_4(ctx) {
     	var div, current;
 
     	var check = new Check({ $$inline: true });
@@ -3801,7 +4188,7 @@ var app = (function () {
     			div = element("div");
     			check.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$f, 114, 6, 3096);
+    			add_location(div, file$h, 156, 8, 4246);
     		},
 
     		m: function mount(target, anchor) {
@@ -3832,8 +4219,8 @@ var app = (function () {
     	};
     }
 
-    // (119:8) {#each new Array(3).fill('') as elem, i}
-    function create_each_block(ctx) {
+    // (161:10) {#each new Array(3).fill('') as elem, i}
+    function create_each_block_4(ctx) {
     	var div, t0, t1, current;
 
     	var check = new Check({ $$inline: true });
@@ -3852,7 +4239,7 @@ var app = (function () {
     			t1 = space();
     			set_style(div, "fill", "white");
     			set_style(div, "cursor", "pointer");
-    			add_location(div, file$f, 119, 10, 3234);
+    			add_location(div, file$h, 161, 12, 4394);
     		},
 
     		m: function mount(target, anchor) {
@@ -3893,17 +4280,21 @@ var app = (function () {
     	};
     }
 
-    // (118:6) <div slot="elements">
-    function create_elements_slot_3(ctx) {
+    // (160:8) <div slot="elements">
+    function create_elements_slot_4(ctx) {
     	var div, current;
 
-    	var each_value = new Array(3).fill('');
+    	var each_value_4 = new ctx.Array(3).fill('');
 
     	var each_blocks = [];
 
-    	for (var i = 0; i < each_value.length; i += 1) {
-    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	for (var i = 0; i < each_value_4.length; i += 1) {
+    		each_blocks[i] = create_each_block_4(get_each_context_4(ctx, each_value_4, i));
     	}
+
+    	const out = i => transition_out(each_blocks[i], 1, () => {
+    		each_blocks[i] = null;
+    	});
 
     	return {
     		c: function create() {
@@ -3913,7 +4304,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
     			attr(div, "slot", "elements");
-    			add_location(div, file$f, 117, 6, 3153);
+    			add_location(div, file$h, 159, 8, 4309);
     		},
 
     		m: function mount(target, anchor) {
@@ -3926,11 +4317,33 @@ var app = (function () {
     			current = true;
     		},
 
-    		p: noop,
+    		p: function update(changed, ctx) {
+    			if (changed.Array) {
+    				each_value_4 = new ctx.Array(3).fill('');
+
+    				for (var i = 0; i < each_value_4.length; i += 1) {
+    					const child_ctx = get_each_context_4(ctx, each_value_4, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_4();
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div, null);
+    					}
+    				}
+
+    				group_outros();
+    				for (; i < each_blocks.length; i += 1) out(i);
+    				check_outros();
+    			}
+    		},
 
     		i: function intro(local) {
     			if (current) return;
-    			for (var i = 0; i < each_value.length; i += 1) transition_in(each_blocks[i]);
+    			for (var i = 0; i < each_value_4.length; i += 1) transition_in(each_blocks[i]);
 
     			current = true;
     		},
@@ -3952,7 +4365,1029 @@ var app = (function () {
     	};
     }
 
-    // (114:4) <CircleNavigation2 color={randomColor}>
+    // (156:6) <CircleNavigation2 color={randomColor}>
+    function create_default_slot_38(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (173:6) <div slot="circle">
+    function create_circle_slot_3(ctx) {
+    	var div, current;
+
+    	var close = new Close({ $$inline: true });
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			close.$$.fragment.c();
+    			attr(div, "slot", "circle");
+    			add_location(div, file$h, 172, 6, 4660);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			destroy_component(close, );
+    		}
+    	};
+    }
+
+    // (181:8) {#each Array.from({ length: 6 }, () => ({           icon: randomIcon()         })) as elem, i}
+    function create_each_block_3(ctx) {
+    	var div, t0, t1, current;
+
+    	var switch_value = ctx.elem.icon;
+
+    	function switch_props(ctx) {
+    		return { $$inline: true };
+    	}
+
+    	if (switch_value) {
+    		var switch_instance = new switch_value(switch_props());
+    	}
+
+    	var ripple = new Ripple({
+    		props: { color: "#000000" },
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			if (switch_instance) switch_instance.$$.fragment.c();
+    			t0 = space();
+    			ripple.$$.fragment.c();
+    			t1 = space();
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-12lxs4z");
+    			add_location(div, file$h, 183, 10, 4956);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+
+    			if (switch_instance) {
+    				mount_component(switch_instance, div, null);
+    			}
+
+    			append(div, t0);
+    			mount_component(ripple, div, null);
+    			append(div, t1);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (switch_value !== (switch_value = ctx.elem.icon)) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+    					transition_out(old_component.$$.fragment, 1, () => {
+    						destroy_component(old_component);
+    					});
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props());
+
+    					switch_instance.$$.fragment.c();
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, div, t0);
+    				} else {
+    					switch_instance = null;
+    				}
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(switch_instance.$$.fragment, local);
+
+    			transition_in(ripple.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			transition_out(ripple.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if (switch_instance) destroy_component(switch_instance, );
+
+    			destroy_component(ripple, );
+    		}
+    	};
+    }
+
+    // (176:6) <div slot="elements">
+    function create_elements_slot_3(ctx) {
+    	var div0, div1, t0, t1, current;
+
+    	var ripple = new Ripple({
+    		props: { color: "#ffff00" },
+    		$$inline: true
+    	});
+
+    	var each_value_3 = ctx.Array.from({ length: 6 }, ctx.func);
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value_3.length; i += 1) {
+    		each_blocks[i] = create_each_block_3(get_each_context_3(ctx, each_value_3, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	return {
+    		c: function create() {
+    			div0 = element("div");
+    			div1 = element("div");
+    			t0 = text("Right\n          ");
+    			ripple.$$.fragment.c();
+    			t1 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-12lxs4z");
+    			add_location(div1, file$h, 176, 8, 4747);
+    			attr(div0, "slot", "elements");
+    			add_location(div0, file$h, 175, 6, 4717);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div0, anchor);
+    			append(div0, div1);
+    			append(div1, t0);
+    			mount_component(ripple, div1, null);
+    			append(div0, t1);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div0, null);
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.Array) {
+    				each_value_3 = ctx.Array.from({ length: 6 }, ctx.func);
+
+    				for (var i = 0; i < each_value_3.length; i += 1) {
+    					const child_ctx = get_each_context_3(ctx, each_value_3, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_3(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div0, null);
+    					}
+    				}
+
+    				group_outros();
+    				for (; i < each_blocks.length; i += 1) out(i);
+    				check_outros();
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(ripple.$$.fragment, local);
+
+    			for (var i = 0; i < each_value_3.length; i += 1) transition_in(each_blocks[i]);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(ripple.$$.fragment, local);
+
+    			each_blocks = each_blocks.filter(Boolean);
+    			for (let i = 0; i < each_blocks.length; i += 1) transition_out(each_blocks[i]);
+
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div0);
+    			}
+
+    			destroy_component(ripple, );
+
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    // (171:4) <CircleNavigation color={randomColor} direction="right">
+    function create_default_slot_37(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (194:8) <div slot="circle">
+    function create_circle_slot_2(ctx) {
+    	var div, current;
+
+    	var close = new Close({ $$inline: true });
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			close.$$.fragment.c();
+    			attr(div, "slot", "circle");
+    			add_location(div, file$h, 193, 8, 5230);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			destroy_component(close, );
+    		}
+    	};
+    }
+
+    // (199:10) {#each Array.from({ length: 2 }, () => ({             icon: randomIcon()           })) as elem, i}
+    function create_each_block_2(ctx) {
+    	var div, t0, t1, current;
+
+    	var switch_value = ctx.elem.icon;
+
+    	function switch_props(ctx) {
+    		return { $$inline: true };
+    	}
+
+    	if (switch_value) {
+    		var switch_instance = new switch_value(switch_props());
+    	}
+
+    	var ripple = new Ripple({
+    		props: { color: "#000000" },
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			if (switch_instance) switch_instance.$$.fragment.c();
+    			t0 = space();
+    			ripple.$$.fragment.c();
+    			t1 = space();
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-12lxs4z");
+    			add_location(div, file$h, 201, 12, 5483);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+
+    			if (switch_instance) {
+    				mount_component(switch_instance, div, null);
+    			}
+
+    			append(div, t0);
+    			mount_component(ripple, div, null);
+    			append(div, t1);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (switch_value !== (switch_value = ctx.elem.icon)) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+    					transition_out(old_component.$$.fragment, 1, () => {
+    						destroy_component(old_component);
+    					});
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props());
+
+    					switch_instance.$$.fragment.c();
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, div, t0);
+    				} else {
+    					switch_instance = null;
+    				}
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(switch_instance.$$.fragment, local);
+
+    			transition_in(ripple.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			transition_out(ripple.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if (switch_instance) destroy_component(switch_instance, );
+
+    			destroy_component(ripple, );
+    		}
+    	};
+    }
+
+    // (197:8) <div slot="elements">
+    function create_elements_slot_2(ctx) {
+    	var div0, div1, t_1, current;
+
+    	var each_value_2 = ctx.Array.from({ length: 2 }, ctx.func_1);
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value_2.length; i += 1) {
+    		each_blocks[i] = create_each_block_2(get_each_context_2(ctx, each_value_2, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	return {
+    		c: function create() {
+    			div0 = element("div");
+    			div1 = element("div");
+    			div1.textContent = "Bot";
+    			t_1 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-12lxs4z");
+    			add_location(div1, file$h, 197, 10, 5325);
+    			attr(div0, "slot", "elements");
+    			add_location(div0, file$h, 196, 8, 5293);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div0, anchor);
+    			append(div0, div1);
+    			append(div0, t_1);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div0, null);
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.Array) {
+    				each_value_2 = ctx.Array.from({ length: 2 }, ctx.func_1);
+
+    				for (var i = 0; i < each_value_2.length; i += 1) {
+    					const child_ctx = get_each_context_2(ctx, each_value_2, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_2(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div0, null);
+    					}
+    				}
+
+    				group_outros();
+    				for (; i < each_blocks.length; i += 1) out(i);
+    				check_outros();
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			for (var i = 0; i < each_value_2.length; i += 1) transition_in(each_blocks[i]);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+    			for (let i = 0; i < each_blocks.length; i += 1) transition_out(each_blocks[i]);
+
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div0);
+    			}
+
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    // (193:6) <CircleNavigation color={randomColor} direction="bottom">
+    function create_default_slot_36(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (211:8) <div slot="circle">
+    function create_circle_slot_1(ctx) {
+    	var div, current;
+
+    	var close = new Close({ $$inline: true });
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			close.$$.fragment.c();
+    			attr(div, "slot", "circle");
+    			add_location(div, file$h, 210, 8, 5756);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			destroy_component(close, );
+    		}
+    	};
+    }
+
+    // (216:10) {#each Array.from({ length: 2 }, () => ({             icon: randomIcon()           })) as elem, i}
+    function create_each_block_1(ctx) {
+    	var div, t0, t1, current;
+
+    	var switch_value = ctx.elem.icon;
+
+    	function switch_props(ctx) {
+    		return { $$inline: true };
+    	}
+
+    	if (switch_value) {
+    		var switch_instance = new switch_value(switch_props());
+    	}
+
+    	var ripple = new Ripple({
+    		props: { color: "#000000" },
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			if (switch_instance) switch_instance.$$.fragment.c();
+    			t0 = space();
+    			ripple.$$.fragment.c();
+    			t1 = space();
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-12lxs4z");
+    			add_location(div, file$h, 218, 12, 6009);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+
+    			if (switch_instance) {
+    				mount_component(switch_instance, div, null);
+    			}
+
+    			append(div, t0);
+    			mount_component(ripple, div, null);
+    			append(div, t1);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (switch_value !== (switch_value = ctx.elem.icon)) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+    					transition_out(old_component.$$.fragment, 1, () => {
+    						destroy_component(old_component);
+    					});
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props());
+
+    					switch_instance.$$.fragment.c();
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, div, t0);
+    				} else {
+    					switch_instance = null;
+    				}
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(switch_instance.$$.fragment, local);
+
+    			transition_in(ripple.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			transition_out(ripple.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if (switch_instance) destroy_component(switch_instance, );
+
+    			destroy_component(ripple, );
+    		}
+    	};
+    }
+
+    // (214:8) <div slot="elements">
+    function create_elements_slot_1(ctx) {
+    	var div0, div1, t_1, current;
+
+    	var each_value_1 = ctx.Array.from({ length: 2 }, ctx.func_2);
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value_1.length; i += 1) {
+    		each_blocks[i] = create_each_block_1(get_each_context_1(ctx, each_value_1, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	return {
+    		c: function create() {
+    			div0 = element("div");
+    			div1 = element("div");
+    			div1.textContent = "Top";
+    			t_1 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-12lxs4z");
+    			add_location(div1, file$h, 214, 10, 5851);
+    			attr(div0, "slot", "elements");
+    			add_location(div0, file$h, 213, 8, 5819);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div0, anchor);
+    			append(div0, div1);
+    			append(div0, t_1);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div0, null);
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.Array) {
+    				each_value_1 = ctx.Array.from({ length: 2 }, ctx.func_2);
+
+    				for (var i = 0; i < each_value_1.length; i += 1) {
+    					const child_ctx = get_each_context_1(ctx, each_value_1, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block_1(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div0, null);
+    					}
+    				}
+
+    				group_outros();
+    				for (; i < each_blocks.length; i += 1) out(i);
+    				check_outros();
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			for (var i = 0; i < each_value_1.length; i += 1) transition_in(each_blocks[i]);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+    			for (let i = 0; i < each_blocks.length; i += 1) transition_out(each_blocks[i]);
+
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div0);
+    			}
+
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    // (210:6) <CircleNavigation color={randomColor} direction="top">
+    function create_default_slot_35(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (228:6) <div slot="circle">
+    function create_circle_slot(ctx) {
+    	var div, current;
+
+    	var close = new Close({ $$inline: true });
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			close.$$.fragment.c();
+    			attr(div, "slot", "circle");
+    			add_location(div, file$h, 227, 6, 6289);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(close, div, null);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(close.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(close.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			destroy_component(close, );
+    		}
+    	};
+    }
+
+    // (233:8) {#each Array.from({ length: 8 }, () => ({           icon: randomIcon()         })) as elem, i}
+    function create_each_block(ctx) {
+    	var div, t0, t1, current;
+
+    	var switch_value = ctx.elem.icon;
+
+    	function switch_props(ctx) {
+    		return { $$inline: true };
+    	}
+
+    	if (switch_value) {
+    		var switch_instance = new switch_value(switch_props());
+    	}
+
+    	var ripple = new Ripple({
+    		props: { color: "#000000" },
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			if (switch_instance) switch_instance.$$.fragment.c();
+    			t0 = space();
+    			ripple.$$.fragment.c();
+    			t1 = space();
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-12lxs4z");
+    			add_location(div, file$h, 235, 10, 6527);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+
+    			if (switch_instance) {
+    				mount_component(switch_instance, div, null);
+    			}
+
+    			append(div, t0);
+    			mount_component(ripple, div, null);
+    			append(div, t1);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (switch_value !== (switch_value = ctx.elem.icon)) {
+    				if (switch_instance) {
+    					group_outros();
+    					const old_component = switch_instance;
+    					transition_out(old_component.$$.fragment, 1, () => {
+    						destroy_component(old_component);
+    					});
+    					check_outros();
+    				}
+
+    				if (switch_value) {
+    					switch_instance = new switch_value(switch_props());
+
+    					switch_instance.$$.fragment.c();
+    					transition_in(switch_instance.$$.fragment, 1);
+    					mount_component(switch_instance, div, t0);
+    				} else {
+    					switch_instance = null;
+    				}
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(switch_instance.$$.fragment, local);
+
+    			transition_in(ripple.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			if (switch_instance) transition_out(switch_instance.$$.fragment, local);
+    			transition_out(ripple.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if (switch_instance) destroy_component(switch_instance, );
+
+    			destroy_component(ripple, );
+    		}
+    	};
+    }
+
+    // (231:6) <div slot="elements">
+    function create_elements_slot(ctx) {
+    	var div0, div1, t_1, current;
+
+    	var each_value = ctx.Array.from({ length: 8 }, ctx.func_3);
+
+    	var each_blocks = [];
+
+    	for (var i = 0; i < each_value.length; i += 1) {
+    		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
+    	}
+
+    	const out = i => transition_out(each_blocks[i], 1, () => {
+    		each_blocks[i] = null;
+    	});
+
+    	return {
+    		c: function create() {
+    			div0 = element("div");
+    			div1 = element("div");
+    			div1.textContent = "Left";
+    			t_1 = space();
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].c();
+    			}
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-12lxs4z");
+    			add_location(div1, file$h, 231, 8, 6376);
+    			attr(div0, "slot", "elements");
+    			add_location(div0, file$h, 230, 6, 6346);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div0, anchor);
+    			append(div0, div1);
+    			append(div0, t_1);
+
+    			for (var i = 0; i < each_blocks.length; i += 1) {
+    				each_blocks[i].m(div0, null);
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.Array) {
+    				each_value = ctx.Array.from({ length: 8 }, ctx.func_3);
+
+    				for (var i = 0; i < each_value.length; i += 1) {
+    					const child_ctx = get_each_context(ctx, each_value, i);
+
+    					if (each_blocks[i]) {
+    						each_blocks[i].p(changed, child_ctx);
+    						transition_in(each_blocks[i], 1);
+    					} else {
+    						each_blocks[i] = create_each_block(child_ctx);
+    						each_blocks[i].c();
+    						transition_in(each_blocks[i], 1);
+    						each_blocks[i].m(div0, null);
+    					}
+    				}
+
+    				group_outros();
+    				for (; i < each_blocks.length; i += 1) out(i);
+    				check_outros();
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			for (var i = 0; i < each_value.length; i += 1) transition_in(each_blocks[i]);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			each_blocks = each_blocks.filter(Boolean);
+    			for (let i = 0; i < each_blocks.length; i += 1) transition_out(each_blocks[i]);
+
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div0);
+    			}
+
+    			destroy_each(each_blocks, detaching);
+    		}
+    	};
+    }
+
+    // (227:4) <CircleNavigation color={randomColor} direction="left">
     function create_default_slot_34(ctx) {
     	var t;
 
@@ -3977,857 +5412,17 @@ var app = (function () {
     	};
     }
 
-    // (129:6) <div slot="circle">
-    function create_circle_slot_2(ctx) {
-    	var div, current;
-
-    	var close = new Close({ $$inline: true });
-
-    	return {
-    		c: function create() {
-    			div = element("div");
-    			close.$$.fragment.c();
-    			attr(div, "slot", "circle");
-    			add_location(div, file$f, 128, 6, 3458);
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			mount_component(close, div, null);
-    			current = true;
-    		},
-
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(close.$$.fragment, local);
-
-    			current = true;
-    		},
-
-    		o: function outro(local) {
-    			transition_out(close.$$.fragment, local);
-    			current = false;
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(div);
-    			}
-
-    			destroy_component(close, );
-    		}
-    	};
-    }
-
-    // (132:6) <div slot="elements">
-    function create_elements_slot_2(ctx) {
-    	var div0, div1, t0, t1, div2, t2, t3, div3, t4, t5, div4, t6, t7, div5, t8, t9, div6, t10, current;
-
-    	var favorite0 = new Favorite({ $$inline: true });
-
-    	var ripple0 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var star0 = new Star({ $$inline: true });
-
-    	var ripple1 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var phone0 = new Phone({ $$inline: true });
-
-    	var ripple2 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var favorite1 = new Favorite({ $$inline: true });
-
-    	var ripple3 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var star1 = new Star({ $$inline: true });
-
-    	var ripple4 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var phone1 = new Phone({ $$inline: true });
-
-    	var ripple5 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	return {
-    		c: function create() {
-    			div0 = element("div");
-    			div1 = element("div");
-    			favorite0.$$.fragment.c();
-    			t0 = space();
-    			ripple0.$$.fragment.c();
-    			t1 = space();
-    			div2 = element("div");
-    			star0.$$.fragment.c();
-    			t2 = space();
-    			ripple1.$$.fragment.c();
-    			t3 = space();
-    			div3 = element("div");
-    			phone0.$$.fragment.c();
-    			t4 = space();
-    			ripple2.$$.fragment.c();
-    			t5 = space();
-    			div4 = element("div");
-    			favorite1.$$.fragment.c();
-    			t6 = space();
-    			ripple3.$$.fragment.c();
-    			t7 = space();
-    			div5 = element("div");
-    			star1.$$.fragment.c();
-    			t8 = space();
-    			ripple4.$$.fragment.c();
-    			t9 = space();
-    			div6 = element("div");
-    			phone1.$$.fragment.c();
-    			t10 = space();
-    			ripple5.$$.fragment.c();
-    			set_style(div1, "fill", "white");
-    			set_style(div1, "cursor", "pointer");
-    			add_location(div1, file$f, 133, 8, 3546);
-    			set_style(div2, "fill", "white");
-    			set_style(div2, "cursor", "pointer");
-    			add_location(div2, file$f, 138, 8, 3672);
-    			set_style(div3, "fill", "white");
-    			set_style(div3, "cursor", "pointer");
-    			add_location(div3, file$f, 143, 8, 3794);
-    			set_style(div4, "fill", "white");
-    			set_style(div4, "cursor", "pointer");
-    			add_location(div4, file$f, 147, 8, 3916);
-    			set_style(div5, "fill", "white");
-    			set_style(div5, "cursor", "pointer");
-    			add_location(div5, file$f, 152, 8, 4042);
-    			set_style(div6, "fill", "white");
-    			set_style(div6, "cursor", "pointer");
-    			add_location(div6, file$f, 157, 8, 4164);
-    			attr(div0, "slot", "elements");
-    			add_location(div0, file$f, 131, 6, 3515);
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, div0, anchor);
-    			append(div0, div1);
-    			mount_component(favorite0, div1, null);
-    			append(div1, t0);
-    			mount_component(ripple0, div1, null);
-    			append(div0, t1);
-    			append(div0, div2);
-    			mount_component(star0, div2, null);
-    			append(div2, t2);
-    			mount_component(ripple1, div2, null);
-    			append(div0, t3);
-    			append(div0, div3);
-    			mount_component(phone0, div3, null);
-    			append(div3, t4);
-    			mount_component(ripple2, div3, null);
-    			append(div0, t5);
-    			append(div0, div4);
-    			mount_component(favorite1, div4, null);
-    			append(div4, t6);
-    			mount_component(ripple3, div4, null);
-    			append(div0, t7);
-    			append(div0, div5);
-    			mount_component(star1, div5, null);
-    			append(div5, t8);
-    			mount_component(ripple4, div5, null);
-    			append(div0, t9);
-    			append(div0, div6);
-    			mount_component(phone1, div6, null);
-    			append(div6, t10);
-    			mount_component(ripple5, div6, null);
-    			current = true;
-    		},
-
-    		p: noop,
-
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(favorite0.$$.fragment, local);
-
-    			transition_in(ripple0.$$.fragment, local);
-
-    			transition_in(star0.$$.fragment, local);
-
-    			transition_in(ripple1.$$.fragment, local);
-
-    			transition_in(phone0.$$.fragment, local);
-
-    			transition_in(ripple2.$$.fragment, local);
-
-    			transition_in(favorite1.$$.fragment, local);
-
-    			transition_in(ripple3.$$.fragment, local);
-
-    			transition_in(star1.$$.fragment, local);
-
-    			transition_in(ripple4.$$.fragment, local);
-
-    			transition_in(phone1.$$.fragment, local);
-
-    			transition_in(ripple5.$$.fragment, local);
-
-    			current = true;
-    		},
-
-    		o: function outro(local) {
-    			transition_out(favorite0.$$.fragment, local);
-    			transition_out(ripple0.$$.fragment, local);
-    			transition_out(star0.$$.fragment, local);
-    			transition_out(ripple1.$$.fragment, local);
-    			transition_out(phone0.$$.fragment, local);
-    			transition_out(ripple2.$$.fragment, local);
-    			transition_out(favorite1.$$.fragment, local);
-    			transition_out(ripple3.$$.fragment, local);
-    			transition_out(star1.$$.fragment, local);
-    			transition_out(ripple4.$$.fragment, local);
-    			transition_out(phone1.$$.fragment, local);
-    			transition_out(ripple5.$$.fragment, local);
-    			current = false;
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(div0);
-    			}
-
-    			destroy_component(favorite0, );
-
-    			destroy_component(ripple0, );
-
-    			destroy_component(star0, );
-
-    			destroy_component(ripple1, );
-
-    			destroy_component(phone0, );
-
-    			destroy_component(ripple2, );
-
-    			destroy_component(favorite1, );
-
-    			destroy_component(ripple3, );
-
-    			destroy_component(star1, );
-
-    			destroy_component(ripple4, );
-
-    			destroy_component(phone1, );
-
-    			destroy_component(ripple5, );
-    		}
-    	};
-    }
-
-    // (128:4) <CircleNavigation color={randomColor}>
+    // (152:0) <Block>
     function create_default_slot_33(ctx) {
-    	var t;
-
-    	return {
-    		c: function create() {
-    			t = space();
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, t, anchor);
-    		},
-
-    		p: noop,
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(t);
-    			}
-    		}
-    	};
-    }
-
-    // (167:6) <div slot="circle">
-    function create_circle_slot_1(ctx) {
-    	var div, current;
-
-    	var close = new Close({ $$inline: true });
-
-    	return {
-    		c: function create() {
-    			div = element("div");
-    			close.$$.fragment.c();
-    			attr(div, "slot", "circle");
-    			add_location(div, file$f, 166, 6, 4385);
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			mount_component(close, div, null);
-    			current = true;
-    		},
-
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(close.$$.fragment, local);
-
-    			current = true;
-    		},
-
-    		o: function outro(local) {
-    			transition_out(close.$$.fragment, local);
-    			current = false;
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(div);
-    			}
-
-    			destroy_component(close, );
-    		}
-    	};
-    }
-
-    // (170:6) <div slot="elements">
-    function create_elements_slot_1(ctx) {
-    	var div0, div1, t0, t1, div2, t2, t3, div3, t4, t5, div4, t6, t7, div5, t8, t9, div6, t10, current;
-
-    	var favorite0 = new Favorite({ $$inline: true });
-
-    	var ripple0 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var star0 = new Star({ $$inline: true });
-
-    	var ripple1 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var phone0 = new Phone({ $$inline: true });
-
-    	var ripple2 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var favorite1 = new Favorite({ $$inline: true });
-
-    	var ripple3 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var star1 = new Star({ $$inline: true });
-
-    	var ripple4 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var phone1 = new Phone({ $$inline: true });
-
-    	var ripple5 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	return {
-    		c: function create() {
-    			div0 = element("div");
-    			div1 = element("div");
-    			favorite0.$$.fragment.c();
-    			t0 = space();
-    			ripple0.$$.fragment.c();
-    			t1 = space();
-    			div2 = element("div");
-    			star0.$$.fragment.c();
-    			t2 = space();
-    			ripple1.$$.fragment.c();
-    			t3 = space();
-    			div3 = element("div");
-    			phone0.$$.fragment.c();
-    			t4 = space();
-    			ripple2.$$.fragment.c();
-    			t5 = space();
-    			div4 = element("div");
-    			favorite1.$$.fragment.c();
-    			t6 = space();
-    			ripple3.$$.fragment.c();
-    			t7 = space();
-    			div5 = element("div");
-    			star1.$$.fragment.c();
-    			t8 = space();
-    			ripple4.$$.fragment.c();
-    			t9 = space();
-    			div6 = element("div");
-    			phone1.$$.fragment.c();
-    			t10 = space();
-    			ripple5.$$.fragment.c();
-    			set_style(div1, "fill", "white");
-    			set_style(div1, "cursor", "pointer");
-    			add_location(div1, file$f, 171, 8, 4473);
-    			set_style(div2, "fill", "white");
-    			set_style(div2, "cursor", "pointer");
-    			add_location(div2, file$f, 176, 8, 4599);
-    			set_style(div3, "fill", "white");
-    			set_style(div3, "cursor", "pointer");
-    			add_location(div3, file$f, 181, 8, 4721);
-    			set_style(div4, "fill", "white");
-    			set_style(div4, "cursor", "pointer");
-    			add_location(div4, file$f, 185, 8, 4843);
-    			set_style(div5, "fill", "white");
-    			set_style(div5, "cursor", "pointer");
-    			add_location(div5, file$f, 190, 8, 4969);
-    			set_style(div6, "fill", "white");
-    			set_style(div6, "cursor", "pointer");
-    			add_location(div6, file$f, 195, 8, 5091);
-    			attr(div0, "slot", "elements");
-    			add_location(div0, file$f, 169, 6, 4442);
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, div0, anchor);
-    			append(div0, div1);
-    			mount_component(favorite0, div1, null);
-    			append(div1, t0);
-    			mount_component(ripple0, div1, null);
-    			append(div0, t1);
-    			append(div0, div2);
-    			mount_component(star0, div2, null);
-    			append(div2, t2);
-    			mount_component(ripple1, div2, null);
-    			append(div0, t3);
-    			append(div0, div3);
-    			mount_component(phone0, div3, null);
-    			append(div3, t4);
-    			mount_component(ripple2, div3, null);
-    			append(div0, t5);
-    			append(div0, div4);
-    			mount_component(favorite1, div4, null);
-    			append(div4, t6);
-    			mount_component(ripple3, div4, null);
-    			append(div0, t7);
-    			append(div0, div5);
-    			mount_component(star1, div5, null);
-    			append(div5, t8);
-    			mount_component(ripple4, div5, null);
-    			append(div0, t9);
-    			append(div0, div6);
-    			mount_component(phone1, div6, null);
-    			append(div6, t10);
-    			mount_component(ripple5, div6, null);
-    			current = true;
-    		},
-
-    		p: noop,
-
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(favorite0.$$.fragment, local);
-
-    			transition_in(ripple0.$$.fragment, local);
-
-    			transition_in(star0.$$.fragment, local);
-
-    			transition_in(ripple1.$$.fragment, local);
-
-    			transition_in(phone0.$$.fragment, local);
-
-    			transition_in(ripple2.$$.fragment, local);
-
-    			transition_in(favorite1.$$.fragment, local);
-
-    			transition_in(ripple3.$$.fragment, local);
-
-    			transition_in(star1.$$.fragment, local);
-
-    			transition_in(ripple4.$$.fragment, local);
-
-    			transition_in(phone1.$$.fragment, local);
-
-    			transition_in(ripple5.$$.fragment, local);
-
-    			current = true;
-    		},
-
-    		o: function outro(local) {
-    			transition_out(favorite0.$$.fragment, local);
-    			transition_out(ripple0.$$.fragment, local);
-    			transition_out(star0.$$.fragment, local);
-    			transition_out(ripple1.$$.fragment, local);
-    			transition_out(phone0.$$.fragment, local);
-    			transition_out(ripple2.$$.fragment, local);
-    			transition_out(favorite1.$$.fragment, local);
-    			transition_out(ripple3.$$.fragment, local);
-    			transition_out(star1.$$.fragment, local);
-    			transition_out(ripple4.$$.fragment, local);
-    			transition_out(phone1.$$.fragment, local);
-    			transition_out(ripple5.$$.fragment, local);
-    			current = false;
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(div0);
-    			}
-
-    			destroy_component(favorite0, );
-
-    			destroy_component(ripple0, );
-
-    			destroy_component(star0, );
-
-    			destroy_component(ripple1, );
-
-    			destroy_component(phone0, );
-
-    			destroy_component(ripple2, );
-
-    			destroy_component(favorite1, );
-
-    			destroy_component(ripple3, );
-
-    			destroy_component(star1, );
-
-    			destroy_component(ripple4, );
-
-    			destroy_component(phone1, );
-
-    			destroy_component(ripple5, );
-    		}
-    	};
-    }
-
-    // (166:4) <CircleNavigation color={randomColor} direction="bottom">
-    function create_default_slot_32(ctx) {
-    	var t;
-
-    	return {
-    		c: function create() {
-    			t = space();
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, t, anchor);
-    		},
-
-    		p: noop,
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(t);
-    			}
-    		}
-    	};
-    }
-
-    // (205:8) <div slot="circle">
-    function create_circle_slot(ctx) {
-    	var div, current;
-
-    	var close = new Close({ $$inline: true });
-
-    	return {
-    		c: function create() {
-    			div = element("div");
-    			close.$$.fragment.c();
-    			attr(div, "slot", "circle");
-    			add_location(div, file$f, 204, 8, 5368);
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, div, anchor);
-    			mount_component(close, div, null);
-    			current = true;
-    		},
-
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(close.$$.fragment, local);
-
-    			current = true;
-    		},
-
-    		o: function outro(local) {
-    			transition_out(close.$$.fragment, local);
-    			current = false;
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(div);
-    			}
-
-    			destroy_component(close, );
-    		}
-    	};
-    }
-
-    // (208:8) <div slot="elements">
-    function create_elements_slot(ctx) {
-    	var div0, div1, t0, t1, div2, t2, t3, div3, t4, t5, div4, t6, t7, div5, t8, t9, div6, t10, current;
-
-    	var favorite0 = new Favorite({ $$inline: true });
-
-    	var ripple0 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var star0 = new Star({ $$inline: true });
-
-    	var ripple1 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var phone0 = new Phone({ $$inline: true });
-
-    	var ripple2 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var favorite1 = new Favorite({ $$inline: true });
-
-    	var ripple3 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var star1 = new Star({ $$inline: true });
-
-    	var ripple4 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	var phone1 = new Phone({ $$inline: true });
-
-    	var ripple5 = new Ripple({
-    		props: { color: "#ffffff" },
-    		$$inline: true
-    	});
-
-    	return {
-    		c: function create() {
-    			div0 = element("div");
-    			div1 = element("div");
-    			favorite0.$$.fragment.c();
-    			t0 = space();
-    			ripple0.$$.fragment.c();
-    			t1 = space();
-    			div2 = element("div");
-    			star0.$$.fragment.c();
-    			t2 = space();
-    			ripple1.$$.fragment.c();
-    			t3 = space();
-    			div3 = element("div");
-    			phone0.$$.fragment.c();
-    			t4 = space();
-    			ripple2.$$.fragment.c();
-    			t5 = space();
-    			div4 = element("div");
-    			favorite1.$$.fragment.c();
-    			t6 = space();
-    			ripple3.$$.fragment.c();
-    			t7 = space();
-    			div5 = element("div");
-    			star1.$$.fragment.c();
-    			t8 = space();
-    			ripple4.$$.fragment.c();
-    			t9 = space();
-    			div6 = element("div");
-    			phone1.$$.fragment.c();
-    			t10 = space();
-    			ripple5.$$.fragment.c();
-    			set_style(div1, "fill", "white");
-    			set_style(div1, "cursor", "pointer");
-    			add_location(div1, file$f, 209, 10, 5464);
-    			set_style(div2, "fill", "white");
-    			set_style(div2, "cursor", "pointer");
-    			add_location(div2, file$f, 214, 10, 5598);
-    			set_style(div3, "fill", "white");
-    			set_style(div3, "cursor", "pointer");
-    			add_location(div3, file$f, 219, 10, 5728);
-    			set_style(div4, "fill", "white");
-    			set_style(div4, "cursor", "pointer");
-    			add_location(div4, file$f, 223, 10, 5858);
-    			set_style(div5, "fill", "white");
-    			set_style(div5, "cursor", "pointer");
-    			add_location(div5, file$f, 228, 10, 5992);
-    			set_style(div6, "fill", "white");
-    			set_style(div6, "cursor", "pointer");
-    			add_location(div6, file$f, 233, 10, 6122);
-    			attr(div0, "slot", "elements");
-    			add_location(div0, file$f, 207, 8, 5431);
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, div0, anchor);
-    			append(div0, div1);
-    			mount_component(favorite0, div1, null);
-    			append(div1, t0);
-    			mount_component(ripple0, div1, null);
-    			append(div0, t1);
-    			append(div0, div2);
-    			mount_component(star0, div2, null);
-    			append(div2, t2);
-    			mount_component(ripple1, div2, null);
-    			append(div0, t3);
-    			append(div0, div3);
-    			mount_component(phone0, div3, null);
-    			append(div3, t4);
-    			mount_component(ripple2, div3, null);
-    			append(div0, t5);
-    			append(div0, div4);
-    			mount_component(favorite1, div4, null);
-    			append(div4, t6);
-    			mount_component(ripple3, div4, null);
-    			append(div0, t7);
-    			append(div0, div5);
-    			mount_component(star1, div5, null);
-    			append(div5, t8);
-    			mount_component(ripple4, div5, null);
-    			append(div0, t9);
-    			append(div0, div6);
-    			mount_component(phone1, div6, null);
-    			append(div6, t10);
-    			mount_component(ripple5, div6, null);
-    			current = true;
-    		},
-
-    		p: noop,
-
-    		i: function intro(local) {
-    			if (current) return;
-    			transition_in(favorite0.$$.fragment, local);
-
-    			transition_in(ripple0.$$.fragment, local);
-
-    			transition_in(star0.$$.fragment, local);
-
-    			transition_in(ripple1.$$.fragment, local);
-
-    			transition_in(phone0.$$.fragment, local);
-
-    			transition_in(ripple2.$$.fragment, local);
-
-    			transition_in(favorite1.$$.fragment, local);
-
-    			transition_in(ripple3.$$.fragment, local);
-
-    			transition_in(star1.$$.fragment, local);
-
-    			transition_in(ripple4.$$.fragment, local);
-
-    			transition_in(phone1.$$.fragment, local);
-
-    			transition_in(ripple5.$$.fragment, local);
-
-    			current = true;
-    		},
-
-    		o: function outro(local) {
-    			transition_out(favorite0.$$.fragment, local);
-    			transition_out(ripple0.$$.fragment, local);
-    			transition_out(star0.$$.fragment, local);
-    			transition_out(ripple1.$$.fragment, local);
-    			transition_out(phone0.$$.fragment, local);
-    			transition_out(ripple2.$$.fragment, local);
-    			transition_out(favorite1.$$.fragment, local);
-    			transition_out(ripple3.$$.fragment, local);
-    			transition_out(star1.$$.fragment, local);
-    			transition_out(ripple4.$$.fragment, local);
-    			transition_out(phone1.$$.fragment, local);
-    			transition_out(ripple5.$$.fragment, local);
-    			current = false;
-    		},
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(div0);
-    			}
-
-    			destroy_component(favorite0, );
-
-    			destroy_component(ripple0, );
-
-    			destroy_component(star0, );
-
-    			destroy_component(ripple1, );
-
-    			destroy_component(phone0, );
-
-    			destroy_component(ripple2, );
-
-    			destroy_component(favorite1, );
-
-    			destroy_component(ripple3, );
-
-    			destroy_component(star1, );
-
-    			destroy_component(ripple4, );
-
-    			destroy_component(phone1, );
-
-    			destroy_component(ripple5, );
-    		}
-    	};
-    }
-
-    // (204:6) <CircleNavigation color={randomColor} direction="top">
-    function create_default_slot_31(ctx) {
-    	var t;
-
-    	return {
-    		c: function create() {
-    			t = space();
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert(target, t, anchor);
-    		},
-
-    		p: noop,
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach(t);
-    			}
-    		}
-    	};
-    }
-
-    // (111:0) <Block>
-    function create_default_slot_30(ctx) {
-    	var div1, t0, t1, t2, div0, current;
+    	var div2, div0, t0, t1, div1, t2, t3, current;
 
     	var circlenavigation2 = new CircleNavigation2({
     		props: {
     		color: ctx.randomColor,
     		$$slots: {
-    		default: [create_default_slot_34],
-    		elements: [create_elements_slot_3],
-    		circle: [create_circle_slot_3]
+    		default: [create_default_slot_38],
+    		elements: [create_elements_slot_4],
+    		circle: [create_circle_slot_4]
     	},
     		$$scope: { ctx }
     	},
@@ -4837,10 +5432,11 @@ var app = (function () {
     	var circlenavigation0 = new CircleNavigation({
     		props: {
     		color: ctx.randomColor,
+    		direction: "right",
     		$$slots: {
-    		default: [create_default_slot_33],
-    		elements: [create_elements_slot_2],
-    		circle: [create_circle_slot_2]
+    		default: [create_default_slot_37],
+    		elements: [create_elements_slot_3],
+    		circle: [create_circle_slot_3]
     	},
     		$$scope: { ctx }
     	},
@@ -4852,9 +5448,9 @@ var app = (function () {
     		color: ctx.randomColor,
     		direction: "bottom",
     		$$slots: {
-    		default: [create_default_slot_32],
-    		elements: [create_elements_slot_1],
-    		circle: [create_circle_slot_1]
+    		default: [create_default_slot_36],
+    		elements: [create_elements_slot_2],
+    		circle: [create_circle_slot_2]
     	},
     		$$scope: { ctx }
     	},
@@ -4866,7 +5462,21 @@ var app = (function () {
     		color: ctx.randomColor,
     		direction: "top",
     		$$slots: {
-    		default: [create_default_slot_31],
+    		default: [create_default_slot_35],
+    		elements: [create_elements_slot_1],
+    		circle: [create_circle_slot_1]
+    	},
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var circlenavigation3 = new CircleNavigation({
+    		props: {
+    		color: ctx.randomColor,
+    		direction: "left",
+    		$$slots: {
+    		default: [create_default_slot_34],
     		elements: [create_elements_slot],
     		circle: [create_circle_slot]
     	},
@@ -4877,34 +5487,39 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			div1 = element("div");
+    			div2 = element("div");
+    			div0 = element("div");
     			circlenavigation2.$$.fragment.c();
     			t0 = space();
     			circlenavigation0.$$.fragment.c();
     			t1 = space();
+    			div1 = element("div");
     			circlenavigation1.$$.fragment.c();
     			t2 = space();
-    			div0 = element("div");
     			circlenavigation2_1.$$.fragment.c();
-    			set_style(div0, "position", "absolute");
-    			set_style(div0, "bottom", "0");
-    			set_style(div0, "right", "0");
-    			add_location(div0, file$f, 202, 4, 5247);
-    			set_style(div1, "flex-flow", "column");
-    			set_style(div1, "position", "relative");
-    			add_location(div1, file$f, 111, 2, 2995);
+    			t3 = space();
+    			circlenavigation3.$$.fragment.c();
+    			set_style(div0, "display", "none");
+    			add_location(div0, file$h, 154, 4, 4164);
+    			add_location(div1, file$h, 191, 4, 5152);
+    			set_style(div2, "display", "flex");
+    			set_style(div2, "position", "relative");
+    			add_location(div2, file$h, 152, 2, 4112);
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div1, anchor);
-    			mount_component(circlenavigation2, div1, null);
-    			append(div1, t0);
-    			mount_component(circlenavigation0, div1, null);
-    			append(div1, t1);
+    			insert(target, div2, anchor);
+    			append(div2, div0);
+    			mount_component(circlenavigation2, div0, null);
+    			append(div2, t0);
+    			mount_component(circlenavigation0, div2, null);
+    			append(div2, t1);
+    			append(div2, div1);
     			mount_component(circlenavigation1, div1, null);
     			append(div1, t2);
-    			append(div1, div0);
-    			mount_component(circlenavigation2_1, div0, null);
+    			mount_component(circlenavigation2_1, div1, null);
+    			append(div2, t3);
+    			mount_component(circlenavigation3, div2, null);
     			current = true;
     		},
 
@@ -4928,6 +5543,11 @@ var app = (function () {
     			if (changed.randomColor) circlenavigation2_1_changes.color = ctx.randomColor;
     			if (changed.$$scope) circlenavigation2_1_changes.$$scope = { changed, ctx };
     			circlenavigation2_1.$set(circlenavigation2_1_changes);
+
+    			var circlenavigation3_changes = {};
+    			if (changed.randomColor) circlenavigation3_changes.color = ctx.randomColor;
+    			if (changed.$$scope) circlenavigation3_changes.$$scope = { changed, ctx };
+    			circlenavigation3.$set(circlenavigation3_changes);
     		},
 
     		i: function intro(local) {
@@ -4940,6 +5560,8 @@ var app = (function () {
 
     			transition_in(circlenavigation2_1.$$.fragment, local);
 
+    			transition_in(circlenavigation3.$$.fragment, local);
+
     			current = true;
     		},
 
@@ -4948,12 +5570,13 @@ var app = (function () {
     			transition_out(circlenavigation0.$$.fragment, local);
     			transition_out(circlenavigation1.$$.fragment, local);
     			transition_out(circlenavigation2_1.$$.fragment, local);
+    			transition_out(circlenavigation3.$$.fragment, local);
     			current = false;
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div1);
+    				detach(div2);
     			}
 
     			destroy_component(circlenavigation2, );
@@ -4963,20 +5586,22 @@ var app = (function () {
     			destroy_component(circlenavigation1, );
 
     			destroy_component(circlenavigation2_1, );
+
+    			destroy_component(circlenavigation3, );
     		}
     	};
     }
 
-    // (250:4) <p slot="header">
-    function create_header_slot(ctx) {
+    // (253:6) <p slot="header">
+    function create_header_slot_2(ctx) {
     	var p;
 
     	return {
     		c: function create() {
     			p = element("p");
-    			p.textContent = "header";
+    			p.textContent = "header1";
     			attr(p, "slot", "header");
-    			add_location(p, file$f, 249, 4, 6361);
+    			add_location(p, file$h, 252, 6, 6840);
     		},
 
     		m: function mount(target, anchor) {
@@ -4991,16 +5616,16 @@ var app = (function () {
     	};
     }
 
-    // (251:4) <p slot="body">
-    function create_body_slot(ctx) {
+    // (254:6) <p slot="body">
+    function create_body_slot_2(ctx) {
     	var p;
 
     	return {
     		c: function create() {
     			p = element("p");
-    			p.textContent = "Body text";
+    			p.textContent = "Body text1";
     			attr(p, "slot", "body");
-    			add_location(p, file$f, 250, 4, 6393);
+    			add_location(p, file$h, 253, 6, 6875);
     		},
 
     		m: function mount(target, anchor) {
@@ -5015,8 +5640,8 @@ var app = (function () {
     	};
     }
 
-    // (249:2) <Accordeon>
-    function create_default_slot_29(ctx) {
+    // (252:4) <AccordeonElement active={true}>
+    function create_default_slot_32(ctx) {
     	var t;
 
     	return {
@@ -5038,17 +5663,267 @@ var app = (function () {
     	};
     }
 
-    // (248:0) <Block>
+    // (257:6) <p slot="header">
+    function create_header_slot_1(ctx) {
+    	var p;
+
+    	return {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "header2";
+    			attr(p, "slot", "header");
+    			add_location(p, file$h, 256, 6, 6973);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, p, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(p);
+    			}
+    		}
+    	};
+    }
+
+    // (258:6) <p slot="body">
+    function create_body_slot_1(ctx) {
+    	var p;
+
+    	return {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "Body text2";
+    			attr(p, "slot", "body");
+    			add_location(p, file$h, 257, 6, 7008);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, p, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(p);
+    			}
+    		}
+    	};
+    }
+
+    // (256:4) <AccordeonElement active={false}>
+    function create_default_slot_31(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (261:6) <p slot="header">
+    function create_header_slot(ctx) {
+    	var p;
+
+    	return {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "header3";
+    			attr(p, "slot", "header");
+    			add_location(p, file$h, 260, 6, 7106);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, p, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(p);
+    			}
+    		}
+    	};
+    }
+
+    // (262:6) <p slot="body">
+    function create_body_slot(ctx) {
+    	var p;
+
+    	return {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "Body text3";
+    			attr(p, "slot", "body");
+    			add_location(p, file$h, 261, 6, 7141);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, p, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(p);
+    			}
+    		}
+    	};
+    }
+
+    // (260:4) <AccordeonElement active={false}>
+    function create_default_slot_30(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		p: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (251:2) <Accordeon multiple="true">
+    function create_default_slot_29(ctx) {
+    	var t0, t1, current;
+
+    	var accordeonelement0 = new AccordeonElement({
+    		props: {
+    		active: true,
+    		$$slots: {
+    		default: [create_default_slot_32],
+    		body: [create_body_slot_2],
+    		header: [create_header_slot_2]
+    	},
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var accordeonelement1 = new AccordeonElement({
+    		props: {
+    		active: false,
+    		$$slots: {
+    		default: [create_default_slot_31],
+    		body: [create_body_slot_1],
+    		header: [create_header_slot_1]
+    	},
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var accordeonelement2 = new AccordeonElement({
+    		props: {
+    		active: false,
+    		$$slots: {
+    		default: [create_default_slot_30],
+    		body: [create_body_slot],
+    		header: [create_header_slot]
+    	},
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			accordeonelement0.$$.fragment.c();
+    			t0 = space();
+    			accordeonelement1.$$.fragment.c();
+    			t1 = space();
+    			accordeonelement2.$$.fragment.c();
+    		},
+
+    		m: function mount(target, anchor) {
+    			mount_component(accordeonelement0, target, anchor);
+    			insert(target, t0, anchor);
+    			mount_component(accordeonelement1, target, anchor);
+    			insert(target, t1, anchor);
+    			mount_component(accordeonelement2, target, anchor);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			var accordeonelement0_changes = {};
+    			if (changed.$$scope) accordeonelement0_changes.$$scope = { changed, ctx };
+    			accordeonelement0.$set(accordeonelement0_changes);
+
+    			var accordeonelement1_changes = {};
+    			if (changed.$$scope) accordeonelement1_changes.$$scope = { changed, ctx };
+    			accordeonelement1.$set(accordeonelement1_changes);
+
+    			var accordeonelement2_changes = {};
+    			if (changed.$$scope) accordeonelement2_changes.$$scope = { changed, ctx };
+    			accordeonelement2.$set(accordeonelement2_changes);
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(accordeonelement0.$$.fragment, local);
+
+    			transition_in(accordeonelement1.$$.fragment, local);
+
+    			transition_in(accordeonelement2.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(accordeonelement0.$$.fragment, local);
+    			transition_out(accordeonelement1.$$.fragment, local);
+    			transition_out(accordeonelement2.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			destroy_component(accordeonelement0, detaching);
+
+    			if (detaching) {
+    				detach(t0);
+    			}
+
+    			destroy_component(accordeonelement1, detaching);
+
+    			if (detaching) {
+    				detach(t1);
+    			}
+
+    			destroy_component(accordeonelement2, detaching);
+    		}
+    	};
+    }
+
+    // (250:0) <Block>
     function create_default_slot_28(ctx) {
     	var current;
 
     	var accordeon = new Accordeon({
     		props: {
-    		$$slots: {
-    		default: [create_default_slot_29],
-    		body: [create_body_slot],
-    		header: [create_header_slot]
-    	},
+    		multiple: "true",
+    		$$slots: { default: [create_default_slot_29] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -5088,7 +5963,7 @@ var app = (function () {
     	};
     }
 
-    // (262:6) <Button color="#2a74e6" raised={true}>
+    // (273:6) <Button color="#2a74e6" raised={true}>
     function create_default_slot_27(ctx) {
     	var t, current;
 
@@ -5133,7 +6008,7 @@ var app = (function () {
     	};
     }
 
-    // (266:6) <Button color="#2a74e6">
+    // (277:6) <Button color="#2a74e6">
     function create_default_slot_26(ctx) {
     	var t, current;
 
@@ -5178,7 +6053,7 @@ var app = (function () {
     	};
     }
 
-    // (270:6) <Button color="#2a74e6" outlined={true}>
+    // (281:6) <Button color="#2a74e6" outlined={true}>
     function create_default_slot_25(ctx) {
     	var t, current;
 
@@ -5223,7 +6098,7 @@ var app = (function () {
     	};
     }
 
-    // (274:6) <Button color="#2a74e6" simple={true}>
+    // (285:6) <Button color="#2a74e6" simple={true}>
     function create_default_slot_24(ctx) {
     	var t, current;
 
@@ -5268,7 +6143,7 @@ var app = (function () {
     	};
     }
 
-    // (281:6) <Button color="#c12da0" disabled={true}>
+    // (292:6) <Button color="#c12da0" disabled={true}>
     function create_default_slot_23(ctx) {
     	var t, current;
 
@@ -5313,7 +6188,7 @@ var app = (function () {
     	};
     }
 
-    // (285:6) <Button color={randomColor} outlined={true} disabled={true}>
+    // (296:6) <Button color={randomColor} outlined={true} disabled={true}>
     function create_default_slot_22(ctx) {
     	var t, current;
 
@@ -5362,7 +6237,7 @@ var app = (function () {
     	};
     }
 
-    // (289:6) <Button color={randomColor} simple={true} disabled={true}>
+    // (300:6) <Button color={randomColor} simple={true} disabled={true}>
     function create_default_slot_21(ctx) {
     	var t, current;
 
@@ -5411,7 +6286,7 @@ var app = (function () {
     	};
     }
 
-    // (295:6) <Button color="#333333" raised={true}>
+    // (306:6) <Button color="#333333" raised={true}>
     function create_default_slot_20(ctx) {
     	var t, current;
 
@@ -5456,7 +6331,7 @@ var app = (function () {
     	};
     }
 
-    // (299:6) <Button color="#333333">
+    // (310:6) <Button color="#333333">
     function create_default_slot_19(ctx) {
     	var t, current;
 
@@ -5501,7 +6376,7 @@ var app = (function () {
     	};
     }
 
-    // (303:6) <Button color="#333333" outlined={true}>
+    // (314:6) <Button color="#333333" outlined={true}>
     function create_default_slot_18(ctx) {
     	var t, current;
 
@@ -5546,7 +6421,7 @@ var app = (function () {
     	};
     }
 
-    // (307:6) <Button color="#333333" simple={true}>
+    // (318:6) <Button color="#333333" simple={true}>
     function create_default_slot_17(ctx) {
     	var t, current;
 
@@ -5591,7 +6466,7 @@ var app = (function () {
     	};
     }
 
-    // (313:6) <Button color={randomColor} size={'small'} raised={true}>
+    // (324:6) <Button color={randomColor} size={'small'} raised={true}>
     function create_default_slot_16(ctx) {
     	var t, current;
 
@@ -5631,7 +6506,7 @@ var app = (function () {
     	};
     }
 
-    // (317:6) <Button color={randomColor} size={'medium'} raised={true}>
+    // (328:6) <Button color={randomColor} size={'medium'} raised={true}>
     function create_default_slot_15(ctx) {
     	var t, current;
 
@@ -5671,7 +6546,7 @@ var app = (function () {
     	};
     }
 
-    // (321:6) <Button color={randomColor} size={'large'} raised={true}>
+    // (332:6) <Button color={randomColor} size={'large'} raised={true}>
     function create_default_slot_14(ctx) {
     	var t, current;
 
@@ -5711,7 +6586,7 @@ var app = (function () {
     	};
     }
 
-    // (258:0) <Block>
+    // (269:0) <Block>
     function create_default_slot_13(ctx) {
     	var div4, div0, t0, t1, t2, t3, div1, t4, t5, t6, div2, t7, t8, t9, t10, div3, t11, t12, current;
 
@@ -5892,12 +6767,12 @@ var app = (function () {
     			button12.$$.fragment.c();
     			t12 = space();
     			button13.$$.fragment.c();
-    			add_location(div0, file$f, 260, 4, 6571);
-    			add_location(div1, file$f, 279, 4, 7033);
-    			add_location(div2, file$f, 293, 4, 7441);
-    			add_location(div3, file$f, 311, 4, 7902);
+    			add_location(div0, file$h, 271, 4, 7343);
+    			add_location(div1, file$h, 290, 4, 7805);
+    			add_location(div2, file$h, 304, 4, 8213);
+    			add_location(div3, file$h, 322, 4, 8674);
     			set_style(div4, "flex-flow", "column");
-    			add_location(div4, file$f, 259, 2, 6536);
+    			add_location(div4, file$h, 270, 2, 7308);
     		},
 
     		m: function mount(target, anchor) {
@@ -6086,7 +6961,7 @@ var app = (function () {
     	};
     }
 
-    // (331:2) <Button color={randomColor} on:click={setRandomColor} raised={true}>
+    // (342:2) <Button color={randomColor} on:click={setRandomColor} raised={true}>
     function create_default_slot_12(ctx) {
     	var t, current;
 
@@ -6131,7 +7006,7 @@ var app = (function () {
     	};
     }
 
-    // (336:2) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
+    // (347:2) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
     function create_default_slot_11(ctx) {
     	var t, current;
 
@@ -6180,7 +7055,7 @@ var app = (function () {
     	};
     }
 
-    // (341:2) <Button color={randomColor} on:click={setRandomColor} simple={true}>
+    // (352:2) <Button color={randomColor} on:click={setRandomColor} simple={true}>
     function create_default_slot_10(ctx) {
     	var t, current;
 
@@ -6229,7 +7104,7 @@ var app = (function () {
     	};
     }
 
-    // (330:0) <Block>
+    // (341:0) <Block>
     function create_default_slot_9(ctx) {
     	var t0, t1, current;
 
@@ -6337,7 +7212,7 @@ var app = (function () {
     	};
     }
 
-    // (350:2) <Button color={randomColor}>
+    // (361:2) <Button color={randomColor}>
     function create_default_slot_8(ctx) {
     	var t, current;
 
@@ -6377,7 +7252,7 @@ var app = (function () {
     	};
     }
 
-    // (349:0) <Block>
+    // (360:0) <Block>
     function create_default_slot_7(ctx) {
     	var t0, div0, t1, div1, t2, div2, t3, div3, t4, t5, div4, t6, current;
 
@@ -6435,16 +7310,16 @@ var app = (function () {
     			div4 = element("div");
     			t6 = text("-\n    ");
     			ripple4.$$.fragment.c();
-    			attr(div0, "class", "sheet svelte-56dphp");
-    			add_location(div0, file$f, 353, 2, 8812);
-    			attr(div1, "class", "sheet svelte-56dphp");
-    			add_location(div1, file$f, 356, 2, 8876);
-    			attr(div2, "class", "sheet svelte-56dphp");
-    			add_location(div2, file$f, 359, 2, 8940);
-    			attr(div3, "class", "circle svelte-56dphp");
-    			add_location(div3, file$f, 362, 2, 9002);
-    			attr(div4, "class", "circle svelte-56dphp");
-    			add_location(div4, file$f, 366, 2, 9071);
+    			attr(div0, "class", "sheet svelte-12lxs4z");
+    			add_location(div0, file$h, 364, 2, 9584);
+    			attr(div1, "class", "sheet svelte-12lxs4z");
+    			add_location(div1, file$h, 367, 2, 9648);
+    			attr(div2, "class", "sheet svelte-12lxs4z");
+    			add_location(div2, file$h, 370, 2, 9712);
+    			attr(div3, "class", "circle svelte-12lxs4z");
+    			add_location(div3, file$h, 373, 2, 9774);
+    			attr(div4, "class", "circle svelte-12lxs4z");
+    			add_location(div4, file$h, 377, 2, 9843);
     		},
 
     		m: function mount(target, anchor) {
@@ -6544,7 +7419,7 @@ var app = (function () {
     	};
     }
 
-    // (375:0) <Block>
+    // (386:0) <Block>
     function create_default_slot_6(ctx) {
     	var t, current;
 
@@ -6601,7 +7476,7 @@ var app = (function () {
     	};
     }
 
-    // (384:0) <Block>
+    // (395:0) <Block>
     function create_default_slot_5(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -6774,7 +7649,7 @@ var app = (function () {
     	};
     }
 
-    // (432:0) <Block>
+    // (443:0) <Block>
     function create_default_slot_4(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, current;
 
@@ -7224,7 +8099,7 @@ var app = (function () {
     	};
     }
 
-    // (535:0) <Block>
+    // (546:0) <Block>
     function create_default_slot_3(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, current;
 
@@ -7498,7 +8373,7 @@ var app = (function () {
     	};
     }
 
-    // (617:0) <Block>
+    // (628:0) <Block>
     function create_default_slot_2(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -7675,7 +8550,7 @@ var app = (function () {
     	};
     }
 
-    // (671:0) <Block>
+    // (682:0) <Block>
     function create_default_slot_1(ctx) {
     	var div, t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, current;
 
@@ -7855,7 +8730,7 @@ var app = (function () {
     			t9 = space();
     			textfield10.$$.fragment.c();
     			attr(div, "class", "testElement");
-    			add_location(div, file$f, 672, 2, 16250);
+    			add_location(div, file$h, 683, 2, 17022);
     		},
 
     		m: function mount(target, anchor) {
@@ -8002,7 +8877,7 @@ var app = (function () {
     	};
     }
 
-    // (786:0) <Block>
+    // (797:0) <Block>
     function create_default_slot(ctx) {
     	var t0, t1, t2, current;
 
@@ -8101,14 +8976,14 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$f(ctx) {
+    function create_fragment$i(ctx) {
     	var t0, h20, t2, t3, h21, t5, t6, h22, t8, h30, t10, t11, h31, t13, t14, h23, t16, t17, h24, t19, t20, h25, t22, h32, t24, t25, h33, t27, t28, h34, t30, t31, h35, t33, t34, h36, t36, t37, h26, t39, current;
 
     	var button = new Button({
     		props: {
     		color: ctx.randomColor,
     		outlined: true,
-    		$$slots: { default: [create_default_slot_35] },
+    		$$slots: { default: [create_default_slot_39] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -8117,7 +8992,7 @@ var app = (function () {
 
     	var block0 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_30] },
+    		$$slots: { default: [create_default_slot_33] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -8280,20 +9155,20 @@ var app = (function () {
     			h26.textContent = "Toggle Buttons";
     			t39 = space();
     			block11.$$.fragment.c();
-    			add_location(h20, file$f, 109, 0, 2958);
-    			add_location(h21, file$f, 245, 0, 6315);
-    			add_location(h22, file$f, 255, 0, 6448);
-    			add_location(h30, file$f, 256, 0, 6465);
-    			add_location(h31, file$f, 328, 0, 8279);
-    			add_location(h23, file$f, 346, 0, 8716);
-    			add_location(h24, file$f, 372, 0, 9148);
-    			add_location(h25, file$f, 379, 0, 9269);
-    			add_location(h32, file$f, 381, 0, 9290);
-    			add_location(h33, file$f, 430, 0, 10164);
-    			add_location(h34, file$f, 533, 0, 12083);
-    			add_location(h35, file$f, 615, 0, 13572);
-    			add_location(h36, file$f, 669, 0, 16213);
-    			add_location(h26, file$f, 783, 0, 19900);
+    			add_location(h20, file$h, 150, 0, 4075);
+    			add_location(h21, file$h, 247, 0, 6739);
+    			add_location(h22, file$h, 266, 0, 7220);
+    			add_location(h30, file$h, 267, 0, 7237);
+    			add_location(h31, file$h, 339, 0, 9051);
+    			add_location(h23, file$h, 357, 0, 9488);
+    			add_location(h24, file$h, 383, 0, 9920);
+    			add_location(h25, file$h, 390, 0, 10041);
+    			add_location(h32, file$h, 392, 0, 10062);
+    			add_location(h33, file$h, 441, 0, 10936);
+    			add_location(h34, file$h, 544, 0, 12855);
+    			add_location(h35, file$h, 626, 0, 14344);
+    			add_location(h36, file$h, 680, 0, 16985);
+    			add_location(h26, file$h, 794, 0, 20672);
     		},
 
     		l: function claim(nodes) {
@@ -8566,7 +9441,7 @@ var app = (function () {
     	};
     }
 
-    function instance$a($$self, $$props, $$invalidate) {
+    function instance$d($$self, $$props, $$invalidate) {
 
       let helper01 = "Test";
 
@@ -8592,6 +9467,39 @@ var app = (function () {
         $$invalidate('randomColor', randomColor = c);
       };
 
+      const randomIcon = () => {
+        const icons = [Check, Favorite, Phone, Star, Close];
+        return randomPick(icons);
+      };
+
+      const randomPick = arr => {
+        return arr[Math.floor(Math.random() * arr.length)];
+      };
+
+    	function func() {
+    		return ({
+    	          icon: randomIcon()
+    	        });
+    	}
+
+    	function func_1() {
+    		return ({
+    	            icon: randomIcon()
+    	          });
+    	}
+
+    	function func_2() {
+    		return ({
+    	            icon: randomIcon()
+    	          });
+    	}
+
+    	function func_3() {
+    		return ({
+    	          icon: randomIcon()
+    	        });
+    	}
+
     	function change_handler(e) {
     	      helper01 = e.detail.target.value; $$invalidate('helper01', helper01);
     	    }
@@ -8604,6 +9512,12 @@ var app = (function () {
     		customStyle1,
     		randomColor,
     		setRandomColor,
+    		randomIcon,
+    		Array,
+    		func,
+    		func_1,
+    		func_2,
+    		func_3,
     		change_handler
     	};
     }
@@ -8611,13 +9525,82 @@ var app = (function () {
     class UiComponents extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$a, create_fragment$f, safe_not_equal, []);
+    		init(this, options, instance$d, create_fragment$i, safe_not_equal, []);
     	}
     }
 
     /* src/App.svelte generated by Svelte v3.5.4 */
 
-    // (13:0) <Screen>
+    const file$i = "src/App.svelte";
+
+    // (48:6) <ToggleButton>
+    function create_default_slot_2$1(ctx) {
+    	var t;
+
+    	return {
+    		c: function create() {
+    			t = text("Circle Navigation");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t);
+    			}
+    		}
+    	};
+    }
+
+    // (47:4) <ToggleGroup useNestedElements={false}>
+    function create_default_slot_1$1(ctx) {
+    	var current;
+
+    	var togglebutton = new ToggleButton({
+    		props: {
+    		$$slots: { default: [create_default_slot_2$1] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			togglebutton.$$.fragment.c();
+    		},
+
+    		m: function mount(target, anchor) {
+    			mount_component(togglebutton, target, anchor);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			var togglebutton_changes = {};
+    			if (changed.$$scope) togglebutton_changes.$$scope = { changed, ctx };
+    			togglebutton.$set(togglebutton_changes);
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(togglebutton.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(togglebutton.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			destroy_component(togglebutton, detaching);
+    		}
+    	};
+    }
+
+    // (53:0) <Screen>
     function create_default_slot$1(ctx) {
     	var current;
 
@@ -8651,8 +9634,22 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$g(ctx) {
-    	var current;
+    function create_fragment$j(ctx) {
+    	var div2, div1, div0, t0, t1, t2, current;
+
+    	var ripple = new Ripple({
+    		props: { color: "#000000" },
+    		$$inline: true
+    	});
+
+    	var togglegroup = new ToggleGroup({
+    		props: {
+    		useNestedElements: false,
+    		$$slots: { default: [create_default_slot_1$1] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
 
     	var screen = new Screen({
     		props: {
@@ -8664,7 +9661,21 @@ var app = (function () {
 
     	return {
     		c: function create() {
+    			div2 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = text("Textfields\n      ");
+    			ripple.$$.fragment.c();
+    			t1 = space();
+    			togglegroup.$$.fragment.c();
+    			t2 = space();
     			screen.$$.fragment.c();
+    			attr(div0, "class", "headbar-link svelte-igqpnj");
+    			add_location(div0, file$i, 41, 4, 935);
+    			attr(div1, "class", "headbar-center svelte-igqpnj");
+    			add_location(div1, file$i, 40, 2, 902);
+    			attr(div2, "class", "headbar svelte-igqpnj");
+    			add_location(div2, file$i, 39, 0, 878);
     		},
 
     		l: function claim(nodes) {
@@ -8672,11 +9683,23 @@ var app = (function () {
     		},
 
     		m: function mount(target, anchor) {
+    			insert(target, div2, anchor);
+    			append(div2, div1);
+    			append(div1, div0);
+    			append(div0, t0);
+    			mount_component(ripple, div0, null);
+    			append(div1, t1);
+    			mount_component(togglegroup, div1, null);
+    			insert(target, t2, anchor);
     			mount_component(screen, target, anchor);
     			current = true;
     		},
 
     		p: function update(changed, ctx) {
+    			var togglegroup_changes = {};
+    			if (changed.$$scope) togglegroup_changes.$$scope = { changed, ctx };
+    			togglegroup.$set(togglegroup_changes);
+
     			var screen_changes = {};
     			if (changed.$$scope) screen_changes.$$scope = { changed, ctx };
     			screen.$set(screen_changes);
@@ -8684,57 +9707,44 @@ var app = (function () {
 
     		i: function intro(local) {
     			if (current) return;
+    			transition_in(ripple.$$.fragment, local);
+
+    			transition_in(togglegroup.$$.fragment, local);
+
     			transition_in(screen.$$.fragment, local);
 
     			current = true;
     		},
 
     		o: function outro(local) {
+    			transition_out(ripple.$$.fragment, local);
+    			transition_out(togglegroup.$$.fragment, local);
     			transition_out(screen.$$.fragment, local);
     			current = false;
     		},
 
     		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div2);
+    			}
+
+    			destroy_component(ripple, );
+
+    			destroy_component(togglegroup, );
+
+    			if (detaching) {
+    				detach(t2);
+    			}
+
     			destroy_component(screen, detaching);
     		}
     	};
     }
 
-    function instance$b($$self, $$props, $$invalidate) {
-    	
-
-      let { name } = $$props;
-
-    	const writable_props = ['name'];
-    	Object.keys($$props).forEach(key => {
-    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<App> was created with unknown prop '${key}'`);
-    	});
-
-    	$$self.$set = $$props => {
-    		if ('name' in $$props) $$invalidate('name', name = $$props.name);
-    	};
-
-    	return { name };
-    }
-
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$b, create_fragment$g, safe_not_equal, ["name"]);
-
-    		const { ctx } = this.$$;
-    		const props = options.props || {};
-    		if (ctx.name === undefined && !('name' in props)) {
-    			console.warn("<App> was created without expected prop 'name'");
-    		}
-    	}
-
-    	get name() {
-    		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set name(value) {
-    		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    		init(this, options, null, create_fragment$j, safe_not_equal, []);
     	}
     }
 

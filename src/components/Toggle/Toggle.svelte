@@ -13,7 +13,7 @@
   };
 </script>
 
-<style>
+<style lang="scss">
   .toggle {
     display: inline-flex;
     cursor: pointer;

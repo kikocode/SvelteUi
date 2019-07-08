@@ -2,7 +2,7 @@
 
 </script>
 
-<style>
+<style lang="scss">
   .screen {
     margin: 0 auto;
     max-width: 1200px;

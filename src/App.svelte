@@ -8,7 +8,7 @@
   import { ToggleGroup } from "./components/Toggle";
 </script>
 
-<style>
+<style lang="scss">
   :global(body) {
     margin: 0;
   }

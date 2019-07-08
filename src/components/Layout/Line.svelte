@@ -1,4 +1,4 @@
-<style>
+<style lang="scss">
   .line {
     display: flex;
 		flex-flow: wrap;
