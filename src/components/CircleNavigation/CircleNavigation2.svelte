@@ -135,13 +135,13 @@
   on:mouseout={handleMouseout}
   style={circleNavigationStyle}>
 
-  <div class="circle-navigation_button">
+  <button class="circle-navigation_button">
     {#if ripple}
       <Ripple />
     {/if}
 
     <slot name="circle" />
-  </div>
+  </button>
   <div class="circle-navigation_elements" bind:this={elementsRef}>
     <slot name="elements" />
   </div>

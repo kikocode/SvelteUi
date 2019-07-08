@@ -2581,7 +2581,7 @@ var app = (function () {
     }
 
     function create_fragment$6(ctx) {
-    	var div3, div0, t0, t1, div1, t2, div2, div3_class_value, current, dispose;
+    	var div2, button, t0, t1, div0, t2, div1, div2_class_value, current, dispose;
 
     	var if_block = (ctx.ripple) && create_if_block$3();
 
@@ -2593,64 +2593,64 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			div3 = element("div");
-    			div0 = element("div");
+    			div2 = element("div");
+    			button = element("button");
     			if (if_block) if_block.c();
     			t0 = space();
 
     			if (circle_slot) circle_slot.c();
     			t1 = space();
-    			div1 = element("div");
+    			div0 = element("div");
 
     			if (elements_slot) elements_slot.c();
     			t2 = space();
-    			div2 = element("div");
+    			div1 = element("div");
 
-    			attr(div0, "class", "circle-navigation_button svelte-1gaeifk");
-    			add_location(div0, file$6, 191, 2, 4838);
+    			attr(button, "class", "circle-navigation_button svelte-1gaeifk");
+    			add_location(button, file$6, 191, 2, 4838);
 
-    			attr(div1, "class", "circle-navigation_elements svelte-1gaeifk");
-    			add_location(div1, file$6, 198, 2, 4992);
-    			attr(div2, "class", "circle-navigation_background svelte-1gaeifk");
-    			add_location(div2, file$6, 202, 2, 5098);
-    			attr(div3, "class", div3_class_value = "" + ('circle-navigation ' + ctx.circleNavigationClasses) + " svelte-1gaeifk");
-    			attr(div3, "style", ctx.circleNavigationStyle);
-    			add_location(div3, file$6, 186, 0, 4707);
+    			attr(div0, "class", "circle-navigation_elements svelte-1gaeifk");
+    			add_location(div0, file$6, 198, 2, 4998);
+    			attr(div1, "class", "circle-navigation_background svelte-1gaeifk");
+    			add_location(div1, file$6, 202, 2, 5104);
+    			attr(div2, "class", div2_class_value = "" + ('circle-navigation ' + ctx.circleNavigationClasses) + " svelte-1gaeifk");
+    			attr(div2, "style", ctx.circleNavigationStyle);
+    			add_location(div2, file$6, 186, 0, 4707);
 
     			dispose = [
-    				listen(div0, "mouseenter", ctx.handleMouseover),
-    				listen(div3, "mouseleave", ctx.handleMouseout)
+    				listen(button, "mouseenter", ctx.handleMouseover),
+    				listen(div2, "mouseleave", ctx.handleMouseout)
     			];
     		},
 
     		l: function claim(nodes) {
-    			if (circle_slot) circle_slot.l(div0_nodes);
+    			if (circle_slot) circle_slot.l(button_nodes);
 
-    			if (elements_slot) elements_slot.l(div1_nodes);
+    			if (elements_slot) elements_slot.l(div0_nodes);
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div3, anchor);
-    			append(div3, div0);
-    			if (if_block) if_block.m(div0, null);
-    			append(div0, t0);
+    			insert(target, div2, anchor);
+    			append(div2, button);
+    			if (if_block) if_block.m(button, null);
+    			append(button, t0);
 
     			if (circle_slot) {
-    				circle_slot.m(div0, null);
+    				circle_slot.m(button, null);
     			}
 
-    			append(div3, t1);
-    			append(div3, div1);
+    			append(div2, t1);
+    			append(div2, div0);
 
     			if (elements_slot) {
-    				elements_slot.m(div1, null);
+    				elements_slot.m(div0, null);
     			}
 
+    			add_binding_callback(() => ctx.div0_binding(div0, null));
+    			append(div2, t2);
+    			append(div2, div1);
     			add_binding_callback(() => ctx.div1_binding(div1, null));
-    			append(div3, t2);
-    			append(div3, div2);
-    			add_binding_callback(() => ctx.div2_binding(div2, null));
     			current = true;
     		},
 
@@ -2660,7 +2660,7 @@ var app = (function () {
     					if_block = create_if_block$3();
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(div0, t0);
+    					if_block.m(button, t0);
     				} else {
     									transition_in(if_block, 1);
     				}
@@ -2681,20 +2681,20 @@ var app = (function () {
     			}
 
     			if (changed.items) {
+    				ctx.div0_binding(null, div0);
+    				ctx.div0_binding(div0, null);
+    			}
+    			if (changed.items) {
     				ctx.div1_binding(null, div1);
     				ctx.div1_binding(div1, null);
     			}
-    			if (changed.items) {
-    				ctx.div2_binding(null, div2);
-    				ctx.div2_binding(div2, null);
-    			}
 
-    			if ((!current || changed.circleNavigationClasses) && div3_class_value !== (div3_class_value = "" + ('circle-navigation ' + ctx.circleNavigationClasses) + " svelte-1gaeifk")) {
-    				attr(div3, "class", div3_class_value);
+    			if ((!current || changed.circleNavigationClasses) && div2_class_value !== (div2_class_value = "" + ('circle-navigation ' + ctx.circleNavigationClasses) + " svelte-1gaeifk")) {
+    				attr(div2, "class", div2_class_value);
     			}
 
     			if (!current || changed.circleNavigationStyle) {
-    				attr(div3, "style", ctx.circleNavigationStyle);
+    				attr(div2, "style", ctx.circleNavigationStyle);
     			}
     		},
 
@@ -2715,7 +2715,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div3);
+    				detach(div2);
     			}
 
     			if (if_block) if_block.d();
@@ -2723,8 +2723,8 @@ var app = (function () {
     			if (circle_slot) circle_slot.d(detaching);
 
     			if (elements_slot) elements_slot.d(detaching);
+    			ctx.div0_binding(null, div0);
     			ctx.div1_binding(null, div1);
-    			ctx.div2_binding(null, div2);
     			run_all(dispose);
     		}
     	};
@@ -2819,12 +2819,12 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
 
-    	function div1_binding($$node, check) {
+    	function div0_binding($$node, check) {
     		elementsRef = $$node;
     		$$invalidate('elementsRef', elementsRef);
     	}
 
-    	function div2_binding($$node, check) {
+    	function div1_binding($$node, check) {
     		bgRef = $$node;
     		$$invalidate('bgRef', bgRef);
     	}
@@ -2866,8 +2866,8 @@ var app = (function () {
     		handleMouseout,
     		circleNavigationClasses,
     		circleNavigationStyle,
+    		div0_binding,
     		div1_binding,
-    		div2_binding,
     		$$slots,
     		$$scope
     	};
@@ -2971,7 +2971,7 @@ var app = (function () {
     }
 
     function create_fragment$7(ctx) {
-    	var div3, div0, t0, t1, div1, t2, div2, current, dispose;
+    	var div2, button, t0, t1, div0, t2, div1, current, dispose;
 
     	var if_block = (ctx.ripple) && create_if_block$4();
 
@@ -2983,64 +2983,64 @@ var app = (function () {
 
     	return {
     		c: function create() {
-    			div3 = element("div");
-    			div0 = element("div");
+    			div2 = element("div");
+    			button = element("button");
     			if (if_block) if_block.c();
     			t0 = space();
 
     			if (circle_slot) circle_slot.c();
     			t1 = space();
-    			div1 = element("div");
+    			div0 = element("div");
 
     			if (elements_slot) elements_slot.c();
     			t2 = space();
-    			div2 = element("div");
+    			div1 = element("div");
 
-    			attr(div0, "class", "circle-navigation_button svelte-1ib18bt");
-    			add_location(div0, file$7, 128, 2, 3102);
+    			attr(button, "class", "circle-navigation_button svelte-1ib18bt");
+    			add_location(button, file$7, 128, 2, 3102);
 
-    			attr(div1, "class", "circle-navigation_elements");
-    			add_location(div1, file$7, 135, 2, 3224);
-    			attr(div2, "class", "circle-navigation_background svelte-1ib18bt");
-    			add_location(div2, file$7, 139, 2, 3330);
-    			attr(div3, "class", "circle-navigation svelte-1ib18bt");
-    			attr(div3, "style", ctx.circleNavigationStyle);
-    			add_location(div3, file$7, 122, 0, 2969);
+    			attr(div0, "class", "circle-navigation_elements");
+    			add_location(div0, file$7, 135, 2, 3230);
+    			attr(div1, "class", "circle-navigation_background svelte-1ib18bt");
+    			add_location(div1, file$7, 139, 2, 3336);
+    			attr(div2, "class", "circle-navigation svelte-1ib18bt");
+    			attr(div2, "style", ctx.circleNavigationStyle);
+    			add_location(div2, file$7, 122, 0, 2969);
 
     			dispose = [
-    				listen(div3, "mouseover", ctx.handleMouseover),
-    				listen(div3, "mouseout", ctx.handleMouseout)
+    				listen(div2, "mouseover", ctx.handleMouseover),
+    				listen(div2, "mouseout", ctx.handleMouseout)
     			];
     		},
 
     		l: function claim(nodes) {
-    			if (circle_slot) circle_slot.l(div0_nodes);
+    			if (circle_slot) circle_slot.l(button_nodes);
 
-    			if (elements_slot) elements_slot.l(div1_nodes);
+    			if (elements_slot) elements_slot.l(div0_nodes);
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
 
     		m: function mount(target, anchor) {
-    			insert(target, div3, anchor);
-    			append(div3, div0);
-    			if (if_block) if_block.m(div0, null);
-    			append(div0, t0);
+    			insert(target, div2, anchor);
+    			append(div2, button);
+    			if (if_block) if_block.m(button, null);
+    			append(button, t0);
 
     			if (circle_slot) {
-    				circle_slot.m(div0, null);
+    				circle_slot.m(button, null);
     			}
 
-    			append(div3, t1);
-    			append(div3, div1);
+    			append(div2, t1);
+    			append(div2, div0);
 
     			if (elements_slot) {
-    				elements_slot.m(div1, null);
+    				elements_slot.m(div0, null);
     			}
 
+    			add_binding_callback(() => ctx.div0_binding(div0, null));
+    			append(div2, t2);
+    			append(div2, div1);
     			add_binding_callback(() => ctx.div1_binding(div1, null));
-    			append(div3, t2);
-    			append(div3, div2);
-    			add_binding_callback(() => ctx.div2_binding(div2, null));
     			current = true;
     		},
 
@@ -3050,7 +3050,7 @@ var app = (function () {
     					if_block = create_if_block$4();
     					if_block.c();
     					transition_in(if_block, 1);
-    					if_block.m(div0, t0);
+    					if_block.m(button, t0);
     				} else {
     									transition_in(if_block, 1);
     				}
@@ -3071,16 +3071,16 @@ var app = (function () {
     			}
 
     			if (changed.items) {
+    				ctx.div0_binding(null, div0);
+    				ctx.div0_binding(div0, null);
+    			}
+    			if (changed.items) {
     				ctx.div1_binding(null, div1);
     				ctx.div1_binding(div1, null);
     			}
-    			if (changed.items) {
-    				ctx.div2_binding(null, div2);
-    				ctx.div2_binding(div2, null);
-    			}
 
     			if (!current || changed.circleNavigationStyle) {
-    				attr(div3, "style", ctx.circleNavigationStyle);
+    				attr(div2, "style", ctx.circleNavigationStyle);
     			}
     		},
 
@@ -3101,7 +3101,7 @@ var app = (function () {
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach(div3);
+    				detach(div2);
     			}
 
     			if (if_block) if_block.d();
@@ -3109,8 +3109,8 @@ var app = (function () {
     			if (circle_slot) circle_slot.d(detaching);
 
     			if (elements_slot) elements_slot.d(detaching);
+    			ctx.div0_binding(null, div0);
     			ctx.div1_binding(null, div1);
-    			ctx.div2_binding(null, div2);
     			run_all(dispose);
     		}
     	};
@@ -3180,12 +3180,12 @@ var app = (function () {
 
     	let { $$slots = {}, $$scope } = $$props;
 
-    	function div1_binding($$node, check) {
+    	function div0_binding($$node, check) {
     		elementsRef = $$node;
     		$$invalidate('elementsRef', elementsRef);
     	}
 
-    	function div2_binding($$node, check) {
+    	function div1_binding($$node, check) {
     		bgRef = $$node;
     		$$invalidate('bgRef', bgRef);
     	}
@@ -3218,8 +3218,8 @@ var app = (function () {
     		handleMouseover,
     		handleMouseout,
     		circleNavigationStyle,
+    		div0_binding,
     		div1_binding,
-    		div2_binding,
     		$$slots,
     		$$scope
     	};
