@@ -1,6 +1,6 @@
 # About
 
-Hello friend 💕cool you found us! this is a collection of useful components built in svelte by Pascal(Päxie) and Raphael(Raphi).
+Hello friend 💕cool you found us! this is a collection of useful components built in Svelte.
 Keep in mind that this is an experimental project to play around with svelte, but if you have any inputs please drop us an issue, pull request or message us.
 
 P.s: in case no one told you this today: we 💙you and you are wonderful! 
