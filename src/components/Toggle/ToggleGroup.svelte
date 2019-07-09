@@ -1,34 +1,42 @@
+<script context="module">
+  export let TOGGLE_GROUP_KEY = {};
+</script>
+
 <script>
-  import { onMount } from "svelte";
+  import { onMount, setContext, createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
 
-  export let useNestedElements = true;
+  export let multiple = false;
 
-  let toggleButtonElemsRef;
-  let elems;
+  let actives = [];
 
-  onMount(() => {
-    elems = toggleButtonElemsRef.children;
-    // using svelte's {#each} inside a named slot renders an extra div,
-    // which will be taken care of here until fixed
-    // @see - https://github.com/sveltejs/svelte/issues/2080
-    if (useNestedElements) elems = elems[0].children;
-    let entries = Array.from(elems);
-    entries.forEach((el, i) => {
-      el.addEventListener("click", handleClick);
+  let handleClick = id => {
+    if (multiple) {
+      if (actives.includes(id)) actives = actives.filter(el => el != id);
+      else actives.push(id);
+    } else {
+      if (actives.includes(id)) actives = [];
+      else actives = [id];
+    }
+
+    console.log("k", id, actives, multiple);
+    dispatch("change", {
+      id: id,
+      actives: actives
     });
-  });
+  };
 
-  const handleClick = e => {};
+  setContext(TOGGLE_GROUP_KEY, {
+    onclick: handleClick
+  });
 </script>
 
 <style>
   .togglegroup {
+    display: flex;
   }
 </style>
 
 <div class="togglegroup">
-
-  <div bind:this={toggleButtonElemsRef}>
-    <slot />
-  </div>
+  <slot {actives} />
 </div>
