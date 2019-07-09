@@ -1,4 +1,8 @@
 export function hexToRGB(hex, alpha) {
+	var regexShorthand = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	hex = hex.replace(regexShorthand, function (m, r, g, b) {
+		return r + r + g + g + b + b;
+	});
 	var bigint = parseInt(hex.replace('#', ''), 16);
 	var r = (bigint >> 16) & 255;
 	var g = (bigint >> 8) & 255;
