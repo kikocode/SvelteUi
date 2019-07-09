@@ -1,13 +1,15 @@
 export function hexToRGB(hex, alpha) {
-	var r = parseInt(hex.slice(1, 3), 16),
-		g = parseInt(hex.slice(3, 5), 16),
-		b = parseInt(hex.slice(5, 7), 16);
+	var bigint = parseInt(hex.replace('#', ''), 16);
+	var r = (bigint >> 16) & 255;
+	var g = (bigint >> 8) & 255;
+	var b = bigint & 255;
+
 	if (alpha) {
 		return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
 	} else {
 		return "rgb(" + r + ", " + g + ", " + b + ")";
 	}
-};
+}
 
 export function randomHex() {
 	return '#' + Math.floor(Math.random() * 16777215).toString(16);
