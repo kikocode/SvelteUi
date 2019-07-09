@@ -60,6 +60,8 @@
   let circles1 = Array.from({ length: 5 }, () => ({ icon: randomIcon() }));
   let circles2 = Array.from({ length: 8 }, () => ({ icon: randomIcon() }));
   let circles3 = Array.from({ length: 2 }, () => ({ icon: randomIcon() }));
+
+  let actives = []
 </script>
 
 <style type="text/scss">
@@ -275,12 +277,16 @@
 <h2>Accordeon</h2>
 
 <Block>
-  <Accordeon multiple="true">
-    <AccordeonElement active={true}>
+  <Accordeon multiple="true" on:change={(e) => {
+    console.log("dsdad")
+    console.log("ee", e.detail.actives);
+    actives = e.detail.actives;
+  }}>
+    <AccordeonElement expanded={actives.includes(1)} id={1}>
       <p slot="header">header1</p>
       <p slot="body">Body text1</p>
     </AccordeonElement>
-    <AccordeonElement active={false}>
+    <AccordeonElement expanded={actives.includes(2)} id={2}>
       <p slot="header">header2</p>
       <p slot="body">Body text2</p>
     </AccordeonElement>
