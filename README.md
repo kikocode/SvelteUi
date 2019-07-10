@@ -8,10 +8,26 @@ Have a nice day!
 
 ## Demo Link 
 
-[link](https://kikocode.github.io/SvelteUi/)
+[UI Components Demo](https://kikocode.github.io/SvelteUi/)
 
 ---
 
+## Components
+**Done**
+- Button
+- Checkbox
+- ToggleGroup
+- CircleNavigation
+- Textfield
+- Ripple
+
+**Todo**
+- Accordeon
+- Tabs
+- Select
+- Radio
+- Data Tables
+- Badges
 
 ## svelte app
 
