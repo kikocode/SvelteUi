@@ -230,7 +230,7 @@
         on:change={e => {
           actives2 = e.detail.actives;
         }}
-        multiple={true}>
+        multiple={false}>
         {#each new Array(3).fill('') as el, i}
           <ToggleGroupElement id={i}>
             <Toggle toggle={actives2.includes(i)} color={randomColor} />
@@ -238,6 +238,7 @@
         {/each}
       </ToggleGroup>
     </div>
+
   </div>
 </Block>
 
