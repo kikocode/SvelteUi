@@ -253,6 +253,13 @@
   <Toggle toggle={false} color="#88bbaa" disabled={true}/>
 </Block>
 
+<h2>Checkboxes</h2>
+
+<Block>
+  <Checkbox color="#bbddaa" />
+  <Checkbox color="#bbddaa" label="Checkbox 02" />
+</Block>
+
 
 
 <h2>Circle Navigation</h2>
@@ -477,13 +484,6 @@
     -
     <Ripple color="#99abd2" />
   </div>
-</Block>
-
-<h2>Checkboxes</h2>
-
-<Block>
-  <Checkbox color="#bbddaa" />
-  <Checkbox color="#bbddaa" label="Checkbox 02" />
 </Block>
 
 <h2>Textfields</h2>

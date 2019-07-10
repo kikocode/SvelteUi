@@ -11,18 +11,22 @@
 	export let checked = false;
 	export let label = '';
 	export let color = '#333333';
+
+	const handleClick = e => {
+		checked = !checked;
+	};
 </script>
 
 <style type="text/scss">
 	.checkbox {
+		--text-color: rgba(0, 0, 0, 0.75);
 		display: flex;
+		margin: 14px;
 		align-items: center;
 		position: relative;
 		* {
 			cursor: pointer;
 		}
-		margin: 14px;
-		--text-color: rgba(0, 0, 0, 0.75);
 	}
 
 	.checkbox-input:checked {
@@ -77,7 +81,7 @@
 	}
 </style>
 
-<label class={`checkbox`}>
+<label class={`checkbox`} on:click={handleClick}>
 	<input class="checkbox-input" type="checkbox" {checked} />
 	<div class="checkbox-box">
 		{#if checked}
