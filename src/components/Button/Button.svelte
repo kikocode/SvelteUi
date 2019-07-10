@@ -31,7 +31,7 @@
 	$: buttonStyles = `
     ${style};
     --primary-color:  ${color};
-    --primary-color-dark:  ${darken(color, 10)};
+    --primary-color-dark:  ${darken(color, 15)};
     --primary-color-medium:  ${hexToRGB(color, 0.8)};
     --primary-color-light:  ${hexToRGB(color, 0.4)};
     --primary-color-soft:  ${hexToRGB(color, 0.08)};
@@ -62,9 +62,9 @@
 			box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
 			border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
+		margin: 8px;
 		outline: none;
 		border: none;
-		margin: 8px;
 		position: relative;
 		overflow: hidden;
 		display: inline-flex;
@@ -97,6 +97,12 @@
 	.button--raised {
 		box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
 			0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+		&:active {
+			box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2),
+				0px 8px 10px 1px rgba(0, 0, 0, 0.14),
+				0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+		}
 	}
 
 	.button--outlined {
