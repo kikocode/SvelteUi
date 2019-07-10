@@ -12,7 +12,7 @@
   export let label = "";
   export let color = "#333333";
 
-  $: checkedClass = checked ? "checked" : "";
+  $: checkedClass = checked ? "checkbox--checked" : "";
   $: checkboxClasses = `${checkedClass}`;
 </script>
 
@@ -26,15 +26,15 @@
     }
     margin: 14px;
     --text-color: rgba(0, 0, 0, 0.75);
+  }
 
-    &.checked {
-      .checkbox-box {
-        background: black;
-        border-color: black;
-      }
-      .checkbox-checker :global(svg) {
-        fill: white;
-      }
+  .checkbox--checked {
+    .checkbox-box {
+      background: black;
+      border-color: black;
+    }
+    .checkbox-checker :global(svg) {
+      fill: white;
     }
   }
 
