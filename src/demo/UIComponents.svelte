@@ -69,6 +69,7 @@
   let actives0 = [];
   let actives1 = [];
   let actives2 = [];
+  let actives4 = [];
 </script>
 
 <style type="text/scss">
@@ -182,8 +183,21 @@
 
   <div style="display:flex; flex-flow:column">
     <div>
+
       <ToggleGroup
-        let:actives
+        on:change={e => {
+          actives4 = e.detail.actives;
+        }}>
+        {#each new Array(3).fill('') as el, i}
+          <ToggleGroupElement id={i}>
+            <Checkbox checked={actives4.includes(i)} color="#bbddaa" label="test"/>
+          </ToggleGroupElement>
+        {/each}
+      </ToggleGroup>
+
+    </div>
+    <div>
+      <ToggleGroup
         on:change={e => {
           actives0 = e.detail.actives;
         }}>
@@ -200,7 +214,6 @@
 
     <div>
       <ToggleGroup
-        let:actives
         on:change={e => {
           actives1 = e.detail.actives;
         }}>

@@ -18,6 +18,9 @@
 
 <style type="text/scss">
   .checkbox {
+    display: flex;
+    align-items: center;
+    position: relative;
     * {
       cursor: pointer;
     }
@@ -46,16 +49,15 @@
     border: 2px solid grey;
   }
   .checkbox-input {
-    border: 0;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    cursor: inherit;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
     padding: 0;
     position: absolute;
-    width: 1px;
-    outline: 0;
-    -webkit-appearance: none;
   }
 
   .checkbox-field {
@@ -78,7 +80,7 @@
   }
 </style>
 
-<div class={'checkbox ' + checkboxClasses}>
+<label class={`checkbox ${checkboxClasses}`}>
   <input class="checkbox-input" type="checkbox" {checked} />
   <div class="checkbox-box">
     {#if checked}
@@ -90,5 +92,4 @@
   {#if label}
     <div class="checkbox-label">{label}</div>
   {/if}
-
-</div>
+</label>
