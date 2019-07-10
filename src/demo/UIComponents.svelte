@@ -241,6 +241,17 @@
   </div>
 </Block>
 
+<h2>Toggle Buttons</h2>
+
+<Block>
+  <Toggle />
+  <Toggle toggle={true} color="#bb99dd" />
+  <Toggle toggle={true} color="#99aa33" />
+  <Toggle toggle={true} color="#88bbaa" />
+</Block>
+
+
+
 <h2>Circle Navigation</h2>
 <Block>
   <div style="display:flex; position:relative;">
@@ -876,11 +887,3 @@
 
 </Block>
 
-<h2>Toggle Buttons</h2>
-
-<Block>
-  <Toggle />
-  <Toggle toggle={true} color="#bb99dd" />
-  <Toggle toggle={true} color="#99aa33" />
-  <Toggle toggle={true} color="#88bbaa" />
-</Block>
