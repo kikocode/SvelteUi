@@ -11,9 +11,6 @@
   export let checked = false;
   export let label = "";
   export let color = "#333333";
-
-  $: checkedClass = checked ? "checkbox--checked" : "";
-  $: checkboxClasses = `${checkedClass}`;
 </script>
 
 <style type="text/scss">
@@ -28,13 +25,13 @@
     --text-color: rgba(0, 0, 0, 0.75);
   }
 
-  .checkbox--checked {
-    .checkbox-box {
+  .checkbox-input:checked {
+    & ~ .checkbox-box {
       background: black;
       border-color: black;
     }
-    .checkbox-checker :global(svg) {
-      fill: white;
+    & ~ .checkbox-box .checkbox-checker :global(svg) {
+      fill: white !important;
     }
   }
 
@@ -80,7 +77,7 @@
   }
 </style>
 
-<label class={`checkbox ${checkboxClasses}`}>
+<label class={`checkbox`}>
   <input class="checkbox-input" type="checkbox" {checked} />
   <div class="checkbox-box">
     {#if checked}
