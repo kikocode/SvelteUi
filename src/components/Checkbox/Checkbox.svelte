@@ -31,7 +31,7 @@
       border-color: black;
     }
     & ~ .checkbox-box .checkbox-checker :global(svg) {
-      fill: white !important;
+      fill: white;
     }
   }
 
