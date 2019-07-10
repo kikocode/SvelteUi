@@ -3,12 +3,12 @@
 </script>
 
 <style>
-  .screen {
-    margin: 0 auto;
-    max-width: 1200px;
-  }
+	.screen {
+		margin: 0 auto;
+		max-width: 1200px;
+	}
 </style>
 
 <div class="screen">
-  <slot />
+	<slot />
 </div>

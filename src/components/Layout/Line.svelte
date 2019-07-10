@@ -1,11 +1,11 @@
 <style>
-  .line {
-    display: flex;
+	.line {
+		display: flex;
 		flex-flow: wrap;
-		align-content:flex-start;
-  }
+		align-content: flex-start;
+	}
 </style>
 
 <div class="line">
-  <slot />
+	<slot />
 </div>
