@@ -8,6 +8,12 @@
   import { useRipple } from "../components/Ripple";
   import { CircleNavigation } from "../components/CircleNavigation";
   import { CircleNavigation2 } from "../components/CircleNavigation";
+  import {
+    ToggleGroup,
+    ToggleGroupElement,
+    ToggleButton,
+    Switch
+  } from "../components/Toggle";
 
   import { Block } from "../components/Layout";
   import { Line } from "../components/Layout";
@@ -59,6 +65,11 @@
   let circles1 = Array.from({ length: 5 }, () => ({ icon: randomIcon() }));
   let circles2 = Array.from({ length: 8 }, () => ({ icon: randomIcon() }));
   let circles3 = Array.from({ length: 2 }, () => ({ icon: randomIcon() }));
+
+  let actives0 = [];
+  let actives1 = [];
+  let actives2 = [];
+  let actives4 = [];
 </script>
 
 <style type="text/scss">
@@ -166,6 +177,69 @@
   <Ripple color={randomColor} />
   Random Color
 </Button>
+
+<h2>Toggle Group</h2>
+<Block>
+
+  <div style="display:flex; flex-flow:column">
+    <div>
+
+      <ToggleGroup
+        on:change={e => {
+          actives4 = e.detail.actives;
+        }}>
+        {#each new Array(3).fill('') as el, i}
+          <ToggleGroupElement id={i}>
+            <Checkbox checked={actives4.includes(i)} color="#bbddaa" label="test"/>
+          </ToggleGroupElement>
+        {/each}
+      </ToggleGroup>
+
+    </div>
+    <div>
+      <ToggleGroup
+        on:change={e => {
+          actives0 = e.detail.actives;
+        }}>
+        {#each new Array(3).fill('') as el, i}
+          <ToggleGroupElement id={i}>
+            <ToggleButton isOn={actives0.includes(i)} color={randomColor}>
+              Toggle Button {i}
+              <Ripple color={randomColor} />
+            </ToggleButton>
+          </ToggleGroupElement>
+        {/each}
+      </ToggleGroup>
+    </div>
+
+    <div>
+      <ToggleGroup
+        on:change={e => {
+          actives1 = e.detail.actives;
+        }}>
+        {#each new Array(3).fill('') as el, i}
+          <ToggleGroupElement id={i}>
+            <Switch isOn={actives1.includes(i)} color={randomColor} />
+          </ToggleGroupElement>
+        {/each}
+      </ToggleGroup>
+    </div>
+
+    <div>
+      <ToggleGroup
+        on:change={e => {
+          actives2 = e.detail.actives;
+        }}
+        multiple={true}>
+        {#each new Array(3).fill('') as el, i}
+          <ToggleGroupElement id={i}>
+            <Toggle toggle={actives2.includes(i)} color={randomColor} />
+          </ToggleGroupElement>
+        {/each}
+      </ToggleGroup>
+    </div>
+  </div>
+</Block>
 
 <h2>Circle Navigation</h2>
 <Block>
