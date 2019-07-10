@@ -10,8 +10,6 @@ Have a nice day!
 
 [UI Components Demo](https://kikocode.github.io/SvelteUi/)
 
----
-
 ## Components
 **Done**
 - Button
