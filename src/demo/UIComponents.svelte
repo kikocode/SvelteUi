@@ -249,6 +249,8 @@
   <Toggle toggle={true} color="#bb99dd" />
   <Toggle toggle={true} color="#99aa33" />
   <Toggle toggle={true} color="#88bbaa" />
+  <Toggle toggle={true} color="#88bbaa" disabled={true}/>
+  <Toggle toggle={false} color="#88bbaa" disabled={true}/>
 </Block>
 
 

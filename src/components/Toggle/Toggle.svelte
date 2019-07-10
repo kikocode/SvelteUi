@@ -1,14 +1,17 @@
 <script>
 	export let toggle = false;
 	export let color = '#333333';
+	export let disabled = false;
 
 	$: toggleClass = toggle ? 'toggle--on' : '';
-	$: toggleClasses = `${toggleClass}`;
+	$: disabledClass = disabled ? 'toggle--disabled' : '';
+	$: toggleClasses = `${toggleClass} ${disabledClass}`;
 	$: toggleStyle = `
-    --primary-color: ${color};
+    --color-primary: ${color};
   `;
 
 	const handleClick = () => {
+		if (disabled) return;
 		toggle = !toggle;
 	};
 </script>
@@ -16,6 +19,8 @@
 <style>
 	.toggle {
 		--transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+		--color-disabled: #dbdbdb;
+
 		display: inline-flex;
 		cursor: pointer;
 		margin-top: 12px;
@@ -55,8 +60,30 @@
 			left: 24px;
 		}
 		.toggle-bg {
-			background: var(--primary-color);
-			border-color: var(--primary-color);
+			background: var(--color-primary);
+			border-color: var(--color-primary);
+		}
+	}
+
+	.toggle--disabled {
+		cursor: default;
+		pointer-events: none;
+
+		.toggle-grabber {
+			background: rgba(0, 0, 0, 0.3);
+		}
+		.toggle-bg {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
+
+		&.toggle--on {
+			.toggle-grabber {
+				background: #a0a0a0;
+			}
+			.toggle-bg {
+				background: var(--color-disabled);
+				border-color: var(--color-disabled);
+			}
 		}
 	}
 </style>
