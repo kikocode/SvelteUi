@@ -92,6 +92,11 @@ var app = (function () {
     function detach(node) {
         node.parentNode.removeChild(node);
     }
+    function detach_between(before, after) {
+        while (before.nextSibling && before.nextSibling !== after) {
+            before.parentNode.removeChild(before.nextSibling);
+        }
+    }
     function destroy_each(iterations, detaching) {
         for (let i = 0; i < iterations.length; i += 1) {
             if (iterations[i])
@@ -446,6 +451,40 @@ var app = (function () {
                 running_program = pending_program = null;
             }
         };
+    }
+
+    function get_spread_update(levels, updates) {
+        const update = {};
+        const to_null_out = {};
+        const accounted_for = { $$scope: 1 };
+        let i = levels.length;
+        while (i--) {
+            const o = levels[i];
+            const n = updates[i];
+            if (n) {
+                for (const key in o) {
+                    if (!(key in n))
+                        to_null_out[key] = 1;
+                }
+                for (const key in n) {
+                    if (!accounted_for[key]) {
+                        update[key] = n[key];
+                        accounted_for[key] = 1;
+                    }
+                }
+                levels[i] = n;
+            }
+            else {
+                for (const key in o) {
+                    accounted_for[key] = 1;
+                }
+            }
+        }
+        for (const key in to_null_out) {
+            if (!(key in update))
+                update[key] = undefined;
+        }
+        return update;
     }
     function mount_component(component, target, anchor) {
         const { fragment, on_mount, on_destroy, after_render } = component.$$;
@@ -1155,7 +1194,7 @@ var app = (function () {
 
     const file$1 = "src\\components\\Textfield\\Textfield.svelte";
 
-    // (400:4) {#if prepend}
+    // (390:2) {#if prepend}
     function create_if_block_3(ctx) {
     	var div;
 
@@ -1163,7 +1202,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr(div, "class", "" + 'textfield__prepend' + " svelte-1p0ma8x");
-    			add_location(div, file$1, 400, 6, 11107);
+    			add_location(div, file$1, 390, 3, 10697);
     		},
 
     		m: function mount(target, anchor) {
@@ -1193,7 +1232,7 @@ var app = (function () {
     	};
     }
 
-    // (423:4) {:else}
+    // (413:2) {:else}
     function create_else_block(ctx) {
     	var input, dispose;
 
@@ -1203,7 +1242,7 @@ var app = (function () {
     			attr(input, "class", "textfield__input svelte-1p0ma8x");
     			attr(input, "type", ctx.type);
     			input.value = ctx.name;
-    			add_location(input, file$1, 423, 6, 11871);
+    			add_location(input, file$1, 413, 3, 11390);
 
     			dispose = [
     				listen(input, "change", ctx.handleChange),
@@ -1238,7 +1277,7 @@ var app = (function () {
     	};
     }
 
-    // (413:4) {#if multiline}
+    // (403:2) {#if multiline}
     function create_if_block_2(ctx) {
     	var textarea, dispose;
 
@@ -1248,7 +1287,7 @@ var app = (function () {
     			attr(textarea, "class", "textfield__input svelte-1p0ma8x");
     			attr(textarea, "type", ctx.type);
     			textarea.value = ctx.name;
-    			add_location(textarea, file$1, 413, 6, 11602);
+    			add_location(textarea, file$1, 403, 3, 11158);
 
     			dispose = [
     				listen(textarea, "change", ctx.handleChange),
@@ -1283,7 +1322,7 @@ var app = (function () {
     	};
     }
 
-    // (434:4) {#if append}
+    // (424:2) {#if append}
     function create_if_block_1(ctx) {
     	var div;
 
@@ -1291,7 +1330,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr(div, "class", "" + 'textfield__append' + " svelte-1p0ma8x");
-    			add_location(div, file$1, 434, 6, 12153);
+    			add_location(div, file$1, 424, 3, 11633);
     		},
 
     		m: function mount(target, anchor) {
@@ -1321,7 +1360,7 @@ var app = (function () {
     	};
     }
 
-    // (440:2) {#if helperText}
+    // (430:1) {#if helperText}
     function create_if_block(ctx) {
     	var div, t;
 
@@ -1330,7 +1369,7 @@ var app = (function () {
     			div = element("div");
     			t = text(ctx.helperText);
     			attr(div, "class", "textfield__helper__text svelte-1p0ma8x");
-    			add_location(div, file$1, 440, 4, 12293);
+    			add_location(div, file$1, 430, 2, 11760);
     		},
 
     		m: function mount(target, anchor) {
@@ -1390,20 +1429,20 @@ var app = (function () {
     			t6 = space();
     			if (if_block3) if_block3.c();
     			attr(div0, "class", "textfield__border__start textfield__border__segment svelte-1p0ma8x");
-    			add_location(div0, file$1, 406, 6, 11261);
+    			add_location(div0, file$1, 396, 3, 10837);
     			attr(div1, "class", "textfield__label svelte-1p0ma8x");
-    			add_location(div1, file$1, 408, 8, 11409);
+    			add_location(div1, file$1, 398, 4, 10978);
     			attr(div2, "class", "textfield__border__gap textfield__border__segment svelte-1p0ma8x");
-    			add_location(div2, file$1, 407, 6, 11336);
+    			add_location(div2, file$1, 397, 3, 10909);
     			attr(div3, "class", "textfield__border__end textfield__border__segment svelte-1p0ma8x");
-    			add_location(div3, file$1, 410, 6, 11496);
+    			add_location(div3, file$1, 400, 3, 11059);
     			attr(div4, "class", "textfield__border svelte-1p0ma8x");
-    			add_location(div4, file$1, 405, 4, 11222);
+    			add_location(div4, file$1, 395, 2, 10801);
     			attr(div5, "class", "textfield__element svelte-1p0ma8x");
-    			add_location(div5, file$1, 398, 2, 11048);
+    			add_location(div5, file$1, 388, 1, 10643);
     			attr(div6, "class", div6_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-1p0ma8x");
     			attr(div6, "style", ctx.textfieldStyle);
-    			add_location(div6, file$1, 397, 0, 10976);
+    			add_location(div6, file$1, 387, 0, 10572);
     		},
 
     		l: function claim(nodes) {
@@ -1525,73 +1564,62 @@ var app = (function () {
     function instance$1($$self, $$props, $$invalidate) {
     	
 
-      const dispatch = createEventDispatcher();
+    	const dispatch = createEventDispatcher();
 
-      let { name = "", label = "", variant = "outlined", compact = false, error = false, disabled = false, multiline = false, color = "#ffbb77", helperText = "", type = "text", append = "", prepend = "", style = "", class: className = "" } = $$props;
+    	let { name = '', label = '', variant = 'outlined', compact = false, error = false, disabled = false, multiline = false, color = '#ffbb77', helperText = '', type = 'text', append = '', prepend = '', style = '', class: className = '' } = $$props;
 
-      let focused = false;
-      let labelRef;
-      let labelWidth;
-      let labelHeight;
-      let labelX;
-      let labelY;
-      let prependRef;
-      let prependWidth;
-      let appendRef;
-      let appendWidth;
-      let height;
-      let paddingLeft = 10;
+    	let focused = false;
+    	let labelRef;
+    	let labelWidth;
+    	let labelHeight;
+    	let labelX;
+    	let labelY;
+    	let prependRef;
+    	let prependWidth;
+    	let appendRef;
+    	let appendWidth;
+    	let height;
+    	let paddingLeft = 10;
 
-      const computeVariantProps = variant => {
-        if (variant == "outlined") {
-          $$invalidate('height', height = 55);
-          if (compact) $$invalidate('height', height = 39);
-        } else if (variant == "filled") {
-          $$invalidate('height', height = 55);
-          if (compact) $$invalidate('height', height = 45);
-        } else if ((variant = "simple")) {
-          $$invalidate('height', height = 36);
-          if (compact) $$invalidate('height', height = 30);
-        } else {
-          $$invalidate('height', height = 55);
-        }
-      };
+    	const computeVariantProps = variant => {
+    		if (variant == 'outlined') {
+    			$$invalidate('height', height = 55);
+    			if (compact) $$invalidate('height', height = 39);
+    		} else if (variant == 'filled') {
+    			$$invalidate('height', height = 55);
+    			if (compact) $$invalidate('height', height = 45);
+    		} else if ((variant = 'simple')) {
+    			$$invalidate('height', height = 36);
+    			if (compact) $$invalidate('height', height = 30);
+    		} else {
+    			$$invalidate('height', height = 55);
+    		}
+    	};
 
-      onMount(() => {
-        $$invalidate('appendWidth', appendWidth = appendRef ? appendRef.offsetWidth : 0);
-        $$invalidate('prependWidth', prependWidth = prependRef ? prependRef.offsetWidth : 0);
+    	onMount(() => {
+    		$$invalidate('appendWidth', appendWidth = appendRef ? appendRef.offsetWidth : 0);
+    		$$invalidate('prependWidth', prependWidth = prependRef ? prependRef.offsetWidth : 0);
 
-        $$invalidate('labelWidth', labelWidth = labelRef.offsetWidth * LABEL_SCALE + labelGap);
-        labelHeight = labelRef.offsetHeight;
-        $$invalidate('labelY', labelY = Math.round(height / 2 - labelHeight / 2));
-        $$invalidate('labelX', labelX = prependWidth);
-        if (variant == "simple") {
-          $$invalidate('labelX', labelX = 0);
-          $$invalidate('paddingLeft', paddingLeft = 0);
-        }
-      });
+    		$$invalidate('labelWidth', labelWidth = labelRef.offsetWidth * LABEL_SCALE + labelGap);
+    		labelHeight = labelRef.offsetHeight;
+    		$$invalidate('labelY', labelY = Math.round(height / 2 - labelHeight / 2));
+    		$$invalidate('labelX', labelX = prependWidth);
+    		if (variant == 'simple') {
+    			$$invalidate('labelX', labelX = 0);
+    			$$invalidate('paddingLeft', paddingLeft = 0);
+    		}
+    	});
 
-      const handleChange = e => {
-        $$invalidate('name', name = e.target.value);
-        dispatch("change", e);
-      };
-      const handleFocus = e => {
-        $$invalidate('focused', focused = true);
-      };
-      const handleBlur = e => {
-        $$invalidate('focused', focused = false);
-      };
-
-      const hexToRGB = (hex, alpha) => {
-        var r = parseInt(hex.slice(1, 3), 16),
-          g = parseInt(hex.slice(3, 5), 16),
-          b = parseInt(hex.slice(5, 7), 16);
-        if (alpha) {
-          return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
-        } else {
-          return "rgb(" + r + ", " + g + ", " + b + ")";
-        }
-      };
+    	const handleChange = e => {
+    		$$invalidate('name', name = e.target.value);
+    		dispatch('change', e);
+    	};
+    	const handleFocus = e => {
+    		$$invalidate('focused', focused = true);
+    	};
+    	const handleBlur = e => {
+    		$$invalidate('focused', focused = false);
+    	};
 
     	const writable_props = ['name', 'label', 'variant', 'compact', 'error', 'disabled', 'multiline', 'color', 'helperText', 'type', 'append', 'prepend', 'style', 'class'];
     	Object.keys($$props).forEach(key => {
@@ -1633,15 +1661,15 @@ var app = (function () {
     	let focusedClass, activeClass, compactClass, errorClass, disabledClass, multilineClass, prependClass, appendClass, variantClass, textfieldClasses, textfieldStyle;
 
     	$$self.$$.update = ($$dirty = { focused: 1, disabled: 1, name: 1, compact: 1, error: 1, multiline: 1, append: 1, variant: 1, className: 1, focusedClass: 1, activeClass: 1, compactClass: 1, errorClass: 1, disabledClass: 1, multilineClass: 1, variantClass: 1, prependClass: 1, appendClass: 1, style: 1, color: 1, height: 1, paddingLeft: 1, prependWidth: 1, appendWidth: 1, LABEL_SCALE: 1, labelWidth: 1, labelX: 1, labelY: 1 }) => {
-    		if ($$dirty.focused || $$dirty.disabled) { $$invalidate('focusedClass', focusedClass = focused && !disabled ? "textfield--focused" : ""); }
-    		if ($$dirty.name || $$dirty.focused) { $$invalidate('activeClass', activeClass = name != "" || focused ? "textfield--active" : ""); }
-    		if ($$dirty.compact) { $$invalidate('compactClass', compactClass = compact ? "textfield--compact" : ""); }
-    		if ($$dirty.error) { $$invalidate('errorClass', errorClass = error ? "textfield--error" : ""); }
-    		if ($$dirty.disabled) { $$invalidate('disabledClass', disabledClass = disabled ? "textfield--disabled" : ""); }
-    		if ($$dirty.multiline) { $$invalidate('multilineClass', multilineClass = multiline ? "textfield--multiline" : ""); }
-    		if ($$dirty.append) { $$invalidate('prependClass', prependClass = append ? "textfield--has--prepend" : ""); }
-    		if ($$dirty.append) { $$invalidate('appendClass', appendClass = append ? "textfield--has--append" : ""); }
-    		if ($$dirty.variant) { $$invalidate('variantClass', variantClass = variant ? "textfield--" + variant : ""); }
+    		if ($$dirty.focused || $$dirty.disabled) { $$invalidate('focusedClass', focusedClass = focused && !disabled ? 'textfield--focused' : ''); }
+    		if ($$dirty.name || $$dirty.focused) { $$invalidate('activeClass', activeClass = name != '' || focused ? 'textfield--active' : ''); }
+    		if ($$dirty.compact) { $$invalidate('compactClass', compactClass = compact ? 'textfield--compact' : ''); }
+    		if ($$dirty.error) { $$invalidate('errorClass', errorClass = error ? 'textfield--error' : ''); }
+    		if ($$dirty.disabled) { $$invalidate('disabledClass', disabledClass = disabled ? 'textfield--disabled' : ''); }
+    		if ($$dirty.multiline) { $$invalidate('multilineClass', multilineClass = multiline ? 'textfield--multiline' : ''); }
+    		if ($$dirty.append) { $$invalidate('prependClass', prependClass = append ? 'textfield--has--prepend' : ''); }
+    		if ($$dirty.append) { $$invalidate('appendClass', appendClass = append ? 'textfield--has--append' : ''); }
+    		if ($$dirty.variant) { $$invalidate('variantClass', variantClass = variant ? 'textfield--' + variant : ''); }
     		if ($$dirty.className || $$dirty.focusedClass || $$dirty.activeClass || $$dirty.compactClass || $$dirty.errorClass || $$dirty.disabledClass || $$dirty.multilineClass || $$dirty.variantClass || $$dirty.prependClass || $$dirty.appendClass) { $$invalidate('textfieldClasses', textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variantClass} ${prependClass} ${appendClass}`); }
     		if ($$dirty.variant) { computeVariantProps(variant); }
     		if ($$dirty.style || $$dirty.color || $$dirty.height || $$dirty.paddingLeft || $$dirty.prependWidth || $$dirty.appendWidth || $$dirty.LABEL_SCALE || $$dirty.labelWidth || $$dirty.labelX || $$dirty.labelY) { $$invalidate('textfieldStyle', textfieldStyle = `
@@ -1661,7 +1689,7 @@ var app = (function () {
     --label-y: ${labelY}px;
     --transform-label: translate(${labelX}px, ${labelY}px) scale(1);
     --transform-label-filled: translateX(${labelX}px) translateY(${labelY -
-        7}px) scale(${LABEL_SCALE});
+    		7}px) scale(${LABEL_SCALE});
   `); }
     	};
 
@@ -4392,9 +4420,1107 @@ var app = (function () {
     	}
     }
 
+    /* src\components\Input\TextInputBase.svelte generated by Svelte v3.5.4 */
+
+    const file$k = "src\\components\\Input\\TextInputBase.svelte";
+
+    const get_append_slot_changes = ({}) => ({});
+    const get_append_slot_context = ({}) => ({});
+
+    const get_nativeElement_slot_changes = ({}) => ({});
+    const get_nativeElement_slot_context = ({}) => ({ nativeElementClass: `textfield__input` });
+
+    const get_prepend_slot_changes = ({}) => ({});
+    const get_prepend_slot_context = ({}) => ({});
+
+    // (423:1) {#if helperText}
+    function create_if_block$5(ctx) {
+    	var div, t;
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			t = text(ctx.helperText);
+    			attr(div, "class", "textfield__helper__text svelte-lakhk5");
+    			add_location(div, file$k, 423, 2, 11787);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			append(div, t);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.helperText) {
+    				set_data(t, ctx.helperText);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+    		}
+    	};
+    }
+
+    function create_fragment$k(ctx) {
+    	var div8, div7, div0, t0, div5, div1, t1, div3, div2, t2, t3, div4, t4, t5, div6, t6, div8_class_value, current;
+
+    	const prepend_slot_1 = ctx.$$slots.prepend;
+    	const prepend_slot = create_slot(prepend_slot_1, ctx, get_prepend_slot_context);
+
+    	const nativeElement_slot_1 = ctx.$$slots.nativeElement;
+    	const nativeElement_slot = create_slot(nativeElement_slot_1, ctx, get_nativeElement_slot_context);
+
+    	const append_slot_1 = ctx.$$slots.append;
+    	const append_slot = create_slot(append_slot_1, ctx, get_append_slot_context);
+
+    	var if_block = (ctx.helperText) && create_if_block$5(ctx);
+
+    	return {
+    		c: function create() {
+    			div8 = element("div");
+    			div7 = element("div");
+    			div0 = element("div");
+
+    			if (prepend_slot) prepend_slot.c();
+    			t0 = space();
+    			div5 = element("div");
+    			div1 = element("div");
+    			t1 = space();
+    			div3 = element("div");
+    			div2 = element("div");
+    			t2 = text(ctx.label);
+    			t3 = space();
+    			div4 = element("div");
+    			t4 = space();
+
+    			if (nativeElement_slot) nativeElement_slot.c();
+    			t5 = space();
+    			div6 = element("div");
+
+    			if (append_slot) append_slot.c();
+    			t6 = space();
+    			if (if_block) if_block.c();
+
+    			attr(div0, "class", "" + 'textfield__prepend' + " svelte-lakhk5");
+    			add_location(div0, file$k, 404, 2, 11151);
+    			attr(div1, "class", "textfield__border__start textfield__border__segment svelte-lakhk5");
+    			add_location(div1, file$k, 409, 3, 11288);
+    			attr(div2, "class", "textfield__label svelte-lakhk5");
+    			add_location(div2, file$k, 411, 4, 11429);
+    			attr(div3, "class", "textfield__border__gap textfield__border__segment svelte-lakhk5");
+    			add_location(div3, file$k, 410, 3, 11360);
+    			attr(div4, "class", "textfield__border__end textfield__border__segment svelte-lakhk5");
+    			add_location(div4, file$k, 413, 3, 11509);
+    			attr(div5, "class", "textfield__border svelte-lakhk5");
+    			add_location(div5, file$k, 408, 2, 11252);
+
+    			attr(div6, "class", "" + 'textfield__append' + " svelte-lakhk5");
+    			add_location(div6, file$k, 417, 2, 11661);
+    			attr(div7, "class", "textfield__element svelte-lakhk5");
+    			add_location(div7, file$k, 402, 1, 11113);
+    			attr(div8, "class", div8_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-lakhk5");
+    			attr(div8, "style", ctx.textfieldStyle);
+    			add_location(div8, file$k, 401, 0, 11042);
+    		},
+
+    		l: function claim(nodes) {
+    			if (prepend_slot) prepend_slot.l(div0_nodes);
+
+    			if (nativeElement_slot) nativeElement_slot.l(div7_nodes);
+
+    			if (append_slot) append_slot.l(div6_nodes);
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div8, anchor);
+    			append(div8, div7);
+    			append(div7, div0);
+
+    			if (prepend_slot) {
+    				prepend_slot.m(div0, null);
+    			}
+
+    			add_binding_callback(() => ctx.div0_binding(div0, null));
+    			append(div7, t0);
+    			append(div7, div5);
+    			append(div5, div1);
+    			append(div5, t1);
+    			append(div5, div3);
+    			append(div3, div2);
+    			append(div2, t2);
+    			add_binding_callback(() => ctx.div2_binding(div2, null));
+    			append(div5, t3);
+    			append(div5, div4);
+    			append(div7, t4);
+
+    			if (nativeElement_slot) {
+    				nativeElement_slot.m(div7, null);
+    			}
+
+    			append(div7, t5);
+    			append(div7, div6);
+
+    			if (append_slot) {
+    				append_slot.m(div6, null);
+    			}
+
+    			add_binding_callback(() => ctx.div6_binding(div6, null));
+    			append(div8, t6);
+    			if (if_block) if_block.m(div8, null);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (prepend_slot && prepend_slot.p && changed.$$scope) {
+    				prepend_slot.p(get_slot_changes(prepend_slot_1, ctx, changed, get_prepend_slot_changes), get_slot_context(prepend_slot_1, ctx, get_prepend_slot_context));
+    			}
+
+    			if (changed.items) {
+    				ctx.div0_binding(null, div0);
+    				ctx.div0_binding(div0, null);
+    			}
+
+    			if (!current || changed.label) {
+    				set_data(t2, ctx.label);
+    			}
+
+    			if (changed.items) {
+    				ctx.div2_binding(null, div2);
+    				ctx.div2_binding(div2, null);
+    			}
+
+    			if (nativeElement_slot && nativeElement_slot.p && changed.$$scope) {
+    				nativeElement_slot.p(get_slot_changes(nativeElement_slot_1, ctx, changed, get_nativeElement_slot_changes), get_slot_context(nativeElement_slot_1, ctx, get_nativeElement_slot_context));
+    			}
+
+    			if (append_slot && append_slot.p && changed.$$scope) {
+    				append_slot.p(get_slot_changes(append_slot_1, ctx, changed, get_append_slot_changes), get_slot_context(append_slot_1, ctx, get_append_slot_context));
+    			}
+
+    			if (changed.items) {
+    				ctx.div6_binding(null, div6);
+    				ctx.div6_binding(div6, null);
+    			}
+
+    			if (ctx.helperText) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block$5(ctx);
+    					if_block.c();
+    					if_block.m(div8, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+
+    			if ((!current || changed.textfieldClasses) && div8_class_value !== (div8_class_value = "" + ('textfield ' + ctx.textfieldClasses) + " svelte-lakhk5")) {
+    				attr(div8, "class", div8_class_value);
+    			}
+
+    			if (!current || changed.textfieldStyle) {
+    				attr(div8, "style", ctx.textfieldStyle);
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(prepend_slot, local);
+    			transition_in(nativeElement_slot, local);
+    			transition_in(append_slot, local);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(prepend_slot, local);
+    			transition_out(nativeElement_slot, local);
+    			transition_out(append_slot, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div8);
+    			}
+
+    			if (prepend_slot) prepend_slot.d(detaching);
+    			ctx.div0_binding(null, div0);
+    			ctx.div2_binding(null, div2);
+
+    			if (nativeElement_slot) nativeElement_slot.d(detaching);
+
+    			if (append_slot) append_slot.d(detaching);
+    			ctx.div6_binding(null, div6);
+    			if (if_block) if_block.d();
+    		}
+    	};
+    }
+
+    let LABEL_SCALE$1 = 0.75;
+
+    let labelGap$1 = 3;
+
+    function instance$e($$self, $$props, $$invalidate) {
+
+    	let { name = '', label = '', variant = 'outlined', compact = false, error = false, disabled = false, multiline = false, color = '#ffbb77', helperText = '', type = 'text', focused = false, style = '', className = '' } = $$props;
+
+    	let labelRef;
+    	let labelWidth;
+    	let labelHeight;
+    	let labelX;
+    	let labelY;
+    	let prependRef;
+    	let prependWidth;
+    	let appendRef;
+    	let appendWidth;
+    	let height;
+    	let hasPrepend;
+    	let hasAppend;
+    	let paddingLeft = 10;
+
+    	const computeVariantProps = variant => {
+    		if (variant == 'outlined') {
+    			$$invalidate('height', height = 55);
+    			if (compact) $$invalidate('height', height = 39);
+    		} else if (variant == 'filled') {
+    			$$invalidate('height', height = 55);
+    			if (compact) $$invalidate('height', height = 45);
+    		} else if ((variant = 'simple')) {
+    			$$invalidate('height', height = 36);
+    			if (compact) $$invalidate('height', height = 30);
+    		} else {
+    			$$invalidate('height', height = 55);
+    		}
+    	};
+
+    	onMount(() => {
+    		$$invalidate('appendWidth', appendWidth = 0);
+    		$$invalidate('prependWidth', prependWidth = 0);
+
+    		// test if slots have content by checking for nested elements in 2nd layer
+    		if (
+    			appendRef.querySelector('*') &&
+    			appendRef.querySelector('*').querySelector('*')
+    		) {
+    			$$invalidate('hasAppend', hasAppend = true);
+    			$$invalidate('appendWidth', appendWidth = appendRef.offsetWidth);
+    		} else {
+    			appendRef.style.display = 'none'; $$invalidate('appendRef', appendRef);
+    		}
+
+    		if (
+    			prependRef.querySelector('*') &&
+    			prependRef.querySelector('*').querySelector('*')
+    		) {
+    			$$invalidate('hasPrepend', hasPrepend = true);
+    			$$invalidate('prependWidth', prependWidth = prependRef.offsetWidth);
+    		} else {
+    			prependRef.style.display = 'none'; $$invalidate('prependRef', prependRef);
+    		}
+
+    		$$invalidate('labelWidth', labelWidth = labelRef.offsetWidth * LABEL_SCALE$1 + labelGap$1);
+    		labelHeight = labelRef.offsetHeight;
+    		$$invalidate('labelY', labelY = Math.round(height / 2 - labelHeight / 2));
+    		$$invalidate('labelX', labelX = prependWidth);
+    		if (variant == 'simple') {
+    			$$invalidate('labelX', labelX = 0);
+    			$$invalidate('paddingLeft', paddingLeft = 0);
+    		}
+    	});
+
+    	const writable_props = ['name', 'label', 'variant', 'compact', 'error', 'disabled', 'multiline', 'color', 'helperText', 'type', 'focused', 'style', 'className'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<TextInputBase> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+
+    	function div0_binding($$node, check) {
+    		prependRef = $$node;
+    		$$invalidate('prependRef', prependRef);
+    	}
+
+    	function div2_binding($$node, check) {
+    		labelRef = $$node;
+    		$$invalidate('labelRef', labelRef);
+    	}
+
+    	function div6_binding($$node, check) {
+    		appendRef = $$node;
+    		$$invalidate('appendRef', appendRef);
+    	}
+
+    	$$self.$set = $$props => {
+    		if ('name' in $$props) $$invalidate('name', name = $$props.name);
+    		if ('label' in $$props) $$invalidate('label', label = $$props.label);
+    		if ('variant' in $$props) $$invalidate('variant', variant = $$props.variant);
+    		if ('compact' in $$props) $$invalidate('compact', compact = $$props.compact);
+    		if ('error' in $$props) $$invalidate('error', error = $$props.error);
+    		if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
+    		if ('multiline' in $$props) $$invalidate('multiline', multiline = $$props.multiline);
+    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    		if ('helperText' in $$props) $$invalidate('helperText', helperText = $$props.helperText);
+    		if ('type' in $$props) $$invalidate('type', type = $$props.type);
+    		if ('focused' in $$props) $$invalidate('focused', focused = $$props.focused);
+    		if ('style' in $$props) $$invalidate('style', style = $$props.style);
+    		if ('className' in $$props) $$invalidate('className', className = $$props.className);
+    		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+    	};
+
+    	let focusedClass, activeClass, compactClass, errorClass, disabledClass, multilineClass, prependClass, appendClass, variantClass, textfieldClasses, textfieldStyle;
+
+    	$$self.$$.update = ($$dirty = { focused: 1, disabled: 1, name: 1, compact: 1, error: 1, multiline: 1, hasPrepend: 1, hasAppend: 1, variant: 1, className: 1, focusedClass: 1, activeClass: 1, compactClass: 1, errorClass: 1, disabledClass: 1, multilineClass: 1, variantClass: 1, prependClass: 1, appendClass: 1, style: 1, color: 1, height: 1, paddingLeft: 1, prependWidth: 1, appendWidth: 1, LABEL_SCALE: 1, labelWidth: 1, labelX: 1, labelY: 1 }) => {
+    		if ($$dirty.focused || $$dirty.disabled) { $$invalidate('focusedClass', focusedClass = focused && !disabled ? 'textfield--focused' : ''); }
+    		if ($$dirty.name || $$dirty.focused) { $$invalidate('activeClass', activeClass = name != '' || focused ? 'textfield--active' : ''); }
+    		if ($$dirty.compact) { $$invalidate('compactClass', compactClass = compact ? 'textfield--compact' : ''); }
+    		if ($$dirty.error) { $$invalidate('errorClass', errorClass = error ? 'textfield--error' : ''); }
+    		if ($$dirty.disabled) { $$invalidate('disabledClass', disabledClass = disabled ? 'textfield--disabled' : ''); }
+    		if ($$dirty.multiline) { $$invalidate('multilineClass', multilineClass = multiline ? 'textfield--multiline' : ''); }
+    		if ($$dirty.hasPrepend) { $$invalidate('prependClass', prependClass = hasPrepend ? 'textfield--has--prepend' : ''); }
+    		if ($$dirty.hasAppend) { $$invalidate('appendClass', appendClass = hasAppend ? 'textfield--has--append' : ''); }
+    		if ($$dirty.variant) { $$invalidate('variantClass', variantClass = variant ? 'textfield--' + variant : ''); }
+    		if ($$dirty.className || $$dirty.focusedClass || $$dirty.activeClass || $$dirty.compactClass || $$dirty.errorClass || $$dirty.disabledClass || $$dirty.multilineClass || $$dirty.variantClass || $$dirty.prependClass || $$dirty.appendClass) { $$invalidate('textfieldClasses', textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variantClass} ${prependClass} ${appendClass}`); }
+    		if ($$dirty.variant) { computeVariantProps(variant); }
+    		if ($$dirty.style || $$dirty.color || $$dirty.height || $$dirty.paddingLeft || $$dirty.prependWidth || $$dirty.appendWidth || $$dirty.LABEL_SCALE || $$dirty.labelWidth || $$dirty.labelX || $$dirty.labelY) { $$invalidate('textfieldStyle', textfieldStyle = `
+    ${style};
+    --primary-color:  ${hexToRGB(color)};
+    --primary-color-light:  ${hexToRGB(color, 0.85)};
+
+    --height: ${height}px;
+    --padding-left: ${paddingLeft}px;
+
+    --prepend-width: ${prependWidth}px;
+    --append-width: ${appendWidth}px;
+
+    --label-scale: ${LABEL_SCALE$1};
+    --label-width: ${labelWidth}px;
+    --label-x: ${labelX}px;
+    --label-y: ${labelY}px;
+    --transform-label: translate(${labelX}px, ${labelY}px) scale(1);
+    --transform-label-filled: translateX(${labelX}px) translateY(${labelY -
+    		7}px) scale(${LABEL_SCALE$1});
+  `); }
+    	};
+
+    	return {
+    		name,
+    		label,
+    		variant,
+    		compact,
+    		error,
+    		disabled,
+    		multiline,
+    		color,
+    		helperText,
+    		type,
+    		focused,
+    		style,
+    		className,
+    		labelRef,
+    		prependRef,
+    		appendRef,
+    		textfieldClasses,
+    		textfieldStyle,
+    		div0_binding,
+    		div2_binding,
+    		div6_binding,
+    		$$slots,
+    		$$scope
+    	};
+    }
+
+    class TextInputBase extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$e, create_fragment$k, safe_not_equal, ["name", "label", "variant", "compact", "error", "disabled", "multiline", "color", "helperText", "type", "focused", "style", "className"]);
+    	}
+
+    	get name() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set name(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get label() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set label(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get variant() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set variant(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get compact() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set compact(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get error() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set error(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get disabled() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set disabled(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get multiline() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set multiline(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get color() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get helperText() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set helperText(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get type() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set type(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get focused() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set focused(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get style() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set style(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get className() {
+    		throw new Error("<TextInputBase>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set className(value) {
+    		throw new Error("<TextInputBase>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src\components\Icons\ArrowDown.svelte generated by Svelte v3.5.4 */
+
+    const file$l = "src\\components\\Icons\\ArrowDown.svelte";
+
+    function create_fragment$l(ctx) {
+    	var svg, path0, path1;
+
+    	return {
+    		c: function create() {
+    			svg = svg_element("svg");
+    			path0 = svg_element("path");
+    			path1 = svg_element("path");
+    			attr(path0, "d", "M7 10l5 5 5-5z");
+    			add_location(path0, file$l, 5, 1, 94);
+    			attr(path1, "d", "M0 0h24v24H0z");
+    			attr(path1, "fill", "none");
+    			add_location(path1, file$l, 6, 1, 124);
+    			attr(svg, "xmlns", "http://www.w3.org/2000/svg");
+    			attr(svg, "width", "24");
+    			attr(svg, "height", "24");
+    			attr(svg, "viewBox", "0 0 24 24");
+    			add_location(svg, file$l, 0, 0, 0);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, svg, anchor);
+    			append(svg, path0);
+    			append(svg, path1);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(svg);
+    			}
+    		}
+    	};
+    }
+
+    class ArrowDown extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, null, create_fragment$l, safe_not_equal, []);
+    	}
+    }
+
+    /* src\components\Input\Select.svelte generated by Svelte v3.5.4 */
+
+    const file$m = "src\\components\\Input\\Select.svelte";
+
+    // (55:1) <select    slot="nativeElement"    class={nativeElementClass}    {type}    value={name}    on:change={handleChange}    on:keydown={handleChange}    on:keyup={handleChange}    on:focus={handleFocus}    on:blur={handleBlur}>
+    function create_nativeElement_slot(ctx) {
+    	var select, select_class_value, select_value_value, current, dispose;
+
+    	const default_slot_1 = ctx.$$slots.default;
+    	const default_slot = create_slot(default_slot_1, ctx, null);
+
+    	return {
+    		c: function create() {
+    			select = element("select");
+
+    			if (default_slot) default_slot.c();
+
+    			attr(select, "slot", "nativeElement");
+    			attr(select, "class", select_class_value = ctx.nativeElementClass);
+    			attr(select, "type", ctx.type);
+    			add_location(select, file$m, 54, 1, 1185);
+
+    			dispose = [
+    				listen(select, "change", ctx.handleChange),
+    				listen(select, "keydown", ctx.handleChange),
+    				listen(select, "keyup", ctx.handleChange),
+    				listen(select, "focus", ctx.handleFocus),
+    				listen(select, "blur", ctx.handleBlur)
+    			];
+    		},
+
+    		l: function claim(nodes) {
+    			if (default_slot) default_slot.l(select_nodes);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, select, anchor);
+
+    			if (default_slot) {
+    				default_slot.m(select, null);
+    			}
+
+    			select_value_value = ctx.name;
+    			for (var i = 0; i < select.options.length; i += 1) {
+    				var option = select.options[i];
+
+    				if (option.__value === select_value_value) {
+    					option.selected = true;
+    					break;
+    				}
+    			}
+
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (default_slot && default_slot.p && changed.$$scope) {
+    				default_slot.p(get_slot_changes(default_slot_1, ctx, changed, null), get_slot_context(default_slot_1, ctx, null));
+    			}
+
+    			if ((!current || changed.nativeElementClass) && select_class_value !== (select_class_value = ctx.nativeElementClass)) {
+    				attr(select, "class", select_class_value);
+    			}
+
+    			if (!current || changed.type) {
+    				attr(select, "type", ctx.type);
+    			}
+
+    			if ((!current || changed.name) && select_value_value !== (select_value_value = ctx.name)) {
+    				for (var i = 0; i < select.options.length; i += 1) {
+    					var option = select.options[i];
+
+    					if (option.__value === select_value_value) {
+    						option.selected = true;
+    						break;
+    					}
+    				}
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(default_slot, local);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(default_slot, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(select);
+    			}
+
+    			if (default_slot) default_slot.d(detaching);
+    			run_all(dispose);
+    		}
+    	};
+    }
+
+    // (69:2) {#if prepend}
+    function create_if_block$6(ctx) {
+    	var raw_before, raw_after;
+
+    	return {
+    		c: function create() {
+    			raw_before = element('noscript');
+    			raw_after = element('noscript');
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, raw_before, anchor);
+    			raw_before.insertAdjacentHTML("afterend", ctx.prepend);
+    			insert(target, raw_after, anchor);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.prepend) {
+    				detach_between(raw_before, raw_after);
+    				raw_before.insertAdjacentHTML("afterend", ctx.prepend);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_between(raw_before, raw_after);
+    				detach(raw_before);
+    				detach(raw_after);
+    			}
+    		}
+    	};
+    }
+
+    // (68:1) <div slot="prepend">
+    function create_prepend_slot(ctx) {
+    	var div;
+
+    	var if_block = (ctx.prepend) && create_if_block$6(ctx);
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			if (if_block) if_block.c();
+    			attr(div, "slot", "prepend");
+    			add_location(div, file$m, 67, 1, 1436);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			if (if_block) if_block.m(div, null);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (ctx.prepend) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block$6(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			if (if_block) if_block.d();
+    		}
+    	};
+    }
+
+    // (73:1) <div slot="append">
+    function create_append_slot(ctx) {
+    	var div, current;
+
+    	var arrowdown = new ArrowDown({ $$inline: true });
+
+    	return {
+    		c: function create() {
+    			div = element("div");
+    			arrowdown.$$.fragment.c();
+    			attr(div, "slot", "append");
+    			add_location(div, file$m, 72, 1, 1514);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div, anchor);
+    			mount_component(arrowdown, div, null);
+    			current = true;
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(arrowdown.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(arrowdown.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div);
+    			}
+
+    			destroy_component(arrowdown, );
+    		}
+    	};
+    }
+
+    // (53:0) <TextInputBase {...textInputProps} let:nativeElementClass>
+    function create_default_slot(ctx) {
+    	var t0, t1;
+
+    	return {
+    		c: function create() {
+    			t0 = space();
+    			t1 = space();
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, t0, anchor);
+    			insert(target, t1, anchor);
+    		},
+
+    		p: noop,
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(t0);
+    				detach(t1);
+    			}
+    		}
+    	};
+    }
+
+    function create_fragment$m(ctx) {
+    	var current;
+
+    	var textinputbase_spread_levels = [
+    		ctx.textInputProps
+    	];
+
+    	let textinputbase_props = {
+    		$$slots: {
+    		default: [create_default_slot, ({ nativeElementClass }) => ({ nativeElementClass })],
+    		append: [create_append_slot, ({ nativeElementClass }) => ({ nativeElementClass })],
+    		prepend: [create_prepend_slot, ({ nativeElementClass }) => ({ nativeElementClass })],
+    		nativeElement: [create_nativeElement_slot, ({ nativeElementClass }) => ({ nativeElementClass })]
+    	},
+    		$$scope: { ctx }
+    	};
+    	for (var i = 0; i < textinputbase_spread_levels.length; i += 1) {
+    		textinputbase_props = assign(textinputbase_props, textinputbase_spread_levels[i]);
+    	}
+    	var textinputbase = new TextInputBase({
+    		props: textinputbase_props,
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			textinputbase.$$.fragment.c();
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			mount_component(textinputbase, target, anchor);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			var textinputbase_changes = changed.textInputProps ? get_spread_update(textinputbase_spread_levels, [
+    				ctx.textInputProps
+    			]) : {};
+    			if (changed.$$scope || changed.prepend || changed.type || changed.name) textinputbase_changes.$$scope = { changed, ctx };
+    			textinputbase.$set(textinputbase_changes);
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(textinputbase.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(textinputbase.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			destroy_component(textinputbase, detaching);
+    		}
+    	};
+    }
+
+    function instance$f($$self, $$props, $$invalidate) {
+    	
+
+    	let { name = '', label = '', variant = 'outlined', compact = false, error = false, disabled = false, multiline = false, color = '#ffbb77', helperText = '', type = 'text', prepend = '', append = '', style = '', class: className = '' } = $$props;
+
+    	let focused = false;
+
+    	const handleChange = e => {
+    		$$invalidate('name', name = e.target.value);
+    	};
+    	const handleFocus = e => {
+    		$$invalidate('focused', focused = true);
+    	};
+    	const handleBlur = e => {
+    		$$invalidate('focused', focused = false);
+    	};
+
+    	const writable_props = ['name', 'label', 'variant', 'compact', 'error', 'disabled', 'multiline', 'color', 'helperText', 'type', 'prepend', 'append', 'style', 'class'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Select> was created with unknown prop '${key}'`);
+    	});
+
+    	let { $$slots = {}, $$scope } = $$props;
+
+    	$$self.$set = $$props => {
+    		if ('name' in $$props) $$invalidate('name', name = $$props.name);
+    		if ('label' in $$props) $$invalidate('label', label = $$props.label);
+    		if ('variant' in $$props) $$invalidate('variant', variant = $$props.variant);
+    		if ('compact' in $$props) $$invalidate('compact', compact = $$props.compact);
+    		if ('error' in $$props) $$invalidate('error', error = $$props.error);
+    		if ('disabled' in $$props) $$invalidate('disabled', disabled = $$props.disabled);
+    		if ('multiline' in $$props) $$invalidate('multiline', multiline = $$props.multiline);
+    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    		if ('helperText' in $$props) $$invalidate('helperText', helperText = $$props.helperText);
+    		if ('type' in $$props) $$invalidate('type', type = $$props.type);
+    		if ('prepend' in $$props) $$invalidate('prepend', prepend = $$props.prepend);
+    		if ('append' in $$props) $$invalidate('append', append = $$props.append);
+    		if ('style' in $$props) $$invalidate('style', style = $$props.style);
+    		if ('class' in $$props) $$invalidate('className', className = $$props.class);
+    		if ('$$scope' in $$props) $$invalidate('$$scope', $$scope = $$props.$$scope);
+    	};
+
+    	let textInputProps;
+
+    	$$self.$$.update = ($$dirty = { name: 1, label: 1, variant: 1, compact: 1, error: 1, disabled: 1, multiline: 1, color: 1, helperText: 1, type: 1, append: 1, prepend: 1, style: 1, className: 1, focused: 1 }) => {
+    		if ($$dirty.name || $$dirty.label || $$dirty.variant || $$dirty.compact || $$dirty.error || $$dirty.disabled || $$dirty.multiline || $$dirty.color || $$dirty.helperText || $$dirty.type || $$dirty.append || $$dirty.prepend || $$dirty.style || $$dirty.className || $$dirty.focused) { $$invalidate('textInputProps', textInputProps = {
+    				name: name,
+    				label: label,
+    				variant: variant,
+    				compact: compact,
+    				error: error,
+    				disabled: disabled,
+    				multiline: multiline,
+    				color: color,
+    				helperText: helperText,
+    				type: type,
+    				append: append,
+    				prepend: prepend,
+    				style: style,
+    				className: className,
+    				focused: focused
+    			}); }
+    	};
+
+    	return {
+    		name,
+    		label,
+    		variant,
+    		compact,
+    		error,
+    		disabled,
+    		multiline,
+    		color,
+    		helperText,
+    		type,
+    		prepend,
+    		append,
+    		style,
+    		className,
+    		handleChange,
+    		handleFocus,
+    		handleBlur,
+    		textInputProps,
+    		$$slots,
+    		$$scope
+    	};
+    }
+
+    class Select extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$f, create_fragment$m, safe_not_equal, ["name", "label", "variant", "compact", "error", "disabled", "multiline", "color", "helperText", "type", "prepend", "append", "style", "class"]);
+    	}
+
+    	get name() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set name(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get label() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set label(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get variant() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set variant(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get compact() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set compact(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get error() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set error(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get disabled() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set disabled(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get multiline() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set multiline(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get color() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get helperText() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set helperText(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get type() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set type(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get prepend() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set prepend(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get append() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set append(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get style() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set style(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get class() {
+    		throw new Error("<Select>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set class(value) {
+    		throw new Error("<Select>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
     /* src\demo\UiComponents.svelte generated by Svelte v3.5.4 */
 
-    const file$k = "src\\demo\\UiComponents.svelte";
+    const file$n = "src\\demo\\UiComponents.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = Object.create(ctx);
@@ -4459,8 +5585,8 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (151:0) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
-    function create_default_slot_46(ctx) {
+    // (163:0) <Button color={randomColor} on:click={setRandomColor} outlined={true} style="border-width: 2px; border-radius: 50px;">
+    function create_default_slot_54(ctx) {
     	var t, current;
 
     	var ripple = new Ripple({
@@ -4508,7 +5634,532 @@ var app = (function () {
     	};
     }
 
-    // (167:10) <ToggleGroupElement id={i}>
+    // (175:8) <Select          label={'Outlined'}          color={randomColor}>
+    function create_default_slot_53(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 177, 8, 4581);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 178, 8, 4608);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 179, 8, 4639);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (183:8) <Select          prepend="$"          label={'Outlined'}          color={randomColor}>
+    function create_default_slot_52(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 186, 8, 4801);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 187, 8, 4828);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 188, 8, 4859);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (192:8) <Select          error={true}          helperText="Error Text"          label={'Outlined'}          color={randomColor}>
+    function create_default_slot_51(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 196, 8, 5055);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 197, 8, 5082);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 198, 8, 5113);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (202:8) <Select          label={'Filled'}          color={randomColor}          variant="filled" >
+    function create_default_slot_50(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 205, 8, 5279);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 206, 8, 5306);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 207, 8, 5337);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (211:8) <Select          label={'Compact'}          color={randomColor}          compact={true}          >
+    function create_default_slot_49(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 215, 8, 5511);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 216, 8, 5538);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 217, 8, 5569);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (221:8) <Select          label={'Compact'}          color={randomColor}          variant="filled"          compact={true}          >
+    function create_default_slot_48(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 226, 8, 5769);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 227, 8, 5796);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 228, 8, 5827);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (233:8) <Select          label={'Simple'}          color={randomColor}          variant="simple" >
+    function create_default_slot_47(ctx) {
+    	var option0, t0, option1, t2, option2;
+
+    	return {
+    		c: function create() {
+    			option0 = element("option");
+    			t0 = space();
+    			option1 = element("option");
+    			option1.textContent = "Test";
+    			t2 = space();
+    			option2 = element("option");
+    			option2.textContent = "OptionWithLongText";
+    			option0.__value = "";
+    			option0.value = option0.__value;
+    			add_location(option0, file$n, 236, 8, 6026);
+    			option1.__value = "Test";
+    			option1.value = option1.__value;
+    			add_location(option1, file$n, 237, 8, 6053);
+    			option2.__value = "OptionWithLongText";
+    			option2.value = option2.__value;
+    			add_location(option2, file$n, 238, 8, 6084);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, option0, anchor);
+    			insert(target, t0, anchor);
+    			insert(target, option1, anchor);
+    			insert(target, t2, anchor);
+    			insert(target, option2, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(option0);
+    				detach(t0);
+    				detach(option1);
+    				detach(t2);
+    				detach(option2);
+    			}
+    		}
+    	};
+    }
+
+    // (171:0) <Block>
+    function create_default_slot_46(ctx) {
+    	var div2, div0, t0, t1, t2, t3, t4, t5, div1, current;
+
+    	var select0 = new Select({
+    		props: {
+    		label: 'Outlined',
+    		color: ctx.randomColor,
+    		$$slots: { default: [create_default_slot_53] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var select1 = new Select({
+    		props: {
+    		prepend: "$",
+    		label: 'Outlined',
+    		color: ctx.randomColor,
+    		$$slots: { default: [create_default_slot_52] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var select2 = new Select({
+    		props: {
+    		error: true,
+    		helperText: "Error Text",
+    		label: 'Outlined',
+    		color: ctx.randomColor,
+    		$$slots: { default: [create_default_slot_51] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var select3 = new Select({
+    		props: {
+    		label: 'Filled',
+    		color: ctx.randomColor,
+    		variant: "filled",
+    		$$slots: { default: [create_default_slot_50] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var select4 = new Select({
+    		props: {
+    		label: 'Compact',
+    		color: ctx.randomColor,
+    		compact: true,
+    		$$slots: { default: [create_default_slot_49] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var select5 = new Select({
+    		props: {
+    		label: 'Compact',
+    		color: ctx.randomColor,
+    		variant: "filled",
+    		compact: true,
+    		$$slots: { default: [create_default_slot_48] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var select6 = new Select({
+    		props: {
+    		label: 'Simple',
+    		color: ctx.randomColor,
+    		variant: "simple",
+    		$$slots: { default: [create_default_slot_47] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	return {
+    		c: function create() {
+    			div2 = element("div");
+    			div0 = element("div");
+    			select0.$$.fragment.c();
+    			t0 = space();
+    			select1.$$.fragment.c();
+    			t1 = space();
+    			select2.$$.fragment.c();
+    			t2 = space();
+    			select3.$$.fragment.c();
+    			t3 = space();
+    			select4.$$.fragment.c();
+    			t4 = space();
+    			select5.$$.fragment.c();
+    			t5 = space();
+    			div1 = element("div");
+    			select6.$$.fragment.c();
+    			attr(div0, "class", "row svelte-8pv23y");
+    			add_location(div0, file$n, 173, 4, 4479);
+    			attr(div1, "class", "row svelte-8pv23y");
+    			add_location(div1, file$n, 231, 4, 5899);
+    			attr(div2, "class", "column svelte-8pv23y");
+    			add_location(div2, file$n, 172, 0, 4453);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert(target, div2, anchor);
+    			append(div2, div0);
+    			mount_component(select0, div0, null);
+    			append(div0, t0);
+    			mount_component(select1, div0, null);
+    			append(div0, t1);
+    			mount_component(select2, div0, null);
+    			append(div0, t2);
+    			mount_component(select3, div0, null);
+    			append(div0, t3);
+    			mount_component(select4, div0, null);
+    			append(div0, t4);
+    			mount_component(select5, div0, null);
+    			append(div2, t5);
+    			append(div2, div1);
+    			mount_component(select6, div1, null);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			var select0_changes = {};
+    			if (changed.randomColor) select0_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select0_changes.$$scope = { changed, ctx };
+    			select0.$set(select0_changes);
+
+    			var select1_changes = {};
+    			if (changed.randomColor) select1_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select1_changes.$$scope = { changed, ctx };
+    			select1.$set(select1_changes);
+
+    			var select2_changes = {};
+    			if (changed.randomColor) select2_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select2_changes.$$scope = { changed, ctx };
+    			select2.$set(select2_changes);
+
+    			var select3_changes = {};
+    			if (changed.randomColor) select3_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select3_changes.$$scope = { changed, ctx };
+    			select3.$set(select3_changes);
+
+    			var select4_changes = {};
+    			if (changed.randomColor) select4_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select4_changes.$$scope = { changed, ctx };
+    			select4.$set(select4_changes);
+
+    			var select5_changes = {};
+    			if (changed.randomColor) select5_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select5_changes.$$scope = { changed, ctx };
+    			select5.$set(select5_changes);
+
+    			var select6_changes = {};
+    			if (changed.randomColor) select6_changes.color = ctx.randomColor;
+    			if (changed.$$scope) select6_changes.$$scope = { changed, ctx };
+    			select6.$set(select6_changes);
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(select0.$$.fragment, local);
+
+    			transition_in(select1.$$.fragment, local);
+
+    			transition_in(select2.$$.fragment, local);
+
+    			transition_in(select3.$$.fragment, local);
+
+    			transition_in(select4.$$.fragment, local);
+
+    			transition_in(select5.$$.fragment, local);
+
+    			transition_in(select6.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(select0.$$.fragment, local);
+    			transition_out(select1.$$.fragment, local);
+    			transition_out(select2.$$.fragment, local);
+    			transition_out(select3.$$.fragment, local);
+    			transition_out(select4.$$.fragment, local);
+    			transition_out(select5.$$.fragment, local);
+    			transition_out(select6.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach(div2);
+    			}
+
+    			destroy_component(select0, );
+
+    			destroy_component(select1, );
+
+    			destroy_component(select2, );
+
+    			destroy_component(select3, );
+
+    			destroy_component(select4, );
+
+    			destroy_component(select5, );
+
+    			destroy_component(select6, );
+    		}
+    	};
+    }
+
+    // (259:10) <ToggleGroupElement id={i}>
     function create_default_slot_45(ctx) {
     	var t, current;
 
@@ -4561,7 +6212,7 @@ var app = (function () {
     	};
     }
 
-    // (166:8) {#each new Array(3).fill('') as el, i}
+    // (258:8) {#each new Array(3).fill('') as el, i}
     function create_each_block_8(ctx) {
     	var current;
 
@@ -4608,7 +6259,7 @@ var app = (function () {
     	};
     }
 
-    // (162:6) <ToggleGroup          on:change={e => {            actives4 = e.detail.actives;          }}>
+    // (254:6) <ToggleGroup          on:change={e => {            actives4 = e.detail.actives;          }}>
     function create_default_slot_44(ctx) {
     	var each_1_anchor, current;
 
@@ -4690,7 +6341,7 @@ var app = (function () {
     	};
     }
 
-    // (181:12) <ToggleButton isOn={actives0.includes(i)} color={randomColor}>
+    // (273:12) <ToggleButton isOn={actives0.includes(i)} color={randomColor}>
     function create_default_slot_43(ctx) {
     	var t0, t1, t2, current;
 
@@ -4745,7 +6396,7 @@ var app = (function () {
     	};
     }
 
-    // (180:10) <ToggleGroupElement id={i}>
+    // (272:10) <ToggleGroupElement id={i}>
     function create_default_slot_42(ctx) {
     	var t, current;
 
@@ -4801,7 +6452,7 @@ var app = (function () {
     	};
     }
 
-    // (179:8) {#each new Array(3).fill('') as el, i}
+    // (271:8) {#each new Array(3).fill('') as el, i}
     function create_each_block_7(ctx) {
     	var current;
 
@@ -4848,7 +6499,7 @@ var app = (function () {
     	};
     }
 
-    // (175:6) <ToggleGroup          on:change={e => {            actives0 = e.detail.actives;          }}>
+    // (267:6) <ToggleGroup          on:change={e => {            actives0 = e.detail.actives;          }}>
     function create_default_slot_41(ctx) {
     	var each_1_anchor, current;
 
@@ -4930,7 +6581,7 @@ var app = (function () {
     	};
     }
 
-    // (196:10) <ToggleGroupElement id={i}>
+    // (288:10) <ToggleGroupElement id={i}>
     function create_default_slot_40(ctx) {
     	var t, current;
 
@@ -4983,7 +6634,7 @@ var app = (function () {
     	};
     }
 
-    // (195:8) {#each new Array(3).fill('') as el, i}
+    // (287:8) {#each new Array(3).fill('') as el, i}
     function create_each_block_6(ctx) {
     	var current;
 
@@ -5030,7 +6681,7 @@ var app = (function () {
     	};
     }
 
-    // (191:6) <ToggleGroup          on:change={e => {            actives1 = e.detail.actives;          }}>
+    // (283:6) <ToggleGroup          on:change={e => {            actives1 = e.detail.actives;          }}>
     function create_default_slot_39(ctx) {
     	var each_1_anchor, current;
 
@@ -5112,7 +6763,7 @@ var app = (function () {
     	};
     }
 
-    // (210:10) <ToggleGroupElement id={i}>
+    // (302:10) <ToggleGroupElement id={i}>
     function create_default_slot_38(ctx) {
     	var t, current;
 
@@ -5165,7 +6816,7 @@ var app = (function () {
     	};
     }
 
-    // (209:8) {#each new Array(3).fill('') as el, i}
+    // (301:8) {#each new Array(3).fill('') as el, i}
     function create_each_block_5(ctx) {
     	var current;
 
@@ -5212,7 +6863,7 @@ var app = (function () {
     	};
     }
 
-    // (204:6) <ToggleGroup          on:change={e => {            actives2 = e.detail.actives;          }}          multiple={false}>
+    // (296:6) <ToggleGroup          on:change={e => {            actives2 = e.detail.actives;          }}          multiple={false}>
     function create_default_slot_37(ctx) {
     	var each_1_anchor, current;
 
@@ -5294,7 +6945,7 @@ var app = (function () {
     	};
     }
 
-    // (157:0) <Block>
+    // (249:0) <Block>
     function create_default_slot_36(ctx) {
     	var div4, div0, t0, div1, t1, div2, t2, div3, current;
 
@@ -5349,13 +7000,13 @@ var app = (function () {
     			t2 = space();
     			div3 = element("div");
     			togglegroup3.$$.fragment.c();
-    			add_location(div0, file$k, 159, 4, 4210);
-    			add_location(div1, file$k, 173, 4, 4581);
-    			add_location(div2, file$k, 189, 4, 5049);
-    			add_location(div3, file$k, 202, 4, 5405);
+    			add_location(div0, file$n, 251, 4, 6264);
+    			add_location(div1, file$n, 265, 4, 6635);
+    			add_location(div2, file$n, 281, 4, 7103);
+    			add_location(div3, file$n, 294, 4, 7459);
     			set_style(div4, "display", "flex");
     			set_style(div4, "flex-flow", "column");
-    			add_location(div4, file$k, 158, 2, 4160);
+    			add_location(div4, file$n, 250, 2, 6214);
     		},
 
     		m: function mount(target, anchor) {
@@ -5429,7 +7080,7 @@ var app = (function () {
     	};
     }
 
-    // (222:0) <Block>
+    // (314:0) <Block>
     function create_default_slot_35(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -5563,7 +7214,7 @@ var app = (function () {
     	};
     }
 
-    // (233:0) <Block>
+    // (325:0) <Block>
     function create_default_slot_34(ctx) {
     	var t, current;
 
@@ -5620,7 +7271,7 @@ var app = (function () {
     	};
     }
 
-    // (246:8) <div slot="circle">
+    // (338:8) <div slot="circle">
     function create_circle_slot_4(ctx) {
     	var div, current;
 
@@ -5631,7 +7282,7 @@ var app = (function () {
     			div = element("div");
     			check.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$k, 245, 8, 6429);
+    			add_location(div, file$n, 337, 8, 8483);
     		},
 
     		m: function mount(target, anchor) {
@@ -5662,7 +7313,7 @@ var app = (function () {
     	};
     }
 
-    // (250:10) {#each new Array(3).fill('') as elem, i}
+    // (342:10) {#each new Array(3).fill('') as elem, i}
     function create_each_block_4(ctx) {
     	var div, t0, t1, current;
 
@@ -5682,7 +7333,7 @@ var app = (function () {
     			t1 = space();
     			set_style(div, "fill", "white");
     			set_style(div, "cursor", "pointer");
-    			add_location(div, file$k, 250, 12, 6582);
+    			add_location(div, file$n, 342, 12, 8636);
     		},
 
     		m: function mount(target, anchor) {
@@ -5723,7 +7374,7 @@ var app = (function () {
     	};
     }
 
-    // (249:8) <div slot="elements">
+    // (341:8) <div slot="elements">
     function create_elements_slot_4(ctx) {
     	var div, current;
 
@@ -5747,7 +7398,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
     			attr(div, "slot", "elements");
-    			add_location(div, file$k, 248, 8, 6495);
+    			add_location(div, file$n, 340, 8, 8549);
     		},
 
     		m: function mount(target, anchor) {
@@ -5808,7 +7459,7 @@ var app = (function () {
     	};
     }
 
-    // (245:6) <CircleNavigation2 color={randomColor}>
+    // (337:6) <CircleNavigation2 color={randomColor}>
     function create_default_slot_33(ctx) {
     	var t;
 
@@ -5833,7 +7484,7 @@ var app = (function () {
     	};
     }
 
-    // (262:6) <div slot="circle">
+    // (354:6) <div slot="circle">
     function create_circle_slot_3(ctx) {
     	var div, current;
 
@@ -5844,7 +7495,7 @@ var app = (function () {
     			div = element("div");
     			close.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$k, 261, 6, 6859);
+    			add_location(div, file$n, 353, 6, 8913);
     		},
 
     		m: function mount(target, anchor) {
@@ -5875,7 +7526,7 @@ var app = (function () {
     	};
     }
 
-    // (270:8) {#each Array.from({ length: 6 }, () => ({            icon: randomIcon()          })) as elem, i}
+    // (362:8) {#each Array.from({ length: 6 }, () => ({            icon: randomIcon()          })) as elem, i}
     function create_each_block_3(ctx) {
     	var div, t0, t1, current;
 
@@ -5901,8 +7552,8 @@ var app = (function () {
     			t0 = space();
     			ripple.$$.fragment.c();
     			t1 = space();
-    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-1ode8p3");
-    			add_location(div, file$k, 272, 10, 7166);
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-8pv23y");
+    			add_location(div, file$n, 364, 10, 9220);
     		},
 
     		m: function mount(target, anchor) {
@@ -5968,7 +7619,7 @@ var app = (function () {
     	};
     }
 
-    // (265:6) <div slot="elements">
+    // (357:6) <div slot="elements">
     function create_elements_slot_3(ctx) {
     	var div0, div1, t0, t1, current;
 
@@ -6000,10 +7651,10 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			attr(div1, "class", "" + 'buttonLabel' + " svelte-1ode8p3");
-    			add_location(div1, file$k, 265, 8, 6950);
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-8pv23y");
+    			add_location(div1, file$n, 357, 8, 9004);
     			attr(div0, "slot", "elements");
-    			add_location(div0, file$k, 264, 6, 6919);
+    			add_location(div0, file$n, 356, 6, 8973);
     		},
 
     		m: function mount(target, anchor) {
@@ -6074,7 +7725,7 @@ var app = (function () {
     	};
     }
 
-    // (260:4) <CircleNavigation color={randomColor} direction="right">
+    // (352:4) <CircleNavigation color={randomColor} direction="right">
     function create_default_slot_32(ctx) {
     	var t;
 
@@ -6099,7 +7750,7 @@ var app = (function () {
     	};
     }
 
-    // (283:8) <div slot="circle">
+    // (375:8) <div slot="circle">
     function create_circle_slot_2(ctx) {
     	var div, current;
 
@@ -6110,7 +7761,7 @@ var app = (function () {
     			div = element("div");
     			close.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$k, 282, 8, 7450);
+    			add_location(div, file$n, 374, 8, 9504);
     		},
 
     		m: function mount(target, anchor) {
@@ -6141,7 +7792,7 @@ var app = (function () {
     	};
     }
 
-    // (288:10) {#each Array.from({ length: 2 }, () => ({              icon: randomIcon()            })) as elem, i}
+    // (380:10) {#each Array.from({ length: 2 }, () => ({              icon: randomIcon()            })) as elem, i}
     function create_each_block_2(ctx) {
     	var div, t0, t1, current;
 
@@ -6167,8 +7818,8 @@ var app = (function () {
     			t0 = space();
     			ripple.$$.fragment.c();
     			t1 = space();
-    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-1ode8p3");
-    			add_location(div, file$k, 290, 12, 7711);
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-8pv23y");
+    			add_location(div, file$n, 382, 12, 9765);
     		},
 
     		m: function mount(target, anchor) {
@@ -6234,7 +7885,7 @@ var app = (function () {
     	};
     }
 
-    // (286:8) <div slot="elements">
+    // (378:8) <div slot="elements">
     function create_elements_slot_2(ctx) {
     	var div0, div1, t_1, current;
 
@@ -6260,10 +7911,10 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			attr(div1, "class", "" + 'buttonLabel' + " svelte-1ode8p3");
-    			add_location(div1, file$k, 286, 10, 7549);
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-8pv23y");
+    			add_location(div1, file$n, 378, 10, 9603);
     			attr(div0, "slot", "elements");
-    			add_location(div0, file$k, 285, 8, 7516);
+    			add_location(div0, file$n, 377, 8, 9570);
     		},
 
     		m: function mount(target, anchor) {
@@ -6326,7 +7977,7 @@ var app = (function () {
     	};
     }
 
-    // (282:6) <CircleNavigation color={randomColor} direction="bottom">
+    // (374:6) <CircleNavigation color={randomColor} direction="bottom">
     function create_default_slot_31(ctx) {
     	var t;
 
@@ -6351,7 +8002,7 @@ var app = (function () {
     	};
     }
 
-    // (300:8) <div slot="circle">
+    // (392:8) <div slot="circle">
     function create_circle_slot_1(ctx) {
     	var div, current;
 
@@ -6362,7 +8013,7 @@ var app = (function () {
     			div = element("div");
     			close.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$k, 299, 8, 7993);
+    			add_location(div, file$n, 391, 8, 10047);
     		},
 
     		m: function mount(target, anchor) {
@@ -6393,7 +8044,7 @@ var app = (function () {
     	};
     }
 
-    // (305:10) {#each Array.from({ length: 2 }, () => ({              icon: randomIcon()            })) as elem, i}
+    // (397:10) {#each Array.from({ length: 2 }, () => ({              icon: randomIcon()            })) as elem, i}
     function create_each_block_1(ctx) {
     	var div, t0, t1, current;
 
@@ -6419,8 +8070,8 @@ var app = (function () {
     			t0 = space();
     			ripple.$$.fragment.c();
     			t1 = space();
-    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-1ode8p3");
-    			add_location(div, file$k, 307, 12, 8254);
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-8pv23y");
+    			add_location(div, file$n, 399, 12, 10308);
     		},
 
     		m: function mount(target, anchor) {
@@ -6486,7 +8137,7 @@ var app = (function () {
     	};
     }
 
-    // (303:8) <div slot="elements">
+    // (395:8) <div slot="elements">
     function create_elements_slot_1(ctx) {
     	var div0, div1, t_1, current;
 
@@ -6512,10 +8163,10 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			attr(div1, "class", "" + 'buttonLabel' + " svelte-1ode8p3");
-    			add_location(div1, file$k, 303, 10, 8092);
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-8pv23y");
+    			add_location(div1, file$n, 395, 10, 10146);
     			attr(div0, "slot", "elements");
-    			add_location(div0, file$k, 302, 8, 8059);
+    			add_location(div0, file$n, 394, 8, 10113);
     		},
 
     		m: function mount(target, anchor) {
@@ -6578,7 +8229,7 @@ var app = (function () {
     	};
     }
 
-    // (299:6) <CircleNavigation color={randomColor} direction="top">
+    // (391:6) <CircleNavigation color={randomColor} direction="top">
     function create_default_slot_30(ctx) {
     	var t;
 
@@ -6603,7 +8254,7 @@ var app = (function () {
     	};
     }
 
-    // (317:6) <div slot="circle">
+    // (409:6) <div slot="circle">
     function create_circle_slot(ctx) {
     	var div, current;
 
@@ -6614,7 +8265,7 @@ var app = (function () {
     			div = element("div");
     			close.$$.fragment.c();
     			attr(div, "slot", "circle");
-    			add_location(div, file$k, 316, 6, 8543);
+    			add_location(div, file$n, 408, 6, 10597);
     		},
 
     		m: function mount(target, anchor) {
@@ -6645,7 +8296,7 @@ var app = (function () {
     	};
     }
 
-    // (322:8) {#each Array.from({ length: 8 }, () => ({            icon: randomIcon()          })) as elem, i}
+    // (414:8) {#each Array.from({ length: 8 }, () => ({            icon: randomIcon()          })) as elem, i}
     function create_each_block(ctx) {
     	var div, t0, t1, current;
 
@@ -6671,8 +8322,8 @@ var app = (function () {
     			t0 = space();
     			ripple.$$.fragment.c();
     			t1 = space();
-    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-1ode8p3");
-    			add_location(div, file$k, 324, 10, 8789);
+    			attr(div, "class", "" + 'whiteIconCircle' + " svelte-8pv23y");
+    			add_location(div, file$n, 416, 10, 10843);
     		},
 
     		m: function mount(target, anchor) {
@@ -6738,7 +8389,7 @@ var app = (function () {
     	};
     }
 
-    // (320:6) <div slot="elements">
+    // (412:6) <div slot="elements">
     function create_elements_slot(ctx) {
     	var div0, div1, t_1, current;
 
@@ -6764,10 +8415,10 @@ var app = (function () {
     			for (var i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			attr(div1, "class", "" + 'buttonLabel' + " svelte-1ode8p3");
-    			add_location(div1, file$k, 320, 8, 8634);
+    			attr(div1, "class", "" + 'buttonLabel' + " svelte-8pv23y");
+    			add_location(div1, file$n, 412, 8, 10688);
     			attr(div0, "slot", "elements");
-    			add_location(div0, file$k, 319, 6, 8603);
+    			add_location(div0, file$n, 411, 6, 10657);
     		},
 
     		m: function mount(target, anchor) {
@@ -6830,7 +8481,7 @@ var app = (function () {
     	};
     }
 
-    // (316:4) <CircleNavigation color={randomColor} direction="left">
+    // (408:4) <CircleNavigation color={randomColor} direction="left">
     function create_default_slot_29(ctx) {
     	var t;
 
@@ -6855,7 +8506,7 @@ var app = (function () {
     	};
     }
 
-    // (241:0) <Block>
+    // (333:0) <Block>
     function create_default_slot_28(ctx) {
     	var div2, div0, t0, t1, div1, t2, t3, current;
 
@@ -6943,11 +8594,11 @@ var app = (function () {
     			t3 = space();
     			circlenavigation3.$$.fragment.c();
     			set_style(div0, "display", "none");
-    			add_location(div0, file$k, 243, 4, 6345);
-    			add_location(div1, file$k, 280, 4, 7370);
+    			add_location(div0, file$n, 335, 4, 8399);
+    			add_location(div1, file$n, 372, 4, 9424);
     			set_style(div2, "display", "flex");
     			set_style(div2, "position", "relative");
-    			add_location(div2, file$k, 241, 2, 6291);
+    			add_location(div2, file$n, 333, 2, 8345);
     		},
 
     		m: function mount(target, anchor) {
@@ -7035,7 +8686,7 @@ var app = (function () {
     	};
     }
 
-    // (341:4) <p slot="header">
+    // (433:4) <p slot="header">
     function create_header_slot(ctx) {
     	var p;
 
@@ -7044,7 +8695,7 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "header";
     			attr(p, "slot", "header");
-    			add_location(p, file$k, 340, 4, 9063);
+    			add_location(p, file$n, 432, 4, 11117);
     		},
 
     		m: function mount(target, anchor) {
@@ -7059,7 +8710,7 @@ var app = (function () {
     	};
     }
 
-    // (342:4) <p slot="body">
+    // (434:4) <p slot="body">
     function create_body_slot(ctx) {
     	var p;
 
@@ -7068,7 +8719,7 @@ var app = (function () {
     			p = element("p");
     			p.textContent = "Body text";
     			attr(p, "slot", "body");
-    			add_location(p, file$k, 341, 4, 9096);
+    			add_location(p, file$n, 433, 4, 11150);
     		},
 
     		m: function mount(target, anchor) {
@@ -7083,7 +8734,7 @@ var app = (function () {
     	};
     }
 
-    // (340:2) <Accordeon>
+    // (432:2) <Accordeon>
     function create_default_slot_27(ctx) {
     	var t;
 
@@ -7106,7 +8757,7 @@ var app = (function () {
     	};
     }
 
-    // (339:0) <Block>
+    // (431:0) <Block>
     function create_default_slot_26(ctx) {
     	var current;
 
@@ -7156,7 +8807,7 @@ var app = (function () {
     	};
     }
 
-    // (353:6) <Button color="#2a74e6" raised={true}>
+    // (445:6) <Button color="#2a74e6" raised={true}>
     function create_default_slot_25(ctx) {
     	var t, current;
 
@@ -7201,7 +8852,7 @@ var app = (function () {
     	};
     }
 
-    // (357:6) <Button color="#2a74e6">
+    // (449:6) <Button color="#2a74e6">
     function create_default_slot_24(ctx) {
     	var t, current;
 
@@ -7246,7 +8897,7 @@ var app = (function () {
     	};
     }
 
-    // (361:6) <Button color="#2a74e6" outlined={true}>
+    // (453:6) <Button color="#2a74e6" outlined={true}>
     function create_default_slot_23(ctx) {
     	var t, current;
 
@@ -7291,7 +8942,7 @@ var app = (function () {
     	};
     }
 
-    // (365:6) <Button color="#2a74e6" simple={true}>
+    // (457:6) <Button color="#2a74e6" simple={true}>
     function create_default_slot_22(ctx) {
     	var t, current;
 
@@ -7336,7 +8987,7 @@ var app = (function () {
     	};
     }
 
-    // (372:6) <Button color="#c12da0" disabled={true}>
+    // (464:6) <Button color="#c12da0" disabled={true}>
     function create_default_slot_21(ctx) {
     	var t, current;
 
@@ -7381,7 +9032,7 @@ var app = (function () {
     	};
     }
 
-    // (376:6) <Button color={randomColor} outlined={true} disabled={true}>
+    // (468:6) <Button color={randomColor} outlined={true} disabled={true}>
     function create_default_slot_20(ctx) {
     	var t, current;
 
@@ -7430,7 +9081,7 @@ var app = (function () {
     	};
     }
 
-    // (380:6) <Button color={randomColor} simple={true} disabled={true}>
+    // (472:6) <Button color={randomColor} simple={true} disabled={true}>
     function create_default_slot_19(ctx) {
     	var t, current;
 
@@ -7479,7 +9130,7 @@ var app = (function () {
     	};
     }
 
-    // (386:6) <Button color="#333333" raised={true}>
+    // (478:6) <Button color="#333333" raised={true}>
     function create_default_slot_18(ctx) {
     	var t, current;
 
@@ -7524,7 +9175,7 @@ var app = (function () {
     	};
     }
 
-    // (390:6) <Button color="#333333">
+    // (482:6) <Button color="#333333">
     function create_default_slot_17(ctx) {
     	var t, current;
 
@@ -7569,7 +9220,7 @@ var app = (function () {
     	};
     }
 
-    // (394:6) <Button color="#333333" outlined={true}>
+    // (486:6) <Button color="#333333" outlined={true}>
     function create_default_slot_16(ctx) {
     	var t, current;
 
@@ -7614,7 +9265,7 @@ var app = (function () {
     	};
     }
 
-    // (398:6) <Button color="#333333" simple={true}>
+    // (490:6) <Button color="#333333" simple={true}>
     function create_default_slot_15(ctx) {
     	var t, current;
 
@@ -7659,7 +9310,7 @@ var app = (function () {
     	};
     }
 
-    // (404:6) <Button color={randomColor} size={'small'} raised={true}>
+    // (496:6) <Button color={randomColor} size={'small'} raised={true}>
     function create_default_slot_14(ctx) {
     	var t, current;
 
@@ -7699,7 +9350,7 @@ var app = (function () {
     	};
     }
 
-    // (408:6) <Button color={randomColor} size={'medium'} raised={true}>
+    // (500:6) <Button color={randomColor} size={'medium'} raised={true}>
     function create_default_slot_13(ctx) {
     	var t, current;
 
@@ -7739,7 +9390,7 @@ var app = (function () {
     	};
     }
 
-    // (412:6) <Button color={randomColor} size={'large'} raised={true}>
+    // (504:6) <Button color={randomColor} size={'large'} raised={true}>
     function create_default_slot_12(ctx) {
     	var t, current;
 
@@ -7779,7 +9430,7 @@ var app = (function () {
     	};
     }
 
-    // (349:0) <Block>
+    // (441:0) <Block>
     function create_default_slot_11(ctx) {
     	var div4, div0, t0, t1, t2, t3, div1, t4, t5, t6, div2, t7, t8, t9, t10, div3, t11, t12, current;
 
@@ -7960,12 +9611,12 @@ var app = (function () {
     			button12.$$.fragment.c();
     			t12 = space();
     			button13.$$.fragment.c();
-    			add_location(div0, file$k, 351, 4, 9284);
-    			add_location(div1, file$k, 370, 4, 9765);
-    			add_location(div2, file$k, 384, 4, 10187);
-    			add_location(div3, file$k, 402, 4, 10666);
+    			add_location(div0, file$n, 443, 4, 11338);
+    			add_location(div1, file$n, 462, 4, 11819);
+    			add_location(div2, file$n, 476, 4, 12241);
+    			add_location(div3, file$n, 494, 4, 12720);
     			set_style(div4, "flex-flow", "column");
-    			add_location(div4, file$k, 350, 2, 9248);
+    			add_location(div4, file$n, 442, 2, 11302);
     		},
 
     		m: function mount(target, anchor) {
@@ -8154,7 +9805,7 @@ var app = (function () {
     	};
     }
 
-    // (422:2) <Button color={randomColor} on:click={setRandomColor} raised={true}>
+    // (514:2) <Button color={randomColor} on:click={setRandomColor} raised={true}>
     function create_default_slot_10(ctx) {
     	var t, current;
 
@@ -8199,7 +9850,7 @@ var app = (function () {
     	};
     }
 
-    // (427:2) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
+    // (519:2) <Button color={randomColor} on:click={setRandomColor} outlined={true}>
     function create_default_slot_9(ctx) {
     	var t, current;
 
@@ -8248,7 +9899,7 @@ var app = (function () {
     	};
     }
 
-    // (432:2) <Button color={randomColor} on:click={setRandomColor} simple={true}>
+    // (524:2) <Button color={randomColor} on:click={setRandomColor} simple={true}>
     function create_default_slot_8(ctx) {
     	var t, current;
 
@@ -8297,7 +9948,7 @@ var app = (function () {
     	};
     }
 
-    // (421:0) <Block>
+    // (513:0) <Block>
     function create_default_slot_7(ctx) {
     	var t0, t1, current;
 
@@ -8405,7 +10056,7 @@ var app = (function () {
     	};
     }
 
-    // (441:2) <Button color={randomColor}>
+    // (533:2) <Button color={randomColor}>
     function create_default_slot_6(ctx) {
     	var t, current;
 
@@ -8445,7 +10096,7 @@ var app = (function () {
     	};
     }
 
-    // (440:0) <Block>
+    // (532:0) <Block>
     function create_default_slot_5(ctx) {
     	var t0, div0, t1, div1, t2, div2, t3, div3, t4, t5, div4, t6, current;
 
@@ -8503,16 +10154,16 @@ var app = (function () {
     			div4 = element("div");
     			t6 = text("-\r\n    ");
     			ripple4.$$.fragment.c();
-    			attr(div0, "class", "sheet svelte-1ode8p3");
-    			add_location(div0, file$k, 444, 2, 11618);
-    			attr(div1, "class", "sheet svelte-1ode8p3");
-    			add_location(div1, file$k, 447, 2, 11685);
-    			attr(div2, "class", "sheet svelte-1ode8p3");
-    			add_location(div2, file$k, 450, 2, 11752);
-    			attr(div3, "class", "circle svelte-1ode8p3");
-    			add_location(div3, file$k, 453, 2, 11817);
-    			attr(div4, "class", "circle svelte-1ode8p3");
-    			add_location(div4, file$k, 457, 2, 11890);
+    			attr(div0, "class", "sheet svelte-8pv23y");
+    			add_location(div0, file$n, 536, 2, 13672);
+    			attr(div1, "class", "sheet svelte-8pv23y");
+    			add_location(div1, file$n, 539, 2, 13739);
+    			attr(div2, "class", "sheet svelte-8pv23y");
+    			add_location(div2, file$n, 542, 2, 13806);
+    			attr(div3, "class", "circle svelte-8pv23y");
+    			add_location(div3, file$n, 545, 2, 13871);
+    			attr(div4, "class", "circle svelte-8pv23y");
+    			add_location(div4, file$n, 549, 2, 13944);
     		},
 
     		m: function mount(target, anchor) {
@@ -8612,7 +10263,7 @@ var app = (function () {
     	};
     }
 
-    // (468:0) <Block>
+    // (560:0) <Block>
     function create_default_slot_4(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -8785,7 +10436,7 @@ var app = (function () {
     	};
     }
 
-    // (516:0) <Block>
+    // (608:0) <Block>
     function create_default_slot_3(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, current;
 
@@ -9235,7 +10886,7 @@ var app = (function () {
     	};
     }
 
-    // (619:0) <Block>
+    // (711:0) <Block>
     function create_default_slot_2(ctx) {
     	var t0, t1, t2, t3, t4, t5, t6, t7, current;
 
@@ -9509,7 +11160,7 @@ var app = (function () {
     	};
     }
 
-    // (701:0) <Block>
+    // (793:0) <Block>
     function create_default_slot_1(ctx) {
     	var t0, t1, t2, t3, t4, current;
 
@@ -9686,8 +11337,8 @@ var app = (function () {
     	};
     }
 
-    // (755:0) <Block>
-    function create_default_slot(ctx) {
+    // (847:0) <Block>
+    function create_default_slot$1(ctx) {
     	var div, t0, t1, t2, t3, t4, t5, t6, t7, t8, t9, current;
 
     	var textfield0 = new Textfield({
@@ -9866,7 +11517,7 @@ var app = (function () {
     			t9 = space();
     			textfield10.$$.fragment.c();
     			attr(div, "class", "testElement");
-    			add_location(div, file$k, 756, 2, 19247);
+    			add_location(div, file$n, 848, 2, 21301);
     		},
 
     		m: function mount(target, anchor) {
@@ -10013,14 +11664,15 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$k(ctx) {
-    	var t0, h20, t2, t3, h21, t5, t6, h22, t8, t9, h23, t11, t12, h24, t14, t15, h25, t17, h30, t19, t20, h31, t22, t23, h26, t25, t26, h27, t28, h32, t30, t31, h33, t33, t34, h34, t36, t37, h35, t39, t40, h36, t42, current;
+    function create_fragment$n(ctx) {
+    	var t0, h20, t2, t3, h21, t5, t6, h22, t8, t9, h23, t11, t12, h24, t14, t15, h25, t17, t18, h26, t20, h30, t22, t23, h31, t25, t26, h27, t28, t29, h28, t31, h32, t33, t34, h33, t36, t37, h34, t39, t40, h35, t42, t43, h36, t45, current;
 
     	var button = new Button({
     		props: {
     		color: ctx.randomColor,
     		outlined: true,
-    		$$slots: { default: [create_default_slot_46] },
+    		style: "border-width: 2px; border-radius: 50px;",
+    		$$slots: { default: [create_default_slot_54] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10029,7 +11681,7 @@ var app = (function () {
 
     	var block0 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_36] },
+    		$$slots: { default: [create_default_slot_46] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10037,7 +11689,7 @@ var app = (function () {
 
     	var block1 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_35] },
+    		$$slots: { default: [create_default_slot_36] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10045,7 +11697,7 @@ var app = (function () {
 
     	var block2 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_34] },
+    		$$slots: { default: [create_default_slot_35] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10053,7 +11705,7 @@ var app = (function () {
 
     	var block3 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_28] },
+    		$$slots: { default: [create_default_slot_34] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10061,7 +11713,7 @@ var app = (function () {
 
     	var block4 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_26] },
+    		$$slots: { default: [create_default_slot_28] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10069,7 +11721,7 @@ var app = (function () {
 
     	var block5 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_11] },
+    		$$slots: { default: [create_default_slot_26] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10077,7 +11729,7 @@ var app = (function () {
 
     	var block6 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_7] },
+    		$$slots: { default: [create_default_slot_11] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10085,7 +11737,7 @@ var app = (function () {
 
     	var block7 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_5] },
+    		$$slots: { default: [create_default_slot_7] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10093,7 +11745,7 @@ var app = (function () {
 
     	var block8 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_4] },
+    		$$slots: { default: [create_default_slot_5] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10101,7 +11753,7 @@ var app = (function () {
 
     	var block9 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_3] },
+    		$$slots: { default: [create_default_slot_4] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10109,7 +11761,7 @@ var app = (function () {
 
     	var block10 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_2] },
+    		$$slots: { default: [create_default_slot_3] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10117,7 +11769,7 @@ var app = (function () {
 
     	var block11 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot_1] },
+    		$$slots: { default: [create_default_slot_2] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10125,7 +11777,15 @@ var app = (function () {
 
     	var block12 = new Block({
     		props: {
-    		$$slots: { default: [create_default_slot] },
+    		$$slots: { default: [create_default_slot_1] },
+    		$$scope: { ctx }
+    	},
+    		$$inline: true
+    	});
+
+    	var block13 = new Block({
+    		props: {
+    		$$slots: { default: [create_default_slot$1] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10136,90 +11796,96 @@ var app = (function () {
     			button.$$.fragment.c();
     			t0 = space();
     			h20 = element("h2");
-    			h20.textContent = "Toggle Group";
+    			h20.textContent = "Select";
     			t2 = space();
     			block0.$$.fragment.c();
     			t3 = space();
     			h21 = element("h2");
-    			h21.textContent = "Toggle Buttons";
+    			h21.textContent = "Toggle Group";
     			t5 = space();
     			block1.$$.fragment.c();
     			t6 = space();
     			h22 = element("h2");
-    			h22.textContent = "Checkboxes";
+    			h22.textContent = "Toggle Buttons";
     			t8 = space();
     			block2.$$.fragment.c();
     			t9 = space();
     			h23 = element("h2");
-    			h23.textContent = "Circle Navigation";
+    			h23.textContent = "Checkboxes";
     			t11 = space();
     			block3.$$.fragment.c();
     			t12 = space();
     			h24 = element("h2");
-    			h24.textContent = "Accordeon";
+    			h24.textContent = "Circle Navigation";
     			t14 = space();
     			block4.$$.fragment.c();
     			t15 = space();
     			h25 = element("h2");
-    			h25.textContent = "Buttons";
+    			h25.textContent = "Accordeon";
     			t17 = space();
+    			block5.$$.fragment.c();
+    			t18 = space();
+    			h26 = element("h2");
+    			h26.textContent = "Buttons";
+    			t20 = space();
     			h30 = element("h3");
     			h30.textContent = "Default, Outlined, Raised, Simple, Disabled, Sizes";
-    			t19 = space();
-    			block5.$$.fragment.c();
-    			t20 = space();
-    			h31 = element("h3");
-    			h31.textContent = "Random Color";
     			t22 = space();
     			block6.$$.fragment.c();
     			t23 = space();
-    			h26 = element("h2");
-    			h26.textContent = "Ripple";
+    			h31 = element("h3");
+    			h31.textContent = "Random Color";
     			t25 = space();
     			block7.$$.fragment.c();
     			t26 = space();
     			h27 = element("h2");
-    			h27.textContent = "Textfields";
+    			h27.textContent = "Ripple";
     			t28 = space();
+    			block8.$$.fragment.c();
+    			t29 = space();
+    			h28 = element("h2");
+    			h28.textContent = "Textfields";
+    			t31 = space();
     			h32 = element("h3");
     			h32.textContent = "Simple";
-    			t30 = space();
-    			block8.$$.fragment.c();
-    			t31 = space();
-    			h33 = element("h3");
-    			h33.textContent = "Outlined";
     			t33 = space();
     			block9.$$.fragment.c();
     			t34 = space();
-    			h34 = element("h3");
-    			h34.textContent = "Filled";
+    			h33 = element("h3");
+    			h33.textContent = "Outlined";
     			t36 = space();
     			block10.$$.fragment.c();
     			t37 = space();
-    			h35 = element("h3");
-    			h35.textContent = "Customized";
+    			h34 = element("h3");
+    			h34.textContent = "Filled";
     			t39 = space();
     			block11.$$.fragment.c();
     			t40 = space();
-    			h36 = element("h3");
-    			h36.textContent = "Prepend / Append";
+    			h35 = element("h3");
+    			h35.textContent = "Customized";
     			t42 = space();
     			block12.$$.fragment.c();
-    			add_location(h20, file$k, 155, 0, 4124);
-    			add_location(h21, file$k, 219, 0, 5807);
-    			add_location(h22, file$k, 230, 0, 6120);
-    			add_location(h23, file$k, 239, 0, 6252);
-    			add_location(h24, file$k, 336, 0, 9013);
-    			add_location(h25, file$k, 346, 0, 9156);
-    			add_location(h30, file$k, 347, 0, 9174);
-    			add_location(h31, file$k, 419, 0, 11060);
-    			add_location(h26, file$k, 437, 0, 11515);
-    			add_location(h27, file$k, 463, 0, 11973);
-    			add_location(h32, file$k, 465, 0, 11996);
-    			add_location(h33, file$k, 514, 0, 12919);
-    			add_location(h34, file$k, 617, 0, 14941);
-    			add_location(h35, file$k, 699, 0, 16512);
-    			add_location(h36, file$k, 753, 0, 19207);
+    			t43 = space();
+    			h36 = element("h3");
+    			h36.textContent = "Prepend / Append";
+    			t45 = space();
+    			block13.$$.fragment.c();
+    			add_location(h20, file$n, 169, 0, 4425);
+    			add_location(h21, file$n, 247, 0, 6178);
+    			add_location(h22, file$n, 311, 0, 7861);
+    			add_location(h23, file$n, 322, 0, 8174);
+    			add_location(h24, file$n, 331, 0, 8306);
+    			add_location(h25, file$n, 428, 0, 11067);
+    			add_location(h26, file$n, 438, 0, 11210);
+    			add_location(h30, file$n, 439, 0, 11228);
+    			add_location(h31, file$n, 511, 0, 13114);
+    			add_location(h27, file$n, 529, 0, 13569);
+    			add_location(h28, file$n, 555, 0, 14027);
+    			add_location(h32, file$n, 557, 0, 14050);
+    			add_location(h33, file$n, 606, 0, 14973);
+    			add_location(h34, file$n, 709, 0, 16995);
+    			add_location(h35, file$n, 791, 0, 18566);
+    			add_location(h36, file$n, 845, 0, 21261);
     		},
 
     		l: function claim(nodes) {
@@ -10251,39 +11917,43 @@ var app = (function () {
     			insert(target, t15, anchor);
     			insert(target, h25, anchor);
     			insert(target, t17, anchor);
-    			insert(target, h30, anchor);
-    			insert(target, t19, anchor);
     			mount_component(block5, target, anchor);
+    			insert(target, t18, anchor);
+    			insert(target, h26, anchor);
     			insert(target, t20, anchor);
-    			insert(target, h31, anchor);
+    			insert(target, h30, anchor);
     			insert(target, t22, anchor);
     			mount_component(block6, target, anchor);
     			insert(target, t23, anchor);
-    			insert(target, h26, anchor);
+    			insert(target, h31, anchor);
     			insert(target, t25, anchor);
     			mount_component(block7, target, anchor);
     			insert(target, t26, anchor);
     			insert(target, h27, anchor);
     			insert(target, t28, anchor);
-    			insert(target, h32, anchor);
-    			insert(target, t30, anchor);
     			mount_component(block8, target, anchor);
+    			insert(target, t29, anchor);
+    			insert(target, h28, anchor);
     			insert(target, t31, anchor);
-    			insert(target, h33, anchor);
+    			insert(target, h32, anchor);
     			insert(target, t33, anchor);
     			mount_component(block9, target, anchor);
     			insert(target, t34, anchor);
-    			insert(target, h34, anchor);
+    			insert(target, h33, anchor);
     			insert(target, t36, anchor);
     			mount_component(block10, target, anchor);
     			insert(target, t37, anchor);
-    			insert(target, h35, anchor);
+    			insert(target, h34, anchor);
     			insert(target, t39, anchor);
     			mount_component(block11, target, anchor);
     			insert(target, t40, anchor);
-    			insert(target, h36, anchor);
+    			insert(target, h35, anchor);
     			insert(target, t42, anchor);
     			mount_component(block12, target, anchor);
+    			insert(target, t43, anchor);
+    			insert(target, h36, anchor);
+    			insert(target, t45, anchor);
+    			mount_component(block13, target, anchor);
     			current = true;
     		},
 
@@ -10294,11 +11964,11 @@ var app = (function () {
     			button.$set(button_changes);
 
     			var block0_changes = {};
-    			if (changed.$$scope || changed.actives2 || changed.randomColor || changed.actives1 || changed.actives0 || changed.actives4) block0_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.randomColor) block0_changes.$$scope = { changed, ctx };
     			block0.$set(block0_changes);
 
     			var block1_changes = {};
-    			if (changed.$$scope) block1_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.actives2 || changed.randomColor || changed.actives1 || changed.actives0 || changed.actives4) block1_changes.$$scope = { changed, ctx };
     			block1.$set(block1_changes);
 
     			var block2_changes = {};
@@ -10306,15 +11976,15 @@ var app = (function () {
     			block2.$set(block2_changes);
 
     			var block3_changes = {};
-    			if (changed.$$scope || changed.randomColor) block3_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope) block3_changes.$$scope = { changed, ctx };
     			block3.$set(block3_changes);
 
     			var block4_changes = {};
-    			if (changed.$$scope) block4_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.randomColor) block4_changes.$$scope = { changed, ctx };
     			block4.$set(block4_changes);
 
     			var block5_changes = {};
-    			if (changed.$$scope || changed.randomColor) block5_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope) block5_changes.$$scope = { changed, ctx };
     			block5.$set(block5_changes);
 
     			var block6_changes = {};
@@ -10326,24 +11996,28 @@ var app = (function () {
     			block7.$set(block7_changes);
 
     			var block8_changes = {};
-    			if (changed.$$scope || changed.helper01) block8_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.randomColor) block8_changes.$$scope = { changed, ctx };
     			block8.$set(block8_changes);
 
     			var block9_changes = {};
-    			if (changed.$$scope || changed.randomColor || changed.error12) block9_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.helper01) block9_changes.$$scope = { changed, ctx };
     			block9.$set(block9_changes);
 
     			var block10_changes = {};
-    			if (changed.$$scope || changed.error12 || changed.helper12) block10_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.randomColor || changed.error12) block10_changes.$$scope = { changed, ctx };
     			block10.$set(block10_changes);
 
     			var block11_changes = {};
-    			if (changed.$$scope) block11_changes.$$scope = { changed, ctx };
+    			if (changed.$$scope || changed.error12 || changed.helper12) block11_changes.$$scope = { changed, ctx };
     			block11.$set(block11_changes);
 
     			var block12_changes = {};
     			if (changed.$$scope) block12_changes.$$scope = { changed, ctx };
     			block12.$set(block12_changes);
+
+    			var block13_changes = {};
+    			if (changed.$$scope) block13_changes.$$scope = { changed, ctx };
+    			block13.$set(block13_changes);
     		},
 
     		i: function intro(local) {
@@ -10376,6 +12050,8 @@ var app = (function () {
 
     			transition_in(block12.$$.fragment, local);
 
+    			transition_in(block13.$$.fragment, local);
+
     			current = true;
     		},
 
@@ -10394,6 +12070,7 @@ var app = (function () {
     			transition_out(block10.$$.fragment, local);
     			transition_out(block11.$$.fragment, local);
     			transition_out(block12.$$.fragment, local);
+    			transition_out(block13.$$.fragment, local);
     			current = false;
     		},
 
@@ -10444,15 +12121,15 @@ var app = (function () {
     				detach(t15);
     				detach(h25);
     				detach(t17);
-    				detach(h30);
-    				detach(t19);
     			}
 
     			destroy_component(block5, detaching);
 
     			if (detaching) {
+    				detach(t18);
+    				detach(h26);
     				detach(t20);
-    				detach(h31);
+    				detach(h30);
     				detach(t22);
     			}
 
@@ -10460,7 +12137,7 @@ var app = (function () {
 
     			if (detaching) {
     				detach(t23);
-    				detach(h26);
+    				detach(h31);
     				detach(t25);
     			}
 
@@ -10470,15 +12147,15 @@ var app = (function () {
     				detach(t26);
     				detach(h27);
     				detach(t28);
-    				detach(h32);
-    				detach(t30);
     			}
 
     			destroy_component(block8, detaching);
 
     			if (detaching) {
+    				detach(t29);
+    				detach(h28);
     				detach(t31);
-    				detach(h33);
+    				detach(h32);
     				detach(t33);
     			}
 
@@ -10486,7 +12163,7 @@ var app = (function () {
 
     			if (detaching) {
     				detach(t34);
-    				detach(h34);
+    				detach(h33);
     				detach(t36);
     			}
 
@@ -10494,7 +12171,7 @@ var app = (function () {
 
     			if (detaching) {
     				detach(t37);
-    				detach(h35);
+    				detach(h34);
     				detach(t39);
     			}
 
@@ -10502,16 +12179,24 @@ var app = (function () {
 
     			if (detaching) {
     				detach(t40);
-    				detach(h36);
+    				detach(h35);
     				detach(t42);
     			}
 
     			destroy_component(block12, detaching);
+
+    			if (detaching) {
+    				detach(t43);
+    				detach(h36);
+    				detach(t45);
+    			}
+
+    			destroy_component(block13, detaching);
     		}
     	};
     }
 
-    function instance$e($$self, $$props, $$invalidate) {
+    function instance$g($$self, $$props, $$invalidate) {
 
       let helper01 = "Test";
 
@@ -10624,16 +12309,16 @@ var app = (function () {
     class UiComponents extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$e, create_fragment$k, safe_not_equal, []);
+    		init(this, options, instance$g, create_fragment$n, safe_not_equal, []);
     	}
     }
 
     /* src\App.svelte generated by Svelte v3.5.4 */
 
-    const file$l = "src\\App.svelte";
+    const file$o = "src\\App.svelte";
 
     // (78:0) <Screen>
-    function create_default_slot$1(ctx) {
+    function create_default_slot$2(ctx) {
     	var current_1;
 
     	var uicomponents = new UiComponents({ $$inline: true });
@@ -10666,12 +12351,12 @@ var app = (function () {
     	};
     }
 
-    function create_fragment$l(ctx) {
+    function create_fragment$o(ctx) {
     	var div2, div1, div0, t, current_1;
 
     	var screen = new Screen({
     		props: {
-    		$$slots: { default: [create_default_slot$1] },
+    		$$slots: { default: [create_default_slot$2] },
     		$$scope: { ctx }
     	},
     		$$inline: true
@@ -10685,11 +12370,11 @@ var app = (function () {
     			t = space();
     			screen.$$.fragment.c();
     			attr(div0, "class", "toggleGroupOffset");
-    			add_location(div0, file$l, 59, 2, 1222);
+    			add_location(div0, file$o, 59, 2, 1222);
     			attr(div1, "class", "headbar-center svelte-iizxn5");
-    			add_location(div1, file$l, 57, 1, 1188);
+    			add_location(div1, file$o, 57, 1, 1188);
     			attr(div2, "class", "headbar svelte-iizxn5");
-    			add_location(div2, file$l, 56, 0, 1164);
+    			add_location(div2, file$o, 56, 0, 1164);
     		},
 
     		l: function claim(nodes) {
@@ -10734,7 +12419,7 @@ var app = (function () {
     	};
     }
 
-    function instance$f($$self) {
+    function instance$h($$self) {
 
     	return {};
     }
@@ -10742,7 +12427,7 @@ var app = (function () {
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$f, create_fragment$l, safe_not_equal, []);
+    		init(this, options, instance$h, create_fragment$o, safe_not_equal, []);
     	}
     }
 
