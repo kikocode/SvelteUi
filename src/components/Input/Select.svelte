@@ -1,4 +1,5 @@
 <script>
+	import ArrowDown from '../Icons/ArrowDown.svelte';
 	import TextInputBase from './TextInputBase.svelte';
 
 	export let name = '';
@@ -11,8 +12,8 @@
 	export let color = '#ffbb77';
 	export let helperText = '';
 	export let type = 'text';
-	export let append = '';
 	export let prepend = '';
+	export let append = '';
 
 	export let style = '';
 	export let className = '';
@@ -50,6 +51,7 @@
 </script>
 
 <TextInputBase {...textInputProps} let:nativeElementClass>
+
 	<select
 		slot="nativeElement"
 		class={nativeElementClass}
@@ -62,4 +64,13 @@
 		on:blur={handleBlur}>
 		<slot />
 	</select>
+
+	<div slot="prepend">
+		{#if prepend}
+			{@html prepend}
+		{/if}
+	</div>
+	<div slot="append">
+		<ArrowDown />
+	</div>
 </TextInputBase>

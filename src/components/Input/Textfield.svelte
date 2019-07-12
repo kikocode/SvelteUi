@@ -60,4 +60,15 @@
 		on:keyup={handleChange}
 		on:focus={handleFocus}
 		on:blur={handleBlur} />
+
+	<div slot="prepend">
+		{#if prepend}
+			{@html prepend}
+		{/if}
+	</div>
+	<div slot="append">
+		{#if append}
+			{@html append}
+		{/if}
+	</div>
 </TextInputBase>

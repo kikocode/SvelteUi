@@ -207,6 +207,25 @@
         </Select>
 
         <Select
+        prepend="$"
+        label={'Outlined'}
+        color={randomColor}>
+        <option></option>
+        <option>Test</option>
+        <option>OptionWithLongText</option>
+        </Select>
+
+        <Select
+        error={true}
+        helperText="Error Text"
+        label={'Outlined'}
+        color={randomColor}>
+        <option></option>
+        <option>Test</option>
+        <option>OptionWithLongText</option>
+        </Select>
+
+        <Select
         label={'Filled'}
         color={randomColor}
         variant="filled" >

@@ -15,8 +15,6 @@
 	export let color = '#ffbb77';
 	export let helperText = '';
 	export let type = 'text';
-	export let append = '';
-	export let prepend = '';
 	export let focused = false;
 
 	export let style = '';
@@ -32,6 +30,8 @@
 	let appendRef;
 	let appendWidth;
 	let height;
+	let hasPrepend;
+	let hasAppend;
 
 	let LABEL_SCALE = 0.75;
 	let labelGap = 3;
@@ -43,8 +43,8 @@
 	$: errorClass = error ? 'textfield--error' : '';
 	$: disabledClass = disabled ? 'textfield--disabled' : '';
 	$: multilineClass = multiline ? 'textfield--multiline' : '';
-	$: prependClass = append ? 'textfield--has--prepend' : '';
-	$: appendClass = append ? 'textfield--has--append' : '';
+	$: prependClass = hasPrepend ? 'textfield--has--prepend' : '';
+	$: appendClass = hasAppend ? 'textfield--has--append' : '';
 	$: variantClass = variant ? 'textfield--' + variant : '';
 	$: textfieldClasses = ` ${className} ${focusedClass} ${activeClass} ${compactClass} ${errorClass} ${disabledClass} ${multilineClass} ${variantClass} ${prependClass} ${appendClass}`;
 
@@ -86,8 +86,29 @@
   `;
 
 	onMount(() => {
-		appendWidth = appendRef ? appendRef.offsetWidth : 0;
-		prependWidth = prependRef ? prependRef.offsetWidth : 0;
+		appendWidth = 0;
+		prependWidth = 0;
+
+		// test if slots have content by checking for nested elements in 2nd layer
+		if (
+			appendRef.querySelector('*') &&
+			appendRef.querySelector('*').querySelector('*')
+		) {
+			hasAppend = true;
+			appendWidth = appendRef.offsetWidth;
+		} else {
+			appendRef.style.display = 'none';
+		}
+
+		if (
+			prependRef.querySelector('*') &&
+			prependRef.querySelector('*').querySelector('*')
+		) {
+			hasPrepend = true;
+			prependWidth = prependRef.offsetWidth;
+		} else {
+			prependRef.style.display = 'none';
+		}
 
 		labelWidth = labelRef.offsetWidth * LABEL_SCALE + labelGap;
 		labelHeight = labelRef.offsetHeight;
@@ -144,6 +165,9 @@
 		margin: 0;
 		border: none;
 		background: none;
+
+		-moz-appearance: none;
+		-webkit-appearance: none;
 
 		&::-ms-clear {
 			display: none;
@@ -469,11 +493,10 @@
 
 <div class={'textfield ' + textfieldClasses} style={textfieldStyle}>
 	<div class="textfield__element">
-		{#if prepend}
-			<div class={'textfield__prepend'} bind:this={prependRef}>
-				{@html prepend}
-			</div>
-		{/if}
+
+		<div class={'textfield__prepend'} bind:this={prependRef}>
+			<slot name="prepend" />
+		</div>
 
 		<div class="textfield__border">
 			<div class="textfield__border__start textfield__border__segment" />
@@ -483,11 +506,11 @@
 			<div class="textfield__border__end textfield__border__segment" />
 		</div>
 		<slot name="nativeElement" nativeElementClass="textfield__input" />
-		{#if append}
-			<div class={'textfield__append'} bind:this={appendRef}>
-				{@html append}
-			</div>
-		{/if}
+
+		<div class={'textfield__append'} bind:this={appendRef}>
+			<slot name="append" />
+		</div>
+
 	</div>
 	{#if helperText}
 		<div class="textfield__helper__text">{helperText}</div>
