@@ -29,13 +29,15 @@
 	let prependWidth;
 	let appendRef;
 	let appendWidth;
-	let height;
+	let height = 55;
+	let spacing = [0, 0, 0, 0];
+
 	let hasPrepend;
 	let hasAppend;
 
 	let LABEL_SCALE = 0.75;
 	let labelGap = 3;
-	let paddingLeft = 10;
+	let labelPadding = 10;
 
 	$: focusedClass = focused && !disabled ? 'textfield--focused' : '';
 	$: activeClass = name != '' || focused ? 'textfield--active' : '';
@@ -53,15 +55,23 @@
 	const computeVariantProps = variant => {
 		if (variant == 'outlined') {
 			height = 55;
-			if (compact) height = 39;
+			spacing = [0, 13, 0, 13];
+			if (compact) {
+				height = 39;
+			}
 		} else if (variant == 'filled') {
 			height = 55;
-			if (compact) height = 45;
+			spacing = [28, 9, 9, 13];
+			if (compact) {
+				height = 45;
+				spacing = [24, 9, 9, 13];
+			}
 		} else if ((variant = 'simple')) {
 			height = 36;
-			if (compact) height = 30;
-		} else {
-			height = 55;
+			spacing = [8, 0, 8, 0];
+			if (compact) {
+				height = 30;
+			}
 		}
 	};
 
@@ -71,11 +81,19 @@
     --primary-color-light:  ${hexToRGB(color, 0.85)};
 
     --height: ${height}px;
-    --padding-left: ${paddingLeft}px;
 
     --prepend-width: ${prependWidth}px;
     --append-width: ${appendWidth}px;
 
+		--spacing-top: ${spacing[0]}px;
+		--spacing-right: ${spacing[1]}px;
+		--spacing-bottom: ${spacing[2]}px;
+		--spacing-left: ${spacing[3]}px;
+
+		--spacing-right-append: ${spacing[1] + appendWidth}px;
+		--spacing-left-prepend: ${spacing[3] + prependWidth}px;
+
+		--label-padding: ${labelPadding}px;
     --label-scale: ${LABEL_SCALE};
     --label-width: ${labelWidth}px;
     --label-x: ${labelX}px;
@@ -85,25 +103,28 @@
 		7}px) scale(${LABEL_SCALE});
   `;
 
+	/**
+	 * test if slots have content by checking for nested elements in 2nd layer
+	 */
+	const hasContent = elemWithSlot => {
+		return (
+			elemWithSlot.querySelector('*') &&
+			elemWithSlot.querySelector('*').querySelector('*')
+		);
+	};
+
 	onMount(() => {
 		appendWidth = 0;
 		prependWidth = 0;
 
-		// test if slots have content by checking for nested elements in 2nd layer
-		if (
-			appendRef.querySelector('*') &&
-			appendRef.querySelector('*').querySelector('*')
-		) {
+		if (hasContent(appendRef)) {
 			hasAppend = true;
 			appendWidth = appendRef.offsetWidth;
 		} else {
 			appendRef.style.display = 'none';
 		}
 
-		if (
-			prependRef.querySelector('*') &&
-			prependRef.querySelector('*').querySelector('*')
-		) {
+		if (hasContent(prependRef)) {
 			hasPrepend = true;
 			prependWidth = prependRef.offsetWidth;
 		} else {
@@ -114,9 +135,10 @@
 		labelHeight = labelRef.offsetHeight;
 		labelY = Math.round(height / 2 - labelHeight / 2);
 		labelX = prependWidth;
+
 		if (variant == 'simple') {
 			labelX = 0;
-			paddingLeft = 0;
+			labelPadding = 0;
 		}
 	});
 
@@ -131,10 +153,6 @@
 		--transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 		--error-color: #e0274f;
 		--disabled-color: rgba(0, 0, 0, 0.25);
-
-		--spacing-input-outlined: 0 13px;
-		--spacing-input-filled: 28px 13px 9px;
-		--spacing-input-simple: 8px 0 8px;
 
 		display: inline-flex;
 		flex-flow: column;
@@ -158,11 +176,16 @@
 		width: 100%;
 		min-width: 80px;
 		height: var(--height);
-		padding: var(--spacing-input-outlined);
+
+		padding-top: var(--spacing-top);
+		padding-bottom: var(--spacing-bottom);
+		padding-right: var(--spacing-right-append);
+		padding-left: var(--spacing-left-prepend);
+
 		border-radius: 5px;
 		font-size: 16px;
-		outline: none;
 		margin: 0;
+		outline: none;
 		border: none;
 		background: none;
 
@@ -176,18 +199,18 @@
 
 	.textfield__label {
 		position: absolute;
-		user-select: none;
-		pointer-events: none;
-		z-index: 1;
+		padding-left: 2px;
+		max-width: calc(100% - 35px);
+		color: rgba(0, 0, 0, 0.6);
 		transform-origin: top left;
 		transform: var(--transform-label);
 		transition: transform var(--transition-fast), color var(--transition-fast);
-		padding-left: 2px;
+		z-index: 1;
+		user-select: none;
+		pointer-events: none;
 		white-space: pre;
-		max-width: calc(100% - 35px);
 		overflow: hidden;
 		text-overflow: ellipsis;
-		color: rgba(0, 0, 0, 0.6);
 	}
 
 	.textfield__border__segment {
@@ -198,17 +221,15 @@
 	}
 
 	.textfield__border {
-		display: flex;
-		justify-content: flex-start;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
 		box-sizing: border-box;
 		position: absolute;
 		top: 0px;
 		left: 0px;
 		width: 100%;
 		height: 100%;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
 		border-radius: 4px;
 		background: none;
 		pointer-events: none;
@@ -216,7 +237,7 @@
 	}
 
 	.textfield__border__start {
-		width: var(--padding-left);
+		width: var(--label-padding);
 		height: 100%;
 		border-radius: 4px 0 0px 4px;
 		border-right: none;
@@ -234,25 +255,31 @@
 		flex-shrink: 1;
 		width: 100%;
 		height: 100%;
-		border-radius: 0 5px 5px 0;
+		border-radius: 0 4px 4px 0;
 		border-left: none;
 	}
 
 	.textfield__prepend,
 	.textfield__append {
 		display: flex;
+		position: absolute;
+		height: 100%;
 		align-items: center;
 		white-space: pre;
-		padding: var(--spacing-input-outlined);
+
 		color: rgba(0, 0, 0, 0.5);
 		pointer-events: none;
 	}
 
 	.textfield__prepend {
 		padding-right: 0;
+		left: 0;
+		padding-left: var(--spacing-left);
 	}
 	.textfield__append {
 		padding-left: 0;
+		right: 0;
+		padding-right: var(--spacing-right);
 	}
 
 	.textfield__helper__text {
@@ -334,17 +361,12 @@
 		:global(.textfield__input) {
 			height: var(--height);
 		}
-		.textfield__label {
-		}
 	}
 
 	/**
     * Filled
     */
 	.textfield--filled {
-		:global(.textfield__input) {
-			padding: var(--spacing-input-filled);
-		}
 		.textfield__border__segment {
 			border: none;
 		}
@@ -359,7 +381,7 @@
 		}
 		/* Hover */
 		&:hover .textfield__border {
-			background: rgba(0, 0, 0, 0.11);
+			background: rgba(0, 0, 0, 0.1);
 		}
 		/* Active */
 		&.textfield--active .textfield__label {
@@ -372,7 +394,6 @@
 		}
 		/* Compact */
 		&.textfield--compact :global(.textfield__input) {
-			padding: 20px 13px 6px;
 			height: var(--height);
 		}
 		/* Error */
@@ -390,8 +411,6 @@
     */
 	.textfield--simple {
 		:global(.textfield__input) {
-			margin: 0;
-			padding: var(--spacing-input-simple);
 			height: var(--height);
 		}
 		.textfield__border__segment {
@@ -404,20 +423,18 @@
 		.textfield__label {
 			padding: 0;
 		}
-		.textfield__prepend {
-			padding-left: 0;
-		}
-		.textfield__append {
-			padding-right: 0;
-		}
 		&.textfield--has--prepend {
 			:global(.textfield__input) {
-				padding-left: 10px;
-				padding-right: 10px;
+				padding-left: calc(var(--spacing-left-prepend) + 10px);
 			}
 			.textfield__label {
 				transform: translateX(calc(var(--prepend-width) + 10px))
 					translateY(var(--label-y));
+			}
+		}
+		&.textfield--has--append {
+			:global(.textfield__input) {
+				padding-right: calc(var(--spacing-right-append) + 10px);
 			}
 		}
 		.textfield__helper__text {
@@ -481,13 +498,6 @@
 			margin: 15px 13px;
 			margin-bottom: 10px;
 		}
-		/* Filled */
-		&.textfield--filled {
-			:global(.textfield__input) {
-				padding: 0;
-				margin: var(--spacing-input-filled);
-			}
-		}
 	}
 </style>
 
@@ -512,6 +522,7 @@
 		</div>
 
 	</div>
+
 	{#if helperText}
 		<div class="textfield__helper__text">{helperText}</div>
 	{/if}
