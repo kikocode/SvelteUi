@@ -4,7 +4,7 @@
 		getContrastColor,
 		lighten,
 		darken
-	} from '../../utils/color.js';
+	} from '../utils/color.js';
 
 	export let isOn = false;
 	export let color = '#333333';

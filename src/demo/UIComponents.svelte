@@ -18,8 +18,8 @@
   import { Block } from "../components/Layout";
   import { Line } from "../components/Layout";
 
-  import { randomHex } from "../utils/color.js";
-  import { colors } from "../utils/color.js";
+  import { randomHex } from "../components/utils/color.js";
+  import { colors } from "../components/utils/color.js";
 
   import { Favorite } from "../assets/icons";
   import { Phone } from "../assets/icons";

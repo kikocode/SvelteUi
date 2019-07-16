@@ -1,5 +1,5 @@
 <script>
-	import { hexToRGB } from '../../utils/color.js';
+	import { hexToRGB } from '../utils/color.js';
 	import { onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 
@@ -487,7 +487,7 @@
 		<div class="textfield__border">
 			<div class="textfield__border__start textfield__border__segment" />
 			<div class="textfield__border__gap textfield__border__segment">
-				<div bind:this={labelRef} class="textfield__label">{label} </div>
+				<div bind:this={labelRef} class="textfield__label">{label}</div>
 			</div>
 			<div class="textfield__border__end textfield__border__segment" />
 		</div>

@@ -1,11 +1,8 @@
-import {
-	hexToRGB
-} from "../../utils/color.js";
+import { hexToRGB } from '../utils/color.js';
 
 export default function useRipple(node, params) {
-
-	let colorStyle = "";
-	let color = "#ffffff";
+	let colorStyle = '';
+	let color = '#ffffff';
 	if (params && params.color) {
 		color = params.color;
 	}
@@ -27,9 +24,9 @@ export default function useRipple(node, params) {
 		let sideY = h / 2 + centerOffsetY;
 		let safeSpace = 10;
 		let diameter = Math.sqrt(Math.pow(sideX, 2) + Math.pow(sideY, 2)) * 2;
-		let ripple = document.createElement("div");
+		let ripple = document.createElement('div');
 
-		let rippleStyle = "";
+		let rippleStyle = '';
 		rippleStyle += `
 			left: ${x - diameter / 2}px;
 			top: ${y - diameter / 2}px;
@@ -38,16 +35,16 @@ export default function useRipple(node, params) {
 		`;
 		if (colorStyle) rippleStyle += colorStyle;
 		ripple.style = rippleStyle;
-		ripple.className = "ripple";
+		ripple.className = 'ripple';
 		node.appendChild(ripple);
 
-		setTimeout(function () {
-			ripple.classList.add("ripple--held");
+		setTimeout(function() {
+			ripple.classList.add('ripple--held');
 		}, 0);
 
-		setTimeout(function () {
-			if (ripple.classList.contains("ripple--held")) return;
-			ripple.classList.add("ripple--done");
+		setTimeout(function() {
+			if (ripple.classList.contains('ripple--held')) return;
+			ripple.classList.add('ripple--done');
 			setTimeout(() => {
 				node.removeChild(ripple);
 			}, 400);
@@ -55,11 +52,11 @@ export default function useRipple(node, params) {
 	};
 
 	const killRipple = target => {
-		var ripples = target.querySelectorAll(".ripple");
+		var ripples = target.querySelectorAll('.ripple');
 		var previousRipple = ripples[ripples.length - 1];
 
 		if (!previousRipple) return;
-		previousRipple.classList.add("ripple--done");
+		previousRipple.classList.add('ripple--done');
 		setTimeout(() => {
 			previousRipple.parentNode.removeChild(previousRipple);
 		}, 800);
@@ -72,15 +69,15 @@ export default function useRipple(node, params) {
 		killRipple(node);
 	};
 
-	node.addEventListener("mousedown", handleMouseDown);
-	node.addEventListener("mouseup", handleMouseUp);
-	node.addEventListener("mouseleave", handleMouseLeave);
+	node.addEventListener('mousedown', handleMouseDown);
+	node.addEventListener('mouseup', handleMouseUp);
+	node.addEventListener('mouseleave', handleMouseLeave);
 
 	return {
 		destroy() {
-			node.removeEventListener("mousedown", handleMouseDown);
-			node.removeEventListener("mouseup", handleMouseUp);
-			node.removeEventListener("mouseleave", handleMouseLeave);
+			node.removeEventListener('mousedown', handleMouseDown);
+			node.removeEventListener('mouseup', handleMouseUp);
+			node.removeEventListener('mouseleave', handleMouseLeave);
 		}
-	}
+	};
 }

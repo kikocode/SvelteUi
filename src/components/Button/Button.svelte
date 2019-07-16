@@ -4,7 +4,7 @@
 		getContrastColor,
 		lighten,
 		darken
-	} from '../../utils/color.js';
+	} from '../utils/color.js';
 
 	export let use = () => {};
 	export let color = '#1976d2';

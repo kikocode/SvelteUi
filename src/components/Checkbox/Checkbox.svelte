@@ -4,7 +4,7 @@
 		getContrastColor,
 		lighten,
 		darken
-	} from '../../utils/color.js';
+	} from '../utils/color.js';
 
 	import Check from '../Icons/Check.svelte';
 

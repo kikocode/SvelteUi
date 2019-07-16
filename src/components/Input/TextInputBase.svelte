@@ -1,5 +1,5 @@
 <script>
-	import { hexToRGB } from '../../utils/color.js';
+	import { hexToRGB } from '../utils/color.js';
 	import { onMount } from 'svelte';
 	import { createEventDispatcher } from 'svelte';
 
@@ -272,7 +272,7 @@
 		pointer-events: none;
 
 		& > :global(*) {
-			display:flex;
+			display: flex;
 		}
 	}
 
