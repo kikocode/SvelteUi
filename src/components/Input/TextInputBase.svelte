@@ -200,6 +200,7 @@
 	.textfield__label {
 		position: absolute;
 		padding-left: 2px;
+		line-height: 1;
 		max-width: calc(100% - 35px);
 		color: rgba(0, 0, 0, 0.6);
 		transform-origin: top left;
@@ -269,6 +270,10 @@
 
 		color: rgba(0, 0, 0, 0.5);
 		pointer-events: none;
+
+		& > :global(*) {
+			display:flex;
+		}
 	}
 
 	.textfield__prepend {
