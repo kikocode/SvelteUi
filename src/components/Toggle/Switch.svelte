@@ -21,7 +21,7 @@
 	};
 </script>
 
-<style>
+<style type="text/scss">
 	.switch {
 		display: inline-flex;
 		margin: 0;

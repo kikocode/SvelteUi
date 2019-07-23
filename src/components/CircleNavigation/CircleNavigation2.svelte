@@ -66,7 +66,7 @@
 	};
 </script>
 
-<style>
+<style type="text/scss">
 	.circle-navigation {
 		position: relative;
 		margin: 15px;

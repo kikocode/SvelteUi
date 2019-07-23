@@ -1,5 +1,4 @@
 <script>
-	import slide from 'svelte-transitions-slide';
 	export let expanded = false;
 	export let expandDuration = 1000;
 	let accordeonRef;
@@ -20,7 +19,7 @@
 	<slot name="header" />
 	{#if expanded}
 		<!-- use `in`, `out`, or `transition` (bidirectional) -->
-		<div class="accordeon__body" transition:slide>
+		<div class="accordeon__body">
 			<slot name="body">
 				<p>😮 No body!</p>
 			</slot>
