@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "index.332217ef.css",
+  "sources": [
+    "..\\..\\..\\..\\..\\..\\..\\src\\routes\\index.svelte"
+  ],
+  "sourcesContent": [
+    "<style>\r\n\th1,\r\n\tfigure,\r\n\tp {\r\n\t\ttext-align: center;\r\n\t\tmargin: 0 auto;\r\n\t}\r\n\r\n\th1 {\r\n\t\tfont-size: 2.8em;\r\n\t\ttext-transform: uppercase;\r\n\t\tfont-weight: 700;\r\n\t\tmargin: 0 0 0.5em 0;\r\n\t}\r\n\r\n\tfigure {\r\n\t\tmargin: 0 0 1em 0;\r\n\t}\r\n\r\n\timg {\r\n\t\twidth: 100%;\r\n\t\tmax-width: 400px;\r\n\t\tmargin: 0 0 1em 0;\r\n\t}\r\n\r\n\tp {\r\n\t\tmargin: 1em auto;\r\n\t}\r\n\r\n\t@media (min-width: 480px) {\r\n\t\th1 {\r\n\t\t\tfont-size: 4em;\r\n\t\t}\r\n\t}\r\n</style>\r\n\r\n<svelte:head>\r\n\t<title>Svelte UI</title>\r\n</svelte:head>\r\n\r\n<h1>Svelte UI</h1>\r\n"
+  ],
+  "names": [],
+  "mappings": "AACC,EAAE,eAEA,CAAC,AACF,UAAU,CAAE,MAAM,CAClB,MAAM,CAAE,CAAC,CAAC,IAAI,AACf,CAAC,AAED,EAAE,eAAC,CAAC,AACH,SAAS,CAAE,KAAK,CAChB,cAAc,CAAE,SAAS,CACzB,WAAW,CAAE,GAAG,CAChB,MAAM,CAAE,CAAC,CAAC,CAAC,CAAC,KAAK,CAAC,CAAC,AACpB,CAAC,AAgBD,MAAM,AAAC,YAAY,KAAK,CAAC,AAAC,CAAC,AAC1B,EAAE,eAAC,CAAC,AACH,SAAS,CAAE,GAAG,AACf,CAAC,AACF,CAAC"
+}

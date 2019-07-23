@@ -1,0 +1,2 @@
+import{S as s,i as a,s as t,a as e,e as r,t as c,d as l,c as n,b as h,f as o,g as i,h as u,j as f,n as v}from"./chunk.523e775c.js";function d(s){var a,t,d;return{c(){a=e(),t=r("h1"),d=c("Svelte UI"),this.h()},l(s){a=l(s,"\r\n\r\n"),t=n(s,"H1",{class:!0},!1);var e=h(t);d=l(e,"Svelte UI"),e.forEach(o),this.h()},h(){document.title="Svelte UI",i(t,"class","svelte-1412qfy")},m(s,e){u(s,a,e),u(s,t,e),f(t,d)},p:v,i:v,o:v,d(s){s&&(o(a),o(t))}}}export default class extends s{constructor(s){super(),a(this,s,null,d,t,[])}}
+//# sourceMappingURL=index.12adb832.js.map
