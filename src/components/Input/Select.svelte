@@ -14,6 +14,7 @@
 	export let type = 'text';
 	export let prepend = '';
 	export let append = '';
+	export let onChange;
 
 	export let style = '';
 	export let className = '';
@@ -41,6 +42,7 @@
 
 	const handleChange = e => {
 		name = e.target.value;
+		onChange(e.target.value);
 	};
 	const handleFocus = e => {
 		focused = true;

@@ -17,6 +17,8 @@
 	import { Textfield as Textfield2 } from '../components/Input';
 	import { Select } from '../components/Input';
 
+	import Prism from 'prismjs';
+
 	let randomColor = '#2a74e6';
 
 	const setRandomColor = () => {
@@ -33,9 +35,60 @@
 	const randomPick = arr => {
 		return arr[Math.floor(Math.random() * arr.length)];
 	};
+
+	let selectedLang = 'html';
+
+	function handleChangeLanguage(val) {
+		selectedLang = val;
+	}
+
+	// prettier-ignore
+	$: x = Prism.highlight(
+`<div class="testElement">
+    <Select
+        label={'Outlined'}
+        name="Custom"
+        color="#99bbdd"
+        compact={false}
+        prepend="$"
+        helperText="Prepend">
+        <option />
+        <option>Test</option>
+        <option>OptionWithLongText</option>
+    </Select>
+</div>`,
+		Prism.languages[selectedLang],
+		selectedLang,
+	);
 </script>
 
+<style>
+	.code :global(*) {
+		font-family: monospace !important;
+	}
+</style>
+
 <h2>Select</h2>
+{selectedLang}
+<Select
+	label={'Language'}
+	color="#ff00aa"
+	compact={true}
+	value={selectedLang}
+	onChange={handleChangeLanguage}>
+	<option selected>markup</option>
+	<option>html</option>
+	<option>css</option>
+	<option>javascript</option>
+	<option>clike</option>
+</Select>
+
+<pre class="code">
+	<code class={`lang-${selectedLang}`}>
+		{@html x}
+	</code>
+</pre>
+
 <Block>
 
 	<div class="testElement">
