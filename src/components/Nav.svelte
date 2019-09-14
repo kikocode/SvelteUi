@@ -100,5 +100,8 @@
 		<li>
 			<a class={segment === 'ripple' ? 'selected' : ''} href="ripple">Ripple</a>
 		</li>
+		<li>
+			<a class={segment === 'lab' ? 'selected' : ''} href="lab">Lab</a>
+		</li>
 	</ul>
 </nav>
